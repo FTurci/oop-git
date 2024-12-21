@@ -1,0 +1,12 @@
+{
+  "hash": "1fc7e0a389927d75bc024a51c5a545f9",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Using the shell\n---\n\n\n\n\n## Aims\n\n- Create a local project directory \n- Create and edit `README.md` file \n\n## Learning outcomes\n\n- Build confidence in navigating the filesystem, creating, deleting and editing files and folders \n\n## The shell\n\nHere we recall very briefly *why* we use the shell environment and *how* normal operations are typically performed.\n\nThe shell allows you to interact with a computer without the need of a graphical user interface (GUI). This has three main advantages:\n\n- it allows you to operate on files and folders programmatically\n- it allows you to interact easily with remote machines, e.g. the High Performance Computing facilities of the University of Bristol\n- it allows to have more direct access to low-level operations of your machine (installing and fine-tuning software, libraries and various components)\n\n:::{.callout-important}\nIt is **essential** to learn how to use the shell properly in order to understand and develop more advanced scientific computing tools.\n:::\n\n\n```{css}\n#collapsible {\n  display: none;\n}\n<input type=\"text\" id=\"userInput\" placeholder=\"Enter a string\"> <div id=\"collapsible\"> <h4>Collapsible Section</h4> <p>This section appears when you enter a string.</p> </div> <script> document.getElementById(\"userInput\").addEventListener(\"input\", function() { const collapsible = document.getElementById(\"collapsible\"); collapsible.style.display = this.value ? \"block\" : \"none\"; }); </script>\n```\n\n\n",
+    "supporting": [
+      "shell_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

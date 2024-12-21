@@ -1,0 +1,48 @@
+---
+title: "Version control with `git`"
+format:
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, custom.scss]
+    # transition: fade
+  html:
+    output-file: oop.html
+output-file: oop-slides.html
+---
+
+
+## Aims
+
+- Define the essential properties of our simulation and identify them as objects
+- Design the basic relationships between such objects
+- Construct the skeleton of the simulation by creating bare bone classes for the main objects
+
+## Learning outcomes
+
+- Familiarise with the rules of Vicsek flocking model
+- Practice object-oriented design choices in C++
+
+
+## Modelling flocking using the Vicsek model
+
+## Object-oriented programming is about actions between objects
+
+A lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boild down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This **procedural** programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated. 
+
+###
+Object-oriented programming is different: the idea is to look at the problem that you want to seolve and identify intelligent ways to break it down into smaller problems, possibly quite generic.
+In particular, the goal is to group variables and functions together into new data types that therefore enjoy new properties and relationships. Thi sallow syou to break down a complex code into simpler, smaller parts.
+
+From this description is clear that, object-oriented programming (OOP) will be:
+
+- unsuitable for small projects that can be addressed with standard or existing data types
+- very suitable when considering new problems, with many different parts interacting in various different ways
+
+

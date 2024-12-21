@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "Object-Oriented Programming and Software Engineering"
+
+  sidebar:
+    smooth-scroll: true
+    logo: img/logo.png
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        text: Welcome
+      - plan.qmd
+      - section: "Using `git` and Github"
+        contents:
+        - href: wp_gitgithub/shell.qmd
+        - href: wp_gitgithub/git.qmd
+        - href: wp_gitgithub/exercises.qmd
+
+      
+
+format:
+  html:
+    theme: cosmo
+    # css: styles.css
+    toc: true
+    number-chapters: true
+    # number-sections: true

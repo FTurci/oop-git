@@ -1,0 +1,36 @@
+{
+  "advance_cpp.qmd": {
+    "advance_cpp.html": "19232fef"
+  },
+  "index.qmd": {
+    "index.html": "81267c54"
+  },
+  "about.qmd": {
+    "about.html": "5fc461c2"
+  },
+  "plan.qmd": {
+    "plan.html": "a1bcfdf1"
+  },
+  "model.qmd": {
+    "model.html": "3c22cd2d"
+  },
+  "git.qmd": {
+    "git.html": "aeaad3ff"
+  },
+  "shell.qmd": {
+    "shell.html": "d89539f4"
+  },
+  "wp_gitgithub/shell.qmd": {
+    "shell.html": "6b4c1a6e"
+  },
+  "wp_gitgithub/git.qmd": {
+    "git.html": "10de8a1e",
+    "presentation.html": "b646d75c",
+    "presentation_slideshow.html": "881c5de4",
+    "presentation_regular.html": "0272f2b3",
+    "git-slides.html": "55e5b0a5"
+  },
+  "wp_gitgithub/exercises.qmd": {
+    "exercises.html": "150ca34f"
+  }
+}

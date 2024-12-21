@@ -1,0 +1,62 @@
+---
+title: Exercises
+number-sections: true
+
+---
+
+##  Shell
+
+::: {.callout-note icon=false}
+### Exercise
+
+The following code is written in `bash` and creates folders named `folder1`, `folder2`,...,`folder10`:
+
+```bash
+for i in {1..10}; do
+    mkdir folder$i
+done
+
+```
+Note the close similarity with Python.
+
+Create a new file named `create_folders.sh` using the command `touch`. Edit the file directly in the shell using either the command `nano` (easier) or `vim`  (harder) and type the script inside the file.
+
+Then, run the script via
+
+```bash
+bash create_folders.sh
+```
+
+Complete the following tasks by solely using the shell:
+
+1. Rename `folder10` as `folder0`
+2. Delete folder `folder0`
+3. Create a file inside `folder1` called `README.md` and type the following text:
+```
+This is a README.md file
+It contains essential documentation on the project.
+```
+4. Change the working directory name to `folder1`
+5. Use the command `grep` to print out at what line the word `essential` is contained in the file `README.md`
+
+
+:::
+
+## Git+Shell 
+
+::: {.callout-note icon=false}
+### Exercises
+
+Assuming that you have completed the main tasks of [this workshop](git.qmd), complete the following additional tasks on your git repository:
+
+1. Using `git --help` to find a way to consult the log of your various commits
+2. The shell has an operator called **output redirection**: it is the symbol `>`. Use output redirection to write your log to a file named `mygit.log`
+3. Add the `mygit.log` file to the repository on the `main` branch and commit the changes.
+4. Check the new status of the `log`: can you find your commit?
+5. We now want to go back to a version of the commit prior to the addition fo the log file. Every commit has its own unique id (strings like `455005dc29dc6727de7ee36fee4b49a13b39f73f`)   called **commit hashes**. Find the commit hash of the commit that precedes our latest addition. To reset the master to that point use
+
+`git reset --hard <commit-hash>`
+
+Is the `mygit.log` still there? 
+
+:::

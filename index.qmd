@@ -1,0 +1,256 @@
+
+# Software Engineering and Object Oriented Programming
+
+Welcome to the **Software Engineering and Object Oriented Programming** part of the *SCIF20002 Programming and Data Analysis for Scientists* course.
+
+<!-- All the course material will be available from this website. -->
+
+This  part of the course focuses on developing your software engineering skills and your knowledge of object-oriented programming through the achievement of a **practical simulation project**. Over the course of five sessions, you will acquire the tools and explore the instruments to:
+
+
+::: {.callout-tip appearance="minimal"}
+- **Create** your own `git` repository locally and synchronise it on `Github`
+- **Learn** to track changes, construct commits and collaborate with others
+- **Write** an object-oriented code in C++ and Python
+- **Write** Python wrapper code to interface with C++ using `pybind`
+
+:::
+## Requirements
+
+
+### Knowledge base
+
+You will need:
+
+- consolidated knowledge of how to interact with a Linux shell
+- consolidated knowledge of Python
+- consolidated knowledge of basic C++ syntax
+- initial knowledge of classes in C++
+- knowledge of the C++ compilation process
+
+### Software
+
+You will need access to a complete environment with 
+
+- a Unix shell (e.g. a Terminal)
+- a C++ compiler (`gcc/g++`)
+- an installation of `git`
+- a Python environment
+- suitable editor (e.g. VSCode). 
+
+The **Noteable** environment accessible from *Blackboard* provides all of these.
+
+However, you are **encouraged** to have your own software development environment installed **locally** on your machines.
+
+Here are some architecture-dependent recommendations:
+
+::: {.panel-tabset }
+
+### Windows 11
+
+**Shell**
+ 
+The recommended way to do software development on Windows is to install the **Windows Linux Subsystem** (WSL, version 2). This installs a well-integrated local Linux distribution. [↗](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+In brief, you will need to open the **Windows Command Prompt** in administrator mode  by right-clicking and selecting *Run as administrator* and then type the single command
+
+```PowerShell
+wsl --install
+```
+Restart the machine and then launch WSL.
+
+**C++ compiler**
+
+From the WSL shell, install the C/C++ compiler with
+
+```bash
+sudo apt install gcc
+```
+You will be prompted to enter the password that you will have set for your WSL user.
+
+
+**Git**
+
+The version control software `git` is installed with
+
+```bash
+sudo apt-get install git
+```
+
+To interact with Github, it is recommended to also install the Github command-line utility `gh`. To do so, first add the official sources (copy and paste command)
+
+```bash
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+```
+
+Then update the pakcage list and install `gh`
+
+```bash
+sudo apt update
+sudo apt install gh
+```
+
+**Python environment**
+
+A basic working environment in Python is installed from the WSL shell via 
+
+```bash
+sudo apt install python3 python3-pip ipython3
+```
+You can then install scientific computing packages via `pip`
+
+```bash
+pip install numpy matplotlib scipy
+```
+
+**Code editor**
+
+The simplest option is to install **Visual Studio Code** and configure it to work with WSL.
+
+Here is the offical guidance [↗️](https://code.visualstudio.com/docs/remote/wsl)
+
+### MacOS 
+
+**Shell**
+
+The Mac already has a proper shell, called `Terminal`.
+
+It is useful however to install a **package manager** that simplifies the installation of software. The most suitable is [`homebrew`](https://brew.sh){target="_blank"}.
+
+To install it, open a `Terminal` and type (you can copy and paste the command below)
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+**C++**
+
+The Mac already comes with a good compiler installed called `clang`, with aliases for commands such as `gcc
+ and `g++`. 
+
+ You may want to install a GNU compiler ( the standard `gcc` compiler that you have, for example, on the bristol High Performance Computing clusters) you can install it with `homebrew` using:
+
+ ```bash
+brew install gcc
+ ```
+
+ This will install the latest version of `gcc`, which you will access with the command `gcc-xx` wher xx is the version number. For example `gcc-14`.
+
+**Git**
+
+The Mac should have `git` pre-installed.
+
+To interact with Github, it is recommended to also install the Github command-line utility `gh` via
+
+```bash
+brew install gh
+```
+
+**Python**
+
+The Mac already has Python installed as well. You can use it and readily use `pip` to install the packages that you need using 
+
+```bash
+pip3 install numpy matplotlib scipy
+```
+
+However, a more flexible way to manage different version of Python and Python environments is to install `pyenv`.  More information here [↗️](https://github.com/pyenv/pyenv?tab=readme-ov-file#unixmacos){target="_blank"}
+
+**Code editor**
+
+You can install whatever editor you prefer. A simple option is **Visual Studio Code**, which you can download from this link [↗️](https://code.visualstudio.com){target="_blank"}
+
+Atelemetry-free version of VSCode can be installed via `homewbrew`
+
+```bash
+brew install --cask vscodium
+```
+
+
+### Linux  {#tab-linux}
+
+Depending on the linux distribution, you may have different package managers to install software. Here we assume a Debian-based distribution such as **Ubuntu**, where the package manager is `apt` (or `apt-get`).
+
+**Shell**
+
+All Linux distributions have an application to launch a shell, often called `Terminal`.
+
+**C++**
+
+The C/C++ compilers are normally already installed. If not, just type
+
+```bash
+sudo apt-get install gcc
+```
+
+**Git**
+
+`git` is  normally available. If not, just type
+
+```bash
+sudo apt-get install git
+```
+To interact with Github, it is recommended to also install the Github command-line utility `gh`. To do so, first add the official sources (copy and paste command)
+
+```bash
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+```
+
+Then update the pakcage list and install `gh`
+
+```bash
+sudo apt update
+sudo apt install gh
+```
+**Python**
+
+You install Python via
+
+```bash
+sudo apt-get install python3 python3-pip ipython3
+```
+You can then install scientific computing packages via `pip`
+
+```bash
+pip install numpy matplotlib scipy
+```
+
+**Code editor**
+
+You can install whatever editor you prefer, including VSCode [↗️](https://code.visualstudio.com){target="_blank"}.
+
+On `Ubuntu`, a telemetry-free version of VSCode can be installed via `snaps`
+
+```bash
+snap install codium --classic
+```
+
+### ChromeOS
+
+Chromebooks have a Linux operating system running under the hood. 
+
+It is possible to access it by activating the **Linux development environment**, see the documentation [↗️](https://support.google.com/chromebook/answer/9145439){target="_blank"}
+
+You can then follow the same instructions as **Linux** users.
+
+:::
+
+
+
+
+
+<!-- See figure [See the image](about.qmd#fig-something) -->

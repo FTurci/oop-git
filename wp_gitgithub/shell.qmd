@@ -1,0 +1,152 @@
+---
+title: "Using the shell"
+---
+
+
+## Aims
+
+- Create a local project directory 
+- Create and edit `README.md` file 
+
+## Learning outcomes
+
+- Build confidence in navigating the filesystem, creating, deleting and editing files and folders 
+
+## The shell
+
+Here we recall very briefly *why* we use the shell environment and *how* normal operations are typically performed. These topics have already been covered in the previous term.
+
+The shell allows you to interact with a computer without the need of a graphical user interface (GUI). This has three main advantages:
+
+- it allows you to operate on files and folders programmatically
+- it allows you to interact easily with remote machines, e.g. the High Performance Computing facilities of the University of Bristol
+- it allows to have more direct access to low-level operations of your machine (installing and fine-tuning software, libraries and various components)
+
+:::{.callout-important}
+It is **essential** to learn how to use the shell properly in order to understand and develop more advanced scientific computing tools.
+:::
+
+
+
+## Basic shell usage
+
+1. **List files and directories**: Displays the contents of the current directory.  
+   ```bash
+   ls
+   ```
+
+2. **Change directory**: Moves to a different directory.  
+   ```bash
+   cd /path/to/directory
+   ```
+
+3. **Create a new directory**: Creates a new folder.  
+   ```bash
+   mkdir new_folder
+   ```
+
+4. **Remove a file**: Deletes a specific file.  
+   ```bash
+   rm file.txt
+   ```
+
+5. **Remove a directory**: Deletes a directory and its contents.  
+   ```bash
+   rm -r directory_name
+   ```
+
+6. **Move or rename a file**: Moves a file to a new location or renames it.  
+   ```bash
+   mv old_file.txt new_location/
+   ```
+
+7. **Copy a file**: Copies a file to a new location.  
+   ```bash
+   cp file.txt /path/to/destination/
+   ```
+
+8. **Create a new file**: Creates an empty file.  
+   ```bash
+   touch newfile.txt
+   ```
+
+9. **Edit a file**: Opens a file in a text editor like `nano` for editing.  
+   ```bash
+   nano file.txt
+   ```
+
+10. **View the contents of a file**: Displays the contents of a file in the terminal.  
+    ```bash
+    cat file.txt
+    ```
+
+11. **Search for text in a file**: Searches for specific text in a file.  
+    ```bash
+    grep "search_term" file.txt
+    ```
+
+12. **Show current directory path**: Displays the full path of the current working directory.  
+    ```bash
+    pwd
+    ```
+
+13. **Copy a directory**: Copies a directory and its contents.  
+    ```bash
+    cp -r source_directory/ destination_directory/
+    ```
+
+14. **Move back one directory**: Moves up one directory level.  
+    ```bash
+    cd ..
+    ```
+
+15. **Display disk usage**: Shows the disk usage of files and directories.  
+    ```bash
+    du -sh *
+    ```
+
+
+
+## To-dos
+
+Now that we know how to manipulate folder and file, we start our project by creating 
+
+- a dedicated directory
+- a `README.md` file to contain the project documentation
+
+::: {.callout-note icon=false}
+
+## Task 1: create the local project directory
+
+Now that we have overviewed basic shell command, we can set off and create a local directory that will contain our project.
+
+We name the project `vicsek-cpp`. 
+
+```bash
+mkdir vicsek-cpp
+```
+
+:::
+
+::: {.callout-note icon=false}
+
+## Task 2: create the `README.md` file
+
+Inside the folder, we can use our favourite editor (e.g. `vim` or `nano` or VSCode if we like) to create and edit the `README.md` file.
+
+Include a header and a brief description. You will provide more documentation later on.
+
+For the root working directory, typing 
+
+```bash
+ls vicsek-cpp
+```
+
+should return
+
+```bash
+README.md
+```
+
+:::
+

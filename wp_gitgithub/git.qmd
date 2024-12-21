@@ -1,0 +1,215 @@
+---
+title: "Version control with `git`"
+format:
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, custom.scss]
+    # transition: fade
+  html:
+    output-file: git.html
+output-file: git-slides.html
+---
+
+
+## Aims
+
+- Initialise a local `git` repository
+- Add files to track
+- Commit some changes
+
+## Learning outcomes
+
+- Understand the general principles of version control
+- Mastery of how `git` implements the main features of version control
+
+
+## General ideas about version control
+
+Version control is an approach to coding that allows you to keep track of the code **evolution**.
+
+You may think of coding as a linear process, where a first version is followed by another more advanced version, which is again followed by a successive more refined version and so on.
+```{mermaid}
+flowchart LR
+    A[Version 1] -->  B[Version 2] --> C[Version 3]--> D[...]
+```
+
+This is not at all the case. In fact, as we develop our code we tyically **try various ideas**, similarly to what you would do if you were writing a novel, perform an experiment, or explore an uncharted territory. 
+```{mermaid}
+flowchart LR
+    A[Version 1] --> B
+    B[Version 2] --> C[Version 3]--> D[...]
+    A-->Aa[Variant 1.a]-->B
+    A-->Ab[Variant 1.b]-->E[Alternative version 2]-->C
+```
+
+### 
+
+This is even more evident when **collaboration** is at play: different developers will try different approaches and require a system to keep track of their respective modifications and that helps them with bringing them together into a unified project. In fact, regularly, the various ideas need to come together and **merge** for the project to keep its unitary structure.
+
+Version control tools serve precisely this purpose, and `git` is the most popular of such tools.
+
+It is powerful, but its usage can be subtle at times, as illustrated by the following cartoon:
+
+![Git according to the celebrated comic strip [xkcd](https://xkcd.com)](https://imgs.xkcd.com/comics/git_2x.png){fig-align="left" width=40%}
+
+Version control therefore solves two problems:
+
+1. keeping track of the code changes performed by a **single performs**
+2. allow to harmonise and synchronise the code changes of various **collaborators**
+
+We are going to focus mostly on the first part, but it is important to realise that `git` is an **essential** tool for code development in large projects. 
+
+## Terminology
+
+### Repositories 
+
+Version control use **repositories**. These are a database of code versions, stored in an efficient manner, focusing on the **changes** between a version and another.
+
+### Clones  
+
+Each user of the repository has their own working copy of all the files (any kinds of files) of the project. This **clone** of the repository is typically stored on the local machine.
+
+Changes to the local clone are not reflected in the repository unless the users **explicitely** require this to be the case. 
+
+### Distributed version control  
+
+In **distribute version control** each user has a complete copy of the repository, and they can perform their changes independently from other users, work locally and offline and eventually do collaborative work by merging their own versions with the one of others. 
+
+In principle, this can be done **without a central server** (e.g. peer to peer). In practice, one often uses some form of online repository, e.g. Github, Gitlab etc.
+
+###  Branch  
+
+### Commits  
+
+When you want a change to be registered in the repository's database, your **commit** your changes to the repository. This means that a new entry in the database is added, keeping track of a timestamp associated with your changes and (often) an explanatory description of what the modification entails.
+
+### Pushing  
+
+
+### Fetching  
+
+
+### Pulling 
+
+
+See below
+
+### Scheme
+
+![How `git` works, adapted from [https://homes.cs.washington.edu/~mernst/advice/version-control.html ↗️](https://homes.cs.washington.edu/~mernst/advice/version-control.html#Introduction_to_version_control) ](../img/gitscheme.svg){width=80%}
+
+## Hands-on approach to `git`
+We start off working **locally** and creating a local project.
+
+
+## To-dos
+
+[Previously](shell.qmd#to-dos), you should have created a project folder with a `README.md` file. We now want to setup our **local** git repository.
+
+###
+:::{.callout-note icon="false"}
+## Task 1: initialise the repository
+
+Go to the project folder `vicsek-cpp` and **initialise the `git` repository**.
+
+Use the information above or `git --help` to find the correct command to use.
+
+:::
+
+### 
+:::{.callout-note icon="false"}
+## Task 2: create a `.gitignore` file and add it to the staging area
+
+We want to tell `git` not to keep track of specifc files. For, example we want to ignore hidden files that are specific to MacOS. A **hidden file/folder** haas a name that starts with `.` . 
+
+To provide `git` with a list of files to ignore, we create a (hidden) configuration file inside `vicsek-cpp` called `.gitignore`. 
+
+Create such file and enter the following string
+
+```.DS_Store```
+
+Then **add** the `.gitignore` file to the staging area. 
+
+Check `git status` to see if your `.gitignore` is ready to be committed and then **commit** it with a suitable comment.
+ 
+:::
+
+###
+:::{.callout-note icon="false"}
+## Task 3: ignoring files and directly committing the changes
+
+Suppose now that we also want to ignore all files that end with `.txt`. The `.gitignore` file accepts the wildcard `*`.
+
+Modify the `.gitignore` to ignore all `.txt` files. With a suitable option  to the `git commit` command, stage and commit the changes in a single go.
+
+Then create two new files:
+- a `notes.txt` file 
+- a `notes.md` file
+
+Add all new files in the current folder with `git add .`, commit your changes to the repository and then check the files added to the repository with `git ls-files`. 
+
+Is `notes.txt` in your list?
+
+
+:::
+
+###
+:::{.callout-note icon="false"}
+## Task 4: branching
+
+We want to now start developing our code. For this purpose, we create a new branch called `develop`.  To do so we use the command
+
+
+```bash
+git branch develop
+```
+
+To check which branches now exist in your repository just type
+
+```bash
+git branch
+```
+
+A `*` should appear on the brenach you are on (which should be `main`). To switch to the `develop` branch use
+
+```bash
+git checkout develop
+```
+Check that you are on the right branch now (see above).
+
+Once you are on your develop branch, create a new folder `src` where we will put the C++ code (do not remember how to create a folder? go back to [Using the shell](shell.qmd)).
+
+Inside `src`, create our C++ main file `main.cpp`, e.g. using a suitable editor (e.g. `nano` , `pico` or `vim`).
+
+The minimal content should be the following
+
+
+```c++
+#include <iostream>
+
+int main(){
+    return 0
+}
+
+```
+ 
+ Now, add the src folder with its content to the git repository and commit the changes.
+
+ Switch back to the `main` branch: what happened to the `src` folder?
+
+:::
+
+###
+:::{.callout-note icon="false"}
+## Task 4: merging
+
+[COMPLETE TASK]
+
+:::

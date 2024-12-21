@@ -1,0 +1,45 @@
+# Plan
+
+In this part of the course, we set ourselves a very specific goal:
+
+
+::: {.callout-tip}
+## Goal
+We want to realise a **Github repository** containing a **C++** project with **Python** frontend to simulate a simple **particle-based simulation**.
+
+:::
+
+We will have **five** sessions to reach this target. We will proceed in steps:
+
+| Date       | Topic                                                                 |
+|------------|-----------------------------------------------------------------------|
+|Week 13 - 13/01/2025  | Learn how to use `git` to perform version control and interact with Github |
+|Week 14 - 20/01/2025  | Recall the notion of Object-Oriented programming (OOP) and design the (OOP) structure of our simulation. |
+|Week 15 - 27/01/2025 | Implement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools |
+|Week 16 - 03/03/2025 | Introduce `pybind11` to interface the C++ code with Python            |
+|Week 17 - 10/02/2025 | Wrapping in Python and improvements to the code                      |
+
+
+This journey will allow you to **build your coding skills** in C++, connect them to your Python knowledge and apply them to a **realistic modelling problem**.
+
+
+## Final product
+
+The final product of the simulation is a visualisation of the **Vicsek model**, an elementary model to represent the flocking behaviour of birds, fish and various other **agents**. An example animation is here below. 
+
+![Animation of the Vicsek model](img/vicsek-goal.gif)
+
+You will learn about the the specifics the model in the [Vicsek model](model.qmd) section.
+
+
+## Assessment
+
+During the project you will acquire a number of skills, primarily in two areas:
+
+::: {.callout-tip appearance="minimal"}
+- **Software engineering** (e.g. version control with `git`)
+- **Object-oriented programming** (in C++ and Python)
+:::
+
+The **Test 
+2** assessment in **Week 17** will probe your understanding of both via a **dedicated** and **self-contained** exercise. This means that the final product mentioned is **not assessed**. It is, however, a **constitutive part** of your learning trajectory. 
