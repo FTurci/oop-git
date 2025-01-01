@@ -21,7 +21,10 @@
     "shell.html": "d89539f4"
   },
   "wp_gitgithub/shell.qmd": {
-    "shell.html": "6b4c1a6e"
+    "shell.html": "6b4c1a6e",
+    "git-slides.html": "548f2724",
+    "git.html": "da741045",
+    "shell-slides.html": "a6a1774c"
   },
   "wp_gitgithub/git.qmd": {
     "git.html": "10de8a1e",
@@ -32,5 +35,9 @@
   },
   "wp_gitgithub/exercises.qmd": {
     "exercises.html": "150ca34f"
+  },
+  "wp_oop/oop.qmd": {
+    "oop-slides.html": "ed172bdc",
+    "oop.html": "e385141c"
   }
 }

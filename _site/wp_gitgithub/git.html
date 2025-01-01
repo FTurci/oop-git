@@ -182,6 +182,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Object-Oriented thinking</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wp_oop/oop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Objects and Classes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -205,9 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#distributed-version-control" id="toc-distributed-version-control" class="nav-link" data-scroll-target="#distributed-version-control">Distributed version control</a></li>
   <li><a href="#branch" id="toc-branch" class="nav-link" data-scroll-target="#branch">Branch</a></li>
   <li><a href="#commits" id="toc-commits" class="nav-link" data-scroll-target="#commits">Commits</a></li>
-  <li><a href="#pushing" id="toc-pushing" class="nav-link" data-scroll-target="#pushing">Pushing</a></li>
-  <li><a href="#fetching" id="toc-fetching" class="nav-link" data-scroll-target="#fetching">Fetching</a></li>
-  <li><a href="#pulling" id="toc-pulling" class="nav-link" data-scroll-target="#pulling">Pulling</a></li>
+  <li><a href="#pushing-with-the-remote-respotiory-only" id="toc-pushing-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#pushing-with-the-remote-respotiory-only">Pushing [with the remote respotiory only]</a></li>
+  <li><a href="#fetching-with-the-remote-respotiory-only" id="toc-fetching-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#fetching-with-the-remote-respotiory-only">Fetching [with the remote respotiory only]</a></li>
+  <li><a href="#pulling-with-the-remote-respotiory-only" id="toc-pulling-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#pulling-with-the-remote-respotiory-only">Pulling [with the remote respotiory only]</a></li>
   <li><a href="#scheme" id="toc-scheme" class="nav-link" data-scroll-target="#scheme">Scheme</a></li>
   </ul></li>
   <li><a href="#hands-on-approach-to-git" id="toc-hands-on-approach-to-git" class="nav-link" data-scroll-target="#hands-on-approach-to-git">Hands-on approach to <code>git</code></a></li>
@@ -217,6 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
   <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="git-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -329,20 +347,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="branch" class="level3">
 <h3 class="anchored" data-anchor-id="branch">Branch</h3>
+<p>Branching in <code>git</code> allow you to explore various ideas in parallel, developing in different directions and experimenting new features. Branching is a backbone ides in <code>git</code>.</p>
+<p>A repository typically has a <strong>main branch</strong> where the functional code is stored. When we want to develop our code we create new <strong>feature branches</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">    %%{init: { 'logLevel': 'debug', 'theme': 'default' , 'themeVariables': {
+              'git0': '#ff0000',
+              'git1': '#00ff00',
+              'git2': '#0000ff',
+              'git3': '#ff00ff',
+              'git4': '#00ffff',
+              'git5': '#ffff00',
+              'git6': '#ff00ff',
+              'git7': '#00ffff'
+       } } }%%
+gitGraph
+   commit id: "main"
+   branch feature
+   commit id: "main work"
+   checkout feature
+   commit id: "feature work"
+   checkout main
+   commit id: "more main work"
+   merge feature
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>On every branch, we can store out individual advancements as <strong>commits</strong> (see below). Eventually, when we are happy for our feature to be integrated with the main branche, we <strong>merge</strong> the feature branch with the main branch.</p>
 </section>
 <section id="commits" class="level3">
 <h3 class="anchored" data-anchor-id="commits">Commits</h3>
 <p>When you want a change to be registered in the repository’s database, your <strong>commit</strong> your changes to the repository. This means that a new entry in the database is added, keeping track of a timestamp associated with your changes and (often) an explanatory description of what the modification entails.</p>
 </section>
-<section id="pushing" class="level3">
-<h3 class="anchored" data-anchor-id="pushing">Pushing</h3>
+<section id="pushing-with-the-remote-respotiory-only" class="level3">
+<h3 class="anchored" data-anchor-id="pushing-with-the-remote-respotiory-only">Pushing [with the remote respotiory only]</h3>
+<p>If you also have a remote repository (e.g.&nbsp;on GitHub), you can synchronise the changes between the local branch and the remote branch via the <strong>push</strong> operation.</p>
 </section>
-<section id="fetching" class="level3">
-<h3 class="anchored" data-anchor-id="fetching">Fetching</h3>
+<section id="fetching-with-the-remote-respotiory-only" class="level3">
+<h3 class="anchored" data-anchor-id="fetching-with-the-remote-respotiory-only">Fetching [with the remote respotiory only]</h3>
+<p>Fetch allows you to retrieve the changes from a remote repository, see them and decide whether to merge such changes with your local repository (or not).</p>
 </section>
-<section id="pulling" class="level3">
-<h3 class="anchored" data-anchor-id="pulling">Pulling</h3>
-<p>See below</p>
+<section id="pulling-with-the-remote-respotiory-only" class="level3">
+<h3 class="anchored" data-anchor-id="pulling-with-the-remote-respotiory-only">Pulling [with the remote respotiory only]</h3>
+<p>Pulling is simply fetching, followed by automatic merging.</p>
 </section>
 <section id="scheme" class="level3">
 <h3 class="anchored" data-anchor-id="scheme">Scheme</h3>
@@ -448,6 +501,22 @@ Task 4: branching
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, add the src folder with its content to the git repository and commit the changes.</p>
 <p>Switch back to the <code>main</code> branch: what happened to the <code>src</code> folder?</p>
+</div>
+</div>
+</section>
+<section id="section-5" class="level3">
+<h3 class="anchored" data-anchor-id="section-5"></h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 4: merging
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[COMPLETE TASK]</p>
 </div>
 </div>
 

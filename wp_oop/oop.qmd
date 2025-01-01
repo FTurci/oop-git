@@ -1,5 +1,5 @@
 ---
-title: "Version control with `git`"
+title: "Objects and Classes"
 format:
   revealjs:
     width: 1200

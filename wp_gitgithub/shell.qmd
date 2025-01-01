@@ -1,5 +1,20 @@
 ---
 title: "Using the shell"
+# format:
+#   revealjs:
+#     width: 1800
+#     height: 1200
+#     # self-contained: true
+#     scrollable: true
+#     auto-stretch: false
+#     lazy-load: false
+#     slide-level: 3
+#     smaller: true
+#     theme: [simple, custom.scss]
+#     # transition: fade
+#   html:
+#     output-file: shell.html
+# # output-file: shell-slides.html
 ---
 
 

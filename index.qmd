@@ -22,7 +22,7 @@ This  part of the course focuses on developing your software engineering skills 
 
 You will need:
 
-- consolidated knowledge of how to interact with a Linux shell
+- consolidated knowledge of how to interact with a Unix shell
 - consolidated knowledge of Python
 - consolidated knowledge of basic C++ syntax
 - initial knowledge of classes in C++
