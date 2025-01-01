@@ -225,6 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pushing-with-the-remote-respotiory-only" id="toc-pushing-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#pushing-with-the-remote-respotiory-only">Pushing [with the remote respotiory only]</a></li>
   <li><a href="#fetching-with-the-remote-respotiory-only" id="toc-fetching-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#fetching-with-the-remote-respotiory-only">Fetching [with the remote respotiory only]</a></li>
   <li><a href="#pulling-with-the-remote-respotiory-only" id="toc-pulling-with-the-remote-respotiory-only" class="nav-link" data-scroll-target="#pulling-with-the-remote-respotiory-only">Pulling [with the remote respotiory only]</a></li>
+  <li><a href="#bundling" id="toc-bundling" class="nav-link" data-scroll-target="#bundling">Bundling</a></li>
   <li><a href="#scheme" id="toc-scheme" class="nav-link" data-scroll-target="#scheme">Scheme</a></li>
   </ul></li>
   <li><a href="#hands-on-approach-to-git" id="toc-hands-on-approach-to-git" class="nav-link" data-scroll-target="#hands-on-approach-to-git">Hands-on approach to <code>git</code></a></li>
@@ -235,6 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
   <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
   <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="git-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -397,6 +399,10 @@ gitGraph
 <h3 class="anchored" data-anchor-id="pulling-with-the-remote-respotiory-only">Pulling [with the remote respotiory only]</h3>
 <p>Pulling is simply fetching, followed by automatic merging.</p>
 </section>
+<section id="bundling" class="level3">
+<h3 class="anchored" data-anchor-id="bundling">Bundling</h3>
+<p>An efficient way to produce a package out of a <code>git</code> repository is to construct a <strong>bundle</strong>. This is a single file that contains a collection of commits, branches and logs allowing you to transfer or store the repository’s content without requiring access to a remote server.</p>
+</section>
 <section id="scheme" class="level3">
 <h3 class="anchored" data-anchor-id="scheme">Scheme</h3>
 <div class="quarto-figure quarto-figure-center">
@@ -516,7 +522,27 @@ Task 4: merging
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>[COMPLETE TASK]</p>
+<p>Now that you have your <code>develop</code> branch set up, attempt to merge it back with the <code>main</code> branch using the <code>git merge</code> command. If you are not sure about how to use it, check the documentation with <code>git merge --help</code>.</p>
+</div>
+</div>
+</section>
+<section id="section-6" class="level3">
+<h3 class="anchored" data-anchor-id="section-6"></h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 5: bundling
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use now the command</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> bundle create myrepo.bundle <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to create a single bundle file conatining all of the repository. Move it to another folder (or even another machine with git, e.g.&nbsp;your Noteable account) and unpack it with</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone myrepo.bundle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cna you check the branch structure? and the status?</p>
 </div>
 </div>
 

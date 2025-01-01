@@ -132,6 +132,9 @@ Fetch allows you to retrieve the changes from a remote repository, see them and 
 
 Pulling is simply fetching, followed by automatic merging.
 
+### Bundling
+
+An efficient way to produce a package out of a `git` repository is to construct a **bundle**. This is a single file that contains a collection of commits, branches and logs allowing you to transfer or store the repository's content without requiring access to a remote server.
 
 ### Scheme
 
@@ -242,6 +245,26 @@ int main(){
 :::{.callout-note icon="false"}
 ## Task 4: merging
 
-[COMPLETE TASK]
+Now that you have your `develop` branch set up, attempt to merge it back with the  `main` branch using the `git merge` command. If you are not sure about how to use it, check the documentation with `git merge --help`.
+
+:::
+
+
+###
+:::{.callout-note icon="false"}
+## Task 5: bundling
+
+Use now the command 
+
+```bash
+git bundle create myrepo.bundle --all
+```
+to create a single bundle file conatining all of the repository. Move it to another folder (or even another machine with git, e.g. your Noteable account) and unpack it with 
+
+```bash
+git clone myrepo.bundle
+```
+
+Cna you check the branch structure? and the status?
 
 :::
