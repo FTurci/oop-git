@@ -1,5 +1,5 @@
 ---
-title: "Objects and Classes"
+title: "Hands on objects and classes"
 format:
   revealjs:
     width: 1200
@@ -29,20 +29,88 @@ output-file: oop-slides.html
 - Familiarise with the rules of Vicsek flocking model
 - Practice object-oriented design choices in C++
 
-
-## Modelling flocking using the Vicsek model
-
 ## Object-oriented programming is about actions between objects
 
-A lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boild down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This **procedural** programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated. 
+A lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boils down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This **procedural** programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated. 
 
-###
+---
+
 Object-oriented programming is different: the idea is to look at the problem that you want to seolve and identify intelligent ways to break it down into smaller problems, possibly quite generic.
-In particular, the goal is to group variables and functions together into new data types that therefore enjoy new properties and relationships. Thi sallow syou to break down a complex code into simpler, smaller parts.
+In particular, the goal is to group variables and functions together into new data types that therefore enjoy new properties and relationships. This allows you to break down a complex code into simpler, smaller parts.
 
-From this description is clear that, object-oriented programming (OOP) will be:
+From this description it is clear that object-oriented programming (OOP) will be:
 
 - unsuitable for small projects that can be addressed with standard or existing data types
 - very suitable when considering new problems, with many different parts interacting in various different ways
+
+To make object-oriented interesting, here we are considering an explicit example where *reasoning* in terms of objects helps us *design* our code.
+
+## Modelling flocking using the Vicsek model
+
+In this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.
+
+Wew use the **Vicsek** model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.
+
+The problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking.
+
+--- 
+
+:::{.callout-important }
+
+## Algorithm 
+The 2D Vicsek model algorithm can be described in these steps:
+
+1. **Initialize**: Place $N$ particles at random positions $\mathbf{r}_i$ with random velocities $\mathbf{v}_i = v (\cos\theta_i, \sin\theta_i)$, where $\theta_i$ is the orientation angle.
+
+2. **Neighbor Identification**: For each particle $i$, identify neighbors within radius $r$.
+
+3. **Alignment**: Compute the average direction of neighbors, including $i$:
+   $$
+   \bar{\theta}_i = \text{atan2}\left(\sum_{\rm j \in neighbours} \sin\theta_j, \sum_{\rm j \in neighbours} \cos\theta_j\right)
+   $$
+
+4. **Noise**: Add a random perturbation $u$ to the orientation as a random variable uniformly distributed in the interval $[-\eta/2,\eta/2]$, where $\eta$ is teh noise strength
+
+   $$
+   \theta_i^{\text{new}} = \bar{\theta}_i + u
+   $$
+
+5. **Update Position**: Move each particle with its updated velocity:
+   $$
+   \mathbf{r}_i^{\text{new}} = \mathbf{r}_i + \mathbf{v}_i \Delta t
+   $$
+
+6. **Repeat**: Iterate for the desired number of time steps.
+:::
+
+###
+From the algorithm above we can extract a few key conceptual entities needed for our simulation
+
+```{mermaid}
+classDiagram
+ direction LR
+    class System{
+      particle_number
+      noise_strength
+      list~Particle~ particles
+      update_rule()
+  
+    }
+
+    class Box {
+        size
+        boundary_conditions
+    }
+
+    class Particle {
+        position
+        orientation
+    }
+  System --> Box : contains
+  System "1" --> "N" Particle : contains
+
+```
+
+
 
 

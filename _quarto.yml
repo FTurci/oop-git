@@ -13,7 +13,7 @@ website:
       - href: index.qmd
         text: Welcome
       - plan.qmd
-      - section: "Using `git` and Github"
+      - section: "Using `git`"
         contents:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd

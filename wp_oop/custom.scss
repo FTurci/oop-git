@@ -9,7 +9,10 @@ ol {
   }
   
   .scrolling-window {
-    max-height: 300px;  /* Adjust height for your window */
+    max-height: 200px;  /* Adjust height for your window */
     overflow-y: auto;  /* Enable vertical scrolling */
   }
   
+  hr {
+    display: none;
+  }

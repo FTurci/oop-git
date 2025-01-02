@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_gitgithub/shell.html">Using <code>git</code> and Github</a></li><li class="breadcrumb-item"><a href="../wp_gitgithub/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_gitgithub/shell.html">Using <code>git</code></a></li><li class="breadcrumb-item"><a href="../wp_gitgithub/exercises.html">Exercises</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Using <code>git</code> and Github</span></a>
+ <span class="menu-text">Using <code>git</code></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,6 +179,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Object-Oriented thinking</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wp_oop/oop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands on objects and classes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -190,13 +207,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell"><span class="header-section-number">1</span> Shell</a></li>
+  <li><a href="#gitshell" id="toc-gitshell" class="nav-link" data-scroll-target="#gitshell"><span class="header-section-number">2</span> Git+Shell</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_gitgithub/shell.html">Using <code>git</code> and Github</a></li><li class="breadcrumb-item"><a href="../wp_gitgithub/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_gitgithub/shell.html">Using <code>git</code></a></li><li class="breadcrumb-item"><a href="../wp_gitgithub/exercises.html">Exercises</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Exercises</h1>
 </div>
@@ -247,6 +265,31 @@ It contains essential documentation on the project.</code></pre>
 <li>Change the working directory name to <code>folder1</code></li>
 <li>Use the command <code>grep</code> to print out at what line the word <code>essential</code> is contained in the file <code>README.md</code></li>
 </ol>
+</div>
+</div>
+</section>
+<section id="gitshell" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="gitshell"><span class="header-section-number">2</span> Git+Shell</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Assuming that you have completed the main tasks of <a href="../wp_gitgithub/git.html">this workshop</a>, complete the following additional tasks on your git repository:</p>
+<ol type="1">
+<li>Using <code>git --help</code> to find a way to consult the log of your various commits</li>
+<li>The shell has an operator called <strong>output redirection</strong>: it is the symbol <code>&gt;</code>. Use output redirection to write your log to a file named <code>mygit.log</code></li>
+<li>Add the <code>mygit.log</code> file to the repository on the <code>main</code> branch and commit the changes.</li>
+<li>Check the new status of the <code>log</code>: can you find your commit?</li>
+<li>We now want to go back to a version of the commit prior to the addition fo the log file. Every commit has its own unique id (strings like <code>455005dc29dc6727de7ee36fee4b49a13b39f73f</code>) called <strong>commit hashes</strong>. Find the commit hash of the commit that precedes our latest addition. To reset the master to that point use</li>
+</ol>
+<p><code>git reset --hard &lt;commit-hash&gt;</code></p>
+<p>Is the <code>mygit.log</code> still there?</p>
 </div>
 </div>
 
