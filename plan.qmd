@@ -27,9 +27,9 @@ This journey will allow you to **build your coding skills** in C++, connect them
 
 The final product of the simulation is a visualisation of the **Vicsek model**, an elementary model to represent the flocking behaviour of birds, fish and various other **agents**. An example animation is here below. 
 
-![Animation of the Vicsek model](img/vicsek-goal.gif)
+![Animation of the Vicsek model](img/ )
 
-You will learn about the the specifics the model in the [Vicsek model](model.qmd) section.
+<!-- You will learn about the the specifics the model in the [Vicsek model](model.qmd) section. -->
 
 
 ## Assessment
@@ -41,5 +41,4 @@ During the project you will acquire a number of skills, primarily in two areas:
 - **Object-oriented programming** (in C++ and Python)
 :::
 
-The **Test 
-2** assessment in **Week 17** will probe your understanding of both via a **dedicated** and **self-contained** exercise. This means that the final product mentioned is **not assessed**. It is, however, a **constitutive part** of your learning trajectory. 
+The **Test 2** assessment in **Week 17** will probe your understanding of both via a **dedicated** and **self-contained** exercise, **distinct** from the product of this module. This means that the final product mentioned here is **not assessed**. It is, however, a **constitutive part** of your learning trajectory. 

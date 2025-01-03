@@ -35,8 +35,9 @@ A lot of your programming up to now has been data-centric: you received data, of
 
 ---
 
-Object-oriented programming is different: the idea is to look at the problem that you want to seolve and identify intelligent ways to break it down into smaller problems, possibly quite generic.
-In particular, the goal is to group variables and functions together into new data types that therefore enjoy new properties and relationships. This allows you to break down a complex code into simpler, smaller parts.
+Object-oriented programming is different: the idea is to look at the problem that you want to solve and identify intelligent ways to break it down into generic, smaller problems.
+
+In particular, the goal is to group variables and functions together into **new data types** that enjoy new properties and relationships. This allows you to break down a complex code into simpler parts.
 
 From this description it is clear that object-oriented programming (OOP) will be:
 
@@ -90,21 +91,21 @@ From the algorithm above we can extract a few key conceptual entities needed for
 classDiagram
  direction LR
     class System{
-      particle_number
-      noise_strength
-      list~Particle~ particles
-      update_rule()
+      %% particle_number
+      %% noise_strength
+      %%list~Particle~ particles
+      %%update_rule()
   
     }
 
     class Box {
-        size
-        boundary_conditions
+        %%size
+        %%boundary_conditions
     }
 
     class Particle {
-        position
-        orientation
+        %%position
+        %%orientation
     }
   System --> Box : contains
   System "1" --> "N" Particle : contains

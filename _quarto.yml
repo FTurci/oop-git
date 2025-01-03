@@ -21,9 +21,17 @@ website:
       - section: "Object-Oriented thinking"
         contents:
         - href: wp_oop/oop.qmd
-        # - href: wp_oop/exercises.qmd
-        # - href: wp_oop/examples.qmd
-      
+      - section: "Implementation"
+        contents:
+        - href: wp_vicsek/implement.qmd
+      - section: "C++ to Python interface with `pybind11`"
+        contents:
+        - href: wp_pybind/interface.qmd
+      - section: "Wrapping and improvements"
+        contents:
+        - href: wp_wrapping/pyclasses.qmd
+
+
 
 format:
   html:

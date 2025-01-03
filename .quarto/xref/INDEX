@@ -39,5 +39,17 @@
   "wp_oop/oop.qmd": {
     "oop-slides.html": "ed172bdc",
     "oop.html": "e385141c"
+  },
+  "wp_pybind/interface.qmd": {
+    "interface-slides.html": "4cb6c280",
+    "interface.html": "cade3d84"
+  },
+  "wp_vicsek/implement.qmd": {
+    "implement-slides.html": "a989da99",
+    "implement.html": "5892ea31"
+  },
+  "wp_wrapping/pyclasses.qmd": {
+    "pyclasses-slides.html": "67e10f62",
+    "pyclasses.html": "ab43ba56"
   }
 }

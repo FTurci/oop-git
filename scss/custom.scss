@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+ol {
+    padding-left: 1.5em;  /* Add space for numbers */
+    list-style-position: outside; /* Ensure numbers are outside the list item */
+  }
+  
+  li {
+    line-height: 1.5;  /* Adjust line height to prevent cropping */
+  }
+  
+  .scrolling-window {
+    max-height: 300px;  /* Adjust height for your window */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+  
+  hr {
+    display: none;
+  }
