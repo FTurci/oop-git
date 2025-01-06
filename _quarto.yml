@@ -1,33 +1,34 @@
 project:
   type: website
 
+
 website:
   title: "Object-Oriented Programming and Software Engineering"
-
   sidebar:
     smooth-scroll: true
     logo: img/logo.png
     style: "docked"
     search: true
+    collapse-level: 1
     contents:
       - href: index.qmd
         text: Welcome
       - plan.qmd
-      - section: "Using `git`"
+      - section: "1| Using `git`"
         contents:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd
         - href: wp_gitgithub/exercises.qmd
-      - section: "Object-Oriented thinking"
+      - section: "2| Object-Oriented thinking"
         contents:
         - href: wp_oop/oop.qmd
-      - section: "Implementation"
+      - section: "3| Implementation"
         contents:
         - href: wp_vicsek/implement.qmd
-      - section: "C++ to Python interface with `pybind11`"
+      - section: "4| C++ to Python interface"
         contents:
         - href: wp_pybind/interface.qmd
-      - section: "Wrapping and improvements"
+      - section: "5| Wrapping"
         contents:
         - href: wp_wrapping/pyclasses.qmd
 
@@ -36,6 +37,8 @@ website:
 format:
   html:
     theme: cosmo
+    grid:
+      sidebar-width: 305px
     # css: styles.css
     toc: true
     number-chapters: true

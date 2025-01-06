@@ -27,7 +27,7 @@ This journey will allow you to **build your coding skills** in C++, connect them
 
 The final product of the simulation is a visualisation of the **Vicsek model**, an elementary model to represent the flocking behaviour of birds, fish and various other **agents**. An example animation is here below. 
 
-![Animation of the Vicsek model](img/ )
+![Animation of the Vicsek model](img/vicsek-goal.gif)
 
 <!-- You will learn about the the specifics the model in the [Vicsek model](model.qmd) section. -->
 
