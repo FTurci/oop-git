@@ -29,6 +29,15 @@ The final product of the simulation is a visualisation of the **Vicsek model**, 
 
 ![Animation of the Vicsek model](img/vicsek-goal.gif)
 
+This is an interesting model for various reasons:
+
+1. It is a simple example of **pattern formation**: the model demonstrates how simple local interactions lead to complex, emergent structures, resembling phenomena in biological and chemical systems.
+
+2. It illustrates **nonequilibrium dynamics**: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.
+
+3. It produces **visually striking** simulations, linking simulations to  computer graphics.
+
+
 <!-- You will learn about the the specifics the model in the [Vicsek model](model.qmd) section. -->
 
 
