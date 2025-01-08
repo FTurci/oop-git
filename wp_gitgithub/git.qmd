@@ -120,15 +120,15 @@ On every branch, we can store out individual advancements as **commits** (see be
 
 When you want a change to be registered in the repository's database, your **commit** your changes to the repository. This means that a new entry in the database is added, keeping track of a timestamp associated with your changes and (often) an explanatory description of what the modification entails.
 
-### Pushing [with the remote respotiory only]
+### Pushing [with the remote repository only]
 
 If you also have a remote repository (e.g. on GitHub), you can synchronise the changes between the local branch and the remote branch via the **push** operation.
 
-### Fetching [with the remote respotiory only]
+### Fetching [with the remote repository only]
 
 Fetch allows you to retrieve the changes from a remote repository, see them and decide whether to merge such changes with your local repository (or not).
 
-### Pulling [with the remote respotiory only]
+### Pulling [with the remote repository only]
 
 Pulling is simply fetching, followed by automatic merging.
 
