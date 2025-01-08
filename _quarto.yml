@@ -18,10 +18,11 @@ website:
         contents:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd
+        - href: wp_gitgithub/github.qmd
         - href: wp_gitgithub/exercises.qmd
       - section: "2| Object-Oriented thinking"
         contents:
-        - href: wp_oop/oop.qmd
+        - href: wp_oop/placeholder.qmd
       - section: "3| Implementation"
         contents:
         - href: wp_vicsek/implement.qmd

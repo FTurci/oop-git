@@ -76,7 +76,7 @@ Version control use **repositories**. These are a database of code versions, sto
 
 Each user of the repository has their own working copy of all the files (any kinds of files) of the project. This **clone** of the repository is typically stored on the local machine.
 
-Changes to the local clone are not reflected in the repository unless the users **explicitely** require this to be the case. 
+Changes to the local clone are not reflected in the repository unless the users **explicitly** require this to be the case. 
 
 ### Distributed version control  
 
@@ -265,6 +265,6 @@ to create a single bundle file conatining all of the repository. Move it to anot
 git clone myrepo.bundle
 ```
 
-Cna you check the branch structure? and the status?
+Can you check the branch structure? and the status?
 
 :::

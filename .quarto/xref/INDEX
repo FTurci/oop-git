@@ -51,5 +51,14 @@
   "wp_wrapping/pyclasses.qmd": {
     "pyclasses-slides.html": "67e10f62",
     "pyclasses.html": "ab43ba56"
+  },
+  "wp_gitgithub/github.qmd": {
+    "git-slides.html": "78b3c343",
+    "git.html": "e7809b23",
+    "github-slides.html": "43c016e0",
+    "github.html": "3b3f0d6e"
+  },
+  "wp_oop/placeholder.qmd": {
+    "placeholder.html": "5a597f9a"
   }
 }
