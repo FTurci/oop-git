@@ -35,7 +35,7 @@ This is an interesting model for various reasons:
 
 2. It illustrates **nonequilibrium dynamics**: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.
 
-3. It produces **visually striking** simulations, linking simulations to  computer graphics.
+3. It produces **visually striking** simulations, linking numerics to  computer graphics.
 
 
 <!-- You will learn about the the specifics the model in the [Vicsek model](model.qmd) section. -->
