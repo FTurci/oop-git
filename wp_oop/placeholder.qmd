@@ -12,7 +12,9 @@ format:
     smaller: true
     theme: [simple, custom.scss]
     # transition: fade
-
+  html:
+    output-file: placeholder.html
+output-file: placeholder-slides.html
 ---
 
 To appear soon.
