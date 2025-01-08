@@ -1,0 +1,18 @@
+---
+title: "Hands on objects and classes"
+format:
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, custom.scss]
+    # transition: fade
+
+---
+
+To appear soon.

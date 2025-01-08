@@ -1,0 +1,165 @@
+---
+title: "Remote repository"
+format:
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, custom.scss]
+    # transition: fade
+  html:
+    output-file: github.html
+output-file: github-slides.html
+---
+
+Disclaimer: setting up a remote repository is **OPTIONAL**. You can skip this section if you wish.
+
+## Aims
+
+- Synchronise your local repository with a remote Github repository
+
+## Learning outcomes
+
+- Undrestand how to use the command line tool `gh` to create a remote repositoory and link it to a local one
+
+
+## Remote repositories
+
+`git` can be used exclusively locally and it is completely fine to do so. It can be useful however to also have a **remote** (online) repository, to easily share it with others and to have a dematerialiased storage.
+
+There are many services that can be used for this purpose. For example:
+
+1. **GitHub**  
+   [https://github.com](https://github.com)  
+   The most popular platform for hosting Git repositories, offering robust collaboration tools, CI/CD, and integrations.
+
+2. **GitLab**  
+   [https://gitlab.com](https://gitlab.com)  
+   Open-source DevOps platform that can be used as a hosted service or self-hosted for full control. It includes CI/CD pipelines and project management tools.
+
+3. **Codeberg**  
+   [https://codeberg.org](https://codeberg.org)  
+   A community-driven, non-profit platform for hosting Git repositories, focused on privacy and open-source principles.
+
+
+## Setting up a Github account
+For convenience we will use **Github**. For this, you need a Github account. 
+
+To set up a GitHub account, follow these steps:
+
+---
+
+### 1. **Go to GitHub's Website**
+Visit [https://github.com](https://github.com).
+
+---
+
+### 2. **Sign Up**
+Click the **"Sign up"** button in the top-right corner of the homepage.
+
+---
+
+### 3. **Create an Account**
+- **Enter your details**:
+  - **Email address**: Provide a valid email.
+  - **Password**: Choose a strong password.
+  - **Username**: Pick a unique username (visible to others).
+- **Solve CAPTCHA**: Complete the CAPTCHA to verify you’re human.
+- **Click "Create account"**.
+
+---
+
+### 4. **Verify Your Email**
+Check your email inbox for a verification email from GitHub. Click the verification link to activate your account.
+
+## Using `gh` to create a remote repository linked to your local repository
+
+To set up a remote repository on GitHub from a local one using the `gh` command-line utility, follow these steps:
+
+### 1. **Install `gh` (if not already installed)**  
+
+Follow the instructions provided in the [welcome page](../index.qmd). Further information can be found at the [GitHub CLI installation page](https://cli.github.com/).
+
+
+### 2. **Authenticate `gh`**  
+   Run the following command to log in to GitHub:  
+
+```bash
+    gh auth login
+```  
+   Follow the prompts to authenticate.
+
+---
+
+### 3. **Navigate to Your Local Repository**  
+   Open a terminal and move into your local repository:  
+   
+```bash
+   cd /path/to/your/local-repo
+```
+
+---
+
+### 4. **Create a Remote Repository on GitHub**  
+   Run the following command to create a new repository on GitHub:  
+
+```bash
+   gh repo create
+```
+    This will prompt you with several options: 
+```bash
+    ? What would you like to do?  [Use arrows to move, type to filter]
+    Create a new repository on GitHub from scratch
+    Create a new repository on GitHub from a template repository
+    > Push an existing local repository to GitHub
+```
+
+    - Select the **last one** ("Push an existing local repository to GitHub").
+    - Then, press **ENTER** when asked for the path to the local directory (it should be the directory you are in, hence the path is `.`).
+    - Choose a suitable repository name and yourself as the owner
+    - Skip the description (or provide a brief one)
+    - Set the visibility to *public*
+    - Add a remote and leave the default name **(origin)**
+    - Finally push the commits.
+
+---
+
+Example of the creation of a repository called `temporary`
+```bash
+    ? What would you like to do? Push an existing local repository to GitHub
+    ? Path to local repository .
+    ? Repository name temporary
+    ? Repository owner FTurci
+    ? Description 
+    ? Visibility Public
+    ✓ Created repository FTurci/temporary on GitHub
+    https://github.com/FTurci/temporary
+    ? Add a remote? Yes
+    ? What should the new remote be called? origin
+    ✓ Added remote https://github.com/FTurci/temporary.git
+    ? Would you like to push commits from the current branch to "origin"? Yes
+    Enumerating objects: 3, done.
+    Counting objects: 100% (3/3), done.
+    Writing objects: 100% (3/3), 209 bytes | 209.00 KiB/s, done.
+    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+    To https://github.com/FTurci/temporary.git
+    * [new branch]      HEAD -> main
+    branch 'main' set up to track 'origin/main'.
+    ✓ Pushed commits to https://github.com/FTurci/temporary.git
+```
+
+---
+
+### 5. **Verify the Setup**  
+   Check that the remote repository is correctly set up:  
+
+```bash
+    git remote -v
+```
+
+That's it! Your local repository is now linked to a remote repository on GitHub.
