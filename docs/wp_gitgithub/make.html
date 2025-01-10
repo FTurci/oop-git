@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="variables" class="level3">
 <h3 class="anchored" data-anchor-id="variables">Variables</h3>
-<p>The obvious variabled for a Makefile are:</p>
+<p>The obvious variables for a Makefile are:</p>
 <ul>
 <li>the compiler name. Typically this variable is called <code>CC</code>.</li>
 <li>the compiler flags. Typically this variable is called <code>CFLAGS</code>.</li>
@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><code>dependencies</code></strong>: The files or other targets required to build the target.</li>
 <li><strong><code>commands</code></strong>: The shell commands to execute, usually for compiling or linking.</li>
 </ul>
-<p>So, suppose that we want to write a rule to compile our poject above. Our target would be <code>$(EXEC)</code> (the name of our executable) our dependencies would be the source code <code>$(SRC)</code> and the command would simply combine the compiler, its flags, the source code and the executable name, so that the rule would look like</p>
+<p>So, suppose that we want to write a rule to compile our project above. Our target would be <code>$(EXEC)</code> (the name of our executable) our dependencies would be the source code <code>$(SRC)</code> and the command would simply combine the compiler, its flags, the source code and the executable name, so that the rule would look like</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">$(EXEC):</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>So, a complete minimal Makefile would look like</p>
@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>How would we run this Makefile? You should type <code>make</code> and the name of the rule that you want to call, in this case <code>program</code> as in</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> program</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>What if we just want to have a default rule to run everytime we type make (after all, we want to simplify our lives)? There is a special target named <code>all</code>. We can then rewrite our minimal Makefile as</p>
+<p>What if we just want to have a default rule to run every time we type make (after all, we want to simplify our lives)? There is a special target named <code>all</code>. We can then rewrite our minimal Makefile as</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span> <span class="ch">=</span><span class="st"> g++</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS</span> <span class="ch">=</span><span class="st"> -O2 -Wall</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">SRC</span> <span class="ch">=</span><span class="st"> main.cpp utils.cpp</span></span>
