@@ -22,7 +22,7 @@ output-file: make-slides.html
 
 Compilation in C++ is performed by a **compiler**. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the *Intorduction to C++*).
 
-If you followed the insstructions on the [welcome page](../index.qmd) you should have a compiler installed.
+If you followed the instructions on the [welcome page](../index.qmd) you should have a compiler installed.
 
 This is `g++` and it is a command-line utility with various options, some of which depend on your specific machine.
 

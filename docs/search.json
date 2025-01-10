@@ -59,7 +59,7 @@
     "section": "",
     "text": "Initialise a local git repository\nAdd files to track\nCommit some changes",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -70,7 +70,7 @@
     "section": "",
     "text": "Initialise a local git repository\nAdd files to track\nCommit some changes",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -81,7 +81,7 @@
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nUnderstand the general principles of version control\nMastery of how git implements the main features of version control",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -92,7 +92,7 @@
     "section": "General ideas about version control",
     "text": "General ideas about version control\nVersion control is an approach to coding that allows you to keep track of the code evolution.\nYou may think of coding as a linear process, where a first version is followed by another more advanced version, which is again followed by a successive more refined version and so on.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt;  B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n\n\n\n\n\n\nThis is not at all the case. In fact, as we develop our code we tyically try various ideas, similarly to what you would do if you were writing a novel, perform an experiment, or explore an uncharted territory.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt; B\n    B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n    A--&gt;Aa[Variant 1.a]--&gt;B\n    A--&gt;Ab[Variant 1.b]--&gt;E[Alternative version 2]--&gt;C\n\n\n\n\n\n\n\n\nThis is even more evident when collaboration is at play: different developers will try different approaches and require a system to keep track of their respective modifications and that helps them with bringing them together into a unified project. In fact, regularly, the various ideas need to come together and merge for the project to keep its unitary structure.\nVersion control tools serve precisely this purpose, and git is the most popular of such tools.\nIt is powerful, but its usage can be subtle at times, as illustrated by the following cartoon:\n\n\n\nGit according to the celebrated comic strip xkcd\n\n\nVersion control therefore solves two problems:\n\nkeeping track of the code changes performed by a single performs\nallow to harmonise and synchronise the code changes of various collaborators\n\nWe are going to focus mostly on the first part, but it is important to realise that git is an essential tool for code development in large projects.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -103,7 +103,7 @@
     "section": "Terminology",
     "text": "Terminology\n\nRepositories\nVersion control use repositories. These are a database of code versions, stored in an efficient manner, focusing on the changes between a version and another.\n\n\nClones\nEach user of the repository has their own working copy of all the files (any kinds of files) of the project. This clone of the repository is typically stored on the local machine.\nChanges to the local clone are not reflected in the repository unless the users explicitly require this to be the case.\n\n\nDistributed version control\nIn distribute version control each user has a complete copy of the repository, and they can perform their changes independently from other users, work locally and offline and eventually do collaborative work by merging their own versions with the one of others.\nIn principle, this can be done without a central server (e.g. peer to peer). In practice, one often uses some form of online repository, e.g. Github, Gitlab etc.\n\n\nBranch\nBranching in git allow you to explore various ideas in parallel, developing in different directions and experimenting new features. Branching is a backbone ides in git.\nA repository typically has a main branch where the functional code is stored. When we want to develop our code we create new feature branches\n\n\n\n\n\n    %%{init: { 'logLevel': 'debug', 'theme': 'default' , 'themeVariables': {\n              'git0': '#ff0000',\n              'git1': '#00ff00',\n              'git2': '#0000ff',\n              'git3': '#ff00ff',\n              'git4': '#00ffff',\n              'git5': '#ffff00',\n              'git6': '#ff00ff',\n              'git7': '#00ffff'\n       } } }%%\ngitGraph\n   commit id: \"main\"\n   branch feature\n   commit id: \"main work\"\n   checkout feature\n   commit id: \"feature work\"\n   checkout main\n   commit id: \"more main work\"\n   merge feature\n\n\n\n\n\n\nOn every branch, we can store out individual advancements as commits (see below). Eventually, when we are happy for our feature to be integrated with the main branche, we merge the feature branch with the main branch.\n\n\nCommits\nWhen you want a change to be registered in the repository’s database, your commit your changes to the repository. This means that a new entry in the database is added, keeping track of a timestamp associated with your changes and (often) an explanatory description of what the modification entails.\n\n\nPushing [with the remote repository only]\nIf you also have a remote repository (e.g. on GitHub), you can synchronise the changes between the local branch and the remote branch via the push operation.\n\n\nFetching [with the remote repository only]\nFetch allows you to retrieve the changes from a remote repository, see them and decide whether to merge such changes with your local repository (or not).\n\n\nPulling [with the remote repository only]\nPulling is simply fetching, followed by automatic merging.\n\n\nBundling\nAn efficient way to produce a package out of a git repository is to construct a bundle. This is a single file that contains a collection of commits, branches and logs allowing you to transfer or store the repository’s content without requiring access to a remote server.\n\n\nScheme\n\n\n\nHow git works, adapted from https://homes.cs.washington.edu/~mernst/advice/version-control.html ↗️",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -114,7 +114,7 @@
     "section": "Hands-on approach to git",
     "text": "Hands-on approach to git\nWe start off working locally and creating a local project.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -125,7 +125,7 @@
     "section": "To-dos",
     "text": "To-dos\nPreviously, you should have created a project folder with a README.md file. We now want to setup our local git repository.\n\n\n\n\n\n\n\n\nTask 1: initialise the repository\n\n\n\nGo to the project folder vicsek-cpp and initialise the git repository.\nUse the information above or git --help to find the correct command to use.\n\n\n\n\n\n\n\n\n\n\n\nTask 2: create a .gitignore file and add it to the staging area\n\n\n\nWe want to tell git not to keep track of specifc files. For, example we want to ignore hidden files that are specific to MacOS. A hidden file/folder haas a name that starts with . .\nTo provide git with a list of files to ignore, we create a (hidden) configuration file inside vicsek-cpp called .gitignore.\nCreate such file and enter the following string\n.DS_Store\nThen add the .gitignore file to the staging area.\nCheck git status to see if your .gitignore is ready to be committed and then commit it with a suitable comment.\nYou should also get a message concerning your README.md file. What os the best course of action here?\n\n\n\n\n\n\n\n\n\n\n\nTask 3: ignoring files and directly committing the changes\n\n\n\nSuppose now that we also want to ignore all files that end with .txt. The .gitignore file accepts the wildcard *.\nModify the .gitignore to ignore all .txt files. With a suitable option to the git commit command, stage and commit the changes in a single go.\nThen create two new files:\n\na notes.txt file\na notes.md file\n\nAdd all new files in the current folder with git add ., commit your changes to the repository and then check the files added to the repository with git ls-files.\nIs notes.txt in your list?\n\n\n\n\n\n\n\n\n\n\n\nTask 4: branching\n\n\n\nWe want to now start developing our code. For this purpose, we create a new branch called develop. To do so we use the command\ngit branch develop\nTo check which branches now exist in your repository just type\ngit branch\nA * should appear on the branch you are on (which should be main). You leave the view using theQ key on your keyboard.\nTo switch to the develop branch use\ngit checkout develop\nCheck that you are on the right branch now (see above).\nOnce you are on your develop branch, create a new folder src where we will put the C++ code (do not remember how to create a folder? go back to Using the shell).\nInside src, create our C++ main file main.cpp, e.g. using a suitable editor (e.g. nano , pico or vim).\nThe minimal content should be the following\n#include &lt;iostream&gt;\n\nint main(){\n    return 0\n}\nNow, add the src folder with its content to the git repository and commit the changes.\nSwitch back to the main branch: what happened to the src folder?\n\n\n\n\n\n\n\n\n\n\n\nTask 4: merging\n\n\n\nNow that you have your develop branch set up, attempt to merge it back with the main branch using the git merge command. If you are not sure about how to use it, check the documentation with git merge --help.\n\n\n\n\n\n\n\n\n\n\n\nTask 5: bundling\n\n\n\nUse now the command\ngit bundle create myrepo.bundle --all\nto create a single bundle file conatining all of the repository. Move it to another folder (or even another machine with git, e.g. your Noteable account) and unpack it with\ngit clone myrepo.bundle\nCan you check the branch structure? and the status?",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Version control with `git`"
     ]
   },
@@ -136,7 +136,7 @@
     "section": "",
     "text": "Create a local project directory\nCreate and edit README.md file",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -147,7 +147,7 @@
     "section": "",
     "text": "Create a local project directory\nCreate and edit README.md file",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -158,7 +158,7 @@
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nBuild confidence in navigating the filesystem, creating, deleting and editing files and folders",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -169,7 +169,7 @@
     "section": "The shell",
     "text": "The shell\nHere we recall very briefly why we use the shell environment and how normal operations are typically performed. These topics have already been covered in the previous term.\nThe shell allows you to interact with a computer without the need of a graphical user interface (GUI). This has three main advantages:\n\nit allows you to operate on files and folders programmatically\nit allows you to interact easily with remote machines, e.g. the High Performance Computing facilities of the University of Bristol\nit allows to have more direct access to low-level operations of your machine (installing and fine-tuning software, libraries and various components)\n\n\n\n\n\n\n\nImportant\n\n\n\nIt is essential to learn how to use the shell properly in order to understand and develop more advanced scientific computing tools.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -180,7 +180,7 @@
     "section": "Basic shell usage",
     "text": "Basic shell usage\n\nList files and directories: Displays the contents of the current directory.\nls\nChange directory: Moves to a different directory.\ncd /path/to/directory\nCreate a new directory: Creates a new folder.\nmkdir new_folder\nRemove a file: Deletes a specific file.\nrm file.txt\nRemove a directory: Deletes a directory and its contents.\nrm -r directory_name\nMove or rename a file: Moves a file to a new location or renames it.\nmv old_file.txt new_location/\nCopy a file: Copies a file to a new location.\ncp file.txt /path/to/destination/\nCreate a new file: Creates an empty file.\ntouch newfile.txt\nEdit a file: Opens a file in a text editor like nano for editing.\nnano file.txt\nView the contents of a file: Displays the contents of a file in the terminal.\nbash     cat file.txt\nSearch for text in a file: Searches for specific text in a file.\nbash     grep \"search_term\" file.txt\nShow current directory path: Displays the full path of the current working directory.\nbash     pwd\nCopy a directory: Copies a directory and its contents.\nbash     cp -r source_directory/ destination_directory/\nMove back one directory: Moves up one directory level.\nbash     cd ..\nDisplay disk usage: Shows the disk usage of files and directories.\nbash     du -sh *",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -191,7 +191,7 @@
     "section": "To-dos",
     "text": "To-dos\nNow that we know how to manipulate folder and file, we start our project by creating\n\na dedicated directory\na README.md file to contain the project documentation\n\n\n\n\n\n\n\nTask 1: create the local project directory\n\n\n\nNow that we have overviewed basic shell command, we can set off and create a local directory that will contain our project.\nWe name the project vicsek-cpp.\nmkdir vicsek-cpp\n\n\n\n\n\n\n\n\nTask 2: create the README.md file\n\n\n\nInside the folder, we can use our favourite editor (e.g. vim or nano or VSCode if we like) to create and edit the README.md file.\nInclude a header and a brief description. You will provide more documentation later on.\nFor the root working directory, typing\nls vicsek-cpp\nshould return\nREADME.md\n\n\n:::\n\n\n\n\n\n\nTask 3: Inspect file contents\n\n\n\nThere are many ways to quickly inspect the contents of a file in bash.\nTry the command head, tail and cat on your file and check their documentation to understand how they work.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Using the shell"
     ]
   },
@@ -355,7 +355,7 @@
     "section": "",
     "text": "Disclaimer: setting up a remote repository is OPTIONAL. You can skip this section if you wish.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -366,7 +366,7 @@
     "section": "Aims",
     "text": "Aims\n\nSynchronise your local repository with a remote Github repository",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -377,7 +377,7 @@
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nUndrestand how to use the command line tool gh to create a remote repositoory and link it to a local one",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -388,7 +388,7 @@
     "section": "Remote repositories",
     "text": "Remote repositories\ngit can be used exclusively locally and it is completely fine to do so. It can be useful however to also have a remote (online) repository, to easily share it with others and to have a dematerialiased storage.\nThere are many services that can be used for this purpose. For example:\n\nGitHub\nhttps://github.com\nThe most popular platform for hosting Git repositories, offering robust collaboration tools, CI/CD, and integrations.\nGitLab\nhttps://gitlab.com\nOpen-source DevOps platform that can be used as a hosted service or self-hosted for full control. It includes CI/CD pipelines and project management tools.\nCodeberg\nhttps://codeberg.org\nA community-driven, non-profit platform for hosting Git repositories, focused on privacy and open-source principles.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -399,7 +399,7 @@
     "section": "Setting up a Github account",
     "text": "Setting up a Github account\nFor convenience we will use Github. For this, you need a Github account.\nTo set up a GitHub account, follow these steps:\n\n\n1. Go to GitHub’s Website\nVisit https://github.com.\n\n\n\n2. Sign Up\nClick the “Sign up” button in the top-right corner of the homepage.\n\n\n\n3. Create an Account\n\nEnter your details:\n\nEmail address: Provide a valid email.\nPassword: Choose a strong password.\nUsername: Pick a unique username (visible to others).\n\nSolve CAPTCHA: Complete the CAPTCHA to verify you’re human.\nClick “Create account”.\n\n\n\n\n4. Verify Your Email\nCheck your email inbox for a verification email from GitHub. Click the verification link to activate your account.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -410,7 +410,7 @@
     "section": "Using gh to create a remote repository linked to your local repository",
     "text": "Using gh to create a remote repository linked to your local repository\nTo set up a remote repository on GitHub from a local one using the gh command-line utility, follow these steps:\n\n1. Install gh (if not already installed)\nFollow the instructions provided in the welcome page. Further information can be found at the GitHub CLI installation page.\n\n\n2. Authenticate gh\nRun the following command to log in to GitHub:\n    gh auth login\nFollow the prompts to authenticate.\n\n\n\n3. Navigate to Your Local Repository\nOpen a terminal and move into your local repository:\n   cd /path/to/your/local-repo\n\n\n\n4. Create a Remote Repository on GitHub\nRun the following command to create a new repository on GitHub:\n   gh repo create\nThis will prompt you with several options: \n    ? What would you like to do?  [Use arrows to move, type to filter]\n    Create a new repository on GitHub from scratch\n    Create a new repository on GitHub from a template repository\n    &gt; Push an existing local repository to GitHub\n- Select the **last one** (\"Push an existing local repository to GitHub\").\n- Then, press **ENTER** when asked for the path to the local directory (it should be the directory you are in, hence the path is `.`).\n- Choose a suitable repository name and yourself as the owner\n- Skip the description (or provide a brief one)\n- Set the visibility to *public*\n- Add a remote and leave the default name **(origin)**\n- Finally push the commits.\n\nExample of the creation of a repository called temporary\n    ? What would you like to do? Push an existing local repository to GitHub\n    ? Path to local repository .\n    ? Repository name temporary\n    ? Repository owner FTurci\n    ? Description \n    ? Visibility Public\n    ✓ Created repository FTurci/temporary on GitHub\n    https://github.com/FTurci/temporary\n    ? Add a remote? Yes\n    ? What should the new remote be called? origin\n    ✓ Added remote https://github.com/FTurci/temporary.git\n    ? Would you like to push commits from the current branch to \"origin\"? Yes\n    Enumerating objects: 3, done.\n    Counting objects: 100% (3/3), done.\n    Writing objects: 100% (3/3), 209 bytes | 209.00 KiB/s, done.\n    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0\n    To https://github.com/FTurci/temporary.git\n    * [new branch]      HEAD -&gt; main\n    branch 'main' set up to track 'origin/main'.\n    ✓ Pushed commits to https://github.com/FTurci/temporary.git\n\n\n\n5. Verify the Setup\nCheck that the remote repository is correctly set up:\n    git remote -v\nThat’s it! Your local repository is now linked to a remote repository on GitHub.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Remote repository"
     ]
   },
@@ -454,9 +454,9 @@
     "href": "wp_gitgithub/make.html",
     "title": "Compilation and makefiles",
     "section": "",
-    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the insstructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3: Increasing levels of optimization.\n\n-Ofast: Aggressive optimizations that may break standards compliance.\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Wextra: Enable additional warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\nProfiling:\n\n-pg: Enable profiling for tools like gprof.\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance Analysis:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n-march=native: Optimize for the architecture of the host machine.\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
+    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3: Increasing levels of optimization.\n\n-Ofast: Aggressive optimizations that may break standards compliance.\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Wextra: Enable additional warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\nProfiling:\n\n-pg: Enable profiling for tools like gprof.\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance Analysis:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n-march=native: Optimize for the architecture of the host machine.\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Compilation and makefiles"
     ]
   },
@@ -465,9 +465,9 @@
     "href": "wp_gitgithub/make.html#compiling-in-c",
     "title": "Compilation and makefiles",
     "section": "",
-    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the insstructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3: Increasing levels of optimization.\n\n-Ofast: Aggressive optimizations that may break standards compliance.\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Wextra: Enable additional warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\nProfiling:\n\n-pg: Enable profiling for tools like gprof.\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance Analysis:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n-march=native: Optimize for the architecture of the host machine.\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
+    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3: Increasing levels of optimization.\n\n-Ofast: Aggressive optimizations that may break standards compliance.\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Wextra: Enable additional warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\nProfiling:\n\n-pg: Enable profiling for tools like gprof.\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance Analysis:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n-march=native: Optimize for the architecture of the host machine.\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Compilation and makefiles"
     ]
   },
@@ -478,7 +478,7 @@
     "section": "Makefiles",
     "text": "Makefiles\nClearly, when a project becomes complex (with many files and eventually various kinds of flags) typying a long string just to compile makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for use.\nWe could write a separate bash script to do so, but it would not be very efficient.\nThe standard way is to construct a Makefile and to use it with the normally available command-line utility make. Makefiles are a special type of file with a characteristic syntax. Often, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.\nWe want to transpose the compilation command above into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called Makefile.\ntouch Makefile\nA Makefile consists of\n\nVariables: these identify compilers, file names, and flags.\nRules: these are actions that the Makefile can perform, each with a name associated with it. Each rule consists of a target, dependencies, and a recipe (command).\n\n\nVariables\nThe obvious variabled for a Makefile are:\n\nthe compiler name. Typically this variable is called CC.\nthe compiler flags. Typically this variable is called CFLAGS.\nthe source files, i.e. the source code for our program. This is normally called SRC.\nthe executable name, e.g. EXEC.\n\nNote that typically these names are written in uppercase letters. In the Makefile syntax, we access the value stored in these variables using the $(VARIABLE) syntax.\n\n\nRules\n\n\nRules\nRules in a Makefile describe how to build a target from its dependencies using commands. A rule typically follows this format:\ntarget: dependencies\n    commands\n\ntarget: The file or outcome to create (e.g., an object file .o or the final executable).\ndependencies: The files or other targets required to build the target.\ncommands: The shell commands to execute, usually for compiling or linking.\n\nSo, suppose that we want to write a rule to compile our poject above. Our target would be $(EXEC) (the name of our executable) our dependencies would be the source code $(SRC) and the command would simply combine the compiler, its flags, the source code and the executable name, so that the rule would look like\n$(EXEC): $(SRC)\n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\nSo, a complete minimal Makefile would look like\nCC = g++\nCFLAGS = -O2 -Wall\nSRC = main.cpp utils.cpp\nEXEC = program\n\n$(EXEC): $(SRC)\n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\nHow would we run this Makefile? You should type make and the name of the rule that you want to call, in this case program as in\nmake program\nWhat if we just want to have a default rule to run everytime we type make (after all, we want to simplify our lives)? There is a special target named all. We can then rewrite our minimal Makefile as\nCC = g++\nCFLAGS = -O2 -Wall\nSRC = main.cpp utils.cpp\nEXEC = program\n\nall: \n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\nAnother useful rule is called clean: you can implement it to remove files, as to remove the executable safely.\nclean:\n    rm -f $(EXEC)\n\n\n\n\n\n\n\n\n\nTask 1: writing a minimal Makefile\n\n\n\nUsing the information above, write a minimal Makefile that can compile your single file main.cpp. Run your makefile using the make command.\nIf you copied and pasted the code from the introduction to Git pages, you should also get a compiler error. Can you address it?\n\n\n\n\n\n\n\n\n\n\n\nTask 2: adding compilation flags\n\n\n\nModify your Makefile to use the -std=c++17 compilation flag.\n\n\n\n\n\n\n\n\n\n\n\nTask 3: separating compilation and linking\n\n\n\nThe Makefile you have written is minimal and blends together compiling and linking. However, it is a better practice to separate the two, since very large projects can have many files and modifying only a few of the object files instead of recreating all of them is much more efficient.\nThe Make syntax has a convenient set of features that allow you to automatically produce a list of object files. For example\nOBJ = $(SRC:.cpp=.o)  # Converts .cpp files to .o files\ncreates a variable called OBJ that contains all the .o object files such as main.o produced by g++ -c main.cpp -o main.o.\nDo the following:\n\nuse OBJ = $(SRC:.cpp=.o) to define your object files. You can print in makefiles using the command @echo, so that @echo (OBJ) should print to terminal the values stored in OBJ. Use the fact that rules can be multiline to modify your Makefile and print your object variable.\nNow, you could write a rule for every source file to be converted into an object file, but the make syntax has a universal pattern rule for that:\n\n%.o: %.cpp\n    $(CC) $(CFLAGS) -c $&lt; -o $@\nwhich tells make to compile each .cpp file ($&lt;) into the corresponding .o file ($@). Ass this rule to your makefile.\n\nNow you have a rule that creates object files, so you only need a rule to link them to produce the executable. Write it down, noticing that your target is $(EXEC), your dependencies are now the object files and the rule is just the linking step described above.\nNow, modify your all rule to depend on $(EXEC) and to write the message \"Build complete\".\nFinish by improving your clean rule to also clean from the object files.",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Compilation and makefiles"
     ]
   },
@@ -487,7 +487,7 @@
     "href": "wp_gitgithub/make-slides.html#compiling-in-c",
     "title": "Compilation and makefiles",
     "section": "Compiling in C++",
-    "text": "Compiling in C++\nCompilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the insstructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram"
+    "text": "Compiling in C++\nCompilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Intorduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram"
   },
   {
     "objectID": "wp_gitgithub/make-slides.html#makefiles",
@@ -503,7 +503,7 @@
     "section": "",
     "text": "Exercise\n\n\n\nThe following code is written in bash and creates folders named folder1, folder2,…,folder10:\nfor i in {1..10}; do\n    mkdir folder$i\ndone\nNote the close similarity with Python.\nCreate a new file named create_folders.sh using the command touch. Edit the file directly in the shell using either the command nano (easier) or vim (harder) and type the script inside the file.\nThen, run the script via\nbash create_folders.sh\nComplete the following tasks by solely using the shell:\n\nRename folder10 as folder0\nDelete folder folder0\nCreate a file inside folder1 called README.md and type the following text:\n\nThis is a README.md file\nIt contains essential documentation on the project.\n\nChange the working directory name to folder1\nUse the command grep to print out at what line the word essential is contained in the file README.md",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Exercises"
     ]
   },
@@ -514,7 +514,7 @@
     "section": "",
     "text": "Exercise\n\n\n\nThe following code is written in bash and creates folders named folder1, folder2,…,folder10:\nfor i in {1..10}; do\n    mkdir folder$i\ndone\nNote the close similarity with Python.\nCreate a new file named create_folders.sh using the command touch. Edit the file directly in the shell using either the command nano (easier) or vim (harder) and type the script inside the file.\nThen, run the script via\nbash create_folders.sh\nComplete the following tasks by solely using the shell:\n\nRename folder10 as folder0\nDelete folder folder0\nCreate a file inside folder1 called README.md and type the following text:\n\nThis is a README.md file\nIt contains essential documentation on the project.\n\nChange the working directory name to folder1\nUse the command grep to print out at what line the word essential is contained in the file README.md",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Exercises"
     ]
   },
@@ -525,7 +525,7 @@
     "section": "2 Git+Shell",
     "text": "2 Git+Shell\n\n\n\n\n\n\nExercises\n\n\n\nAssuming that you have completed the main tasks of this workshop, complete the following additional tasks on your git repository:\n\nUsing git --help to find a way to consult the log of your various commits\nThe shell has an operator called output redirection: it is the symbol &gt;. Use output redirection to write your log to a file named mygit.log\nAdd the mygit.log file to the repository on the main branch and commit the changes.\nCheck the new status of the log: can you find your commit?\nWe now want to go back to a version of the commit prior to the addition fo the log file. Every commit has its own unique id (strings like 455005dc29dc6727de7ee36fee4b49a13b39f73f) called commit hashes. Find the commit hash of the commit that precedes our latest addition. To reset the master to that point use\n\ngit reset --hard &lt;commit-hash&gt;\nIs the mygit.log still there?",
     "crumbs": [
-      "1| Using `git`",
+      "1| Software Engineering",
       "Exercises"
     ]
   }

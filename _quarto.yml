@@ -14,7 +14,7 @@ website:
       - href: index.qmd
         text: Welcome
       - plan.qmd
-      - section: "1| Using `git`"
+      - section: "1| Software Engineering"
         contents:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd
