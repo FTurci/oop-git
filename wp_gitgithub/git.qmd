@@ -172,7 +172,9 @@ Create such file and enter the following string
 
 Then **add** the `.gitignore` file to the staging area. 
 
-Check `git status` to see if your `.gitignore` is ready to be committed and then **commit** it with a suitable comment.
+Check `git status` to see if your `.gitignore` is ready to be committed and then **commit** it with a suitable comment.  
+
+You should also get a message concerning your `README.md` file. What os the best course of action here?
  
 :::
 
