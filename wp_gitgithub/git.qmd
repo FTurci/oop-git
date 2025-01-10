@@ -187,6 +187,7 @@ Suppose now that we also want to ignore all files that end with `.txt`. The `.gi
 Modify the `.gitignore` to ignore all `.txt` files. With a suitable option  to the `git commit` command, stage and commit the changes in a single go.
 
 Then create two new files:
+
 - a `notes.txt` file 
 - a `notes.md` file
 
