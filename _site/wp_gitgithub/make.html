@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="makefiles" class="level2">
 <h2 class="anchored" data-anchor-id="makefiles">Makefiles</h2>
-<p>Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typying a long string just to compile makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for use.</p>
+<p>Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.</p>
 <p>We could write a separate <code>bash</code> script to do so, but it would not be very efficient.</p>
 <p>The standard way is to construct a <code>Makefile</code> and to use it with the normally available command-line utility <code>make</code>. Makefiles are a special type of file with a <a href="https://www.gnu.org/software/make/manual/">characteristic syntax</a>. Often, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.</p>
 <p>We want to transpose the compilation command above into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called <code>Makefile</code>.</p>

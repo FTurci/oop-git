@@ -104,7 +104,7 @@ g++ -std=c++17 -O2 -Wall main.o utils.o -o program
 
 ## Makefiles
 
-Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typying a long string just to compile makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for use.
+Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.
 
 We could write a separate `bash` script to do so, but it would not be very efficient.
 
