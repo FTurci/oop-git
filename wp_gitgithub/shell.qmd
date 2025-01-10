@@ -165,3 +165,17 @@ README.md
 
 :::
 
+:::
+
+::: {.callout-note icon=false}
+
+## Task 3: Inspect file contents
+
+
+There are many ways to quickly inspect the contents of a file in `bash`.
+
+Try the command `head`, `tail` and `cat` on your file and check their documentation to understand how they work.
+
+
+:::
+
