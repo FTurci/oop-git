@@ -61,5 +61,12 @@
   "wp_oop/placeholder.qmd": {
     "placeholder.html": "5a597f9a",
     "placeholder-slides.html": "eddcf15f"
+  },
+  "playground/week13/preparation/vicsek-cpp/notes.md": {
+    "notes.html": "7f89d092"
+  },
+  "wp_gitgithub/make.qmd": {
+    "make-slides.html": "0c6d4391",
+    "make.html": "0a27062b"
   }
 }

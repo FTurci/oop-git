@@ -215,7 +215,9 @@ To check which branches now exist in your repository just type
 git branch
 ```
 
-A `*` should appear on the brenach you are on (which should be `main`). To switch to the `develop` branch use
+A `*` should appear on the branch you are on (which should be `main`). You leave the view using the`Q` key on your keyboard. 
+
+To switch to the `develop` branch use
 
 ```bash
 git checkout develop

@@ -182,6 +182,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../wp_gitgithub/make.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Compilation and makefiles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../wp_gitgithub/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
@@ -512,6 +518,7 @@ Task 2: create a <code>.gitignore</code> file and add it to the staging area
 <p><code>.DS_Store</code></p>
 <p>Then <strong>add</strong> the <code>.gitignore</code> file to the staging area.</p>
 <p>Check <code>git status</code> to see if your <code>.gitignore</code> is ready to be committed and then <strong>commit</strong> it with a suitable comment.</p>
+<p>You should also get a message concerning your <code>README.md</code> file. What os the best course of action here?</p>
 </div>
 </div>
 </section>
@@ -529,7 +536,11 @@ Task 3: ignoring files and directly committing the changes
 <div class="callout-body-container callout-body">
 <p>Suppose now that we also want to ignore all files that end with <code>.txt</code>. The <code>.gitignore</code> file accepts the wildcard <code>*</code>.</p>
 <p>Modify the <code>.gitignore</code> to ignore all <code>.txt</code> files. With a suitable option to the <code>git commit</code> command, stage and commit the changes in a single go.</p>
-<p>Then create two new files: - a <code>notes.txt</code> file - a <code>notes.md</code> file</p>
+<p>Then create two new files:</p>
+<ul>
+<li>a <code>notes.txt</code> file</li>
+<li>a <code>notes.md</code> file</li>
+</ul>
 <p>Add all new files in the current folder with <code>git add .</code>, commit your changes to the repository and then check the files added to the repository with <code>git ls-files</code>.</p>
 <p>Is <code>notes.txt</code> in your list?</p>
 </div>
@@ -551,7 +562,8 @@ Task 4: branching
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch develop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To check which branches now exist in your repository just type</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A <code>*</code> should appear on the brenach you are on (which should be <code>main</code>). To switch to the <code>develop</code> branch use</p>
+<p>A <code>*</code> should appear on the branch you are on (which should be <code>main</code>). You leave the view using the<code>Q</code> key on your keyboard.</p>
+<p>To switch to the <code>develop</code> branch use</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout develop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Check that you are on the right branch now (see above).</p>
 <p>Once you are on your develop branch, create a new folder <code>src</code> where we will put the C++ code (do not remember how to create a folder? go back to <a href="../wp_gitgithub/shell.html">Using the shell</a>).</p>

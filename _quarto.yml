@@ -19,6 +19,7 @@ website:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd
         - href: wp_gitgithub/github.qmd
+        - href: wp_gitgithub/make.qmd
         - href: wp_gitgithub/exercises.qmd
       - section: "2| Object-Oriented thinking"
         contents:
