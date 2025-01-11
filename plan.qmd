@@ -1,5 +1,6 @@
 # Plan
 
+## Aims and schedule
 In this part of the course, we set ourselves a very specific goal:
 
 

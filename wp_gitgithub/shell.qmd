@@ -124,7 +124,7 @@ It is **essential** to learn how to use the shell properly in order to understan
 
 ## To-dos
 
-Now that we know how to manipulate folder and file, we start our project by creating 
+Now that we know how to manipulate folder and files, we start our project by creating 
 
 - a dedicated directory
 - a `README.md` file to contain the project documentation
@@ -133,7 +133,7 @@ Now that we know how to manipulate folder and file, we start our project by crea
 
 ## Task 1: create the local project directory
 
-Now that we have overviewed basic shell command, we can set off and create a local directory that will contain our project.
+Now that we have overviewed basic shell commands, we can set off and create a local directory that will contain our project.
 
 We name the project `vicsek-cpp`. 
 
@@ -165,7 +165,6 @@ README.md
 
 :::
 
-:::
 
 ::: {.callout-note icon=false}
 
