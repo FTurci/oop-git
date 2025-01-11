@@ -254,15 +254,32 @@
     "text": "The Vicsek model"
   },
   {
-    "objectID": "wp_oop/placeholder.html",
-    "href": "wp_oop/placeholder.html",
+    "objectID": "wp_oop/oop-slides.html#aims",
+    "href": "wp_oop/oop-slides.html#aims",
     "title": "Hands on objects and classes",
-    "section": "",
-    "text": "To appear soon.",
-    "crumbs": [
-      "2| Object-Oriented thinking",
-      "Hands on objects and classes"
-    ]
+    "section": "Aims",
+    "text": "Aims\n\nDefine the essential properties of our simulation and identify them as objects\nDesign the basic relationships between such objects\nConstruct the skeleton of the simulation by creating bare bone classes for the main objects"
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#learning-outcomes",
+    "href": "wp_oop/oop-slides.html#learning-outcomes",
+    "title": "Hands on objects and classes",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nFamiliarise with the rules of Vicsek flocking model\nPractice object-oriented design choices in C++"
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
+    "href": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
+    "title": "Hands on objects and classes",
+    "section": "Object-oriented programming is about actions between objects",
+    "text": "Object-oriented programming is about actions between objects\nA lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boils down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This procedural programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated."
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
+    "href": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
+    "title": "Hands on objects and classes",
+    "section": "Modelling flocking using the Vicsek model",
+    "text": "Modelling flocking using the Vicsek model\nIn this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.\nWew use the Vicsek model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.\nThe problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking."
   },
   {
     "objectID": "wp_oop/oop.html",
@@ -300,32 +317,15 @@
     "text": "Modelling flocking using the Vicsek model\nIn this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.\nWew use the Vicsek model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.\nThe problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking.\n\n\n\n\n\n\n\nAlgorithm\n\n\n\nThe 2D Vicsek model algorithm can be described in these steps:\n\nInitialize: Place \\(N\\) particles at random positions \\(\\mathbf{r}_i\\) with random velocities \\(\\mathbf{v}_i = v (\\cos\\theta_i, \\sin\\theta_i)\\), where \\(\\theta_i\\) is the orientation angle.\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\n\n\nFrom the algorithm above we can extract a few key conceptual entities needed for our simulation\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains"
   },
   {
-    "objectID": "wp_oop/oop-slides.html#aims",
-    "href": "wp_oop/oop-slides.html#aims",
+    "objectID": "wp_oop/placeholder.html",
+    "href": "wp_oop/placeholder.html",
     "title": "Hands on objects and classes",
-    "section": "Aims",
-    "text": "Aims\n\nDefine the essential properties of our simulation and identify them as objects\nDesign the basic relationships between such objects\nConstruct the skeleton of the simulation by creating bare bone classes for the main objects"
-  },
-  {
-    "objectID": "wp_oop/oop-slides.html#learning-outcomes",
-    "href": "wp_oop/oop-slides.html#learning-outcomes",
-    "title": "Hands on objects and classes",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nFamiliarise with the rules of Vicsek flocking model\nPractice object-oriented design choices in C++"
-  },
-  {
-    "objectID": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
-    "href": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
-    "title": "Hands on objects and classes",
-    "section": "Object-oriented programming is about actions between objects",
-    "text": "Object-oriented programming is about actions between objects\nA lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boils down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This procedural programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated."
-  },
-  {
-    "objectID": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
-    "href": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
-    "title": "Hands on objects and classes",
-    "section": "Modelling flocking using the Vicsek model",
-    "text": "Modelling flocking using the Vicsek model\nIn this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.\nWew use the Vicsek model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.\nThe problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking."
+    "section": "",
+    "text": "To appear soon.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
   },
   {
     "objectID": "index.html",
