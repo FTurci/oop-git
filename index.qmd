@@ -260,7 +260,7 @@ To install `gh`, we simply fetch a precompiled version. Type the following in th
 ```bash
 wget https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_amd64.tar.gz
 ```
-This fetches to the noteable home folder a compressed package `gh_2.60.1_linux_amd64.tar.gz`. To decompress it type
+This fetches  a compressed package `gh_2.60.1_linux_amd64.tar.gz` (make sure you do this in teh home folder). To decompress it type
 
 
 ```bash
