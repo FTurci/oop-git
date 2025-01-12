@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To install it, open a <code>Terminal</code> and type (you can copy and paste the command below)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>C++</strong></p>
-<p>The Mac already comes with a good compiler installed called <code>clang</code>, with aliases for commands such as <code>gcc  and</code>g++`.</p>
+<p>The Mac already comes with a good compiler installed called <code>clang</code>, with aliases for commands such as <code>gcc</code> and <code>g++</code>.</p>
 <p>You may want to install a GNU compiler ( the standard <code>gcc</code> compiler that you have, for example, on the bristol High Performance Computing clusters) you can install it with <code>homebrew</code> using:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will install the latest version of <code>gcc</code>, which you will access with the command <code>gcc-xx</code> wher xx is the version number. For example <code>gcc-14</code>.</p>
@@ -432,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <p>In the <em>Noteable</em> environment (e.g.&nbsp;Jupyter Lab) you can open a terminal readily. It already has <code>g++</code>, <code>python</code> and <code>git</code> installed.</p>
-<p>The only missing program is the Github command line utility <code>gh</code>. This allows you to interact with Github and modify a remote git repository. This is ultimately optional.</p>
+<p>The only missing program is the Github command line utility <code>gh</code>. This allows you to interact with Github and modify a remote git repository. This is ultimately optional (local <code>git</code> repositories are sufficient to learn <code>git</code>).</p>
 <p>To install <code>gh</code>, we simply fetch a precompiled version. Type the following in the <em>Noteable</em> terminal</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_amd64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This fetches a compressed package <code>gh_2.60.1_linux_amd64.tar.gz</code> (make sure you do this in teh home folder). To decompress it type</p>

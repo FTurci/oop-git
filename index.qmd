@@ -132,10 +132,10 @@ To install it, open a `Terminal` and type (you can copy and paste the command be
 
 **C++**
 
-The Mac already comes with a good compiler installed called `clang`, with aliases for commands such as `gcc
- and `g++`. 
+The Mac already comes with a good compiler installed called `clang`, with aliases for commands such as `gcc`
+ and `g++`.
 
- You may want to install a GNU compiler ( the standard `gcc` compiler that you have, for example, on the bristol High Performance Computing clusters) you can install it with `homebrew` using:
+ You may want to install a GNU compiler ( the standard `gcc` compiler that you have, for example, on the Bristol High Performance Computing clusters) you can install it with `homebrew` using:
 
  ```bash
 brew install gcc
@@ -252,7 +252,7 @@ You can then follow the same instructions as **Linux** users.
 
 In the *Noteable* environment (e.g. Jupyter Lab) you can open a terminal readily. It already has `g++`, `python` and `git` installed.
 
-The only missing program is the Github command line utility `gh`. This allows you to interact with Github and modify a remote git repository. This is ultimately optional. 
+The only missing program is the Github command line utility `gh`. This allows you to interact with Github and modify a remote git repository. This is ultimately optional (local `git` repositories are sufficient to learn `git`). 
 
 To install `gh`, we simply fetch a precompiled version. Type the following in the *Noteable* terminal 
 
