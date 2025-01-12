@@ -247,8 +247,42 @@ It is possible to access it by activating the **Linux development environment**,
 
 You can then follow the same instructions as **Linux** users.
 
-:::
 
+### Noteable
+
+In the `Noteable` environment (e.g. Jupyter Lab) you can open a terminal readily. It already has `g++`, `python` and `git` installed.
+
+The only missing program is the Github command line utility `gh`. To install it, we simply fetch a precompiled version. Type the following in the Noteable terminal 
+
+
+```bash
+wget https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_amd64.tar.gz
+```
+This fetches to the noteable home folder a compressed package `gh_2.60.1_linux_amd64.tar.gz`. To decompress it type
+
+
+```bash
+ tar -xvf gh_2.60.1_linux_amd64.tar.gz 
+ ```
+
+The precompiled executable `gh` is inside `$HOME/gh_2.60.1_linux_amd64/bin/gh`. For convenience, we can add an alias by creating a Bash configuration file in the home folder (i.e. `~`)
+
+```bash
+nano .bash_profile
+```
+
+and write the following line
+
+```bash
+alias gh="$HOME/gh_2.60.1_linux_amd64/bin/gh"
+```
+
+To update the configuration, just type
+
+```bash
+source .bash_profile
+```
+:::
 
 
 
