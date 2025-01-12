@@ -141,7 +141,7 @@ The Mac already comes with a good compiler installed called `clang`, with aliase
 brew install gcc
  ```
 
- This will install the latest version of `gcc`, which you will access with the command `gcc-xx` wher xx is the version number. For example `gcc-14`.
+ This will install the latest version of `gcc`, which you will access with the command `gcc-xx` where xx is the version number. For example `gcc-14`.
 
 **Git**
 
@@ -167,7 +167,7 @@ However, a more flexible way to manage different version of Python and Python en
 
 You can install whatever editor you prefer. A simple option is **Visual Studio Code**, which you can download from this link [↗️](https://code.visualstudio.com){target="_blank"}
 
-Atelemetry-free version of VSCode can be installed via `homewbrew`
+A telemetry-free version of VSCode can be installed via `homewbrew`
 
 ```bash
 brew install --cask vscodium
