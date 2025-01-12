@@ -134,7 +134,6 @@ The obvious variables for a Makefile are:
 Note that typically these names are written in uppercase letters. In the Makefile syntax, we access the value stored in these variables using the `$(VARIABLE)` syntax.
 
 ### Rules
-### Rules
 
 Rules in a Makefile describe how to build a target from its dependencies using commands. A rule typically follows this format:
 
