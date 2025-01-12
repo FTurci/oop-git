@@ -250,9 +250,11 @@ You can then follow the same instructions as **Linux** users.
 
 ### Noteable
 
-In the `Noteable` environment (e.g. Jupyter Lab) you can open a terminal readily. It already has `g++`, `python` and `git` installed.
+In the *Noteable* environment (e.g. Jupyter Lab) you can open a terminal readily. It already has `g++`, `python` and `git` installed.
 
-The only missing program is the Github command line utility `gh`. To install it, we simply fetch a precompiled version. Type the following in the Noteable terminal 
+The only missing program is the Github command line utility `gh`. This allows you to interact with Github and modify repote git repository. This is ultimately optional. 
+
+To install `gh`, we simply fetch a precompiled version. Type the following in the *Noteable* terminal 
 
 
 ```bash
@@ -282,6 +284,9 @@ To update the configuration, just type
 ```bash
 source .bash_profile
 ```
+
+Now the command `gh` is also available.
+
 :::
 
 
