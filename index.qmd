@@ -252,7 +252,7 @@ You can then follow the same instructions as **Linux** users.
 
 In the *Noteable* environment (e.g. Jupyter Lab) you can open a terminal readily. It already has `g++`, `python` and `git` installed.
 
-The only missing program is the Github command line utility `gh`. This allows you to interact with Github and modify repote git repository. This is ultimately optional. 
+The only missing program is the Github command line utility `gh`. This allows you to interact with Github and modify a remote git repository. This is ultimately optional. 
 
 To install `gh`, we simply fetch a precompiled version. Type the following in the *Noteable* terminal 
 
