@@ -46,79 +46,81 @@ It is **essential** to learn how to use the shell properly in order to understan
 ## Basic shell usage
 
 1. **List files and directories**: Displays the contents of the current directory.  
-   ```bash
-   ls
-   ```
+```bash
+ls
+```
 
 2. **Change directory**: Moves to a different directory.  
-   ```bash
-   cd /path/to/directory
-   ```
+```bash
+cd /path/to/directory
+```
 
 3. **Create a new directory**: Creates a new folder.  
-   ```bash
-   mkdir new_folder
+```bash
+mkdir new_folder
    ```
 
 4. **Remove a file**: Deletes a specific file.  
-   ```bash
-   rm file.txt
-   ```
+```bash
+rm file.txt
+```
 
 5. **Remove a directory**: Deletes a directory and its contents.  
-   ```bash
-   rm -r directory_name
-   ```
+```bash
+rm -r directory_name
+```
 
 6. **Move or rename a file**: Moves a file to a new location or renames it.  
-   ```bash
-   mv old_file.txt new_location/
-   ```
+```bash
+mv old_file.txt new_location/
+```
 
 7. **Copy a file**: Copies a file to a new location.  
-   ```bash
-   cp file.txt /path/to/destination/
-   ```
+```bash
+cp file.txt /path/to/destination/
+```
 
 8. **Create a new file**: Creates an empty file.  
-   ```bash
-   touch newfile.txt
-   ```
+```bash
+touch newfile.txt
+```
 
 9. **Edit a file**: Opens a file in a text editor like `nano` for editing.  
-   ```bash
-   nano file.txt
-   ```
+```bash
+nano file.txt
+```
 
 10. **View the contents of a file**: Displays the contents of a file in the terminal.  
-    ```bash
-    cat file.txt
-    ```
+    
+```bash
+cat file.txt
+```
 
 11. **Search for text in a file**: Searches for specific text in a file.  
-    ```bash
-    grep "search_term" file.txt
-    ```
+
+```bash
+grep "search_term" file.txt
+```
 
 12. **Show current directory path**: Displays the full path of the current working directory.  
-    ```bash
-    pwd
-    ```
+```bash
+pwd
+```
 
 13. **Copy a directory**: Copies a directory and its contents.  
-    ```bash
-    cp -r source_directory/ destination_directory/
-    ```
+```bash
+cp -r source_directory/ destination_directory/
+```
 
 14. **Move back one directory**: Moves up one directory level.  
-    ```bash
-    cd ..
-    ```
+```bash
+cd ..
+```
 
 15. **Display disk usage**: Shows the disk usage of files and directories.  
-    ```bash
-    du -sh *
-    ```
+```bash
+du -sh *
+```
 
 
 

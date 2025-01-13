@@ -176,7 +176,7 @@ brew install --cask vscodium
 
 ### Linux  {#tab-linux}
 
-Depending on the linux distribution, you may have different package managers to install software. Here we assume a Debian-based distribution such as **Ubuntu**, where the package manager is `apt` (or `apt-get`).
+Depending on the Linux distribution, you may have different package managers to install software. Here we assume a Debian-based distribution such as **Ubuntu**, where the package manager is `apt` (or `apt-get`).
 
 **Shell**
 
