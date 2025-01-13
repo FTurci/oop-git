@@ -20,7 +20,7 @@ output-file: make-slides.html
 
 ## Compiling in C++
 
-Compilation in C++ is performed by a **compiler**. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the *Intorduction to C++*).
+Compilation in C++ is performed by a **compiler**. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the *Introduction to C++*).
 
 If you followed the instructions on the [welcome page](../index.qmd) you should have a compiler installed.
 
@@ -234,7 +234,7 @@ Do the following:
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 ```
-which tells `make` to compile each .cpp file `($<)` into the corresponding .o file (`$@`). Ass this rule to your makefile.
+which tells `make` to compile each .cpp file `($<)` into the corresponding .o file (`$@`). Add this rule to your makefile.
 
 3. Now you have a rule that creates object files, so you only need a rule to link them to produce the executable. Write it down, noticing that your target is `$(EXEC)`, your dependencies are now the object files and the rule is just the linking step described above.
 4. Now, modify your `all` rule to depend on `$(EXEC)` and to write the message `"Build complete"`.
