@@ -1,0 +1,259 @@
+---
+title: "Completing the OOP design of the project"
+format:
+  html:
+    output-file: oop-complete.html
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, custom.scss]
+    # transition: fade
+
+    output-file: oop-complete-slides.html
+---
+
+## Aims
+
+
+- Complete the skeleton of the object-oriented structure of the project
+
+## Learning outcomes
+
+- Constructing combinations of objects
+- Constructing vectors of objects
+
+
+## More classes
+
+Up to now, we only create one class, the `System` class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.
+
+The idea behind this programming paradigm is to organise the code into smaller units taht can be quite autonomous but which can interact with each other.
+
+Earlier we drew the following sketch
+
+
+```{mermaid}
+classDiagram
+ direction LR
+    class System{
+      %% particle_number
+      %% noise_strength
+      %%list~Particle~ particles
+      %%update_rule()
+  
+    }
+
+    class Box {
+        %%size
+        %%boundary_conditions
+    }
+
+    class Particle {
+        %%position
+        %%orientation
+    }
+  System --> Box : contains
+  System "1" --> "N" Particle : contains
+
+```
+
+In the [previous part](oop.qmd) of this workshop we addressed only one of these objects, the `System` class.
+
+We now proceed more quickly, using the same ideas, to construct the two remaining objects and see how to integrate them with our original `System` class.
+
+Here, there will be less detailed code and more **high level** description of what the classes do: it will be for you to translate these design choices int actual code.
+
+
+## Constructing the `Box`
+
+The system is simulated in a two-dimensional domain. We decide the domain to be a square box. However, for the sake of generality, let our `Box` class represent an arbitrary **rectangular** domain.
+
+The rectangle should have are 
+
+- the side in the x direction
+- the side in the y direction
+- the coordinates of the origin (bottom left corner)
+
+```{=html}
+<svg width="300" height="200">
+  <!-- Draw rectangle -->
+  <rect x="50" y="50" width="200" height="100" style="fill:none;stroke:black;stroke-width:2" />
+  
+  <!-- Label for side x -->
+  <text x="150" y="45" font-family="Arial" font-size="12" fill="black" text-anchor="middle">side x</text>
+  
+  <!-- Label for side y -->
+  <text x="10" y="120" font-family="Arial" font-size="12" fill="black" text-anchor="middle" transform="rotate(-90 10,100)">side y</text>
+  
+  <!-- Origin label -->
+  <text x="50" y="170" font-family="Arial" font-size="12" fill="black" text-anchor="middle" dy="-5">Origin</text>
+    
+  <!-- Small circle at bottom-left corner -->
+  <circle cx="50" cy="150" r="5" fill="red" />
+</svg>
+```
+
+In this case we want to make these properties accessible only via the usage of member functions: we want them to be **private** member variables. This avoids possible accidental changes, making the code more robust.
+
+This means that, when we define the `Box` class, we will use the following syntax
+
+```cpp
+private:
+    double sidex;
+    double sidey;
+    double x0;
+    double y0;
+```
+
+To set the values of these variables or get their values we need dedicated member functions, conventionally called **setters** and **getters**. These, obviously, have to be **public**.
+
+```cpp
+public:
+    void setSides(double lx, double ly);
+    void setOrigin(double x, double y);
+    double getSidex();
+    double getSidey();
+
+```
+## Multiple constructors
+
+C++ can be initialised i  various ways using different constructors. Indeed, in the same class definition, we can have both a default constructor (e.g. without parameters) and various parametrised constructors. A minimal example follows:
+
+```cpp
+public:
+    Box(); //default constructor with no parameters
+    Box(double lx, double ly, double x0, double y0); //parametrised constructor
+```
+
+Both will require a suitable implementation in the `cpp` file:
+
+```cpp
+
+Box::Box(){
+    // an empty constructor
+}
+Box::Box(double lx, double ly, double x0, double y0){
+     //this constructor actually assigns values
+     this->sidex = lx;
+    //  ...
+}
+
+```
+
+---
+
+:::{.callout-note icon="false"}
+## Task 1: Construct the `Box` class
+
+Inspired by what you have done for the `System` class, create a `box.h` and a `box.cpp` file to declare and implement the `Box` class.
+
+Follow the recommendations above to structure the `Box` class, with private member variables and public getters and setters.
+
+In particular, provide both a parametrised constructor that takes four parameters:
+```cpp
+    Box(double lx, double ly, double x0, double y0);
+```
+as well as a default constructor.
+
+:::
+
+---
+
+:::{.callout-note icon="false"}
+## Task 2: Use the  `Box`
+
+Go back to your `System` class and uncomment the parts of the code that pertain to the `Box` class. 
+
+Since we have defined the class and implented it, we can now use it. In particular we want that, when we construct a `System`, the `Box` is also constructed using the correct parameters for its side. We also choose the point (0,0) to always be  its lower left corner.
+
+Hence, modify the implementation of the `System` class so that the member variable `simulationBox` is an instance of the parametrised constructor of the `Box` class, using `sideLength` for both `lx` and `ly` parameters and `0,0` for `x0` and `y0`.
+
+To check that your implementation is valid, add the following line to your `main.cpp` file to print the side of the box:
+
+```cpp
+std::cout<<"The system has a simulation box of side "<<model.simulationBox.getSidex()<<std::endl;
+```
+The compilation step is now
+```bash
+g++ main.cpp simulation.cpp box.cpp -o myvicsek
+```
+If you instead have prepared a correct makefile, just type
+
+```bash
+make
+```
+
+:::
+
+## Constructing a `Particle`
+
+The final object we are interested in possibly the most important: it is the  particle, representing the individual agent of the Vicsek model.
+
+The model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction $r$.
+
+Therefore, we simply want a new class that describes objects that contain:
+
+- an `x` coordinate
+- a `y` coordinate
+- an angle `theta`
+- a velocity magnitude `v`
+- a radius of interaction `r`
+
+We shall have all these variables `public` for simplicity.
+
+we should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor. 
+
+Reasonable choices are the following:
+-  zero both `x`, `y` and `theta`
+- set `r` as the out unit of length
+- set `v` to `0.5`
+
+This can be directly done in the implementation of the default constructor `Particle()`, with no parameters.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 3: Construct the `Particle` class
+
+Inspired by what you have done for the `System` class and the `Box` class, create a `particle.h` and a `particle.cpp` file to declare and implement the `particle` class.
+
+Use the guidance above to structure your class. It should be sufficient then to uncomment the relevant section of code in `system.h` to test that the code is valid to proceed with a compilation. 
+
+Without a makefile this is
+
+```bash
+g++ main.cpp system.cpp box.cpp particle.cpp -o myvicsek
+```
+
+If you have not done it already, thi is a good time to create makefile to help yourself with future compilations. A valid makefile can be downloaded here [📝 Makefile](Makefile). Put it in the same directory of your project and type 
+
+```bash
+make
+```
+
+every time you need to compile your code. For more information, see [here](../wp_gitgithub/make.qmd).
+
+:::
+
+
+
+## Minimal inheritance: `SquareBox` class
+
+A key idea of object-oriented programming is the notion of **inheritance**: we can design fairly generic base classes and then **derive** classes from them that get more specialised. 
+
+We will only cover this superficially, but our `Box` class lends itself naturally to this kind of specialisation. Indeed, we are going to use the same `box.cpp` and `box.h` files to contain another class, derived from `Box` but that fits the purpose of a square simulation domain. We call it `SquareBox` and as derived class from `Box` it is declared with the following syntax:
+
+```cpp
+class SquareBox : public Box{
+    // rest of the declaration as usual
+}
+```
+
+
+
