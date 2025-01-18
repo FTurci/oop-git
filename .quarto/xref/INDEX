@@ -68,5 +68,9 @@
   "wp_gitgithub/make.qmd": {
     "make-slides.html": "0c6d4391",
     "make.html": "0a27062b"
+  },
+  "wp_oop/complete-design.qmd": {
+    "oop-complete.html": "fc1721ba",
+    "oop-complete-slides.html": "0c66224c"
   }
 }

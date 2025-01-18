@@ -1,5 +1,9 @@
 ---
 title: "Compilation and makefiles"
+editor_options:
+  tab_width: 4
+  insert_spaces: false
+
 format:
   revealjs:
     width: 1200
@@ -153,7 +157,7 @@ $(EXEC): $(SRC)
     $(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 ```
 
-So, a complete minimal Makefile would look like
+So, a complete minimal Makefile would look like (rember to use true tabs for the indentation)
 
 ```makefile
 CC = g++
@@ -161,6 +165,7 @@ CFLAGS = -O2 -Wall
 SRC = main.cpp utils.cpp
 EXEC = program
 
+# check that the indentation is a tab and not spaces
 $(EXEC): $(SRC)
     $(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 
@@ -179,6 +184,7 @@ CFLAGS = -O2 -Wall
 SRC = main.cpp utils.cpp
 EXEC = program
 
+# check that the indentation is a tab and not spaces
 all: 
     $(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 

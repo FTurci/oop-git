@@ -202,8 +202,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wp_oop/placeholder.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_oop/oop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hands on objects and classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wp_oop/oop-complete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Completeing the OOP design of the project</span></a>
   </div>
 </li>
       </ul>
@@ -422,14 +428,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>So, suppose that we want to write a rule to compile our project above. Our target would be <code>$(EXEC)</code> (the name of our executable) our dependencies would be the source code <code>$(SRC)</code> and the command would simply combine the compiler, its flags, the source code and the executable name, so that the rule would look like</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">$(EXEC):</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>So, a complete minimal Makefile would look like</p>
+<p>So, a complete minimal Makefile would look like (rember to use true tabs for the indentation)</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span> <span class="ch">=</span><span class="st"> g++</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS</span> <span class="ch">=</span><span class="st"> -O2 -Wall</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">SRC</span> <span class="ch">=</span><span class="st"> main.cpp utils.cpp</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">EXEC</span> <span class="ch">=</span><span class="st"> program</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">$(EXEC):</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check that the indentation is a tab and not spaces</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="dv">$(EXEC):</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>How would we run this Makefile? You should type <code>make</code> and the name of the rule that you want to call, in this case <code>program</code> as in</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> program</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>What if we just want to have a default rule to run every time we type make (after all, we want to simplify our lives)? There is a special target named <code>all</code>. We can then rewrite our minimal Makefile as</p>
@@ -438,8 +445,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">SRC</span> <span class="ch">=</span><span class="st"> main.cpp utils.cpp</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">EXEC</span> <span class="ch">=</span><span class="st"> program</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span><span class="dt"> </span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check that the indentation is a tab and not spaces</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span><span class="dt"> </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another useful rule is called <code>clean</code>: you can implement it to remove files, as to remove the executable safely.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">clean:</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -f <span class="ch">$(</span><span class="dt">EXEC</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -1,6 +1,8 @@
 ---
 title: "Hands on objects and classes"
 format:
+  html:
+    output-file: oop.html
   revealjs:
     width: 1200
     height: 800
@@ -12,17 +14,16 @@ format:
     smaller: true
     theme: [simple, custom.scss]
     # transition: fade
-  html:
-    output-file: oop.html
-output-file: oop-slides.html
+
+    output-file: oop-slides.html
 ---
 
 
 ## Aims
 
 - Define the essential properties of our simulation and identify them as objects
-- Design the basic relationships between such objects
-- Construct the skeleton of the simulation by creating bare bone classes for the main objects
+- Recall the main syntactical aspects of C++ classes
+- Implement the main structure of the class representing the simulated system
 
 ## Learning outcomes
 
@@ -113,5 +114,331 @@ classDiagram
 ```
 
 
+Our goal is now to concretely construct C++ objects around these various components. The natural organisation in C++ is to have different files for the different objects, separating their declarations and the implementations. In practice this means having
+
+- a `.h` file  (a **header** file) for every object to describe its structure and contain the **declarations**
+- a `.cpp` file (a **source** file) to specify how the object works and contain the the **implementation**
+
+We will use the example of the `System` class to recall some essential elements of `C++` object orientation.
+
+## The `System` class
+
+### Generic class structure
+
+The declaration of a generic C++ class has a standard structure
+
+```cpp
+
+class MyClass { // UpperCamelCase convention
+  public:
+    Myclass(); //default constructor
+
+    int memberVariable;  
+    float memberFunction();
+
+}; // remember this semicolon!
+```
+
+Objects organise data and functions. The data are stored as **member  variables** (also called **attributes**) and functions specific to the object are called **member functions** (also called **methods**). Member functions and variables can be `public` or  `private`.
+
+#### Instantiation
+
+A class declaration is barely the description of the **content** of an object.
+
+In order to use objects we need to construct them first. The process of constructing objects is called **instantiation**: we can have indeed many separate **instances** of the same object. 
+
+Every instantiation runs a particular member function of the object, called the **constructor**. The constructor always has the same name as the class itself and clearly has no type associated with it because what it returns is precisely an object of the type defined by the class.
+
+For example, the class above is named `MyClass` so it has a member function called `MyClass()` (notice the brackets). When we want to instantiate an object of such class we just type
+
+```cpp
+MyClass anInstance;
+```
+But could as well  have multiple instances of the same class
 
 
+```cpp
+MyClass instance1;
+MyClass instance2;
+MyClass instance3;
+```
+
+BUt what does the constructor actually do? In fact, up to now, we did not specify anything. Indeed, we have not yet written any implementation of the class. We will see this very soon in the section below. 
+
+At the moment, let us now apply these broad ideas to the specific concept of our `System` class.
+
+### Declaration
+
+The header file for our `System` class needs precisely to mirror the structure above. 
+
+Since a header file can be imported multiple times by various nested objects, it is good practice to confine the code inside so called **headr guards**, `#ifndef/#define` statements that make the inclusion of the header optional if the header as already been included.
+
+This means that the basic structure of hour `system.h` file will be
+
+```cpp
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
+class System {
+  public:
+    System();
+};
+
+#endif
+```
+
+This is a bare-bone `System`: it has nothing specific to our model. We can now sculpt the class the fit what we believe our system should have. For example, here is what we may sketch as a design, where we distinguish member variables from functions
+
+```{mermaid}
+classDiagram
+ direction LR
+    class System{
+      particleNumber
+      noiseStrength
+      simulationBox
+      vector~Particle~ particles
+      System()
+      updateRule()
+      
+      }
+
+```
+
+We have a few member variables:
+
+- the total number of particles
+- the noise strength in Vicsek model
+- a simulation box
+- a vector containing all the particles
+
+---
+
+Since C++ is a typed language, we need to think of the types of such variables
+
+- the total number of particles &rarr; it is an integer `int`
+- the noise strength in Vicsek model &rarr; it is a floating point number `double`
+- a simulation box &rarr; it is going to be an instance of a yet-to-be-defined class `Box`
+- a vector containing all the particles &rarr; it is a vector of a yet-to-be-defined class `Particle`
+
+The `System` class also contains two member functions:
+
+- the constructor, which return an instance of the class
+- an update rule to implement the Vicsek dynamics, which just updates the particles, so it is probably of type `void`
+
+With this in mind we can translate these **design ideas** into an actual class structure that is specific to our problem
+
+```cpp
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
+#include <vector> //to use standard C++ vectors
+#include "box.h" //yet to be created!
+#include "particle.h" //yet to be created!
+
+class System {
+  public:
+    System();
+    int   particleNumber;
+    double noiseStrength;
+    Box simulationBox;
+    std::vector<Particle> particles;
+
+    void updateRule();
+};
+
+#endif
+```
+Notice that we added an `include` statement to use the `std::vector` for the C++ standard library and construct a vector of particles. Also note that we are also including the definitions of the `Box` and the `Particle` classes, which we have not yet written!
+
+
+:::{.callout-note icon="false"}
+## Task 1: header file
+Create a header file for the `System` class that mirrors the instructions above.
+:::
+
+
+### Basic implementation
+
+Now that we have the overall description of the class, we want to implement it. What is missing specifically are the instructions for the default constructor `System()` and the member function `updateRule()`. these are to be stored in the source file `system.cpp`. In it, we include the definitions provided in the header file and then refer to the member functions of a particular class using the `::` operator
+
+So, our `system.cpp` file will start with including the respective header file via 
+
+```cpp
+#include "system.h"
+```
+
+and then proceed specifying each member function separately.For example, for the `updateRule()` member function we will have 
+```cpp
+void System::updateRule(){
+  // the Vicsek update rule...
+}
+
+```
+
+
+And for the constructor we will have instead
+
+```cpp
+System::System(){
+  // whatever we want to do as we instantiate the system
+}
+
+```
+
+--- 
+
+:::{.callout-note icon="false"}
+## Task 2: Simple implementation and instantiation
+Create a `system.cpp` file and implement the constructor and the update rule such that :
+
+- the constructor prints `I am constructing the System!`
+- the update rule prints `Updating the system...`
+
+Remember that you need the `<iostream>` library to be included in order to be able to print using the **standard C++ library** (you should know how to do this from Teaching Block 1).
+
+Then, comment out (for now) the `Box simulationBox;` and the 
+    `std::vector<Particle> particles;` lines from the header file and their **associated header files**.
+    
+Now, in the `main.cpp` file (that should be in the same folder), inside the `main` function, instantiate a `System` object.
+    
+    
+Compile your code, either by using a Makefile (see [here](../wp_gitgithub/make)) or by directly using the compiler with
+
+```
+gcc main.cpp system.cpp -o myvicsek
+```
+
+and run it with (or with whatever name you have given tour executable)
+
+```
+./myvicsek
+```
+
+You should see the following output in the command line:
+
+
+```console
+$ ./myvicsek
+I am constructing the System!
+```
+
+:::
+
+
+---
+
+:::{.callout-note icon="false"}
+## Task 3: Calling a member function
+
+Can you modify the `main.cpp` file to call the member function `updateRule()` after instantiating your object? Notice that (differently from the default constructor we wrote above) this uses parenthesis even if it doesn't take any arguments. Since you use a member function of an instance of a class, you **must use** the **dot** operator `.` as:
+
+```cpp
+instance.memberFunction();
+```
+
+:::
+
+---
+
+### A more meaningful constructor
+
+We have now a working basic class. It does not do much and it does not even store any data, but it should work. Ideally, we would instead like to construct our system so that it can at least store some parameters of our model to be used later on. To do so we need to enrich the constructor, since the default constructor is taking no arguments.
+
+
+There are several parameters that it may be useful to pass to the constructor. Some may be worth storing in the `System` object as member variables, some may not, depending on your design choices.
+
+
+Parameters that are meaningful to pass to the constructor could be:
+
+- the total number of particles `N` (mentioned earlier)
+- the noise strength (mentioned earlier)
+
+but we may want to have more, for example:
+
+- the size of the system (if it is a square box, it would be just its side)
+- the time step of the simulation
+
+To do this, we need to modify the constructor declaration to take these parameters as arguments. We will also need to update the implementation of the constructor to initialize the member variables with these parameters.
+
+
+
+
+:::{.callout-note icon="false"}
+## Task 4: Improve the constructor declaration
+Modify the `System` class declaration in `system.h` so that 
+
+```cpp
+public:
+    System();
+```
+
+
+is turned into
+
+
+```cpp
+public:
+    System(int particleNumber,double sideLength, double timeStep,double noiseStrength);
+```
+
+Try to compile the code again: can you explain the error messages?
+
+:::
+
+
+#### Using `this`
+Such changes need then to be mirrored in the implementation, i.e. the `.cpp` file. Here we need to be able to refer specifically to the member variables of the class in an unambiguous way. The way C++ does this is by using the  keyword `this`.
+
+:::{.callout-important icon="false"}
+Technically `this` is a pointer to the current object (i.e. the memory address of the object) so to access any of its members (variables or ) is done using the `->` operator with the syntax 
+
+```cpp
+this->memberVariable = ...;
+```
+
+When instead one accesses member functions and variables directly from an object instance one uses the `.` operator 
+:::
+
+So, for every parameter that we get through the constructor, we can use the `this->` construction to store it into a member variable.
+
+
+
+---
+
+:::{.callout-note icon="false"}
+## Task 5: Assigning member variables
+
+Edit the `system.cpp` file so that the constructor now mirrors its declaration in the `system.h` file and stores the following parameters in the corresponding member variables:
+
+- the particle number
+- the noise strength
+
+
+Modify the `main.cpp` file so that now you call the constructor with suitable parameters. For this it is sufficient to use `(...)` (with the dots replaced by the required parameters) after the name of the instance. From the `main()` function, use a `cout` statement to print out the values of the particle number and noise after the construction of your instance of the class `System`.
+
+
+
+Take the following numerical values:
+
+- 100 particles
+- side length 20.0
+- timestep of 0.5
+- noise strength 0.1
+
+The units of these quantities will become apparent when we will discuss the details of the model in the next workshop.
+
+
+Compile and run.
+
+:::
+
+---
+
+:::{.callout-note icon="false"}
+## Task 6: Adjusting the design and the implementation
+
+Now modify both the declaration (`system.h`) and the implementation (`system.cpp`) so that you can also store the timestep and the side length.
+
+
+:::
+---

@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -339,8 +404,8 @@
 <h2>Aims</h2>
 <ul>
 <li>Define the essential properties of our simulation and identify them as objects</li>
-<li>Design the basic relationships between such objects</li>
-<li>Construct the skeleton of the simulation by creating bare bone classes for the main objects</li>
+<li>Recall the main syntactical aspects of C++ classes</li>
+<li>Implement the main structure of the class representing the simulated system</li>
 </ul>
 </section>
 
@@ -442,6 +507,280 @@
 </div>
 </div>
 </div>
+<p>Our goal is now to concretely construct C++ objects around these various components. The natural organisation in C++ is to have different files for the different objects, separating their declarations and the implementations. In practice this means having</p>
+<ul>
+<li>a <code>.h</code> file (a <strong>header</strong> file) for every object to describe its structure and contain the <strong>declarations</strong></li>
+<li>a <code>.cpp</code> file (a <strong>source</strong> file) to specify how the object works and contain the the <strong>implementation</strong></li>
+</ul>
+<p>We will use the example of the <code>System</code> class to recall some essential elements of <code>C++</code> object orientation.</p>
+</section></section>
+<section>
+<section id="the-system-class" class="title-slide slide level2 center">
+<h2>The <code>System</code> class</h2>
+
+</section>
+<section id="generic-class-structure" class="slide level3">
+<h3>Generic class structure</h3>
+<p>The declaration of a generic C++ class has a standard structure</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a></span>
+<span id="cb1-2"><a></a><span class="kw">class</span> MyClass <span class="op">{</span> <span class="co">// UpperCamelCase convention</span></span>
+<span id="cb1-3"><a></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-4"><a></a>    Myclass<span class="op">();</span> <span class="co">//default constructor</span></span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a>    <span class="dt">int</span> memberVariable<span class="op">;</span>  </span>
+<span id="cb1-7"><a></a>    <span class="dt">float</span> memberFunction<span class="op">();</span></span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a><span class="op">};</span> <span class="co">// remember this semicolon!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Objects organise data and functions. The data are stored as <strong>member variables</strong> (also called <strong>attributes</strong>) and functions specific to the object are called <strong>member functions</strong> (also called <strong>methods</strong>). Member functions and variables can be <code>public</code> or <code>private</code> but for the purposes of this course we will keep them all <code>public</code>.</p>
+<h4 id="instantiation">Instantiation</h4>
+<p>A class declaration is barely the description of the <strong>content</strong> of an object.</p>
+<p>In order to use objects we need to construct them first. The process of constructing objects is called <strong>instantiation</strong>: we can have indeed many separate <strong>instances</strong> of the same object.</p>
+<p>Every instantiation runs a particular member function of the object, called the <strong>constructor</strong>. The constructor always has the same name as the class itself and clearly has no type associated with it because what it returns is precisely an object of the type defined by the class.</p>
+<p>For example, the class above is named <code>MyClass</code> so it has a member function called <code>MyClass()</code> (notice the brackets). When we want to instantiate an object of such class we just type</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a></a>MyClass anInstance<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But could as well have multiple instances of the same class</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a></a>MyClass instance1<span class="op">;</span></span>
+<span id="cb3-2"><a></a>MyClass instance2<span class="op">;</span></span>
+<span id="cb3-3"><a></a>MyClass instance3<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>BUt what does the constructor actually do? In fact, up to now, we did not specify anything. Indeed, we have not yet written any implementation of the class. We will see this very soon in the section below.</p>
+<p>At the moment, let us now apply these broad ideas to the specific concept of our <code>System</code> class.</p>
+</section>
+<section id="declaration" class="slide level3">
+<h3>Declaration</h3>
+<p>The header file for our <code>System</code> class needs precisely to mirror the structure above.</p>
+<p>Since a header file can be imported multiple times by various nested objects, it is good practice to confine the code inside so called <strong>headr guards</strong>, <code>#ifndef/#define</code> statements that make the inclusion of the header optional if the header as already been included.</p>
+<p>This means that the basic structure of hour <code>system.h</code> file will be</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#ifndef SYSTEM_H</span></span>
+<span id="cb4-2"><a></a><span class="pp">#define SYSTEM_H</span></span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="kw">class</span> System <span class="op">{</span></span>
+<span id="cb4-5"><a></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb4-6"><a></a>    System<span class="op">();</span></span>
+<span id="cb4-7"><a></a><span class="op">};</span></span>
+<span id="cb4-8"><a></a></span>
+<span id="cb4-9"><a></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a bare-bone <code>System</code>: it has nothing specific to our model. We can now sculpt the class the fit what we believe our system should have. For example, here is what we may sketch as a design, where we distinguish member variables from functions</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+ direction LR
+    class System{
+      particleNumber
+      noiseStrength
+      simulationBox
+      vector~Particle~ particles
+      System()
+      updateRule()
+      
+      }
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>We have a few member variables:</p>
+<ul>
+<li>the total number of particles</li>
+<li>the noise strength in Vicsek model</li>
+<li>a simulation box</li>
+<li>a vector containing all the particles</li>
+</ul>
+</section>
+<section class="slide level3">
+
+<p>Since C++ is a typed language, we need to think of the types of such variables</p>
+<ul>
+<li>the total number of particles → it is an integer <code>int</code></li>
+<li>the noise strength in Vicsek model → it is a floating point number <code>double</code></li>
+<li>a simulation box → it is going to be an instance of a yet-to-be-defined class <code>Box</code></li>
+<li>a vector containing all the particles → it is a vector of a yet-to-be-defined class <code>Particle</code></li>
+</ul>
+<p>The <code>System</code> class also contains two member functions:</p>
+<ul>
+<li>the constructor, which return an instance of the class</li>
+<li>an update rule to implement the Vicsek dynamics, which just updates the particles, so it is probably of type <code>void</code></li>
+</ul>
+<p>With this in mind we can translate these <strong>design ideas</strong> into an actual class structure that is specific to our problem</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a></a><span class="pp">#ifndef SYSTEM_H</span></span>
+<span id="cb5-2"><a></a><span class="pp">#define SYSTEM_H</span></span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span><span class="pp"> </span><span class="co">//to use standard C++ vectors</span></span>
+<span id="cb5-5"><a></a><span class="pp">#include </span><span class="im">"box.h"</span><span class="pp"> </span><span class="co">//yet to be created!</span></span>
+<span id="cb5-6"><a></a><span class="pp">#include </span><span class="im">"particle.h"</span><span class="pp"> </span><span class="co">//yet to be created!</span></span>
+<span id="cb5-7"><a></a></span>
+<span id="cb5-8"><a></a><span class="kw">class</span> System <span class="op">{</span></span>
+<span id="cb5-9"><a></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb5-10"><a></a>    System<span class="op">();</span></span>
+<span id="cb5-11"><a></a>    <span class="dt">int</span>   particleNumber<span class="op">;</span></span>
+<span id="cb5-12"><a></a>    <span class="dt">double</span> noiseStrength<span class="op">;</span></span>
+<span id="cb5-13"><a></a>    Box simulationBox<span class="op">;</span></span>
+<span id="cb5-14"><a></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span>Particle<span class="op">&gt;</span> particles<span class="op">;</span></span>
+<span id="cb5-15"><a></a></span>
+<span id="cb5-16"><a></a>    <span class="dt">void</span> updateRule<span class="op">();</span></span>
+<span id="cb5-17"><a></a><span class="op">};</span></span>
+<span id="cb5-18"><a></a></span>
+<span id="cb5-19"><a></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that we added an <code>include</code> statement to use the <code>std::vector</code> for the C++ standard library and construct a vector of particles. Also note that we are also including the definitions of the <code>Box</code> and the <code>Particle</code> classes, which we have not yet written!</p>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 1: header file</strong></p>
+</div>
+<div class="callout-content">
+<p>Create a header file for the <code>System</code> class that mirrors the instructions above.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-implementation" class="slide level3">
+<h3>Basic implementation</h3>
+<p>Now that we have the overall description of the class, we want to implement it. What is missing specifically are the instructions for the default constructor <code>System()</code> and the member function <code>updateRule()</code>. these are to be stored in the source file <code>system.cpp</code>. In it, we include the definitions provided in the header file and then refer to the member functions of a particular class using the <code>::</code> operator</p>
+<p>So, our <code>system.cpp</code> file will start with including the respective header file via</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a></a><span class="pp">#include </span><span class="im">"system.h"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and then proceed specifying each member function separately.For example, for the <code>updateRule()</code> member function we will have</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a></a><span class="dt">void</span> System<span class="op">::</span>updateRule<span class="op">(){</span></span>
+<span id="cb7-2"><a></a>  <span class="co">// the Vicsek update rule...</span></span>
+<span id="cb7-3"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And for the constructor we will have instead</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a></a>System<span class="op">::</span>System<span class="op">(){</span></span>
+<span id="cb8-2"><a></a>  <span class="co">// whatever we want to do as we instantiate the system</span></span>
+<span id="cb8-3"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 2: Simple implementation and instantiation</strong></p>
+</div>
+<div class="callout-content">
+<p>Create a <code>system.cpp</code> file and implement the constructor and the update rule such that :</p>
+<ul>
+<li>the constructor prints <code>I am constructing the System!</code></li>
+<li>the update rule prints <code>Updating the system...</code></li>
+</ul>
+<p>Remember that you need the <code>&lt;iostream&gt;</code> library to be included in order to be able to print using the <strong>standard C++ library</strong> (you should know how to do this from Teaching Block 1).</p>
+<p>Then, comment out (for now) the <code>Box simulationBox;</code> and the <code>std::vector&lt;Particle&gt; particles;</code> lines from the header file and their <strong>associated header files</strong>.</p>
+<p>Now, in the <code>main.cpp</code> file (that should be in the same folder), inside the <code>main</code> function, instantiate a <code>System</code> object.</p>
+<p>Compile your code, either by using a Makefile (see <a href="../wp_gitgithub/make">here</a>) or by directly using the compiler with</p>
+<pre><code>gcc main.cpp system.cpp -o myvicsek</code></pre>
+<p>and run it with (or with whatever name you have given tour executable)</p>
+<pre><code>./myvicsek</code></pre>
+<p>You should see the following output in the command line:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource console number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a></a>$ ./myvicsek</span>
+<span id="cb11-2"><a></a>I am constructing the System!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 3: Calling a member function</strong></p>
+</div>
+<div class="callout-content">
+<p>Can you modify the <code>main.cpp</code> file to call the member function <code>updateRule()</code> after instantiating your object? Notice that (differently from the default constructor we wrote above) this uses parenthesis even if it doesn’t take any arguments. Since you use a member function of an instance of a class, you <strong>must use</strong> the <strong>dot</strong> operator <code>.</code> as:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a></a>instance<span class="op">.</span>memberFunction<span class="op">();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-more-meaningful-constructor" class="slide level3">
+<h3>A more meaningful constructor</h3>
+<p>We have now a working basic class. It does not do much and it does not even store any data, but it should work. Ideally, we would instead like to construct our system so that it can at least store some parameters of our model to be used later on. To do so we need to enrich the constructor, since the default constructor is taking no arguments.</p>
+<p>There are several parameters that it may be useful to pass to the constructor. Some may be worth storing in the <code>System</code> object as member variables, some may not, depending on your design choices.</p>
+<p>Parameters that are meaningful to pass to the constructor could be:</p>
+<ul>
+<li>the total number of particles <code>N</code> (mentioned earlier)</li>
+<li>the noise strength (mentioned earlier)</li>
+</ul>
+<p>but we may want to have more, for example:</p>
+<ul>
+<li>the size of the system (if it is a square box, it would be just its side)</li>
+<li>the time step of the simulation</li>
+</ul>
+<p>To do this, we need to modify the constructor declaration to take these parameters as arguments. We will also need to update the implementation of the constructor to initialize the member variables with these parameters.</p>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 4: Improve the constructor declaration</strong></p>
+</div>
+<div class="callout-content">
+<p>Modify the <code>System</code> class declaration in <code>system.h</code> so that</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb13-2"><a></a>    System<span class="op">();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is turned into</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb14-2"><a></a>    System<span class="op">(</span><span class="dt">int</span> particleNumber<span class="op">,</span><span class="dt">double</span> sideLength<span class="op">,</span> <span class="dt">double</span> timeStep<span class="op">,</span><span class="dt">double</span> noiseStrength<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try to compile the code again: can you explain the error messages?</p>
+</div>
+</div>
+</div>
+<h4 id="using-this">Using <code>this</code></h4>
+<p>Such changes need then to be mirrored in the implementation, i.e.&nbsp;the <code>.cpp</code> file. Here we need to be able to refer specifically to the member variables of the class in an unambiguous way. The way C++ does this is by using the keyword <code>this</code>.</p>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Technically <code>this</code> is a pointer to the current object (i.e.&nbsp;the memory address of the object) so to access any of its members (variables or ) is done using the <code>-&gt;</code> operator with the syntax</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a></a><span class="kw">this</span><span class="op">-&gt;</span>memberVariable <span class="op">=</span> <span class="op">...;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When instead one accesses member functions and variables directly from an object instance one uses the <code>.</code> operator</p>
+</div>
+</div>
+</div>
+<p>So, for every parameter that we get through the constructor, we can use the <code>this-&gt;</code> construction to store it into a member variable.</p>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 5: Assigning member variables</strong></p>
+</div>
+<div class="callout-content">
+<p>Edit the <code>system.cpp</code> file so that the constructor now mirrors its declaration in the <code>system.h</code> file and stores the following parameters in the corresponding member variables:</p>
+<ul>
+<li>the particle number</li>
+<li>the noise strength</li>
+</ul>
+<p>Modify the <code>main.cpp</code> file so that now you call the constructor with suitable parameters. For this it is sufficient to use <code>(...)</code> (with the dots replaced by the required parameters) after the name of the instance. From the <code>main()</code> function, use a <code>cout</code> statement to print out the values of the particle number and noise after the construction of your instance of the class <code>System</code>.</p>
+<p>Take the following numerical values:</p>
+<ul>
+<li>100 particles</li>
+<li>side length 20.0</li>
+<li>timestep of 0.5</li>
+<li>noise strength 0.1</li>
+</ul>
+<p>The units of these quantities will become apparent when we will discuss the details of the model in the next workshop.</p>
+<p>Compile and run.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 6: Adjusting the design and the implementation</strong></p>
+</div>
+<div class="callout-content">
+<p>Now modify both the declaration (<code>system.h</code>) and the implementation (<code>system.cpp</code>) so that you can also store the timestep and the side length.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level3">
+
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
