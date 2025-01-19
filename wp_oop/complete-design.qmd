@@ -246,7 +246,7 @@ every time you need to compile your code. For more information, see [here](../wp
 C++ has an excellent [standard library](https://en.cppreference.com/w/cpp/standard_library) with multiple data structures that simplify coding in C++. One kwy datastructure is the `vector` which is accessed via 
 
 ```cpp
-#include <vector
+#include <vector>
 ```
 
 As you have seen in the **Introduction to C++** part of the course, we can create vectors of any kind:
