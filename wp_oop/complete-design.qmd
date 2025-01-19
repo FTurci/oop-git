@@ -33,7 +33,7 @@ format:
 
 Up to now, we only create one class, the `System` class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.
 
-The idea behind this programming paradigm is to organise the code into smaller units taht can be quite autonomous but which can interact with each other.
+The idea behind this programming paradigm is to organise the code into smaller units that can be quite autonomous but which can interact with each other.
 
 Earlier we drew the following sketch
 
@@ -170,7 +170,7 @@ as well as a default constructor.
 
 Go back to your `System` class and uncomment the parts of the code that pertain to the `Box` class. 
 
-Since we have defined the class and implented it, we can now use it. In particular we want that, when we construct a `System`, the `Box` is also constructed using the correct parameters for its side. We also choose the point (0,0) to always be  its lower left corner.
+Since we have defined the class and implemented it, we can now use it. In particular we want that, when we construct a `System`, the `Box` is also constructed using the correct parameters for its side. We also choose the point (0,0) to always be  its lower left corner.
 
 Hence, modify the implementation of the `System` class so that the member variable `simulationBox` is an instance of the parametrised constructor of the `Box` class, using `sideLength` for both `lx` and `ly` parameters and `0,0` for `x0` and `y0`.
 
@@ -308,8 +308,9 @@ int seed = 1234;
 std::mt19937 gen = std::mt19937(seed);  
 
 ```
+---
 
-Random numbers from arbitrary distributions (in this case uniform between min and max are then sampled by first creating a **distribution object** (for example a uniform distribution between 0 and 1) 
+Random numbers from arbitrary distributions are then sampled by first creating a **distribution object** (for example a uniform distribution between 0 and 1) 
 
 
 ```cpp
@@ -346,7 +347,7 @@ double System::uniform(double min,double max) {
 
 }
 ```
-To test that this works, modify the `main` functio to print out a random number between 10 and 20.
+To test that this works, modify the `main` function to print out a random number between 10 and 20.
 :::
 
 <!-- 
