@@ -313,7 +313,8 @@ window.Quarto = {
   <li><a href="#constructing-the-box" id="toc-constructing-the-box" class="nav-link" data-scroll-target="#constructing-the-box">Constructing the <code>Box</code></a></li>
   <li><a href="#multiple-constructors" id="toc-multiple-constructors" class="nav-link" data-scroll-target="#multiple-constructors">Multiple constructors</a></li>
   <li><a href="#constructing-a-particle" id="toc-constructing-a-particle" class="nav-link" data-scroll-target="#constructing-a-particle">Constructing a <code>Particle</code></a></li>
-  <li><a href="#minimal-inheritance-squarebox-class" id="toc-minimal-inheritance-squarebox-class" class="nav-link" data-scroll-target="#minimal-inheritance-squarebox-class">Minimal inheritance: <code>SquareBox</code> class</a></li>
+  <li><a href="#creating-a-vector-of-particles" id="toc-creating-a-vector-of-particles" class="nav-link" data-scroll-target="#creating-a-vector-of-particles">Creating a <code>vector</code> of particles</a></li>
+  <li><a href="#random-initial-state" id="toc-random-initial-state" class="nav-link" data-scroll-target="#random-initial-state">Random initial state</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="oop-complete-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -527,13 +528,97 @@ Task 3: Construct the <code>Particle</code> class
 </div>
 </div>
 </section>
-<section id="minimal-inheritance-squarebox-class" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-inheritance-squarebox-class">Minimal inheritance: <code>SquareBox</code> class</h2>
-<p>A key idea of object-oriented programming is the notion of <strong>inheritance</strong>: we can design fairly generic base classes and then <strong>derive</strong> classes from them that get more specialised.</p>
-<p>We will only cover this superficially, but our <code>Box</code> class lends itself naturally to this kind of specialisation. Indeed, we are going to use the same <code>box.cpp</code> and <code>box.h</code> files to contain another class, derived from <code>Box</code> but that fits the purpose of a square simulation domain. We call it <code>SquareBox</code> and as derived class from <code>Box</code> it is declared with the following syntax:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SquareBox <span class="op">:</span> <span class="kw">public</span> Box<span class="op">{</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// rest of the declaration as usual</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="creating-a-vector-of-particles" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-vector-of-particles">Creating a <code>vector</code> of particles</h2>
+<p>C++ has an excellent <a href="https://en.cppreference.com/w/cpp/standard_library">standard library</a> with multiple data structures that simplify coding in C++. One kwy datastructure is the <code>vector</code> which is accessed via</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include &lt;vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As you have seen in the <strong>Introduction to C++</strong> part of the course, we can create vectors of any kind:</p>
+<ul>
+<li>vectors of integers:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> vec<span class="op">;</span> <span class="co">// Creates a </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>vectors of floating point numbers:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> vec<span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="fl">5.0</span><span class="op">);</span> <span class="co">// Creates a vector of size 10, all elements initialized to 5.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In principle, however, we can make vectors out of any type, including the <code>Particle</code> class that we have just defined, using</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>Particle<span class="op">&gt;</span> particles<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can also just declare a vector and then resize it:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span>Particle<span class="op">&gt;</span> particles<span class="op">;</span> <span class="co">// Creates an empty vector of particles</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>particles<span class="op">.</span>resize<span class="op">(</span><span class="dv">10</span><span class="op">);</span>       <span class="co">// Resizes the vector to hold 10 particles, all initialised by their default constructor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vectors are useful for two reasons:</p>
+<ul>
+<li>they manage memory allocation and deallocation automatically</li>
+<li>they can resized dynamically, unlike raw arrays which have fixed sizes.</li>
+</ul>
+<p>From our point of view, they are also conceptually very close to Python’s lists. Therefore we are using vectors to simplify or coding.</p>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 4: Create and resize vector of particles.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <code>system.h</code> you should already have a declaration of a <code>Particle</code> vector. Uncomment it and then move to <code>system.cpp</code> to modify the implementation of the constructor to resize the vector of particles to match the <code>particleNumber</code> member variable.</p>
+</div>
+</div>
+</section>
+<section id="random-initial-state" class="level2">
+<h2 class="anchored" data-anchor-id="random-initial-state">Random initial state</h2>
+<p>The last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.</p>
+<p>Again, the standard library provides us with good tools. A <code>&lt;random&gt;</code> model of the library exists with very good generators.</p>
+<p>The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period )</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> seed <span class="op">=</span> <span class="dv">1234</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>mt19937 gen <span class="op">=</span> <span class="bu">std::</span>mt19937<span class="op">(</span>seed<span class="op">);</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Random numbers from arbitrary distributions (in this case uniform between min and max are then sampled by first creating a <strong>distribution object</strong> (for example a uniform distribution between 0 and 1)</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>uniform_real_distribution<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> uniformDist<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and then sampling values from it by pass the random generator in input</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> randomValue <span class="op">=</span> uniformDist<span class="op">(</span>gen<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In our code, we need a sampler of the uniform distribution to sample the particle position (and also to perform the noisy dynamics of the Vicsek model). So, it is useful to expand our <code>System</code> class to include a random number generator, initialised in the constructor and a suitable member function to sample uniformly distributed random numbers.</p>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 5: Random number generation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the advice above to include a <strong>member variable</strong> in the <code>system.h</code> declaration corresponding to a Mersenne Twister random number generator. Call the generator <code>gen</code>. Also, add a uniform distribution member variable called <code>uniformDist</code>.</p>
+<p>Add a suitable <code>int seed</code> parameter to the system’s constructor parameter list. Modify the constructor to initialise the random number generator.</p>
+<p>Then, add also a member function</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> uniform<span class="op">(</span><span class="dt">double</span> min<span class="op">,</span> <span class="dt">double</span> max<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>whose implementation is</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> System<span class="op">::</span>uniform<span class="op">(</span><span class="dt">double</span> min<span class="op">,</span><span class="dt">double</span> max<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">(</span>max<span class="op">-</span>min<span class="op">)*</span><span class="kw">this</span><span class="op">-&gt;</span>uniformDist<span class="op">(</span>gen<span class="op">)+</span>min<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To test that this works, modify the <code>main</code> functio to print out a random number between 10 and 20.</p>
+</div>
+</div>
+<!-- 
+## Minimal inheritance: `SquareBox` class
+
+A key idea of object-oriented programming is the notion of **inheritance**: we can design fairly generic base classes and then **derive** classes from them that get more specialised. 
+
+We will only cover this superficially, but our `Box` class lends itself naturally to this kind of specialisation. Indeed, we are going to use the same `box.cpp` and `box.h` files to contain another class, derived from `Box` but that fits the purpose of a square simulation domain. We call it `SquareBox` and as derived class from `Box` it is declared with the following syntax:
+
+```cpp
+class SquareBox : public Box{
+    // rest of the declaration as usual
+}
+```
+
+
+ -->
 
 
 </section>
