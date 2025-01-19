@@ -241,8 +241,115 @@ every time you need to compile your code. For more information, see [here](../wp
 
 :::
 
+## Creating  a `vector` of particles
+
+C++ has an excellent [standard library](https://en.cppreference.com/w/cpp/standard_library) with multiple data structures that simplify coding in C++. One kwy datastructure is the `vector` which is accessed via 
+
+```cpp
+#include <vector
+```
+
+As you have seen in the **Introduction to C++** part of the course, we can create vectors of any kind:
+
+- vectors of integers:
+
+```cpp
+std::vector<int> vec; // Creates a 
+```
+
+- vectors of floating point numbers:
+```cpp
+std::vector<double> vec(3, 5.0); // Creates a vector of size 10, all elements initialized to 5.0
+```
+In principle, however, we can make vectors out of any type, including the `Particle` class that we have just defined, using 
+
+```cpp
+std::vector<Particle> particles;
+```
+
+We can also just declare a vector and then resize it:
+
+```cpp
+std::vector<Particle> particles; // Creates an empty vector of particles
+particles.resize(10);       // Resizes the vector to hold 10 particles, all initialised by their default constructor
+```
+
+Vectors are useful for two reasons:
+
+- they manage memory allocation and deallocation automatically
+- they can resized dynamically, unlike raw arrays which have fixed sizes.
+
+From our point of view, they are also conceptually very close to Python's lists. Therefore we are using vectors to simplify or coding.
 
 
+---
+
+:::{.callout-note icon="false"}
+## Task 4: Create and resize vector of particles.
+
+In `system.h` you should already have a declaration of a `Particle` vector. Uncomment it and then move to `system.cpp` to modify the implementation of the constructor to resize the vector of particles to match the `particleNumber` member variable.
+
+
+:::
+
+## Random initial state
+
+The last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.
+
+Again, the standard library provides us with good tools. A `<random>` model of the library exists with very good generators.
+
+The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period
+)
+
+```cpp
+#include <random>
+
+int seed = 1234;
+std::mt19937 gen = std::mt19937(seed);  
+
+```
+
+Random numbers from arbitrary distributions (in this case uniform between min and max are then sampled by first creating a **distribution object** (for example a uniform distribution between 0 and 1) 
+
+
+```cpp
+std::uniform_real_distribution<double> uniformDist;
+```
+
+and then sampling values from it by pass the random generator in input
+
+```cpp
+double randomValue = uniformDist(gen);
+```
+
+In our code, we need a sampler of the uniform distribution to sample the particle position (and also to perform the noisy dynamics of the Vicsek model). So, it is useful to expand our `System` class to include a random number generator, initialised in the constructor and a suitable member function to sample uniformly distributed random numbers.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 5: Random number generation
+
+Use the advice above to include a **member variable** in the `system.h` declaration corresponding to a Mersenne Twister random number generator. Call the generator `gen`. Also, add a uniform distribution member variable called `uniformDist`.
+
+Add a suitable `int seed` parameter to the system's constructor parameter list. Modify the constructor to initialise the random number generator.
+
+Then, add also a member function 
+```cpp
+double uniform(double min, double max);
+```
+
+whose implementation is 
+
+```cpp
+double System::uniform(double min,double max) {
+    return (max-min)*this->uniformDist(gen)+min;
+
+}
+```
+To test that this works, modify the `main` functio to print out a random number between 10 and 20.
+:::
+
+<!-- 
 ## Minimal inheritance: `SquareBox` class
 
 A key idea of object-oriented programming is the notion of **inheritance**: we can design fairly generic base classes and then **derive** classes from them that get more specialised. 
@@ -256,4 +363,4 @@ class SquareBox : public Box{
 ```
 
 
-
+ -->

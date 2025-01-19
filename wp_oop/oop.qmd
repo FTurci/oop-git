@@ -254,6 +254,8 @@ Notice that we added an `include` statement to use the `std::vector` for the C++
 :::{.callout-note icon="false"}
 ## Task 1: header file
 Create a header file for the `System` class that mirrors the instructions above.
+
+(Optional but recommended) Add the files to your `git` repository and commit the changes.
 :::
 
 
@@ -322,6 +324,7 @@ $ ./myvicsek
 I am constructing the System!
 ```
 
+(Optional but recommended) Add the files to your `git` repository and commit the changes.
 :::
 
 
@@ -383,6 +386,7 @@ public:
 
 Try to compile the code again: can you explain the error messages?
 
+(Optional but recommended) Commit the changes to your repository via `git`.
 :::
 
 
@@ -430,6 +434,9 @@ The units of these quantities will become apparent when we will discuss the deta
 
 Compile and run.
 
+(Optional but recommended) Commit the changes to your `git` repository.
+
+
 :::
 
 ---
@@ -439,6 +446,7 @@ Compile and run.
 
 Now modify both the declaration (`system.h`) and the implementation (`system.cpp`) so that you can also store the timestep and the side length.
 
+(Optional but recommended) Commit the changes to your `git` repository.
 
 :::
 ---
