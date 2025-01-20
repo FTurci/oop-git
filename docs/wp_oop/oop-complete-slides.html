@@ -437,7 +437,7 @@
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Task 4: Create and resize vector of particles.</strong></p>
+<p><strong>Task 4: Create and resize the vector of particles.</strong></p>
 </div>
 <div class="callout-content">
 <p>In <code>system.h</code> you should already have a declaration of a <code>Particle</code> vector. Uncomment it and then move to <code>system.cpp</code> to modify the implementation of the constructor to resize the vector of particles to match the <code>particleNumber</code> member variable.</p>
@@ -450,7 +450,7 @@
 <h2>Random initial state</h2>
 <p>The last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.</p>
 <p>Again, the standard library provides us with good tools. A <code>&lt;random&gt;</code> model of the library exists with very good generators.</p>
-<p>The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period )</p>
+<p>The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case the <a href="https://en.wikipedia.org/wiki/Mersenne_Twister">Mersenne twister</a>, which has a long period )</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb16-1"><a></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
 <span id="cb16-2"><a></a></span>
 <span id="cb16-3"><a></a><span class="dt">int</span> seed <span class="op">=</span> <span class="dv">1234</span><span class="op">;</span></span>

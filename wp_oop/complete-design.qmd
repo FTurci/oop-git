@@ -293,7 +293,7 @@ From our point of view, they are also conceptually very close to Python's lists.
 ---
 
 :::{.callout-note icon="false"}
-## Task 4: Create and resize vector of particles.
+## Task 4: Create and resize the vector of particles.
 
 In `system.h` you should already have a declaration of a `Particle` vector. Uncomment it and then move to `system.cpp` to modify the implementation of the constructor to resize the vector of particles to match the `particleNumber` member variable.
 
@@ -306,7 +306,7 @@ The last thing that our initialisation of the model needs is a correctly initial
 
 Again, the standard library provides us with good tools. A `<random>` model of the library exists with very good generators.
 
-The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period
+The paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case the [Mersenne twister](https://en.wikipedia.org/wiki/Mersenne_Twister), which has a long period
 )
 
 ```cpp
