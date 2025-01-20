@@ -210,9 +210,12 @@ Therefore, we simply want a new class that describes objects that contain:
 
 We shall have all these variables `public` for simplicity.
 
-we should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor. 
+---
+
+We should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor. 
 
 Reasonable choices are the following:
+
 -  zero both `x`, `y` and `theta`
 - set `r` as the out unit of length
 - set `v` to `0.5`
