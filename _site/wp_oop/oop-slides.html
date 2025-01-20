@@ -451,28 +451,25 @@
 </div><div class="column" style="width:50%;">
 <h4 id="object-oriented-code">Object-Oriented Code</h4>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a><span class="co">// Rectangle class to represent a rectangle</span></span>
-<span id="cb2-6"><a></a><span class="kw">class</span> Rectangle <span class="op">{</span></span>
-<span id="cb2-7"><a></a>    <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb2-8"><a></a>        <span class="dt">double</span> length<span class="op">;</span></span>
-<span id="cb2-9"><a></a>        <span class="dt">double</span> width<span class="op">;</span></span>
-<span id="cb2-10"><a></a>        <span class="co">// Constructor</span></span>
-<span id="cb2-11"><a></a>        Rectangle<span class="op">(</span><span class="dt">double</span> l<span class="op">,</span> <span class="dt">double</span> w<span class="op">)</span> <span class="op">:</span> length<span class="op">(</span>l<span class="op">),</span> width<span class="op">(</span>w<span class="op">)</span> <span class="op">{}</span></span>
-<span id="cb2-12"><a></a>        <span class="co">// Member function with its implementation</span></span>
-<span id="cb2-13"><a></a>        <span class="dt">double</span> calculate_area<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-14"><a></a>            <span class="cf">return</span> length <span class="op">*</span> width<span class="op">;</span></span>
-<span id="cb2-15"><a></a>        <span class="op">}</span></span>
-<span id="cb2-16"><a></a><span class="op">};</span></span>
-<span id="cb2-17"><a></a></span>
-<span id="cb2-18"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-19"><a></a>    Rectangle rect<span class="op">(</span><span class="fl">5.0</span><span class="op">,</span> <span class="fl">3.0</span><span class="op">);</span></span>
-<span id="cb2-20"><a></a>    <span class="dt">double</span> area <span class="op">=</span> rect<span class="op">.</span>calculate_area<span class="op">();</span></span>
-<span id="cb2-21"><a></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Area: "</span> <span class="op">&lt;&lt;</span> area <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
-<span id="cb2-22"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-23"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a></a><span class="co">// Rectangle class to represent a rectangle</span></span>
+<span id="cb2-3"><a></a><span class="kw">class</span> Rectangle <span class="op">{</span></span>
+<span id="cb2-4"><a></a>    <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-5"><a></a>        <span class="dt">double</span> length<span class="op">;</span></span>
+<span id="cb2-6"><a></a>        <span class="dt">double</span> width<span class="op">;</span></span>
+<span id="cb2-7"><a></a>        <span class="co">// Constructor</span></span>
+<span id="cb2-8"><a></a>        Rectangle<span class="op">(</span><span class="dt">double</span> l<span class="op">,</span> <span class="dt">double</span> w<span class="op">)</span> <span class="op">:</span> length<span class="op">(</span>l<span class="op">),</span> width<span class="op">(</span>w<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb2-9"><a></a>        <span class="co">// Member function with its implementation</span></span>
+<span id="cb2-10"><a></a>        <span class="dt">double</span> calculate_area<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-11"><a></a>            <span class="cf">return</span> length <span class="op">*</span> width<span class="op">;</span></span>
+<span id="cb2-12"><a></a>        <span class="op">}</span></span>
+<span id="cb2-13"><a></a><span class="op">};</span></span>
+<span id="cb2-14"><a></a></span>
+<span id="cb2-15"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-16"><a></a>    Rectangle rect<span class="op">(</span><span class="fl">5.0</span><span class="op">,</span> <span class="fl">3.0</span><span class="op">);</span></span>
+<span id="cb2-17"><a></a>    <span class="dt">double</span> area <span class="op">=</span> rect<span class="op">.</span>calculate_area<span class="op">();</span></span>
+<span id="cb2-18"><a></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Area: "</span> <span class="op">&lt;&lt;</span> area <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb2-19"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-20"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section></section>

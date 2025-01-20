@@ -73,9 +73,6 @@ int main() {
 
 ```cpp
 #include <iostream>
-
-using namespace std;
-
 // Rectangle class to represent a rectangle
 class Rectangle {
     public:
