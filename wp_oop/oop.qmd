@@ -276,6 +276,8 @@ The `System` class also contains two member functions:
 - the constructor, which return an instance of the class
 - an update rule to implement the Vicsek dynamics, which just updates the particles, so it is probably of type `void`
 
+---
+
 With this in mind we can translate these **design ideas** into an actual class structure that is specific to our problem
 
 ```cpp
