@@ -8,6 +8,7 @@ format:
     height: 800
     # self-contained: true
     scrollable: true
+    scroll-view: true
     auto-stretch: false
     lazy-load: false
     slide-level: 3
@@ -110,6 +111,8 @@ private:
     double x0;
     double y0;
 ```
+
+---
 
 To set the values of these variables or get their values we need dedicated member functions, conventionally called **setters** and **getters**. These, obviously, have to be **public**.
 
