@@ -308,6 +308,7 @@ int seed = 1234;
 std::mt19937 gen = std::mt19937(seed);  
 
 ```
+
 ---
 
 Random numbers from arbitrary distributions are then sampled by first creating a **distribution object** (for example a uniform distribution between 0 and 1) 

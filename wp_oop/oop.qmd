@@ -47,6 +47,59 @@ From this description it is clear that object-oriented programming (OOP) will be
 
 To make object-oriented interesting, here we are considering an explicit example where *reasoning* in terms of objects helps us *design* our code.
 
+::: {.columns}
+::: {.column width="50%"}
+#### Procedural Code
+
+```cpp
+#include <iostream>
+
+double calculate_area(double length, double width) {
+    return length * width;
+}
+
+int main() {
+    double length = 5.0, width = 3.0;
+    double area = calculate_area(length, width);
+
+    std::cout << "Area: " << area << std::endl;
+    return 0;
+}
+```
+:::
+
+::: {.column width="50%"}
+#### Object-Oriented Code
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+// Rectangle class to represent a rectangle
+class Rectangle {
+    public:
+        double length;
+        double width;
+        // Constructor
+        Rectangle(double l, double w) : length(l), width(w) {}
+        // Member function with its implementation
+        double calculate_area() {
+            return length * width;
+        }
+};
+
+int main() {
+    Rectangle rect(5.0, 3.0);
+    double area = rect.calculate_area();
+    std::cout << "Area: " << area << std::endl;
+    return 0;
+}
+```
+
+:::
+:::
+
 ## Modelling flocking using the Vicsek model
 
 In this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.
@@ -141,7 +194,8 @@ class MyClass { // UpperCamelCase convention
 
 Objects organise data and functions. The data are stored as **member  variables** (also called **attributes**) and functions specific to the object are called **member functions** (also called **methods**). Member functions and variables can be `public` or  `private`.
 
-#### Instantiation
+
+### Instantiation
 
 A class declaration is barely the description of the **content** of an object.
 
@@ -163,7 +217,7 @@ MyClass instance2;
 MyClass instance3;
 ```
 
-BUt what does the constructor actually do? In fact, up to now, we did not specify anything. Indeed, we have not yet written any implementation of the class. We will see this very soon in the section below. 
+But what does the constructor actually do? In fact, up to now, we did not specify anything. Indeed, we have not yet written any implementation of the class. We will see this very soon in the section below. 
 
 At the moment, let us now apply these broad ideas to the specific concept of our `System` class.
 
