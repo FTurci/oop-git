@@ -25,6 +25,7 @@ website:
         contents:
         - href: wp_oop/oop.qmd
         - href: wp_oop/complete-design.qmd
+        - href: wp_oop/solutions.qmd
       - section: "3| Implementation"
         contents:
         - href: wp_vicsek/implement.qmd
