@@ -273,6 +273,8 @@ In principle, however, we can make vectors out of any type, including the `Parti
 std::vector<Particle> particles;
 ```
 
+--- 
+
 We can also just declare a vector and then resize it:
 
 ```cpp
