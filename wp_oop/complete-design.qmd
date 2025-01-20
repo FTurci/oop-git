@@ -282,6 +282,8 @@ std::vector<Particle> particles; // Creates an empty vector of particles
 particles.resize(10);       // Resizes the vector to hold 10 particles, all initialised by their default constructor
 ```
 
+---
+
 Vectors are useful for two reasons:
 
 - they manage memory allocation and deallocation automatically
