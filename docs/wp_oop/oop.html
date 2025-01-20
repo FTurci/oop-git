@@ -327,6 +327,7 @@ window.Quarto = {
   <li><a href="#declaration" id="toc-declaration" class="nav-link" data-scroll-target="#declaration">Declaration</a></li>
   <li><a href="#basic-implementation" id="toc-basic-implementation" class="nav-link" data-scroll-target="#basic-implementation">Basic implementation</a></li>
   <li><a href="#a-more-meaningful-constructor" id="toc-a-more-meaningful-constructor" class="nav-link" data-scroll-target="#a-more-meaningful-constructor">A more meaningful constructor</a></li>
+  <li><a href="#using-this" id="toc-using-this" class="nav-link" data-scroll-target="#using-this">Using <code>this</code></a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="oop-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -703,6 +704,7 @@ Task 3: Calling a member function
 <li>the time step of the simulation</li>
 </ul>
 <p>To do this, we need to modify the constructor declaration to take these parameters as arguments. We will also need to update the implementation of the constructor to initialize the member variables with these parameters.</p>
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -723,8 +725,9 @@ Task 4: Improve the constructor declaration
 <p>(Optional but recommended) Commit the changes to your repository via <code>git</code>.</p>
 </div>
 </div>
-<section id="using-this" class="level4">
-<h4 class="anchored" data-anchor-id="using-this">Using <code>this</code></h4>
+</section>
+<section id="using-this" class="level3">
+<h3 class="anchored" data-anchor-id="using-this">Using <code>this</code></h3>
 <p>Such changes need then to be mirrored in the implementation, i.e.&nbsp;the <code>.cpp</code> file. Here we need to be able to refer specifically to the member variables of the class in an unambiguous way. The way C++ does this is by using the keyword <code>this</code>.</p>
 <div class="callout callout-style-default callout-important no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -789,7 +792,6 @@ Task 6: Adjusting the design and the implementation
 <hr>
 
 
-</section>
 </section>
 </section>
 

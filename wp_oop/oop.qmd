@@ -417,8 +417,7 @@ but we may want to have more, for example:
 
 To do this, we need to modify the constructor declaration to take these parameters as arguments. We will also need to update the implementation of the constructor to initialize the member variables with these parameters.
 
-
-
+---
 
 :::{.callout-note icon="false"}
 ## Task 4: Improve the constructor declaration
@@ -444,7 +443,7 @@ Try to compile the code again: can you explain the error messages?
 :::
 
 
-#### Using `this`
+### Using `this`
 Such changes need then to be mirrored in the implementation, i.e. the `.cpp` file. Here we need to be able to refer specifically to the member variables of the class in an unambiguous way. The way C++ does this is by using the  keyword `this`.
 
 :::{.callout-important icon="false"}
