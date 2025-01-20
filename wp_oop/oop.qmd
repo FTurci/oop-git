@@ -301,6 +301,7 @@ class System {
 ```
 Notice that we added an `include` statement to use the `std::vector` for the C++ standard library and construct a vector of particles. Also note that we are also including the definitions of the `Box` and the `Particle` classes, which we have not yet written!
 
+---
 
 :::{.callout-note icon="false"}
 ## Task 1: header file
