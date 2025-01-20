@@ -355,62 +355,6 @@
     "text": "The System class"
   },
   {
-    "objectID": "wp_oop/oop-complete-slides.html#aims",
-    "href": "wp_oop/oop-complete-slides.html#aims",
-    "title": "Completing the OOP design of the project",
-    "section": "Aims",
-    "text": "Aims\n\nComplete the skeleton of the object-oriented structure of the project"
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#learning-outcomes",
-    "href": "wp_oop/oop-complete-slides.html#learning-outcomes",
-    "title": "Completing the OOP design of the project",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nConstructing combinations of objects\nConstructing vectors of objects"
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#more-classes",
-    "href": "wp_oop/oop-complete-slides.html#more-classes",
-    "title": "Completing the OOP design of the project",
-    "section": "More classes",
-    "text": "More classes\nUp to now, we only create one class, the System class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.\nThe idea behind this programming paradigm is to organise the code into smaller units that can be quite autonomous but which can interact with each other.\nEarlier we drew the following sketch\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains\n\n\n\n\n\n\n\nIn the previous part of this workshop we addressed only one of these objects, the System class.\nWe now proceed more quickly, using the same ideas, to construct the two remaining objects and see how to integrate them with our original System class.\nHere, there will be less detailed code and more high level description of what the classes do: it will be for you to translate these design choices int actual code."
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#constructing-the-box",
-    "href": "wp_oop/oop-complete-slides.html#constructing-the-box",
-    "title": "Completing the OOP design of the project",
-    "section": "Constructing the Box",
-    "text": "Constructing the Box\nThe system is simulated in a two-dimensional domain. We decide the domain to be a square box. However, for the sake of generality, let our Box class represent an arbitrary rectangular domain.\nThe rectangle should have are\n\nthe side in the x direction\nthe side in the y direction\nthe coordinates of the origin (bottom left corner)\n\n\n  \n  \n  \n  \n  side x\n  \n  \n  side y\n  \n  \n  Origin\n    \n  \n  \n\nIn this case we want to make these properties accessible only via the usage of member functions: we want them to be private member variables. This avoids possible accidental changes, making the code more robust.\nThis means that, when we define the Box class, we will use the following syntax\nprivate:\n    double sidex;\n    double sidey;\n    double x0;\n    double y0;\nTo set the values of these variables or get their values we need dedicated member functions, conventionally called setters and getters. These, obviously, have to be public.\npublic:\n    void setSides(double lx, double ly);\n    void setOrigin(double x, double y);\n    double getSidex();\n    double getSidey();"
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#multiple-constructors",
-    "href": "wp_oop/oop-complete-slides.html#multiple-constructors",
-    "title": "Completing the OOP design of the project",
-    "section": "Multiple constructors",
-    "text": "Multiple constructors\nC++ can be initialised i various ways using different constructors. Indeed, in the same class definition, we can have both a default constructor (e.g. without parameters) and various parametrised constructors. A minimal example follows:\npublic:\n    Box(); //default constructor with no parameters\n    Box(double lx, double ly, double x0, double y0); //parametrised constructor\nBoth will require a suitable implementation in the cpp file:\n\nBox::Box(){\n    // an empty constructor\n}\nBox::Box(double lx, double ly, double x0, double y0){\n     //this constructor actually assigns values\n     this-&gt;sidex = lx;\n    //  ...\n}"
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#constructing-a-particle",
-    "href": "wp_oop/oop-complete-slides.html#constructing-a-particle",
-    "title": "Completing the OOP design of the project",
-    "section": "Constructing a Particle",
-    "text": "Constructing a Particle\nThe final object we are interested in possibly the most important: it is the particle, representing the individual agent of the Vicsek model.\nThe model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction \\(r\\).\nTherefore, we simply want a new class that describes objects that contain:\n\nan x coordinate\na y coordinate\nan angle theta\na velocity magnitude v\na radius of interaction r\n\nWe shall have all these variables public for simplicity.\nwe should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor.\nReasonable choices are the following: - zero both x, y and theta - set r as the out unit of length - set v to 0.5\nThis can be directly done in the implementation of the default constructor Particle(), with no parameters."
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
-    "href": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
-    "title": "Completing the OOP design of the project",
-    "section": "Creating a vector of particles",
-    "text": "Creating a vector of particles\nC++ has an excellent standard library with multiple data structures that simplify coding in C++. One kwy datastructure is the vector which is accessed via\n#include &lt;vector&gt;\nAs you have seen in the Introduction to C++ part of the course, we can create vectors of any kind:\n\nvectors of integers:\n\nstd::vector&lt;int&gt; vec; // Creates a \n\nvectors of floating point numbers:\n\nstd::vector&lt;double&gt; vec(3, 5.0); // Creates a vector of size 10, all elements initialized to 5.0\nIn principle, however, we can make vectors out of any type, including the Particle class that we have just defined, using\nstd::vector&lt;Particle&gt; particles;\nWe can also just declare a vector and then resize it:\nstd::vector&lt;Particle&gt; particles; // Creates an empty vector of particles\nparticles.resize(10);       // Resizes the vector to hold 10 particles, all initialised by their default constructor\nVectors are useful for two reasons:\n\nthey manage memory allocation and deallocation automatically\nthey can resized dynamically, unlike raw arrays which have fixed sizes.\n\nFrom our point of view, they are also conceptually very close to Python’s lists. Therefore we are using vectors to simplify or coding."
-  },
-  {
-    "objectID": "wp_oop/oop-complete-slides.html#random-initial-state",
-    "href": "wp_oop/oop-complete-slides.html#random-initial-state",
-    "title": "Completing the OOP design of the project",
-    "section": "Random initial state",
-    "text": "Random initial state\nThe last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.\nAgain, the standard library provides us with good tools. A &lt;random&gt; model of the library exists with very good generators.\nThe paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period )\n#include &lt;random&gt;\n\nint seed = 1234;\nstd::mt19937 gen = std::mt19937(seed);"
-  },
-  {
     "objectID": "wp_oop/oop-complete.html",
     "href": "wp_oop/oop-complete.html",
     "title": "Completing the OOP design of the project",
@@ -507,6 +451,84 @@
     "crumbs": [
       "2| Object-Oriented thinking",
       "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#aims",
+    "href": "wp_oop/oop-complete-slides.html#aims",
+    "title": "Completing the OOP design of the project",
+    "section": "Aims",
+    "text": "Aims\n\nComplete the skeleton of the object-oriented structure of the project"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#learning-outcomes",
+    "href": "wp_oop/oop-complete-slides.html#learning-outcomes",
+    "title": "Completing the OOP design of the project",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nConstructing combinations of objects\nConstructing vectors of objects"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#more-classes",
+    "href": "wp_oop/oop-complete-slides.html#more-classes",
+    "title": "Completing the OOP design of the project",
+    "section": "More classes",
+    "text": "More classes\nUp to now, we only create one class, the System class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.\nThe idea behind this programming paradigm is to organise the code into smaller units that can be quite autonomous but which can interact with each other.\nEarlier we drew the following sketch\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains\n\n\n\n\n\n\n\nIn the previous part of this workshop we addressed only one of these objects, the System class.\nWe now proceed more quickly, using the same ideas, to construct the two remaining objects and see how to integrate them with our original System class.\nHere, there will be less detailed code and more high level description of what the classes do: it will be for you to translate these design choices int actual code."
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#constructing-the-box",
+    "href": "wp_oop/oop-complete-slides.html#constructing-the-box",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing the Box",
+    "text": "Constructing the Box\nThe system is simulated in a two-dimensional domain. We decide the domain to be a square box. However, for the sake of generality, let our Box class represent an arbitrary rectangular domain.\nThe rectangle should have are\n\nthe side in the x direction\nthe side in the y direction\nthe coordinates of the origin (bottom left corner)\n\n\n  \n  \n  \n  \n  side x\n  \n  \n  side y\n  \n  \n  Origin\n    \n  \n  \n\nIn this case we want to make these properties accessible only via the usage of member functions: we want them to be private member variables. This avoids possible accidental changes, making the code more robust.\nThis means that, when we define the Box class, we will use the following syntax\nprivate:\n    double sidex;\n    double sidey;\n    double x0;\n    double y0;\nTo set the values of these variables or get their values we need dedicated member functions, conventionally called setters and getters. These, obviously, have to be public.\npublic:\n    void setSides(double lx, double ly);\n    void setOrigin(double x, double y);\n    double getSidex();\n    double getSidey();"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#multiple-constructors",
+    "href": "wp_oop/oop-complete-slides.html#multiple-constructors",
+    "title": "Completing the OOP design of the project",
+    "section": "Multiple constructors",
+    "text": "Multiple constructors\nC++ can be initialised i various ways using different constructors. Indeed, in the same class definition, we can have both a default constructor (e.g. without parameters) and various parametrised constructors. A minimal example follows:\npublic:\n    Box(); //default constructor with no parameters\n    Box(double lx, double ly, double x0, double y0); //parametrised constructor\nBoth will require a suitable implementation in the cpp file:\n\nBox::Box(){\n    // an empty constructor\n}\nBox::Box(double lx, double ly, double x0, double y0){\n     //this constructor actually assigns values\n     this-&gt;sidex = lx;\n    //  ...\n}"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#constructing-a-particle",
+    "href": "wp_oop/oop-complete-slides.html#constructing-a-particle",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing a Particle",
+    "text": "Constructing a Particle\nThe final object we are interested in possibly the most important: it is the particle, representing the individual agent of the Vicsek model.\nThe model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction \\(r\\).\nTherefore, we simply want a new class that describes objects that contain:\n\nan x coordinate\na y coordinate\nan angle theta\na velocity magnitude v\na radius of interaction r\n\nWe shall have all these variables public for simplicity.\nwe should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor.\nReasonable choices are the following: - zero both x, y and theta - set r as the out unit of length - set v to 0.5\nThis can be directly done in the implementation of the default constructor Particle(), with no parameters."
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
+    "href": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
+    "title": "Completing the OOP design of the project",
+    "section": "Creating a vector of particles",
+    "text": "Creating a vector of particles\nC++ has an excellent standard library with multiple data structures that simplify coding in C++. One kwy datastructure is the vector which is accessed via\n#include &lt;vector&gt;\nAs you have seen in the Introduction to C++ part of the course, we can create vectors of any kind:\n\nvectors of integers:\n\nstd::vector&lt;int&gt; vec; // Creates a \n\nvectors of floating point numbers:\n\nstd::vector&lt;double&gt; vec(3, 5.0); // Creates a vector of size 10, all elements initialized to 5.0\nIn principle, however, we can make vectors out of any type, including the Particle class that we have just defined, using\nstd::vector&lt;Particle&gt; particles;\nWe can also just declare a vector and then resize it:\nstd::vector&lt;Particle&gt; particles; // Creates an empty vector of particles\nparticles.resize(10);       // Resizes the vector to hold 10 particles, all initialised by their default constructor\nVectors are useful for two reasons:\n\nthey manage memory allocation and deallocation automatically\nthey can resized dynamically, unlike raw arrays which have fixed sizes.\n\nFrom our point of view, they are also conceptually very close to Python’s lists. Therefore we are using vectors to simplify or coding."
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#random-initial-state",
+    "href": "wp_oop/oop-complete-slides.html#random-initial-state",
+    "title": "Completing the OOP design of the project",
+    "section": "Random initial state",
+    "text": "Random initial state\nThe last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.\nAgain, the standard library provides us with good tools. A &lt;random&gt; model of the library exists with very good generators.\nThe paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case Mersenne twister, which has a long period )\n#include &lt;random&gt;\n\nint seed = 1234;\nstd::mt19937 gen = std::mt19937(seed);"
+  },
+  {
+    "objectID": "wp_oop/solutions.html",
+    "href": "wp_oop/solutions.html",
+    "title": "Solutions",
+    "section": "",
+    "text": "The solutions to the Object-Oriented thinking workshop can be downloaded as a git bundle from here:",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_oop/solutions.html#how-to-use-the-bundle",
+    "href": "wp_oop/solutions.html#how-to-use-the-bundle",
+    "title": "Solutions",
+    "section": "How to use the bundle",
+    "text": "How to use the bundle\nFirst, download the bundle and clone it locally on you machine with\ngit clone OOPthinking.bundle\nThen you will be able to see all the branches and commits of the bundle.\nIn particular, an easy way to navigate the solutions is to use the tags: the bundle contains so-called git tags, which are shortcuts to commits. You can see all the tags by typing\ngit tag\ninside your cloned repository.\nYou have two main parts for this workshop:\n\nThe tasks of Hands on objects and classes are labelled 1.x where x is the number of the task\nThe tasks of Completing the OOP design of the project are labelled 2.x where x is the number of the task\n\nTo access the state of the repository for a particular task just use git checkout &lt;task-number&gt;. So, for example, to access task 4 of Hands on objects and classes just type\ngit checkout 1.4\nYou can always go back to the main branch with\ngit checkout main",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Solutions"
     ]
   },
   {

@@ -1,7 +1,7 @@
 ---
 title: "Solutions"
-    html:
-        output-file: solutions.html
+html:
+output-file: solutions.html
 ---
 
 The solutions to the **Object-Oriented thinking** workshop can be downloaded as a git bundle from here:

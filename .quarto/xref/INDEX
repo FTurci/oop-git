@@ -72,5 +72,8 @@
   "wp_oop/complete-design.qmd": {
     "oop-complete.html": "fc1721ba",
     "oop-complete-slides.html": "0c66224c"
+  },
+  "wp_oop/solutions.qmd": {
+    "solutions.html": "15f56040"
   }
 }
