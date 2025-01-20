@@ -361,7 +361,7 @@ Now, in the `main.cpp` file (that should be in the same folder), inside the `mai
 Compile your code, either by using a Makefile (see [here](../wp_gitgithub/make)) or by directly using the compiler with
 
 ```
-gcc main.cpp system.cpp -o myvicsek
+g++ main.cpp system.cpp -o myvicsek
 ```
 
 and run it with (or with whatever name you have given tour executable)
