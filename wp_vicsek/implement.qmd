@@ -17,4 +17,128 @@ format:
 output-file: implement-slides.html
 ---
 
-To appear soon.
+
+## Aims
+
+- Initialise the start configuration with random positions and orientations
+- Specify the update rule specific to the Vicsek model
+
+
+## Learning outcomes
+
+- Using C++ random number generators
+- Updating objects' properties
+
+
+
+## Random initial state
+
+We have constructed all the objects we neeed: 
+
+- a box
+- a set of particles
+- and a `Simulation` object to combined them together
+
+We want now to think of our problem more concretely. First, our simulation needs to **start** from an **initila configuration**. This means that the particles composing the model need to be place *somewhere* in space and oriented in some direction. 
+
+Indeed, when we designed our `Particle` object we equipped it with member variables precisely to determine that:
+
+- the `x`  and `y` coordinates 
+- the orientation `theta`
+
+The simplest choice we can make is to choose these at random using the **uniform** distribution. for this purpose, we have also equipped the `System` class with a member function `uniform` that precisely samples  that distribution.
+
+So, the idea is now to combine these various pieces together into a new member function for the `System` class to initialise the system.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 1: Declare the `randomStart()` member function
+
+In the `System.h` class declare a new member function named `randomStart()`. It returns `void` and takes no parameters because everything is already available in our objects!
+
+:::
+
+How do we make the various classes communicate? We are working from the `System` class, which has **instances** of both the `Box` and the `Particle` class as member variables. You should have
+
+- a `simulationBox` instance in the `System` definition
+- a vector of `Particle` instance in the `System` definition
+
+So, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.
+
+For example, in C++11 we can loop over a vector in a *Pythonesque* fashion:
+
+```cpp
+for (Particle &p : this->particles){
+...
+}
+```
+where clearly `this->particles` allows us to point to the correct member variable of the `System` class.
+
+Then, drawing a random x coordinate leverages the properties of the system (we defined a `uniform()` member function for the `System`), the box (we defined a `getSidex()` member function for it) and the particle (the coordinate `x` is a **public** member variable, so we can change it directly).
+
+
+```cpp
+ p.x = this->uniform(0,this->simulationBox.getSidex());
+```
+
+---
+
+:::{.callout-note icon="false"}
+## Task 2: Implement the `randomStart()` member function
+
+In `System.cpp` implement the `randomStart()` member function inspired by the snippets above. 
+
+For every particle, you need to assign
+
+- the `x`  and `y` coordinates 
+- the orientation `theta`
+
+:::
+
+## Saving a configuration to file
+
+The combination of particle positions and orientations defines a **configuration** of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.
+
+In this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with **streams** of information. One of the streams you are used to is the standard output, accessed via `std::cout` in the standard library using the `<iostream>` library.
+
+When one wants to use file outputs, one needs to use the `<fstream>` library and construct output streams directly. Here below we provide you with a **reverse engineering** exercise: given a certain implementation of a function, reconstruct its definition.
+---
+
+:::{.callout-note icon="false"}
+## Task 3: Reverse engineer the declaration of `saveConfig()`
+
+Add the following member function to `system.cpp`
+
+``cpp
+void System::saveConfig(const std::string &filename)
+{   
+    std::ofstream out_file(filename);
+    if (!out_file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return; // Exit if file cannot be opened
+    }
+    out_file << std::to_string(particles.size())+"\nParticles"<<std::endl;
+    
+    // Write particle properties to the file
+
+    for (size_t i = 0; i < particles.size(); ++i) {
+        out_file << i << " " << particles[i].to_string() << std::endl;
+    }
+    out_file.close(); // Close the file
+}    
+
+```
+
+Infer and add the corresponding definition in `system.h`. Remember to include `<fstream>` where needed. 
+
+to check, compile your code by using the Makefile or the following command
+
+```bash
+g++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek
+
+```
+
+:::
+
+

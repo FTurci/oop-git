@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -243,8 +277,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="implement-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aims" id="toc-aims" class="nav-link active" data-scroll-target="#aims">Aims</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#random-initial-state" id="toc-random-initial-state" class="nav-link" data-scroll-target="#random-initial-state">Random initial state</a></li>
+  <li><a href="#saving-a-configuration-to-file" id="toc-saving-a-configuration-to-file" class="nav-link" data-scroll-target="#saving-a-configuration-to-file">Saving a configuration to file</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="implement-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -267,9 +310,122 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>To appear soon.</p>
+<section id="aims" class="level2">
+<h2 class="anchored" data-anchor-id="aims">Aims</h2>
+<ul>
+<li>Initialise the start configuration with random positions and orientations</li>
+<li>Specify the update rule specific to the Vicsek model</li>
+</ul>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<ul>
+<li>Using C++ random number generators</li>
+<li>Updating objects’ properties</li>
+</ul>
+</section>
+<section id="random-initial-state" class="level2">
+<h2 class="anchored" data-anchor-id="random-initial-state">Random initial state</h2>
+<p>We have constructed all the objects we neeed:</p>
+<ul>
+<li>a box</li>
+<li>a set of particles</li>
+<li>and a <code>Simulation</code> object to combined them together</li>
+</ul>
+<p>We want now to think of our problem more concretely. First, our simulation needs to <strong>start</strong> from an <strong>initila configuration</strong>. This means that the particles composing the model need to be place <em>somewhere</em> in space and oriented in some direction.</p>
+<p>Indeed, when we designed our <code>Particle</code> object we equipped it with member variables precisely to determine that:</p>
+<ul>
+<li>the <code>x</code> and <code>y</code> coordinates</li>
+<li>the orientation <code>theta</code></li>
+</ul>
+<p>The simplest choice we can make is to choose these at random using the <strong>uniform</strong> distribution. for this purpose, we have also equipped the <code>System</code> class with a member function <code>uniform</code> that precisely samples that distribution.</p>
+<p>So, the idea is now to combine these various pieces together into a new member function for the <code>System</code> class to initialise the system.</p>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 1: Declare the <code>randomStart()</code> member function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the <code>System.h</code> class declare a new member function named <code>randomStart()</code>. It returns <code>void</code> and takes no parameters because everything is already available in our objects!</p>
+</div>
+</div>
+<p>How do we make the various classes communicate? We are working from the <code>System</code> class, which has <strong>instances</strong> of both the <code>Box</code> and the <code>Particle</code> class as member variables. You should have</p>
+<ul>
+<li>a <code>simulationBox</code> instance in the <code>System</code> definition</li>
+<li>a vector of <code>Particle</code> instance in the <code>System</code> definition</li>
+</ul>
+<p>So, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.</p>
+<p>For example, in C++11 we can loop over a vector in a <em>Pythonesque</em> fashion:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>Particle <span class="op">&amp;</span>p <span class="op">:</span> <span class="kw">this</span><span class="op">-&gt;</span>particles<span class="op">){</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where clearly <code>this-&gt;particles</code> allows us to point to the correct member variable of the <code>System</code> class.</p>
+<p>Then, drawing a random x coordinate leverages the properties of the system (we defined a <code>uniform()</code> member function for the <code>System</code>), the box (we defined a <code>getSidex()</code> member function for it) and the particle (the coordinate <code>x</code> is a <strong>public</strong> member variable, so we can change it directly).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> p<span class="op">.</span>x <span class="op">=</span> <span class="kw">this</span><span class="op">-&gt;</span>uniform<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="kw">this</span><span class="op">-&gt;</span>simulationBox<span class="op">.</span>getSidex<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 2: Implement the <code>randomStart()</code> member function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <code>System.cpp</code> implement the <code>randomStart()</code> member function inspired by the snippets above.</p>
+<p>For every particle, you need to assign</p>
+<ul>
+<li>the <code>x</code> and <code>y</code> coordinates</li>
+<li>the orientation <code>theta</code></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="saving-a-configuration-to-file" class="level2">
+<h2 class="anchored" data-anchor-id="saving-a-configuration-to-file">Saving a configuration to file</h2>
+<p>The combination of particle positions and orientations defines a <strong>configuration</strong> of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.</p>
+<p>In this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with <strong>streams</strong> of information. One of the streams you are used to is the standard output, accessed via <code>std::cout</code> in the standard library using the <code>&lt;iostream&gt;</code> library.</p>
+<p>When one wants to use file outputs, one needs to use the <code>&lt;fstream&gt;</code> library and construct output streams directly. Here below we provide you with a <strong>reverse engineering</strong> exercise: given a certain implementation of a function, reconstruct its definition.</p>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 3: Reverse engineer the declaration of <code>saveConfig()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add the following member function to <code>system.cpp</code></p>
+<p>``cpp void System::saveConfig(const std::string &amp;filename) {<br>
+std::ofstream out_file(filename); if (!out_file.is_open()) { std::cerr &lt;&lt; “Error opening file:” &lt;&lt; filename &lt;&lt; std::endl; return; // Exit if file cannot be opened } out_file &lt;&lt; std::to_string(particles.size())+“”&lt;&lt;std::endl;</p>
+<pre><code>// Write particle properties to the file
+
+for (size_t i = 0; i &lt; particles.size(); ++i) {
+    out_file &lt;&lt; i &lt;&lt; " " &lt;&lt; particles[i].to_string() &lt;&lt; std::endl;
+}
+out_file.close(); // Close the file</code></pre>
+<p>}</p>
+<pre><code>
+Infer and add the corresponding definition in `system.h`. Remember to include `&lt;fstream&gt;` where needed. 
+
+to check, compile your code by using the Makefile or the following command
+
+```bash
+g++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek
+</code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
