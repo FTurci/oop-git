@@ -1,22 +1,23 @@
 ---
-title: "Implementation of C++ objects"
+title: "Implementation of Vicsek dynamics"
 format:
+  html:
+    output-file: implementation.html
   revealjs:
     width: 1200
     height: 800
     # self-contained: true
     scrollable: true
+    scroll-view: true
     auto-stretch: false
     lazy-load: false
     slide-level: 3
     smaller: true
-    theme: [simple, ../scss/custom.scss]
+    theme: [simple, custom.scss]
     # transition: fade
-  html:
-    output-file: implement.html
-output-file: implement-slides.html
----
 
+    output-file: implementation-slides.html
+---
 
 ## Aims
 
@@ -92,7 +93,7 @@ In `System.cpp` implement the `randomStart()` member function inspired by the sn
 For every particle, you need to assign
 
 - the `x`  and `y` coordinates 
-- the orientation `theta`
+- the orientation `theta`. Choose it between $-\pi$ and $\pi$.
 
 :::
 
@@ -110,29 +111,30 @@ When one wants to use file outputs, one needs to use the `<fstream>` library and
 
 Add the following member function to `system.cpp`
 
-``cpp
+```cpp
 void System::saveConfig(const std::string &filename)
 {   
-    std::ofstream out_file(filename);
-    if (!out_file.is_open()) {
+    std::ofstream outFile(filename);
+    if (!outFile.is_open()) {
         std::cerr << "Error opening file: " << filename << std::endl;
         return; // Exit if file cannot be opened
     }
-    out_file << std::to_string(particles.size())+"\nParticles"<<std::endl;
+    outFile << std::to_string(particles.size())+"\nParticles"<<std::endl;
     
     // Write particle properties to the file
 
     for (size_t i = 0; i < particles.size(); ++i) {
-        out_file << i << " " << particles[i].to_string() << std::endl;
+        outFile << i << " " << particles[i].x <<" "<<particles[i].y<<" "<<particles[i].theta << std::endl;
     }
-    out_file.close(); // Close the file
+    }
+    outFile.close(); // Close the file
 }    
 
 ```
 
-Infer and add the corresponding definition in `system.h`. Remember to include `<fstream>` where needed. 
+Infer and add the corresponding definition in `system.h`. Remember to include `<fstream>` and `<string>` where needed. 
 
-to check, compile your code by using the Makefile or the following command
+ Compile your code by using the Makefile or the  following command
 
 ```bash
 g++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek
@@ -142,3 +144,238 @@ g++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek
 :::
 
 
+Now we only need to actually tell our system to do the initialisation and save the configuration.
+
+To do this, we need to use the **instance** of `System` that we have created. This exists only in `main.cpp`, inside the `main()` function. There is where we need to call the two new methods we have created.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 4: Produce an initial configuration
+
+Modify the `main()` function so that its `System` object calls the initialisation function and then saves it to a new file named `init.conf`.
+
+Recompile and run
+
+```bash
+./myvicsek
+```
+
+Check the beginning of the `init.conf` file using 
+
+```bash
+head init.conf
+```
+
+Is it what you expected?
+
+:::
+
+## Sprinkle some `python`: read the configuration a visualise it
+
+We have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.
+
+For this, `Python` is the easiest tool at our hand. So, we are going to use now simple **procedural** `Python` to read in the initial configuration and plot it. We will see later how these instructions acan also be made *object-oriented** (within `Python`).
+
+We organise our python code in a separate file, which we call `pyvicsek.py`. We will read the configuration trivially using `numpy`
+
+```python
+import numpy as np
+
+def read_config(filename, skip=2):
+    """Reading an vicsek configuration from a file handle"""
+    with open(filename) as file_handle:
+        # skip the first two lines
+        for i in range(skip): 
+            next(file_handle)
+
+        data = np.loadtxt(file_handle)
+        conf = {}
+
+        conf["id"] = data[:,0]
+        conf["x"] = data[:,1]
+        conf["y"] = data[:,2]
+        conf["theta"] = data[:,3]
+        conf["vx"] = np.cos(conf["theta"])
+        conf["vy"] = np.sin(conf["theta"])  
+        return conf
+```
+Notice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.
+
+We can use `matplotlib`'s `quiver` plot to actually plot arrows.
+
+```python
+def plot(conf):
+    plt.figure(figsize=(5,5))
+    plt.quiver(conf["x"], conf["y"], conf["vx"], conf["vy"], conf["theta"], scale=1, scale_units='xy', cmap='hsv')
+    plt.axis('equal')
+```
+Combining all this together you should obtain something like the following
+
+![Visualisation of an initial configuration](init.conf.png)
+---
+
+:::{.callout-note icon="false"}
+## Task 5: Python script to view the initial configuration
+
+Embed the ideas above into your own `pyvicsek.py` file. you can run the script directly from the terminal with 
+
+```bash
+python pyvicsek.py
+```
+:::
+
+## Actual `Vicsek` dynamics
+
+Now comes the actual challenge: we want to code the dynamics of te vicsek model so that our `updateRule()` in `System` actually updates the positions and angles of the system.
+
+Here was our algorithm after initialisation
+
+:::{.callout-important }
+
+## Update rule 
+
+
+1. **Neighbor Identification**: For each particle $i$, identify neighbors within radius $r$.
+
+3. **Alignment**: Compute the average direction of neighbors, including $i$:
+   $$
+   \bar{\theta}_i = \text{atan2}\left(\sum_{\rm j \in neighbours} \sin\theta_j, \sum_{\rm j \in neighbours} \cos\theta_j\right)
+   $$
+
+4. **Noise**: Add a random perturbation $u$ to the orientation as a random variable uniformly distributed in the interval $[-\eta/2,\eta/2]$, where $\eta$ is teh noise strength
+
+   $$
+   \theta_i^{\text{new}} = \bar{\theta}_i + u
+   $$
+
+5. **Update Position**: Move each particle with its updated velocity:
+   $$
+   \mathbf{r}_i^{\text{new}} = \mathbf{r}_i + \mathbf{v}_i \Delta t
+   $$
+
+6. **Repeat**: Iterate for the desired number of time steps.
+:::
+
+There are a few central points:
+
+- we need to calculate all the updates **before** we apply them, otherwise the motion will not be synchronous
+- the calculation of the average local angle for alignment depends on sines and cosines. Directly averaging 
+
+
+
+The algorithm can be translated in  **pseudo-code**.
+
+<details><summary>Click to expand **pseudocode**</summary>
+```pseudo
+initialize new_theta array with size equal to number of particles
+
+for each particle i:
+    count = 10
+    c, s = cos(theta[i]), sin(theta[i])
+    for each particle j ≠ i:
+        compute distance with periodic boundaries 
+        if distance within interaction radius:
+            accumulate cosine and sines of particle j in c, s
+            increment count
+    avg_theta = atan2(sin / count, cos / count)
+    add uniform noise in [-pi, pi] to avg_theta and store in new_theta[i]
+
+for each particle i:
+    update position: 
+        x += cos(new_theta[i]) * v * dt
+        y += sin(new_theta[i]) * v * dt
+    update orientation: 
+        theta = new_theta[i]
+    apply periodic boundaries to x and y
+```
+
+</details>
+
+---
+
+:::{.callout-note icon="false"}
+## Task 6: Implement the dynamics
+
+You can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.
+
+Then in, the main function in `main.cpp`, implement a `for` loop for a large number of iterations, were you repeatedly call the `updateRule()` member function and regularly save a configuration to a file with a new name.
+
+To save a file with a new name, consider using `C++` strings like
+
+```cpp
+std::string root = "frame"
+model.saveConfig( root+std::to_string(iteration));
+```
+
+
+:::
+
+
+## Visualising the trajectory
+
+Simple modifications to your Oython code to include `matplotlib`'s `Funcanimation` allow you to  visualise the trajectory
+
+Here is a an example
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import glob
+import natsort
+from matplotlib.animation import FuncAnimation
+
+def read_config(filename, skip=2):
+    """Reading an vicsek configuration from a file handle"""
+    with open(filename, 'r') as file_handle:
+        for i in range(skip): 
+            next(file_handle)
+
+        data = np.loadtxt(file_handle)
+        conf = {}
+
+        conf["id"] = data[:,0]
+        conf["x"] = data[:,1]
+        conf["y"] = data[:,2]
+        conf["theta"] = data[:,3]
+        conf["vx"] = np.cos(conf["theta"])
+        conf["vy"] = np.sin(conf["theta"])  
+        return conf
+
+def plot(conf, ax):
+    qv = ax.quiver(conf["x"], conf["y"], conf["vx"], conf["vy"], conf["theta"], scale=1, scale_units='xy', cmap='hsv')
+    return qv
+
+# files are stored in a folder
+files = natsort.natsorted(glob.glob("frames/*"))
+
+# first plot
+fig, ax= plt.subplots() #
+
+qv = plot(read_config(files[0]),ax)
+plt.axis('equal')
+plt.axis('off')
+
+# function called to plot all files
+def animate(i):
+    print(i)
+    conf = read_config(files[i])
+    pos = np.array(list(zip(conf["x"], conf["y"])))
+    print(pos)
+    qv.set_offsets(pos)
+    qv.set_UVC(conf["vx"], conf["vy"], conf["theta"])
+    
+# Create the animation
+anim = FuncAnimation(fig,animate, range(len(files)))
+# Show the animation
+plt.show()
+```
+
+---
+
+:::{.callout-note icon="false"}
+## Task 7: View the trajectory
+
+Adapt the script above to your setup and visualise your first trajectory!
+
+:::
