@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.6.40" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Implementation of Vicsek dynamics – Object-Oriented Programming and Software Engineering</title>
@@ -58,7 +56,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-828dd9dc578bda216345a962a047c26c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,22 +133,17 @@ window.Quarto = {
 
 </head>
 
-<body>
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
-        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_vicsek/implementation.html">3| Implementation</a></li><li class="breadcrumb-item"><a href="../wp_vicsek/implementation.html">Implementation of Vicsek dynamics</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -147,8 +156,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="/index.html" class="sidebar-logo-link">
-      <img src="/img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"/>
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -160,19 +169,19 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/plan.html" class="sidebar-item-text sidebar-link">
+  <a href="../plan.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plan</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">1| Software Engineering</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -181,31 +190,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_gitgithub/shell.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_gitgithub/shell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using the shell</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_gitgithub/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Version control with `git`</span></a>
+  <a href="../wp_gitgithub/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Version control with <code>git</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_gitgithub/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_gitgithub/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Remote repository</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_gitgithub/make.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_gitgithub/make.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Compilation and makefiles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_gitgithub/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_gitgithub/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -213,7 +222,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2"  role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">2| Object-Oriented thinking</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -222,19 +231,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_oop/oop.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_oop/oop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hands on objects and classes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_oop/oop-complete.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_oop/oop-complete.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Completing the OOP design of the project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_oop/solutions.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_oop/solutions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Solutions</span></a>
   </div>
 </li>
@@ -242,7 +251,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3"  role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">3| Implementation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -251,7 +260,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_vicsek/implementation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../wp_vicsek/implementation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Implementation of Vicsek dynamics</span></a>
   </div>
 </li>
@@ -259,7 +268,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4"  role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">4| C++ to Python interface</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -268,7 +277,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_pybind/interface.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_pybind/interface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using C++ objects from Python</span></a>
   </div>
 </li>
@@ -276,7 +285,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5"  role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">5| Wrapping</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -285,7 +294,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/wp_wrapping/pyclasses.html" class="sidebar-item-text sidebar-link">
+  <a href="../wp_wrapping/pyclasses.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrapping code using OOP in Python</span></a>
   </div>
 </li>
@@ -294,15 +303,27 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aims" id="toc-aims" class="nav-link active" data-scroll-target="#aims">Aims</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#random-initial-state" id="toc-random-initial-state" class="nav-link" data-scroll-target="#random-initial-state">Random initial state</a></li>
+  <li><a href="#saving-a-configuration-to-file" id="toc-saving-a-configuration-to-file" class="nav-link" data-scroll-target="#saving-a-configuration-to-file">Saving a configuration to file</a></li>
+  <li><a href="#sprinkle-some-python-read-the-configuration-a-visualise-it" id="toc-sprinkle-some-python-read-the-configuration-a-visualise-it" class="nav-link" data-scroll-target="#sprinkle-some-python-read-the-configuration-a-visualise-it">Sprinkle some <code>python</code>: read the configuration a visualise it</a></li>
+  <li><a href="#actual-vicsek-dynamics" id="toc-actual-vicsek-dynamics" class="nav-link" data-scroll-target="#actual-vicsek-dynamics">Actual <code>Vicsek</code> dynamics</a></li>
+  <li><a href="#visualising-the-trajectory" id="toc-visualising-the-trajectory" class="nav-link" data-scroll-target="#visualising-the-trajectory">Visualising the trajectory</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="implementation-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wp_vicsek/implementation.html">3| Implementation</a></li><li class="breadcrumb-item"><a href="../wp_vicsek/implementation.html">Implementation of Vicsek dynamics</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Implementation of Vicsek dynamics</h1>
 </div>
@@ -320,35 +341,23 @@ window.Quarto = {
 
 </header>
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#aims" id="toc-aims">Aims</a></li>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes">Learning outcomes</a></li>
-  <li><a href="#random-initial-state" id="toc-random-initial-state">Random initial state</a></li>
-  <li><a href="#saving-a-configuration-to-file" id="toc-saving-a-configuration-to-file">Saving a configuration to file</a></li>
-  <li><a href="#sprinkle-some-python-read-the-configuration-a-visualise-it" id="toc-sprinkle-some-python-read-the-configuration-a-visualise-it">Sprinkle some <code>python</code>: read the configuration a visualise it</a></li>
-  <li><a href="#actual-vicsek-dynamics" id="toc-actual-vicsek-dynamics">Actual <code>Vicsek</code> dynamics</a></li>
-  <li><a href="#visualising-the-trajectory" id="toc-visualising-the-trajectory">Visualising the trajectory</a></li>
-  </ul>
-</nav>
+
 <section id="aims" class="level2">
-<h2>Aims</h2>
+<h2 class="anchored" data-anchor-id="aims">Aims</h2>
 <ul>
 <li>Initialise the start configuration with random positions and orientations</li>
 <li>Specify the update rule specific to the Vicsek model</li>
 </ul>
 </section>
 <section id="learning-outcomes" class="level2">
-<h2>Learning outcomes</h2>
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
 <ul>
 <li>Using C++ random number generators</li>
 <li>Updating objects’ properties</li>
 </ul>
 </section>
 <section id="random-initial-state" class="level2">
-<h2>Random initial state</h2>
+<h2 class="anchored" data-anchor-id="random-initial-state">Random initial state</h2>
 <p>We have constructed all the objects we neeed:</p>
 <ul>
 <li>a box</li>
@@ -363,11 +372,11 @@ window.Quarto = {
 </ul>
 <p>The simplest choice we can make is to choose these at random using the <strong>uniform</strong> distribution. for this purpose, we have also equipped the <code>System</code> class with a member function <code>uniform</code> that precisely samples that distribution.</p>
 <p>So, the idea is now to combine these various pieces together into a new member function for the <code>System</code> class to initialise the system.</p>
-<hr />
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 1: Declare the <code>randomStart()</code> member function
@@ -384,17 +393,17 @@ Task 1: Declare the <code>randomStart()</code> member function
 </ul>
 <p>So, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.</p>
 <p>For example, in C++11 we can loop over a vector in a <em>Pythonesque</em> fashion:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>Particle <span class="op">&amp;</span>p <span class="op">:</span> <span class="kw">this</span><span class="op">-&gt;</span>particles<span class="op">){</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>Particle <span class="op">&amp;</span>p <span class="op">:</span> <span class="kw">this</span><span class="op">-&gt;</span>particles<span class="op">){</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where clearly <code>this-&gt;particles</code> allows us to point to the correct member variable of the <code>System</code> class.</p>
 <p>Then, drawing a random x coordinate leverages the properties of the system (we defined a <code>uniform()</code> member function for the <code>System</code>), the box (we defined a <code>getSidex()</code> member function for it) and the particle (the coordinate <code>x</code> is a <strong>public</strong> member variable, so we can change it directly).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> p<span class="op">.</span>x <span class="op">=</span> <span class="kw">this</span><span class="op">-&gt;</span>uniform<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="kw">this</span><span class="op">-&gt;</span>simulationBox<span class="op">.</span>getSidex<span class="op">());</span></span></code></pre></div>
-<hr />
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> p<span class="op">.</span>x <span class="op">=</span> <span class="kw">this</span><span class="op">-&gt;</span>uniform<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="kw">this</span><span class="op">-&gt;</span>simulationBox<span class="op">.</span>getSidex<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 2: Implement the <code>randomStart()</code> member function
@@ -411,15 +420,15 @@ Task 2: Implement the <code>randomStart()</code> member function
 </div>
 </section>
 <section id="saving-a-configuration-to-file" class="level2">
-<h2>Saving a configuration to file</h2>
+<h2 class="anchored" data-anchor-id="saving-a-configuration-to-file">Saving a configuration to file</h2>
 <p>The combination of particle positions and orientations defines a <strong>configuration</strong> of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.</p>
 <p>In this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with <strong>streams</strong> of information. One of the streams you are used to is the standard output, accessed via <code>std::cout</code> in the standard library using the <code>&lt;iostream&gt;</code> library.</p>
 <p>When one wants to use file outputs, one needs to use the <code>&lt;fstream&gt;</code> library and construct output streams directly. Here below we provide you with a <strong>reverse engineering</strong> exercise: given a certain implementation of a function, reconstruct its definition.</p>
-<hr />
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 3: Reverse engineer the declaration of <code>saveConfig()</code>
@@ -427,35 +436,35 @@ Task 3: Reverse engineer the declaration of <code>saveConfig()</code>
 </div>
 <div class="callout-body-container callout-body">
 <p>Add the following member function to <code>system.cpp</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> System<span class="op">::</span>saveConfig<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string <span class="op">&amp;</span>filename<span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> System<span class="op">::</span>saveConfig<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string <span class="op">&amp;</span>filename<span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span>   </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>ofstream outFile<span class="op">(</span>filename<span class="op">);</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>outFile<span class="op">.</span>is_open<span class="op">())</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cerr <span class="op">&lt;&lt;</span> <span class="st">&quot;Error opening file: &quot;</span> <span class="op">&lt;&lt;</span> filename <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cerr <span class="op">&lt;&lt;</span> <span class="st">"Error opening file: "</span> <span class="op">&lt;&lt;</span> filename <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span> <span class="co">// Exit if file cannot be opened</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    outFile <span class="op">&lt;&lt;</span> <span class="bu">std::</span>to_string<span class="op">(</span>particles<span class="op">.</span>size<span class="op">())+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">Particles&quot;</span><span class="op">&lt;&lt;</span><span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    outFile <span class="op">&lt;&lt;</span> <span class="bu">std::</span>to_string<span class="op">(</span>particles<span class="op">.</span>size<span class="op">())+</span><span class="st">"</span><span class="sc">\n</span><span class="st">Particles"</span><span class="op">&lt;&lt;</span><span class="bu">std::</span>endl<span class="op">;</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Write particle properties to the file</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> particles<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        outFile <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="st">&quot; &quot;</span> <span class="op">&lt;&lt;</span> particles<span class="op">[</span>i<span class="op">].</span>x <span class="op">&lt;&lt;</span><span class="st">&quot; &quot;</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>y<span class="op">&lt;&lt;</span><span class="st">&quot; &quot;</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>theta <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        outFile <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="st">" "</span> <span class="op">&lt;&lt;</span> particles<span class="op">[</span>i<span class="op">].</span>x <span class="op">&lt;&lt;</span><span class="st">" "</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>y<span class="op">&lt;&lt;</span><span class="st">" "</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>theta <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    outFile<span class="op">.</span>close<span class="op">();</span> <span class="co">// Close the file</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>    </span></code></pre></div>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Infer and add the corresponding definition in <code>system.h</code>. Remember to include <code>&lt;fstream&gt;</code> and <code>&lt;string&gt;</code> where needed.</p>
 <p>Compile your code by using the Makefile or the following command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++11 main.cpp system.cpp box.cpp particle.cpp <span class="at">-o</span> myvicsek</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++11 main.cpp system.cpp box.cpp particle.cpp <span class="at">-o</span> myvicsek</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Now we only need to actually tell our system to do the initialisation and save the configuration.</p>
 <p>To do this, we need to use the <strong>instance</strong> of <code>System</code> that we have created. This exists only in <code>main.cpp</code>, inside the <code>main()</code> function. There is where we need to call the two new methods we have created.</p>
-<hr />
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 4: Produce an initial configuration
@@ -464,22 +473,22 @@ Task 4: Produce an initial configuration
 <div class="callout-body-container callout-body">
 <p>Modify the <code>main()</code> function so that its <code>System</code> object calls the initialisation function and then saves it to a new file named <code>init.conf</code>.</p>
 <p>Recompile and run</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./myvicsek</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./myvicsek</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Check the beginning of the <code>init.conf</code> file using</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> init.conf</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> init.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Is it what you expected?</p>
 </div>
 </div>
 </section>
 <section id="sprinkle-some-python-read-the-configuration-a-visualise-it" class="level2">
-<h2>Sprinkle some <code>python</code>: read the configuration a visualise it</h2>
+<h2 class="anchored" data-anchor-id="sprinkle-some-python-read-the-configuration-a-visualise-it">Sprinkle some <code>python</code>: read the configuration a visualise it</h2>
 <p>We have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.</p>
 <p>For this, <code>Python</code> is the easiest tool at our hand. So, we are going to use now simple <strong>procedural</strong> <code>Python</code> to read in the initial configuration and plot it. We will see later how these instructions acan also be made *object-oriented** (within <code>Python</code>).</p>
 <p>We organise our python code in a separate file, which we call <code>pyvicsek.py</code>. We will read the configuration trivially using <code>numpy</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_config(filename, skip<span class="op">=</span><span class="dv">2</span>):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Reading an vicsek configuration from a file handle&quot;&quot;&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reading an vicsek configuration from a file handle"""</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> file_handle:</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># skip the first two lines</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(skip): </span>
@@ -488,31 +497,31 @@ Task 4: Produce an initial configuration
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> np.loadtxt(file_handle)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        conf <span class="op">=</span> {}</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;id&quot;</span>] <span class="op">=</span> data[:,<span class="dv">0</span>]</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;x&quot;</span>] <span class="op">=</span> data[:,<span class="dv">1</span>]</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;y&quot;</span>] <span class="op">=</span> data[:,<span class="dv">2</span>]</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;theta&quot;</span>] <span class="op">=</span> data[:,<span class="dv">3</span>]</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;vx&quot;</span>] <span class="op">=</span> np.cos(conf[<span class="st">&quot;theta&quot;</span>])</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;vy&quot;</span>] <span class="op">=</span> np.sin(conf[<span class="st">&quot;theta&quot;</span>])  </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> conf</span></code></pre></div>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"id"</span>] <span class="op">=</span> data[:,<span class="dv">0</span>]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"x"</span>] <span class="op">=</span> data[:,<span class="dv">1</span>]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"y"</span>] <span class="op">=</span> data[:,<span class="dv">2</span>]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"theta"</span>] <span class="op">=</span> data[:,<span class="dv">3</span>]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"vx"</span>] <span class="op">=</span> np.cos(conf[<span class="st">"theta"</span>])</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"vy"</span>] <span class="op">=</span> np.sin(conf[<span class="st">"theta"</span>])  </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.</p>
 <p>We can use <code>matplotlib</code>’s <code>quiver</code> plot to actually plot arrows.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(conf):</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(conf):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    plt.quiver(conf[<span class="st">&quot;x&quot;</span>], conf[<span class="st">&quot;y&quot;</span>], conf[<span class="st">&quot;vx&quot;</span>], conf[<span class="st">&quot;vy&quot;</span>], conf[<span class="st">&quot;theta&quot;</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, cmap<span class="op">=</span><span class="st">&#39;hsv&#39;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">&#39;equal&#39;</span>)</span></code></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    plt.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Combining all this together you should obtain something like the following</p>
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img src="init.conf.png" class="img-fluid" /></p>
+<figure class="figure">
+<p><img src="init.conf.png" class="img-fluid figure-img"></p>
 <figcaption>Visualisation of an initial configuration</figcaption>
 </figure>
 </div>
-<hr />
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 5: Python script to view the initial configuration
@@ -520,18 +529,18 @@ Task 5: Python script to view the initial configuration
 </div>
 <div class="callout-body-container callout-body">
 <p>Embed the ideas above into your own <code>pyvicsek.py</code> file. you can run the script directly from the terminal with</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> pyvicsek.py</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> pyvicsek.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="actual-vicsek-dynamics" class="level2">
-<h2>Actual <code>Vicsek</code> dynamics</h2>
+<h2 class="anchored" data-anchor-id="actual-vicsek-dynamics">Actual <code>Vicsek</code> dynamics</h2>
 <p>Now comes the actual challenge: we want to code the dynamics of te vicsek model so that our <code>updateRule()</code> in <code>System</code> actually updates the positions and angles of the system.</p>
 <p>Here was our algorithm after initialisation</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon'></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Update rule
@@ -585,11 +594,11 @@ for each particle i:
         theta = new_theta[i]
     apply periodic boundaries to x and y</code></pre>
 </details>
-<hr />
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 6: Implement the dynamics
@@ -599,70 +608,70 @@ Task 6: Implement the dynamics
 <p>You can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.</p>
 <p>Then in, the main function in <code>main.cpp</code>, implement a <code>for</code> loop for a large number of iterations, were you repeatedly call the <code>updateRule()</code> member function and regularly save a configuration to a file with a new name.</p>
 <p>To save a file with a new name, consider using <code>C++</code> strings like</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>string root <span class="op">=</span> <span class="st">&quot;frame&quot;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model<span class="op">.</span>saveConfig<span class="op">(</span> root<span class="op">+</span><span class="bu">std::</span>to_string<span class="op">(</span>iteration<span class="op">));</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>string root <span class="op">=</span> <span class="st">"frame"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model<span class="op">.</span>saveConfig<span class="op">(</span> root<span class="op">+</span><span class="bu">std::</span>to_string<span class="op">(</span>iteration<span class="op">));</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="visualising-the-trajectory" class="level2">
-<h2>Visualising the trajectory</h2>
+<h2 class="anchored" data-anchor-id="visualising-the-trajectory">Visualising the trajectory</h2>
 <p>Simple modifications to your Oython code to include <code>matplotlib</code>’s <code>Funcanimation</code> allow you to visualise the trajectory</p>
 <p>Here is a an example</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> natsort</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_config(filename, skip<span class="op">=</span><span class="dv">2</span>):</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Reading an vicsek configuration from a file handle&quot;&quot;&quot;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> file_handle:</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reading an vicsek configuration from a file handle"""</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">'r'</span>) <span class="im">as</span> file_handle:</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(skip): </span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">next</span>(file_handle)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> np.loadtxt(file_handle)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        conf <span class="op">=</span> {}</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;id&quot;</span>] <span class="op">=</span> data[:,<span class="dv">0</span>]</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;x&quot;</span>] <span class="op">=</span> data[:,<span class="dv">1</span>]</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;y&quot;</span>] <span class="op">=</span> data[:,<span class="dv">2</span>]</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;theta&quot;</span>] <span class="op">=</span> data[:,<span class="dv">3</span>]</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;vx&quot;</span>] <span class="op">=</span> np.cos(conf[<span class="st">&quot;theta&quot;</span>])</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">&quot;vy&quot;</span>] <span class="op">=</span> np.sin(conf[<span class="st">&quot;theta&quot;</span>])  </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"id"</span>] <span class="op">=</span> data[:,<span class="dv">0</span>]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"x"</span>] <span class="op">=</span> data[:,<span class="dv">1</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"y"</span>] <span class="op">=</span> data[:,<span class="dv">2</span>]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"theta"</span>] <span class="op">=</span> data[:,<span class="dv">3</span>]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"vx"</span>] <span class="op">=</span> np.cos(conf[<span class="st">"theta"</span>])</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        conf[<span class="st">"vy"</span>] <span class="op">=</span> np.sin(conf[<span class="st">"theta"</span>])  </span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> conf</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(conf, ax):</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">&quot;x&quot;</span>], conf[<span class="st">&quot;y&quot;</span>], conf[<span class="st">&quot;vx&quot;</span>], conf[<span class="st">&quot;vy&quot;</span>], conf[<span class="st">&quot;theta&quot;</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, cmap<span class="op">=</span><span class="st">&#39;hsv&#39;</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qv</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># files are stored in a folder</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> natsort.natsorted(glob.glob(<span class="st">&quot;frames/*&quot;</span>))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> natsort.natsorted(glob.glob(<span class="st">"frames/*"</span>))</span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># first plot</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots() <span class="co">#</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>qv <span class="op">=</span> plot(read_config(files[<span class="dv">0</span>]),ax)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">&#39;equal&#39;</span>)</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">&#39;off&#39;</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co"># function called to plot all files</span></span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(i):</span>
 <span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
 <span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    conf <span class="op">=</span> read_config(files[i])</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> np.array(<span class="bu">list</span>(<span class="bu">zip</span>(conf[<span class="st">&quot;x&quot;</span>], conf[<span class="st">&quot;y&quot;</span>])))</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> np.array(<span class="bu">list</span>(<span class="bu">zip</span>(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>])))</span>
 <span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pos)</span>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    qv.set_offsets(pos)</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    qv.set_UVC(conf[<span class="st">&quot;vx&quot;</span>], conf[<span class="st">&quot;vy&quot;</span>], conf[<span class="st">&quot;theta&quot;</span>])</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    qv.set_UVC(conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>])</span>
 <span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the animation</span></span>
 <span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,animate, <span class="bu">range</span>(<span class="bu">len</span>(files)))</span>
 <span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the animation</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<hr />
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon no-icon'></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Task 7: View the trajectory
@@ -672,16 +681,12 @@ Task 7: View the trajectory
 <p>Adapt the script above to your setup and visualise your first trajectory!</p>
 </div>
 </div>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uZXh0">Using C++ objects from Python</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Solutions</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9pbmRleC5odG1sV2VsY29tZQ==">Welcome</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9wbGFuLmh0bWxQbGFu">Plan</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">1| Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9naXRnaXRodWIvc2hlbGwuaHRtbFVzaW5nLXRoZS1zaGVsbA==">Using the shell</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9naXRnaXRodWIvZ2l0Lmh0bWxWZXJzaW9uLWNvbnRyb2wtd2l0aC1gZ2l0YA==">Version control with <code>git</code></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9naXRnaXRodWIvZ2l0aHViLmh0bWxSZW1vdGUtcmVwb3NpdG9yeQ==">Remote repository</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9naXRnaXRodWIvbWFrZS5odG1sQ29tcGlsYXRpb24tYW5kLW1ha2VmaWxlcw==">Compilation and makefiles</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9naXRnaXRodWIvZXhlcmNpc2VzLmh0bWxFeGVyY2lzZXM=">Exercises</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMg==">2| Object-Oriented thinking</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9vb3Avb29wLmh0bWxIYW5kcy1vbi1vYmplY3RzLWFuZC1jbGFzc2Vz">Hands on objects and classes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9vb3Avb29wLWNvbXBsZXRlLmh0bWxDb21wbGV0aW5nLXRoZS1PT1AtZGVzaWduLW9mLXRoZS1wcm9qZWN0">Completing the OOP design of the project</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9vb3Avc29sdXRpb25zLmh0bWxTb2x1dGlvbnM=">Solutions</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMw==">3| Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF92aWNzZWsvaW1wbGVtZW50YXRpb24uaHRtbEltcGxlbWVudGF0aW9uLW9mLVZpY3Nlay1keW5hbWljcw==">Implementation of Vicsek dynamics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNA==">4| C++ to Python interface</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF9weWJpbmQvaW50ZXJmYWNlLmh0bWxVc2luZy1DKystb2JqZWN0cy1mcm9tLVB5dGhvbg==">Using C++ objects from Python</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNQ==">5| Wrapping</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi93cF93cmFwcGluZy9weWNsYXNzZXMuaHRtbFdyYXBwaW5nLWNvZGUtdXNpbmctT09QLWluLVB5dGhvbg==">Wrapping code using OOP in Python</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLTN8LUltcGxlbWVudGF0aW9u">3| Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLUltcGxlbWVudGF0aW9uLW9mLVZpY3Nlay1keW5hbWljcw==">Implementation of Vicsek dynamics</span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Implementation of Vicsek dynamics – Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Implementation of Vicsek dynamics – Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Implementation of Vicsek dynamics – Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Object-Oriented Programming and Software Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw=="></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj"></span></p>
-</div>
+
+
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1100,6 +1105,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 
-</body>
 
-</html>
+
+
+</body></html>

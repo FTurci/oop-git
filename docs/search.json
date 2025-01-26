@@ -559,87 +559,141 @@
     ]
   },
   {
-    "objectID": "wp_vicsek/implement.html",
-    "href": "wp_vicsek/implement.html",
-    "title": "Implementation of C++ objects",
-    "section": "",
-    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
-    "crumbs": [
-      "3| Implementation",
-      "Implementation of C++ objects"
-    ]
-  },
-  {
-    "objectID": "wp_vicsek/implement.html#aims",
-    "href": "wp_vicsek/implement.html#aims",
-    "title": "Implementation of C++ objects",
-    "section": "",
-    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
-    "crumbs": [
-      "3| Implementation",
-      "Implementation of C++ objects"
-    ]
-  },
-  {
-    "objectID": "wp_vicsek/implement.html#learning-outcomes",
-    "href": "wp_vicsek/implement.html#learning-outcomes",
-    "title": "Implementation of C++ objects",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nUsing C++ random number generators\nUpdating objects’ properties",
-    "crumbs": [
-      "3| Implementation",
-      "Implementation of C++ objects"
-    ]
-  },
-  {
-    "objectID": "wp_vicsek/implement.html#random-initial-state",
-    "href": "wp_vicsek/implement.html#random-initial-state",
-    "title": "Implementation of C++ objects",
-    "section": "Random initial state",
-    "text": "Random initial state\nWe have constructed all the objects we neeed:\n\na box\na set of particles\nand a Simulation object to combined them together\n\nWe want now to think of our problem more concretely. First, our simulation needs to start from an initila configuration. This means that the particles composing the model need to be place somewhere in space and oriented in some direction.\nIndeed, when we designed our Particle object we equipped it with member variables precisely to determine that:\n\nthe x and y coordinates\nthe orientation theta\n\nThe simplest choice we can make is to choose these at random using the uniform distribution. for this purpose, we have also equipped the System class with a member function uniform that precisely samples that distribution.\nSo, the idea is now to combine these various pieces together into a new member function for the System class to initialise the system.\n\n\n\n\n\n\n\nTask 1: Declare the randomStart() member function\n\n\n\nIn the System.h class declare a new member function named randomStart(). It returns void and takes no parameters because everything is already available in our objects!\n\n\nHow do we make the various classes communicate? We are working from the System class, which has instances of both the Box and the Particle class as member variables. You should have\n\na simulationBox instance in the System definition\na vector of Particle instance in the System definition\n\nSo, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.\nFor example, in C++11 we can loop over a vector in a Pythonesque fashion:\nfor (Particle &p : this-&gt;particles){\n...\n}\nwhere clearly this-&gt;particles allows us to point to the correct member variable of the System class.\nThen, drawing a random x coordinate leverages the properties of the system (we defined a uniform() member function for the System), the box (we defined a getSidex() member function for it) and the particle (the coordinate x is a public member variable, so we can change it directly).\n p.x = this-&gt;uniform(0,this-&gt;simulationBox.getSidex());\n\n\n\n\n\n\n\nTask 2: Implement the randomStart() member function\n\n\n\nIn System.cpp implement the randomStart() member function inspired by the snippets above.\nFor every particle, you need to assign\n\nthe x and y coordinates\nthe orientation theta",
-    "crumbs": [
-      "3| Implementation",
-      "Implementation of C++ objects"
-    ]
-  },
-  {
-    "objectID": "wp_vicsek/implement.html#saving-a-configuration-to-file",
-    "href": "wp_vicsek/implement.html#saving-a-configuration-to-file",
-    "title": "Implementation of C++ objects",
-    "section": "Saving a configuration to file",
-    "text": "Saving a configuration to file\nThe combination of particle positions and orientations defines a configuration of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.\nIn this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with streams of information. One of the streams you are used to is the standard output, accessed via std::cout in the standard library using the &lt;iostream&gt; library.\nWhen one wants to use file outputs, one needs to use the &lt;fstream&gt; library and construct output streams directly. Here below we provide you with a reverse engineering exercise: given a certain implementation of a function, reconstruct its definition.\n\n\n\n\n\n\n\nTask 3: Reverse engineer the declaration of saveConfig()\n\n\n\nAdd the following member function to system.cpp\n``cpp void System::saveConfig(const std::string &filename) {\nstd::ofstream out_file(filename); if (!out_file.is_open()) { std::cerr &lt;&lt; “Error opening file:” &lt;&lt; filename &lt;&lt; std::endl; return; // Exit if file cannot be opened } out_file &lt;&lt; std::to_string(particles.size())+“”&lt;&lt;std::endl;\n// Write particle properties to the file\n\nfor (size_t i = 0; i &lt; particles.size(); ++i) {\n    out_file &lt;&lt; i &lt;&lt; \" \" &lt;&lt; particles[i].to_string() &lt;&lt; std::endl;\n}\nout_file.close(); // Close the file\n}\n\nInfer and add the corresponding definition in `system.h`. Remember to include `&lt;fstream&gt;` where needed. \n\nto check, compile your code by using the Makefile or the following command\n\n```bash\ng++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek",
-    "crumbs": [
-      "3| Implementation",
-      "Implementation of C++ objects"
-    ]
-  },
-  {
-    "objectID": "wp_vicsek/implement-slides.html#aims",
-    "href": "wp_vicsek/implement-slides.html#aims",
-    "title": "Implementation of C++ objects",
+    "objectID": "wp_vicsek/implementation-slides.html#aims",
+    "href": "wp_vicsek/implementation-slides.html#aims",
+    "title": "Implementation of Vicsek dynamics",
     "section": "Aims",
     "text": "Aims\n\nInitialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model"
   },
   {
-    "objectID": "wp_vicsek/implement-slides.html#learning-outcomes",
-    "href": "wp_vicsek/implement-slides.html#learning-outcomes",
-    "title": "Implementation of C++ objects",
+    "objectID": "wp_vicsek/implementation-slides.html#learning-outcomes",
+    "href": "wp_vicsek/implementation-slides.html#learning-outcomes",
+    "title": "Implementation of Vicsek dynamics",
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nUsing C++ random number generators\nUpdating objects’ properties"
   },
   {
-    "objectID": "wp_vicsek/implement-slides.html#random-initial-state",
-    "href": "wp_vicsek/implement-slides.html#random-initial-state",
-    "title": "Implementation of C++ objects",
+    "objectID": "wp_vicsek/implementation-slides.html#random-initial-state",
+    "href": "wp_vicsek/implementation-slides.html#random-initial-state",
+    "title": "Implementation of Vicsek dynamics",
     "section": "Random initial state",
     "text": "Random initial state\nWe have constructed all the objects we neeed:\n\na box\na set of particles\nand a Simulation object to combined them together\n\nWe want now to think of our problem more concretely. First, our simulation needs to start from an initila configuration. This means that the particles composing the model need to be place somewhere in space and oriented in some direction.\nIndeed, when we designed our Particle object we equipped it with member variables precisely to determine that:\n\nthe x and y coordinates\nthe orientation theta\n\nThe simplest choice we can make is to choose these at random using the uniform distribution. for this purpose, we have also equipped the System class with a member function uniform that precisely samples that distribution.\nSo, the idea is now to combine these various pieces together into a new member function for the System class to initialise the system."
   },
   {
-    "objectID": "wp_vicsek/implement-slides.html#saving-a-configuration-to-file",
-    "href": "wp_vicsek/implement-slides.html#saving-a-configuration-to-file",
-    "title": "Implementation of C++ objects",
+    "objectID": "wp_vicsek/implementation-slides.html#saving-a-configuration-to-file",
+    "href": "wp_vicsek/implementation-slides.html#saving-a-configuration-to-file",
+    "title": "Implementation of Vicsek dynamics",
     "section": "Saving a configuration to file",
     "text": "Saving a configuration to file\nThe combination of particle positions and orientations defines a configuration of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.\nIn this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with streams of information. One of the streams you are used to is the standard output, accessed via std::cout in the standard library using the &lt;iostream&gt; library.\nWhen one wants to use file outputs, one needs to use the &lt;fstream&gt; library and construct output streams directly. Here below we provide you with a reverse engineering exercise: given a certain implementation of a function, reconstruct its definition."
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "href": "wp_vicsek/implementation-slides.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Sprinkle some python: read the configuration a visualise it",
+    "text": "Sprinkle some python: read the configuration a visualise it\nWe have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.\nFor this, Python is the easiest tool at our hand. So, we are going to use now simple procedural Python to read in the initial configuration and plot it. We will see later how these instructions acan also be made *object-oriented** (within Python).\nWe organise our python code in a separate file, which we call pyvicsek.py. We will read the configuration trivially using numpy\nimport numpy as np\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename) as file_handle:\n        # skip the first two lines\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\nNotice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.\nWe can use matplotlib’s quiver plot to actually plot arrows.\ndef plot(conf):\n    plt.figure(figsize=(5,5))\n    plt.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    plt.axis('equal')\nCombining all this together you should obtain something like the following\n\n\n\nVisualisation of an initial configuration"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#actual-vicsek-dynamics",
+    "href": "wp_vicsek/implementation-slides.html#actual-vicsek-dynamics",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Actual Vicsek dynamics",
+    "text": "Actual Vicsek dynamics\nNow comes the actual challenge: we want to code the dynamics of te vicsek model so that our updateRule() in System actually updates the positions and angles of the system.\nHere was our algorithm after initialisation\n\n\n\n\n\n\nUpdate rule\n\n\n\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\n\nThere are a few central points:\n\nwe need to calculate all the updates before we apply them, otherwise the motion will not be synchronous\nthe calculation of the average local angle for alignment depends on sines and cosines. Directly averaging\n\nThe algorithm can be translated in pseudo-code.\n\n\nClick to expand pseudocode\n\ninitialize new_theta array with size equal to number of particles\n\nfor each particle i:\n    count = 10\n    c, s = cos(theta[i]), sin(theta[i])\n    for each particle j ≠ i:\n        compute distance with periodic boundaries \n        if distance within interaction radius:\n            accumulate cosine and sines of particle j in c, s\n            increment count\n    avg_theta = atan2(sin / count, cos / count)\n    add uniform noise in [-pi, pi] to avg_theta and store in new_theta[i]\n\nfor each particle i:\n    update position: \n        x += cos(new_theta[i]) * v * dt\n        y += sin(new_theta[i]) * v * dt\n    update orientation: \n        theta = new_theta[i]\n    apply periodic boundaries to x and y"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#visualising-the-trajectory",
+    "href": "wp_vicsek/implementation-slides.html#visualising-the-trajectory",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Visualising the trajectory",
+    "text": "Visualising the trajectory\nSimple modifications to your Oython code to include matplotlib’s Funcanimation allow you to visualise the trajectory\nHere is a an example\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport glob\nimport natsort\nfrom matplotlib.animation import FuncAnimation\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename, 'r') as file_handle:\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\n\ndef plot(conf, ax):\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    return qv\n\n# files are stored in a folder\nfiles = natsort.natsorted(glob.glob(\"frames/*\"))\n\n# first plot\nfig, ax= plt.subplots() #\n\nqv = plot(read_config(files[0]),ax)\nplt.axis('equal')\nplt.axis('off')\n\n# function called to plot all files\ndef animate(i):\n    print(i)\n    conf = read_config(files[i])\n    pos = np.array(list(zip(conf[\"x\"], conf[\"y\"])))\n    print(pos)\n    qv.set_offsets(pos)\n    qv.set_UVC(conf[\"vx\"], conf[\"vy\"], conf[\"theta\"])\n    \n# Create the animation\nanim = FuncAnimation(fig,animate, range(len(files)))\n# Show the animation\nplt.show()"
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html",
+    "href": "wp_vicsek/implementation.html",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "",
+    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#aims",
+    "href": "wp_vicsek/implementation.html#aims",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "",
+    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#learning-outcomes",
+    "href": "wp_vicsek/implementation.html#learning-outcomes",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUsing C++ random number generators\nUpdating objects’ properties",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#random-initial-state",
+    "href": "wp_vicsek/implementation.html#random-initial-state",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Random initial state",
+    "text": "Random initial state\nWe have constructed all the objects we neeed:\n\na box\na set of particles\nand a Simulation object to combined them together\n\nWe want now to think of our problem more concretely. First, our simulation needs to start from an initila configuration. This means that the particles composing the model need to be place somewhere in space and oriented in some direction.\nIndeed, when we designed our Particle object we equipped it with member variables precisely to determine that:\n\nthe x and y coordinates\nthe orientation theta\n\nThe simplest choice we can make is to choose these at random using the uniform distribution. for this purpose, we have also equipped the System class with a member function uniform that precisely samples that distribution.\nSo, the idea is now to combine these various pieces together into a new member function for the System class to initialise the system.\n\n\n\n\n\n\n\nTask 1: Declare the randomStart() member function\n\n\n\nIn the System.h class declare a new member function named randomStart(). It returns void and takes no parameters because everything is already available in our objects!\n\n\nHow do we make the various classes communicate? We are working from the System class, which has instances of both the Box and the Particle class as member variables. You should have\n\na simulationBox instance in the System definition\na vector of Particle instance in the System definition\n\nSo, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.\nFor example, in C++11 we can loop over a vector in a Pythonesque fashion:\nfor (Particle &p : this-&gt;particles){\n...\n}\nwhere clearly this-&gt;particles allows us to point to the correct member variable of the System class.\nThen, drawing a random x coordinate leverages the properties of the system (we defined a uniform() member function for the System), the box (we defined a getSidex() member function for it) and the particle (the coordinate x is a public member variable, so we can change it directly).\n p.x = this-&gt;uniform(0,this-&gt;simulationBox.getSidex());\n\n\n\n\n\n\n\nTask 2: Implement the randomStart() member function\n\n\n\nIn System.cpp implement the randomStart() member function inspired by the snippets above.\nFor every particle, you need to assign\n\nthe x and y coordinates\nthe orientation theta. Choose it between \\(-\\pi\\) and \\(\\pi\\).",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#saving-a-configuration-to-file",
+    "href": "wp_vicsek/implementation.html#saving-a-configuration-to-file",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Saving a configuration to file",
+    "text": "Saving a configuration to file\nThe combination of particle positions and orientations defines a configuration of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.\nIn this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with streams of information. One of the streams you are used to is the standard output, accessed via std::cout in the standard library using the &lt;iostream&gt; library.\nWhen one wants to use file outputs, one needs to use the &lt;fstream&gt; library and construct output streams directly. Here below we provide you with a reverse engineering exercise: given a certain implementation of a function, reconstruct its definition.\n\n\n\n\n\n\n\nTask 3: Reverse engineer the declaration of saveConfig()\n\n\n\nAdd the following member function to system.cpp\nvoid System::saveConfig(const std::string &filename)\n{   \n    std::ofstream outFile(filename);\n    if (!outFile.is_open()) {\n        std::cerr &lt;&lt; \"Error opening file: \" &lt;&lt; filename &lt;&lt; std::endl;\n        return; // Exit if file cannot be opened\n    }\n    outFile &lt;&lt; std::to_string(particles.size())+\"\\nParticles\"&lt;&lt;std::endl;\n    \n    // Write particle properties to the file\n\n    for (size_t i = 0; i &lt; particles.size(); ++i) {\n        outFile &lt;&lt; i &lt;&lt; \" \" &lt;&lt; particles[i].x &lt;&lt;\" \"&lt;&lt;particles[i].y&lt;&lt;\" \"&lt;&lt;particles[i].theta &lt;&lt; std::endl;\n    }\n    }\n    outFile.close(); // Close the file\n}    \nInfer and add the corresponding definition in system.h. Remember to include &lt;fstream&gt; and &lt;string&gt; where needed.\nCompile your code by using the Makefile or the following command\ng++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek\n\n\nNow we only need to actually tell our system to do the initialisation and save the configuration.\nTo do this, we need to use the instance of System that we have created. This exists only in main.cpp, inside the main() function. There is where we need to call the two new methods we have created.\n\n\n\n\n\n\n\nTask 4: Produce an initial configuration\n\n\n\nModify the main() function so that its System object calls the initialisation function and then saves it to a new file named init.conf.\nRecompile and run\n./myvicsek\nCheck the beginning of the init.conf file using\nhead init.conf\nIs it what you expected?",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "href": "wp_vicsek/implementation.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Sprinkle some python: read the configuration a visualise it",
+    "text": "Sprinkle some python: read the configuration a visualise it\nWe have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.\nFor this, Python is the easiest tool at our hand. So, we are going to use now simple procedural Python to read in the initial configuration and plot it. We will see later how these instructions acan also be made *object-oriented** (within Python).\nWe organise our python code in a separate file, which we call pyvicsek.py. We will read the configuration trivially using numpy\nimport numpy as np\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename) as file_handle:\n        # skip the first two lines\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\nNotice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.\nWe can use matplotlib’s quiver plot to actually plot arrows.\ndef plot(conf):\n    plt.figure(figsize=(5,5))\n    plt.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    plt.axis('equal')\nCombining all this together you should obtain something like the following\n\n\n\nVisualisation of an initial configuration\n\n\n\n\n\n\n\n\n\nTask 5: Python script to view the initial configuration\n\n\n\nEmbed the ideas above into your own pyvicsek.py file. you can run the script directly from the terminal with\npython pyvicsek.py",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#actual-vicsek-dynamics",
+    "href": "wp_vicsek/implementation.html#actual-vicsek-dynamics",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Actual Vicsek dynamics",
+    "text": "Actual Vicsek dynamics\nNow comes the actual challenge: we want to code the dynamics of te vicsek model so that our updateRule() in System actually updates the positions and angles of the system.\nHere was our algorithm after initialisation\n\n\n\n\n\n\nUpdate rule\n\n\n\n\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\nThere are a few central points:\n\nwe need to calculate all the updates before we apply them, otherwise the motion will not be synchronous\nthe calculation of the average local angle for alignment depends on sines and cosines. Directly averaging\n\nThe algorithm can be translated in pseudo-code.\n\n\nClick to expand pseudocode\n\ninitialize new_theta array with size equal to number of particles\n\nfor each particle i:\n    count = 10\n    c, s = cos(theta[i]), sin(theta[i])\n    for each particle j ≠ i:\n        compute distance with periodic boundaries \n        if distance within interaction radius:\n            accumulate cosine and sines of particle j in c, s\n            increment count\n    avg_theta = atan2(sin / count, cos / count)\n    add uniform noise in [-pi, pi] to avg_theta and store in new_theta[i]\n\nfor each particle i:\n    update position: \n        x += cos(new_theta[i]) * v * dt\n        y += sin(new_theta[i]) * v * dt\n    update orientation: \n        theta = new_theta[i]\n    apply periodic boundaries to x and y\n\n\n\n\n\n\n\n\nTask 6: Implement the dynamics\n\n\n\nYou can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.\nThen in, the main function in main.cpp, implement a for loop for a large number of iterations, were you repeatedly call the updateRule() member function and regularly save a configuration to a file with a new name.\nTo save a file with a new name, consider using C++ strings like\nstd::string root = \"frame\"\nmodel.saveConfig( root+std::to_string(iteration));",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#visualising-the-trajectory",
+    "href": "wp_vicsek/implementation.html#visualising-the-trajectory",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Visualising the trajectory",
+    "text": "Visualising the trajectory\nSimple modifications to your Oython code to include matplotlib’s Funcanimation allow you to visualise the trajectory\nHere is a an example\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport glob\nimport natsort\nfrom matplotlib.animation import FuncAnimation\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename, 'r') as file_handle:\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\n\ndef plot(conf, ax):\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    return qv\n\n# files are stored in a folder\nfiles = natsort.natsorted(glob.glob(\"frames/*\"))\n\n# first plot\nfig, ax= plt.subplots() #\n\nqv = plot(read_config(files[0]),ax)\nplt.axis('equal')\nplt.axis('off')\n\n# function called to plot all files\ndef animate(i):\n    print(i)\n    conf = read_config(files[i])\n    pos = np.array(list(zip(conf[\"x\"], conf[\"y\"])))\n    print(pos)\n    qv.set_offsets(pos)\n    qv.set_UVC(conf[\"vx\"], conf[\"vy\"], conf[\"theta\"])\n    \n# Create the animation\nanim = FuncAnimation(fig,animate, range(len(files)))\n# Show the animation\nplt.show()\n\n\n\n\n\n\n\nTask 7: View the trajectory\n\n\n\nAdapt the script above to your setup and visualise your first trajectory!",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
   },
   {
     "objectID": "wp_gitgithub/github.html",

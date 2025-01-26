@@ -13,7 +13,7 @@ format:
     lazy-load: false
     slide-level: 3
     smaller: true
-    theme: [simple, custom.scss]
+    theme: [simple, ../scss/custom.scss]
     # transition: fade
 
     output-file: implementation-slides.html
