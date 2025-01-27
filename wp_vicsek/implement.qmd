@@ -261,7 +261,7 @@ Here was our algorithm after initialisation
 There are a few central points:
 
 - we need to calculate all the updates **before** we apply them, otherwise the motion will not be synchronous
-- the calculation of the average local angle for alignment depends on sines and cosines. Directly averaging 
+- the calculation of the average local angle for alignment depends on sines and cosines. Directly averaging would be problematic (e.g. when two angles are close to $+pi$ and $-\pi$). 
 
 
 

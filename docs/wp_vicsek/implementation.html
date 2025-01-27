@@ -567,7 +567,7 @@ Update rule
 <p>There are a few central points:</p>
 <ul>
 <li>we need to calculate all the updates <strong>before</strong> we apply them, otherwise the motion will not be synchronous</li>
-<li>the calculation of the average local angle for alignment depends on sines and cosines. Directly averaging</li>
+<li>the calculation of the average local angle for alignment depends on sines and cosines. Directly averaging would be problematic (e.g.&nbsp;when two angles are close to <span class="math inline">\(+pi\)</span> and <span class="math inline">\(-\pi\)</span>).</li>
 </ul>
 <p>The algorithm can be translated in <strong>pseudo-code</strong>.</p>
 <details>
