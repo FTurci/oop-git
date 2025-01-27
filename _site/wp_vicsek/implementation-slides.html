@@ -363,10 +363,11 @@
 <span id="cb7-19"><a></a>        <span class="cf">return</span> conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.</p>
 <p>We can use <code>matplotlib</code>’s <code>quiver</code> plot to actually plot arrows.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> plot(conf):</span>
-<span id="cb8-2"><a></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb8-3"><a></a>    plt.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
-<span id="cb8-4"><a></a>    plt.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> plot(conf,ax):</span>
+<span id="cb8-2"><a></a>    ax.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb8-3"><a></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
+<span id="cb8-4"><a></a>    plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb8-5"><a></a>    <span class="cf">return</span> qv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Combining all this together you should obtain something like the following</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
