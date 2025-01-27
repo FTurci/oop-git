@@ -184,7 +184,7 @@ std::cout<<"The system has a simulation box of side "<<model.simulationBox.getSi
 ```
 The compilation step is now
 ```bash
-g++ main.cpp simulation.cpp box.cpp -o myvicsek
+g++ main.cpp system.cpp box.cpp -o myvicsek
 ```
 If you instead have prepared a correct makefile, just type
 
