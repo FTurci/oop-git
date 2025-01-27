@@ -217,7 +217,7 @@ We should also decide how these properties get initialised when we create a new 
 Reasonable choices are the following:
 
 -  zero both `x`, `y` and `theta`
-- set `r` as the out unit of length
+- set `r` as the unit of length
 - set `v` to `0.5`
 
 This can be directly done in the implementation of the default constructor `Particle()`, with no parameters.
