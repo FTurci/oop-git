@@ -1,0 +1,45 @@
+---
+title: "Solutions"
+html:
+output-file: solutions.html
+---
+
+The solutions to the **Implementation** workshop can be downloaded as a git bundle from here:
+
+- [📒 Implementation.bundle](../bundles/Implementation.bundle)
+
+## How to use the bundle
+
+First, download the bundle and clone it locally on you machine with
+
+```bash
+git clone Implementation.bundle
+```
+
+Then you will be able to see all the branches and commits of the bundle.
+
+In particular, an easy way to navigate the solutions is to use the tags: the bundle contains so-called `git` tags, which are shortcuts to commits. You can see all the tags by typing
+
+```bash
+git tag
+```
+
+inside your cloned repository.
+
+
+You have two main parts for this workshop:
+
+- The tasks of *Hands on objects and classes* are labelled `3.x` where x is the number of the task
+- The tasks of *Completing the OOP design of the project* are labelled `3.x` where x is the number of the task
+
+To access the state of the repository for a particular task just use `git checkout <task-number>`. So, for example, to access task 4 
+
+```bash
+git checkout 3.4
+```
+
+You can always go back to the main branch with
+
+```bash
+git checkout main
+```
