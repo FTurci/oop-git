@@ -283,13 +283,23 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++17 <span class="at">-O2</span> <span class="at">-Wall</span> main.o utils.o <span class="at">-o</span> program</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
-<section id="makefiles" class="title-slide slide level2 center scrollable">
+<section id="makefiles" class="title-slide slide level2 center">
 <h2>Makefiles</h2>
-<p>Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.</p>
+<p>When a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.</p>
 <p>We could write a separate <code>bash</code> script to do so, but it would not be very efficient.</p>
-<p>The standard way is to construct a <code>Makefile</code> and to use it with the normally available command-line utility <code>make</code>. Makefiles are a special type of file with a <a href="https://www.gnu.org/software/make/manual/">characteristic syntax</a>. Often, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.</p>
-<p>We want to transpose the compilation command above into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called <code>Makefile</code>.</p>
+</section>
+<section class="slide level3">
+
+<p>The standard way is to construct a <code>Makefile</code> and to use it with the normally available command-line utility <code>make</code>. Makefiles are a special type of file with a <a href="https://www.gnu.org/software/make/manual/">characteristic syntax</a>.</p>
+<p>Often, Makefiles are quite complex, or even automatically generated. Here, we write a <strong>simple</strong>, <strong>interpretable</strong> makefile from <strong>scratch</strong>.</p>
+</section>
+<section class="slide level3">
+
+<p>We want to transpose the compilation commands into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called <code>Makefile</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="fu">touch</span> Makefile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="structure-of-a-makefile" class="slide level3 scrollable">
+<h3>Structure of a Makefile</h3>
 <p>A Makefile consists of</p>
 <ol type="1">
 <li><strong>Variables</strong>: these identify compilers, file names, and flags.</li>

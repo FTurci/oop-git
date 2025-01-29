@@ -110,18 +110,28 @@ g++ -std=c++17 -O2 -Wall main.o utils.o -o program
 
 ## Makefiles
 
-Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.
+When a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.
 
 We could write a separate `bash` script to do so, but it would not be very efficient.
 
-The standard way is to construct a `Makefile` and to use it with the normally available command-line utility `make`. Makefiles are a special type of file with a [characteristic syntax](https://www.gnu.org/software/make/manual/). Often, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.
+---
 
-We want to transpose the compilation command above into a makefile. So, in the source folder (i.e.e wherever the code is stored)
+The standard way is to construct a `Makefile` and to use it with the normally available command-line utility `make`. Makefiles are a special type of file with a [characteristic syntax](https://www.gnu.org/software/make/manual/). 
+
+Often, Makefiles are quite complex, or even automatically generated. Here, we write a **simple**, **interpretable** makefile from **scratch**.
+
+---
+
+We want to transpose the compilation commands into a makefile. So, in the source folder (i.e.e wherever the code is stored)
  we create a file called `Makefile`.
 
  ```bash
 touch Makefile
 ```
+
+---
+
+### Structure of a Makefile
 
 A Makefile consists of 
 

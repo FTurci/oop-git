@@ -287,6 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#makefiles" id="toc-makefiles" class="nav-link" data-scroll-target="#makefiles">Makefiles</a>
   <ul class="collapse">
+  <li><a href="#structure-of-a-makefile" id="toc-structure-of-a-makefile" class="nav-link" data-scroll-target="#structure-of-a-makefile">Structure of a Makefile</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   <li><a href="#rules" id="toc-rules" class="nav-link" data-scroll-target="#rules">Rules</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
@@ -401,16 +402,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="makefiles" class="level2">
 <h2 class="anchored" data-anchor-id="makefiles">Makefiles</h2>
-<p>Clearly, when a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.</p>
+<p>When a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.</p>
 <p>We could write a separate <code>bash</code> script to do so, but it would not be very efficient.</p>
-<p>The standard way is to construct a <code>Makefile</code> and to use it with the normally available command-line utility <code>make</code>. Makefiles are a special type of file with a <a href="https://www.gnu.org/software/make/manual/">characteristic syntax</a>. Often, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.</p>
-<p>We want to transpose the compilation command above into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called <code>Makefile</code>.</p>
+<hr>
+<p>The standard way is to construct a <code>Makefile</code> and to use it with the normally available command-line utility <code>make</code>. Makefiles are a special type of file with a <a href="https://www.gnu.org/software/make/manual/">characteristic syntax</a>.</p>
+<p>Often, Makefiles are quite complex, or even automatically generated. Here, we write a <strong>simple</strong>, <strong>interpretable</strong> makefile from <strong>scratch</strong>.</p>
+<hr>
+<p>We want to transpose the compilation commands into a makefile. So, in the source folder (i.e.e wherever the code is stored) we create a file called <code>Makefile</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> Makefile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<section id="structure-of-a-makefile" class="level3">
+<h3 class="anchored" data-anchor-id="structure-of-a-makefile">Structure of a Makefile</h3>
 <p>A Makefile consists of</p>
 <ol type="1">
 <li><strong>Variables</strong>: these identify compilers, file names, and flags.</li>
 <li><strong>Rules</strong>: these are actions that the Makefile can perform, each with a name associated with it. Each rule consists of a target, dependencies, and a recipe (command).</li>
 </ol>
+</section>
 <section id="variables" class="level3">
 <h3 class="anchored" data-anchor-id="variables">Variables</h3>
 <p>The obvious variables for a Makefile are:</p>
