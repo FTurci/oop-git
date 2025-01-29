@@ -202,9 +202,13 @@ clean:
 :::{.callout-note icon="false"}
 ## Task 1: writing a minimal Makefile 
 
-Using the information above, write a minimal Makefile that can compile your single file `main.cpp`.  Run your makefile using the `make` command.
+Using the information above, download the following project folder and write a minimal Makefile that can compile the following project:
 
-If you copied and pasted the code from the [introduction to Git](git.qmd) pages, you should also get a compiler error. Can you address it?
+[makefiles.zip](../Makefiles/makefiles.zip)
+
+ Run your makefile using the `make` command.
+
+<!-- If you copied and pasted the code from the [introduction to Git](git.qmd) pages, you should also get a compiler error. Can you address it? -->
 
 :::
 
