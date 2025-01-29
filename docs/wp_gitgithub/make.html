@@ -384,6 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>-march=native</code>: Optimize for the architecture of the host machine.</li>
 </ul></li>
 </ol>
+<hr>
 <p>For example, the following compiles two files <code>main.cpp</code> and <code>utils.cpp</code> to produce a single program <code>program</code> with optimisation level <code>2</code>, with warnings enabled and using the 2017 standard for C++.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++17 <span class="at">-O2</span> <span class="at">-Wall</span> <span class="at">-o</span> program main.cpp utils.cpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that this in fact performs two actions at the same time:</p>
