@@ -1,5 +1,5 @@
 ---
-title: "Seminar: Compilation and makefiles"
+title: "`Seminar`: Compilation and makefiles"
 editor_options:
   tab_width: 4
   insert_spaces: false
