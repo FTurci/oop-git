@@ -35,6 +35,7 @@ website:
       - section: "5| Wrapping"
         contents:
         - href: wp_wrapping/pyclasses.qmd
+        - href: wp_wrapping/solutions.qmd
 
 
 
