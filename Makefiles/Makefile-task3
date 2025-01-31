@@ -1,0 +1,22 @@
+# check that the indentation is a tab and not spaces
+
+CC = g++
+CFLAGS = -O2 -Wall -std=c++17
+SRC = main.cpp pgcalculator.cpp
+EXEC = program
+# task 3.1: define the object files
+OBJ = $(SRC:.cpp=.o) 
+
+# task 3.4: modify the all rule to write only completion messages
+all: $(EXEC) 
+	@echo "Build complete"
+
+# task 3.2: rule to convert source files into objects
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@	
+# task 3.3: rule to link objects
+$(EXEC): $(OBJ)
+	$(CC) $(OBJ) -o $(EXEC) 
+clean:
+# task 3.5: complete cleaning by removing also the object files
+	rm -f $(EXEC) $(OBJ)

@@ -1,0 +1,10 @@
+CC = g++
+CFLAGS = -O2 -Wall -std=c++17
+SRC = main.cpp pgcalculator.cpp
+EXEC = program
+
+# check that the indentation is a tab and not spaces
+all: 
+	$(CC) $(CFLAGS) $(SRC) -o $(EXEC)
+clean:
+	rm -f $(EXEC)
