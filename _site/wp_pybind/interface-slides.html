@@ -27,6 +27,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-d3a23058824a2a9b926dc54bab07359c.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -133,12 +198,242 @@
 </div>
 
 </section>
+<section id="aims" class="title-slide slide level2 center">
+<h2>Aims</h2>
+<ul>
+<li>Improve the Python interface to use the code</li>
+<li>Discover the notion of <strong>bindings</strong></li>
+</ul>
+</section>
+
+<section id="learning-outcomes" class="title-slide slide level2 center">
+<h2>Learning outcomes</h2>
+<ul>
+<li>Minimal usage of <code>pybind11</code></li>
+</ul>
+</section>
+
+<section id="interacting-with-the-c-code" class="title-slide slide level2 center">
+<h2>Interacting with the C++ code</h2>
+<p>Our <code>C++</code> is now cnsituted of many pieces:</p>
+<ul>
+<li>the objects
+<ul>
+<li><code>System</code></li>
+<li><code>Box</code></li>
+<li><code>Particle</code></li>
+</ul></li>
+<li>the <code>main</code> function (and source code)</li>
+</ul>
+<p>The <code>main.cpp</code> file seems critical : without it, the program does not even begin.</p>
+<p>However, all the conceptual pieces that we need for the simulation do exist without the <code>main.cpp</code> code: the <code>System</code> contains all the functions and variables needed for the simulation to run.</p>
+<p>It would be ideal to delegate to <code>C++</code> all the heavy calculations related to the system update and instead use an easier, mnore flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.</p>
+<p><a href="https://github.com/pybind/pybind11"><code>pybind11</code></a> precisely allows us to do this .</p>
+</section>
+
+<section>
+<section id="the-pybind11-library" class="title-slide slide level2 center">
+<h2>The <code>pybind11</code> library</h2>
+<p>Pybind11 is <strong>header only</strong> library for C++ that simplifies the inter-operability (<strong>bindings</strong>) between the two languages. This chiefly means the ability to <strong>call C++ functions and objects from Python</strong>.</p>
+<p>While Python is written in C/C++ itself, provining such <em>binding</em> using the native Python interface is quite complex.</p>
+<p><code>pybind11</code> provides a number of tools that work at <strong>high level</strong> (i.e.&nbsp;at the level of <strong>class declarations</strong>).</p>
+<p>The library is <strong>header only</strong>, means that its installation is very simple (it is a small number of headers <code>.h</code> files that do not need to be pre-compiled).</p>
+</section>
+<section id="installation" class="slide level3">
+<h3>Installation</h3>
+<p>The most generic installation is via Python’s package manager <code>pip</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">pip</span> install pybind11 <span class="at">--user</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, one some version of <code>Ubuntu</code> (e.g.&nbsp;under WSL on Windows) one may need</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">apt</span> install python-pybind11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once this is installed, the following command should return a valid path</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">python</span> <span class="at">-m</span> pybind11 <span class="at">--includes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If this works, <code>pybind11</code> is correctly installed and one can proceed with the construction of the bindings.</p>
+</section>
+<section id="binding-the-system" class="slide level3">
+<h3>Binding the <code>System</code></h3>
+<p>The goal of the bindings is to produce a <strong>new Pyhton package</strong> that exposes (some) properties of the C++ code.</p>
+<p>We do not need to expose everything, only the parts we are inetrested in. Given the hierarchical structure of our code, the minimum we can expose is the <code>System</code> class itself. If, in Python, we have a means to</p>
+<ul>
+<li>construct a <code>System</code> object</li>
+<li>initialise it</li>
+<li>update it according to the dynamics</li>
+<li>store its configurations</li>
+</ul>
+<p>we can run a basic simulation in Python/C++ of the Vicsek model.</p>
+<p>To bind our code we need to create a <strong>bindings.cpp</strong> file. This file will include all the instructions needed to convert the C++ code to Python, leveraging the library. we do not need a corresponding <strong>bindings.h</strong> file as we are not defining any new object: we are only providing the instruction for <code>pybind11</code> to map a C++ object to a Python object.</p>
+<h4 id="header-inclusions"><strong>Header Inclusions</strong></h4>
+<p>The <code>bindings.cpp</code> first needs to include the correct libaries and header files.</p>
+<p>For <code>pybind11</code> we include the standard</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;pybind11/pybind11.h&gt;</span></span>
+<span id="cb4-2"><a></a><span class="pp">#include </span><span class="im">&lt;pybind11/stl.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and specifically for our <code>System.h</code> we include its header.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a></a><span class="pp">#include </span><span class="im">"system.h"</span><span class="pp">   </span><span class="co">// Ensure this header is included</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="define-the-python-module"><strong>Define the <code>Python</code> module</strong></h4>
+<p>We now need to define the properties of the new Python module that we will create. To do so, we use specia C++ macro defined inside <code>pybind11</code> to automatically generate a C++ function that constructs a Python module.</p>
+<p>At this level, let’s axiomatically accept that to define a Python module from C++ with <code>pybind11</code> we need to call the following construct</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a></a>PYBIND11_MODULE<span class="op">(</span>myvicsek<span class="op">,</span> m<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a></a><span class="co">// all the contents of the module</span></span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These lines of code specifically</p>
+<ul>
+<li>defines a Python module named <strong><code>myvicsek</code></strong>.</li>
+<li>refer with <code>m</code> to the Python module object where bindings are added.</li>
+</ul>
+</section>
 <section class="slide level3">
 
-<p>To appear soon.</p>
-
-
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 1: Create empty <code>bindings.cpp</code> file and compile with <code>pybind11</code></strong></p>
+</div>
+<div class="callout-content">
+<p>Following the instructions above, create a <code>bindings.cpp</code> file in the same folder as the rest of your code.</p>
+<p>Inside the `PYBIND11_MODULE`` include the following line (with the same or an alternative documentation string):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a></a>    m<span class="op">.</span>doc<span class="op">()</span> <span class="op">=</span> <span class="st">"MyVicsek: A Python binding for a C++ implementation of the Vicsek model"</span><span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The compilation step with <code>pybind11</code> requires you to link to the <code>pybind11</code> headers explicitly, and this makes the command quite more complex:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">g++</span> <span class="at">-O3</span> <span class="at">-Wall</span> <span class="at">-fopenmp</span> <span class="at">-shared</span> <span class="at">-std</span><span class="op">=</span>c++11 <span class="at">-undefined</span> dynamic_lookup <span class="va">$(</span><span class="ex">python</span> <span class="at">-m</span> pybind11 <span class="at">--includes</span><span class="va">)</span> bindings.cpp particle.cpp system.cpp  box.cpp <span class="at">-o</span> myvicsek<span class="va">$(</span><span class="ex">python-config</span> <span class="at">--extension-suffix</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that we use bash to retrieve variables with the actual paths of the <code>pybind11</code> headers.</p>
+<p>This is a good reason to have a makefile, where one can perform the suitable modifications. A minimal makefile would look like</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a></a><span class="dt">CC</span> <span class="ch">=</span><span class="st"> g++-14</span></span>
+<span id="cb9-2"><a></a><span class="dt">CFLAGS</span> <span class="ch">=</span><span class="st"> -std=c++11 -O2 -Wall -undefined dynamic_lookup </span><span class="ch">$(</span><span class="kw">shell</span><span class="st"> python -m pybind11 --includes</span><span class="ch">)</span></span>
+<span id="cb9-3"><a></a><span class="dt">SRC</span> <span class="ch">=</span><span class="st"> main.cpp system.cpp box.cpp particle.cpp bindings.cpp</span></span>
+<span id="cb9-4"><a></a><span class="dt">OUT</span> <span class="ch">=</span><span class="st"> myvicsek</span><span class="ch">$(</span><span class="kw">shell</span><span class="st"> python-config --extension-suffix</span><span class="ch">)</span></span>
+<span id="cb9-5"><a></a></span>
+<span id="cb9-6"><a></a><span class="dv">all:</span></span>
+<span id="cb9-7"><a></a><span class="er">    </span><span class="ch">$(</span><span class="dt">CC</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">CFLAGS</span><span class="ch">)</span> <span class="ch">$(</span><span class="dt">SRC</span><span class="ch">)</span> -o <span class="ch">$(</span><span class="dt">OUT</span><span class="ch">)</span></span>
+<span id="cb9-8"><a></a></span>
+<span id="cb9-9"><a></a><span class="dv">clean:</span></span>
+<span id="cb9-10"><a></a><span class="er">    </span>rm -f <span class="ch">$(</span><span class="dt">OUT</span><span class="ch">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When the compilation succeeds, run a python shell (e.g.&nbsp;by typing <code>python</code> or <code>ipython</code>) and import your newly defined module</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> myvicsek</span>
+<span id="cb10-2"><a></a><span class="bu">print</span>(myvicsek.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>We now simply need to provide the instructions to expose the structure of the <code>System</code> to Python.</p>
+<p>First, we need to tell Python that we have a class definition with name System. So we construct a dummy object <code>system_class</code> that represent the class itself.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a></a>pybind11<span class="op">::</span><span class="va">class_</span><span class="op">&lt;</span>System<span class="op">&gt;</span> system_class<span class="op">(</span>m<span class="op">,</span> <span class="st">"PySystem"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this line, we use a special class defined in the <code>pybind11</code> library and apply it to our <code>System</code> class. Notice that:</p>
+<ul>
+<li>We call the <code>class_</code>on our class <code>System</code> (with a syntax similar to the standard <code>std::vector&lt;Type&gt;</code>).</li>
+<li>We construct the dummy <code>system_class</code> with two parameters: the module <code>m</code> and the name with which the <code>system_class</code> will appear on the Python side. In this case <code>PySystem</code>.</li>
+</ul>
+<p>We need now to map member functions and member variables to python.</p>
+<p><code>pybind</code> provides us with many methods to expose classes and their parts. For example:</p>
+<ul>
+<li><code>.def()</code>: binds a member function to the class.</li>
+<li><code>.def_readonly()</code> binds a member variable to a <strong>read-only</strong> attribute.</li>
+<li><code>.def_readwrite()</code> binds a member variable to an attribute that can be <strong>overwritten</strong>.</li>
+</ul>
+<p>and various others (see documentation here).</p>
+<p>We shall only use <code>.def()</code> and <code>.def_readonly()</code> for simplicity.</p>
+<h4 id="mapping-the-constructor">Mapping the constructor</h4>
+<p>The constructor is a member function, so we need to use <code>.def()</code>.</p>
+<p>We need to describe how the constructor works at a very high lebvel: this means essentially just telling Python what kind od inputs it takes:</p>
+<p>For this, <code>pybind</code> has a specific syntax</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a></a>system_class<span class="op">.</span>def<span class="op">(</span>pybind11<span class="op">::</span>init<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">double</span><span class="op">,</span> <span class="dt">double</span><span class="op">,</span> <span class="dt">double</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;(),</span> </span>
+<span id="cb12-2"><a></a>                pybind11<span class="op">::</span>arg<span class="op">(</span><span class="st">"particleNumber"</span><span class="op">),</span> </span>
+<span id="cb12-3"><a></a>                pybind11<span class="op">::</span>arg<span class="op">(</span><span class="st">"sideLength"</span><span class="op">),</span> </span>
+<span id="cb12-4"><a></a>                pybind11<span class="op">::</span>arg<span class="op">(</span><span class="st">"timeStep"</span><span class="op">),</span> </span>
+<span id="cb12-5"><a></a>                pybind11<span class="op">::</span>arg<span class="op">(</span><span class="st">"noiseStrength"</span><span class="op">),</span> </span>
+<span id="cb12-6"><a></a>                pybind11<span class="op">::</span>arg<span class="op">(</span><span class="st">"seed"</span><span class="op">));</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this syntax we are telling <code>pybind</code>:</p>
+<ul>
+<li>that we are referring to the constructor (<code>init</code> stands for <strong>initialisation</strong>)</li>
+<li>the constructor has a specific sequence of parameters, with specific <strong>types</strong></li>
+<li>the parameters have particular names (and we can see such names also in Python). Note the <code>pybind11::arg</code> syntax to identify the strings a parameter names (“arguments”).</li>
+</ul>
+<p>You can in principle <strong>omit</strong> the specification of the parameter names, but it is always more informative to have them.</p>
 </section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 2: Construct the system from python</strong></p>
+</div>
+<div class="callout-content">
+<p>Modify the <code>bindings.cpp</code> file to include the basic definitions for the System class. Recompile and try to construct your first C++ object from Python (either via a separate script or from an interactive shell).</p>
+<p>If you are using a Jupyter notebook, remember to restart the kernel berfore importing the <code>myvicsek</code> module again (or use the method <code>reload</code> from the library <code>importlib</code>).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="member-functions-and-methods" class="slide level3">
+<h3>Member functions and methods</h3>
+<p>Our system class also has member functions and member variables. <code>pybind</code> allows us to expose both, and we can simply choose what to bind and what not to bind.</p>
+<p>As above, we can use <code>.def</code> to bind member functions, for example the random initialisation:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a></a>system_class<span class="op">.</span>def<span class="op">(</span><span class="st">"randomStart"</span><span class="op">,</span> <span class="op">&amp;</span>System<span class="op">::</span>randomStart<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where we tell Python that a new member function (a method) exists for our class and binds directly to its <strong>address</strong> (<code>&amp;</code>) in the C++ class instance.</p>
+<p>Similarly, we can expose the <code>particles</code> member variable in <strong>read-only mode</strong> simply using <code>.def_readonly()</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a></a>system_class<span class="op">.</span>def_readonly<span class="op">(</span><span class="st">"particles"</span><span class="op">,</span> <span class="op">&amp;</span>System<span class="op">::</span>particles<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Again, with this syntax, we use our dummy <code>system_class</code> instance and tell Python that an attribute called <code>"particles"</code> will exist and will point to the <strong>address</strong> (<code>&amp;</code>) of the member variable <code>System::particles</code>.</p>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 3: Bind the rest of <code>System</code></strong></p>
+</div>
+<div class="callout-content">
+<p>Complete the binding of the <code>System</code> class by adding the definitions for</p>
+<ul>
+<li><code>randomStart</code></li>
+<li><code>saveConfig()</code></li>
+<li><code>updateRule()</code></li>
+<li><code>particles</code></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 4: Bind <code>Particle</code></strong></p>
+</div>
+<div class="callout-content">
+<p>Inspired by what you hade done for the <code>System</code> class, construct the bindings for the <code>Particle</code> class as well. Expose at least <code>x</code> , <code>y</code> and <code>theta</code> in <code>read_only</code> mode.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="running-from-python" class="title-slide slide level2 center">
+<h2>Running from Python</h2>
+<p>If you have managed to bind both the <code>System</code> and the <code>Particle</code> class successfully, you are finally ready to use your C++ code efficiently from Python.</p>
+<p>This means that you can now freely</p>
+<ul>
+<li>initialise systems with arbitary parameters (number of particles, noise levels etc)</li>
+<li>update them performing teh Vicsek dynamics</li>
+<li>query the state of the particles inb the system and measure any statistic</li>
+<li>visualise the system as it evolves, with no need to save the data to file.</li>
+</ul>
+<p>With the correct bindings, now you can simply code in Python and benefit from the speedup of the underlying C++ code. You can even think about distributing your package, for example via <code>pip</code>. Enjoy!</p>
+</section>
+<section class="slide level3">
+
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Task 5: Play with your system in Python</strong></p>
+</div>
+<div class="callout-content">
+<p>Create a jupyter notebook and use your package to</p>
+<ul>
+<li>create a System of 1000 particles with noise 0.1 and speed 0.5 in a 20 by 20 box in units of the interqaction radius</li>
+<li>evolve it for 1000 steps</li>
+<li>visualise the final configuration inside the notebook.</li>
+</ul>
+<p>Feel free to modify the code at your will, e.g.&nbsp;to produce an animation instead of a snapshot.</p>
+</div>
+</div>
+</div>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

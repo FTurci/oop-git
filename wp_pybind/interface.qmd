@@ -17,4 +17,296 @@ format:
 output-file: interface-slides.html
 ---
 
-To appear soon.
+## Aims
+
+- Improve the Python interface to use the code
+- Discover the notion of **bindings** 
+
+
+## Learning outcomes
+
+- Minimal usage of `pybind11`
+
+
+## Interacting with the C++ code
+
+Our `C++` is now cnsituted of many pieces: 
+
+- the objects
+    - `System`
+    - `Box`
+    - `Particle`
+- the `main` function (and source code)
+
+The `main.cpp` file seems critical : without it, the program does not even begin. 
+
+However, all the conceptual pieces that we need for the simulation do exist without the `main.cpp` code: the `System` contains all the functions and variables needed for the simulation to run.
+
+It would be ideal to delegate to `C++` all the heavy calculations related to the system update and instead use an easier, mnore flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.
+
+[`pybind11`](https://github.com/pybind/pybind11) precisely allows us to do this .
+
+## The `pybind11` library 
+
+Pybind11 is **header only** library for C++ that simplifies the inter-operability (**bindings**) between the two languages. This chiefly means the ability to **call C++ functions and objects from Python**.
+
+While Python is written in C/C++ itself, provining such *binding* using the native Python interface is quite complex.
+
+`pybind11` provides a number of tools that work at **high level** (i.e. at the level of **class declarations**). 
+
+The library is **header only**, means that its installation is very simple (it is a small number of headers `.h` files that do not need to be pre-compiled).
+
+### Installation
+
+The most generic installation is via Python's package manager `pip`
+
+```bash
+pip install pybind11 --user
+```
+
+Alternatively, one some version of `Ubuntu` (e.g. under WSL on Windows) one may need
+
+```bash
+apt install python-pybind11
+```
+
+Once this is installed, the following command should return a valid path
+
+```bash
+python -m pybind11 --includes
+```
+
+If this works, `pybind11` is correctly installed and one can proceed with the construction of the bindings.
+
+### Binding the `System`
+
+The goal of the bindings is to produce a **new Pyhton package** that exposes (some) properties of the C++ code.
+
+We do not need to expose everything, only the parts we are inetrested in. Given the hierarchical structure of our code, the minimum we can expose is the `System` class itself. If, in Python, we have a means to 
+
+- construct a `System` object
+- initialise it 
+- update it according to the dynamics
+- store its configurations
+
+we can run a basic simulation in Python/C++ of the Vicsek model.
+
+To bind our code we need to create a **bindings.cpp** file. This file will include all the instructions needed to convert the C++ code to Python, leveraging the library. we do not need a corresponding **bindings.h** file as we are not defining any new object: we are only providing the instruction for `pybind11` to map a C++ object to a Python object.
+
+
+#### **Header Inclusions**
+
+The `bindings.cpp` first needs to include the correct libaries and header files.
+
+For `pybind11` we include the standard 
+
+
+```cpp
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+```
+
+and specifically for our `System.h` we include its header.
+
+```cpp
+#include "system.h"   // Ensure this header is included
+```
+
+
+
+#### **Define the `Python` module**
+
+We now need to define the properties of the new Python module that we will create. To do so, we use specia C++ macro defined inside `pybind11` to automatically generate a C++ function that constructs a Python module. 
+
+At this level, let's axiomatically accept that to define a Python module from C++ with `pybind11` we  need to call the following construct
+
+
+```cpp
+PYBIND11_MODULE(myvicsek, m) {
+// all the contents of the module
+
+}
+```
+These lines of code specifically
+
+- defines a Python module named **`myvicsek`**.
+- refer with `m` to the Python module object where bindings are added.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 1: Create empty `bindings.cpp` file and compile with `pybind11`
+
+Following the instructions above, create a `bindings.cpp` file in the same folder as the rest of your code.
+
+Inside the `PYBIND11_MODULE`` include the following line (with the same or an alternative documentation string):
+
+```cpp
+    m.doc() = "MyVicsek: A Python binding for a C++ implementation of the Vicsek model"; 
+```
+
+The compilation step with `pybind11` requires you to link to the `pybind11` headers explicitly, and this makes the command quite more complex:
+
+```bash
+g++ -O3 -Wall -fopenmp -shared -std=c++11 -undefined dynamic_lookup $(python -m pybind11 --includes) bindings.cpp particle.cpp system.cpp  box.cpp -o myvicsek$(python-config --extension-suffix)
+```
+Notice that we use bash to retrieve variables with the actual paths of the `pybind11` headers.
+
+This is a good reason to have a makefile, where one can perform the suitable modifications. A minimal makefile would look like
+
+```makefile
+CC = g++-14
+CFLAGS = -std=c++11 -O2 -Wall -undefined dynamic_lookup $(shell python -m pybind11 --includes)
+SRC = main.cpp system.cpp box.cpp particle.cpp bindings.cpp
+OUT = myvicsek$(shell python-config --extension-suffix)
+
+all:
+	$(CC) $(CFLAGS) $(SRC) -o $(OUT)
+
+clean:
+	rm -f $(OUT)
+```
+
+When the compilation succeeds, run a python shell (e.g. by typing `python` or `ipython`) and import your newly defined module
+
+```python
+import myvicsek
+print(myvicsek.__doc__)
+```
+:::
+
+We now simply need to provide the instructions to expose the structure of the `System` to Python.
+
+First, we need to tell Python that we have a class definition with name System. So we construct a dummy object `system_class` that represent the class itself.
+
+```cpp
+pybind11::class_<System> system_class(m, "PySystem");
+```
+
+In this line, we use a special class defined in the `pybind11` library and apply it to our `System` class. Notice that:
+
+- We call the `class_`on our class `System` (with a syntax similar to the standard `std::vector<Type>`).
+- We construct the dummy `system_class` with two parameters: the module `m` and the name with which the `system_class` will appear on the Python side. In this case `PySystem`. 
+
+We need now to map member functions and member variables to python. 
+
+`pybind` provides us with many methods to expose classes and their parts. For example:
+
+- `.def()`: binds a member function to the class.
+- `.def_readonly()`	binds a member variable to a **read-only** attribute.
+- `.def_readwrite()` binds a member variable to an attribute that can be **overwritten**.
+
+and various others (see documentation here).
+
+We shall only use `.def()` and `.def_readonly()` for simplicity.
+
+#### Mapping the constructor
+
+The constructor is a member function, so we need to use `.def()`.
+
+We need to describe how the constructor works at a very high lebvel: this means essentially just telling Python what kind od inputs it takes:
+
+For this, `pybind` has  a specific syntax
+
+```cpp
+system_class.def(pybind11::init<int, double, double, double, int>(), 
+                pybind11::arg("particleNumber"), 
+                pybind11::arg("sideLength"), 
+                pybind11::arg("timeStep"), 
+                pybind11::arg("noiseStrength"), 
+                pybind11::arg("seed"));
+```
+With this syntax we are telling `pybind`:
+
+- that we are referring to the constructor (`init` stands for **initialisation**)
+- the constructor has a specific sequence of parameters, with specific **types**
+- the parameters have particular names (and we can see such names also in Python). Note the `pybind11::arg` syntax to identify the strings a parameter names ("arguments").
+
+You can in principle **omit** the specification of the parameter names, but it is always more informative to have them.
+
+---
+
+:::{.callout-note icon="false"}
+## Task 2: Construct the system from python
+
+Modify the `bindings.cpp` file to include the basic definitions for the System class. Recompile and try to construct your first C++ object from Python (either via a separate script or from an interactive shell).
+
+If you are using a Jupyter notebook, remember to restart the kernel berfore importing the `myvicsek` module again (or use the method `reload` from the library `importlib`).
+
+:::
+
+
+
+
+
+###  Member functions and methods
+
+Our system class also has member functions and member variables. `pybind` allows us to expose both, and we can simply choose what to bind and what not to bind.
+
+As above, we can use `.def` to bind member functions, for example the random initialisation:
+
+```cpp
+system_class.def("randomStart", &System::randomStart);
+```
+where we tell Python that a new member function (a method) exists for our class and binds directly to its **address** (`&`) in the C++ class instance.
+
+Similarly, we can expose the `particles` member variable in **read-only mode** simply  using `.def_readonly()`
+
+```cpp
+system_class.def_readonly("particles", &System::particles);
+```
+Again, with this syntax, we use our dummy `system_class` instance and tell Python that an attribute called `"particles"` will exist and will point to the **address** (`&`) of the member variable `System::particles`.
+
+
+
+
+:::{.callout-note icon="false"}
+## Task 3: Bind the rest of `System`
+
+Complete the binding of the `System` class by adding the definitions for 
+
+- `randomStart`
+- `saveConfig()`
+- `updateRule()`
+- `particles`
+
+:::
+
+---
+
+
+:::{.callout-note icon="false"}
+## Task 4: Bind `Particle`
+
+Inspired by what you hade done for the `System` class, construct the bindings for the `Particle` class as well. Expose at least `x` , `y` and `theta` in `read_only` mode.
+
+:::
+
+## Running from Python
+
+If you have managed to bind both the `System` and the `Particle` class successfully, you are finally ready to use your C++ code efficiently from Python.
+
+This means that you can now freely 
+
+- initialise systems with arbitary parameters (number of particles, noise levels etc)
+- update them performing teh Vicsek dynamics
+- query the state of the particles inb the system and measure any statistic
+- visualise the system as it evolves, with no need to save the data to file.
+
+With the correct bindings, now you can simply code in Python and benefit from the speedup of the underlying C++ code. You can even think about distributing your package, for example via `pip`. Enjoy!
+
+--- 
+
+:::{.callout-note icon="false"}
+## Task 5: Play with your system in Python
+
+Create a jupyter notebook and use your package to 
+
+- create a System of 1000 particles with noise 0.1 and speed 0.5 in a 20 by 20 box in  units of the interqaction radius
+- evolve it for 1000 steps
+- visualise the final configuration inside the notebook.
+
+Feel free to modify the code at your will, e.g. to produce an animation instead of a snapshot.
+:::
+
+
