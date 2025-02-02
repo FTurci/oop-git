@@ -78,14 +78,15 @@ print("Standard Output:", result.stdout)
 print("Standard Error:", result.stderr)
 ```
 
----
-:::{.callout-note icon="false"}
+------------------------------------------------------------------------
+
+::: {.callout-note icon="false"}
 ## Task 1: Get input parameters and try subprocess
 
 Modify `main.cpp` to take the noise in input, recompile and run th C++ program from a python program (or a jupyter notebook) using subprocess.
-
 :::
----
+
+------------------------------------------------------------------------
 
 ## Wrap into a Python Class
 

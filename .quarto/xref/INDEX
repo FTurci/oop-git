@@ -81,5 +81,9 @@
   },
   "wp_vicsek/solutions.qmd": {
     "solutions.html": "0875324d"
+  },
+  "wp_pybind/pythonoop.qmd": {
+    "pythonoop-slides.html": "2ab99337",
+    "pythonoop.html": "af29334d"
   }
 }
