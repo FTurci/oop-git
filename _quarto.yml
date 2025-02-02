@@ -32,6 +32,7 @@ website:
         - href: wp_vicsek/solutions.qmd
       - section: "4| C++ to Python interface"
         contents:
+        - href: wp_pybind/pythonoop.qmd
         - href: wp_pybind/interface.qmd
     #   - section: "5| Wrapping"
     #     # contents:

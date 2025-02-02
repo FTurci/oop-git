@@ -1,0 +1,148 @@
+---
+title: "Wrap C++ in a Python object"
+format:
+  revealjs:
+    width: 1200
+    height: 800
+    # self-contained: true
+    scrollable: true
+    auto-stretch: false
+    lazy-load: false
+    slide-level: 3
+    smaller: true
+    theme: [simple, ../scss/custom.scss]
+    # transition: fade
+  html:
+    output-file: pythonoop.html
+output-file: pythonoop-slides.html
+---
+
+## Aims
+
+-   Use the C++ code from a nice Python interface
+
+## Learning outcomes
+
+-   Defining classes in Python
+
+## Subprocesses in Python
+
+We have compiled a C++ program and produced an executable `myvicsek`. We are running it from the shell and then retrieving the date from Python. Could we strealine the process a bit?
+
+The first thing we could do is tho make our makefile take some external parameters from input, so that we do not need to recompile it every time we change a parameter.
+
+This is easily done: the `main` function takes default inputs `int argc, char* argv[]` which are :
+
+-   the number of input arguments
+-   an array of input arguments (as sequeence of characters)
+
+Let us consider the simple case in which we only want one parameter in input, the noise strength.
+
+We can do the following:
+
+``` cpp
+#include <iostream>
+#include <cstdlib>  // For std::stof (string to float)
+
+int main(int argc, char* argv[]) {
+    // Convert the string argument to a float
+    double noiseStrength = std::stof(argv[1]);
+ 
+    // rest of main
+    // ...
+    return 0;
+}
+```
+
+Once this is done, we cna call
+
+``` bash
+./myvicsek 0.15
+```
+
+to run our program at noise 0.15. But could we do this from python instead?
+
+A dedicated module exists, called `subprocess`. It allows us to spawn a new process (our C++ program) from another process (e.g. a Python program).
+
+``` python
+import subprocess
+
+# Define the command and arguments inside a list
+command = ['./myvicsek', '0.14']
+
+# Call the C++ program via subprocess
+result = subprocess.run(command, capture_output=True, text=True)
+
+# Print the output
+print("Standard Output:", result.stdout)
+print("Standard Error:", result.stderr)
+```
+
+---
+:::{.callout-note icon="false"}
+## Task 1: Get input parameters and try subprocess
+
+Modify `main.cpp` to take the noise in input, recompile and run th C++ program from a python program (or a jupyter notebook) using subprocess.
+
+:::
+---
+
+## Wrap into a Python Class
+
+Even more interesting would be to hide all this technical detail and simply be able to do the following:
+
+``` python
+import pyvicsek
+
+model = pyvicsek.Wrapper(noise=0.15)
+model.run()
+```
+
+This code assumes that in our module `pyvicsek` there is something named `Wrapper` which takes a named parameter `noise` and a has an attached method called `run()`. Byt clearly this does not exist... *yet!.*
+
+To make the code above valid we simply need to create a **custom Python class**. Classes in Python are very similar to C++, but much simpler.
+
+The following analogies hold:
+
+-   member variables are called **attributes**
+-   member functions are called **methods**
+-   all attributes and methods are public
+-   C++'s `this` is conventionally called `self`
+-   C++'s `.` and `->` are just `.`
+-   the constructor is a hidden method always called `__init__()`
+
+Python classes are in general quite simpler than their C++ counterparts: there is no need for header files.
+
+Our simple `Wrapper` class does not need to do much: it takes a parameter in input and then runs the code. Howevr we need to give it some structure
+
+``` python
+class Wrapper:
+    def __init__(self, noise=0.1):
+        # code to initalise the object
+
+    def run(self):
+        # code to run
+```
+
+Notice that the two methods (member functions) take `self` explicitly as their **first** parameter: this makes it possible for them to directly refer to the class instance inside their code. For example, the constructor `__init__` can store the noise level by
+
+``` python
+self.noise = noise
+```
+
+and the method `run()` can refer to it, for example by using `subprocess` to run a local executable
+
+``` python
+def run(self):
+    command = ["absolute/path/to/myvicsek", str(self.noise)]
+    result = subprocess.run(command, capture_output=True, text=True)
+    return result
+```
+
+::: {.callout-note icon="false"}
+## Task 2: Create your Wrapper class
+
+Modify your `pyvicsek.py` so that it only contains function definitions and the definition of a class `Wrapper` following the hints above.
+
+From a Jupyter notebook (or , alternatively, a new Python script) import the `pyvicsek` module and create an instance of the `Wrapper` class and run a simulation.
+:::
