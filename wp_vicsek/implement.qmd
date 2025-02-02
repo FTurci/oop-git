@@ -175,7 +175,7 @@ Is it what you expected?
 
 We have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.
 
-For this, `Python` is the easiest tool at our hand. So, we are going to use now simple **procedural** `Python` to read in the initial configuration and plot it. We will see later how these instructions acan also be made *object-oriented** (within `Python`).
+For this, `Python` is the easiest tool at our hand. So, we are going to use now simple **procedural** `Python` to read in the initial configuration and plot it. 
 
 We organise our python code in a separate file, which we call `pyvicsek.py`. We will read the configuration trivially using `numpy`
 
@@ -315,7 +315,7 @@ model.saveConfig( root+std::to_string(iteration));
 
 ## Visualising the trajectory
 
-Simple modifications to your Oython code to include `matplotlib`'s `Funcanimation` allow you to  visualise the trajectory
+Simple modifications to your Python code to include `matplotlib`'s `Funcanimation` allow you to  visualise the trajectory
 
 Here is a an example
 
