@@ -30,7 +30,7 @@ output-file: interface-slides.html
 
 ## Interacting with the C++ code
 
-Our `C++` is now cnsituted of many pieces: 
+Our `C++` is now constituted of many pieces: 
 
 - the objects
     - `System`
@@ -42,15 +42,15 @@ The `main.cpp` file seems critical : without it, the program does not even begin
 
 However, all the conceptual pieces that we need for the simulation do exist without the `main.cpp` code: the `System` contains all the functions and variables needed for the simulation to run.
 
-It would be ideal to delegate to `C++` all the heavy calculations related to the system update and instead use an easier, mnore flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.
+It would be ideal to delegate to `C++` all the heavy calculations related to the system update and instead use an easier, more flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.
 
-[`pybind11`](https://github.com/pybind/pybind11) precisely allows us to do this .
+[`pybind11`](https://pybind11.readthedocs.io/en/latest/) precisely allows us to do this .
 
 ## The `pybind11` library 
 
 Pybind11 is **header only** library for C++ that simplifies the inter-operability (**bindings**) between the two languages. This chiefly means the ability to **call C++ functions and objects from Python**.
 
-While Python is written in C/C++ itself, provining such *binding* using the native Python interface is quite complex.
+While Python is written in C/C++ itself, providing such *binding* using the native Python interface is quite complex.
 
 `pybind11` provides a number of tools that work at **high level** (i.e. at the level of **class declarations**). 
 
@@ -80,9 +80,9 @@ If this works, `pybind11` is correctly installed and one can proceed with the co
 
 ### Binding the `System`
 
-The goal of the bindings is to produce a **new Pyhton package** that exposes (some) properties of the C++ code.
+The goal of the bindings is to produce a **new Python package** that exposes (some) properties of the C++ code.
 
-We do not need to expose everything, only the parts we are inetrested in. Given the hierarchical structure of our code, the minimum we can expose is the `System` class itself. If, in Python, we have a means to 
+We do not need to expose everything, only the parts we are interested in. Given the hierarchical structure of our code, the minimum we can expose is the `System` class itself. If, in Python, we have a means to 
 
 - construct a `System` object
 - initialise it 
@@ -96,7 +96,7 @@ To bind our code we need to create a **bindings.cpp** file. This file will inclu
 
 #### **Header Inclusions**
 
-The `bindings.cpp` first needs to include the correct libaries and header files.
+The `bindings.cpp` first needs to include the correct libraries and header files.
 
 For `pybind11` we include the standard 
 
@@ -116,7 +116,7 @@ and specifically for our `System.h` we include its header.
 
 #### **Define the `Python` module**
 
-We now need to define the properties of the new Python module that we will create. To do so, we use specia C++ macro defined inside `pybind11` to automatically generate a C++ function that constructs a Python module. 
+We now need to define the properties of the new Python module that we will create. To do so, we use a special C++ macro defined inside `pybind11` to automatically generate a C++ function that constructs a Python module. 
 
 At this level, let's axiomatically accept that to define a Python module from C++ with `pybind11` we  need to call the following construct
 
@@ -139,7 +139,7 @@ These lines of code specifically
 
 Following the instructions above, create a `bindings.cpp` file in the same folder as the rest of your code.
 
-Inside the `PYBIND11_MODULE`` include the following line (with the same or an alternative documentation string):
+Inside the `PYBIND11_MODULE` include the following line (with the same or an alternative documentation string):
 
 ```cpp
     m.doc() = "MyVicsek: A Python binding for a C++ implementation of the Vicsek model"; 
