@@ -235,7 +235,7 @@
 <span id="cb1-9"><a></a>    <span class="co">// ...</span></span>
 <span id="cb1-10"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-11"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once this is done, we cna call</p>
+<p>Once this is done, we can recompile and run</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">./myvicsek</span> 0.15</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to run our program at noise 0.15. But could we do this from python instead?</p>
 <p>A dedicated module exists, called <code>subprocess</code>. It allows us to spawn a new process (our C++ program) from another process (e.g.&nbsp;a Python program).</p>

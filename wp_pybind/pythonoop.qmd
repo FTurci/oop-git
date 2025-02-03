@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Once this is done, we cna call
+Once this is done, we can recompile and run
 
 ``` bash
 ./myvicsek 0.15
