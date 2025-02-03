@@ -126,7 +126,7 @@ void System::saveConfig(const std::string &filename)
     for (size_t i = 0; i < particles.size(); ++i) {
         outFile << i << " " << particles[i].x <<" "<<particles[i].y<<" "<<particles[i].theta << std::endl;
     }
-    }
+    
     outFile.close(); // Close the file
 }    
 

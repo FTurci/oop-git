@@ -306,7 +306,7 @@
 <span id="cb3-12"><a></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> particles<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-13"><a></a>        outFile <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="st">" "</span> <span class="op">&lt;&lt;</span> particles<span class="op">[</span>i<span class="op">].</span>x <span class="op">&lt;&lt;</span><span class="st">" "</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>y<span class="op">&lt;&lt;</span><span class="st">" "</span><span class="op">&lt;&lt;</span>particles<span class="op">[</span>i<span class="op">].</span>theta <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
 <span id="cb3-14"><a></a>    <span class="op">}</span></span>
-<span id="cb3-15"><a></a>    <span class="op">}</span></span>
+<span id="cb3-15"><a></a>    </span>
 <span id="cb3-16"><a></a>    outFile<span class="op">.</span>close<span class="op">();</span> <span class="co">// Close the file</span></span>
 <span id="cb3-17"><a></a><span class="op">}</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Infer and add the corresponding definition in <code>system.h</code>. Remember to include <code>&lt;fstream&gt;</code> and <code>&lt;string&gt;</code> where needed.</p>
