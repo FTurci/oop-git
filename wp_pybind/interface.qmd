@@ -135,7 +135,7 @@ These lines of code specifically
 ---
 
 :::{.callout-note icon="false"}
-## Task 1: Create empty `bindings.cpp` file and compile with `pybind11`
+## Task 3: Create empty `bindings.cpp` file and compile with `pybind11`
 
 Following the instructions above, create a `bindings.cpp` file in the same folder as the rest of your code.
 
@@ -227,7 +227,7 @@ You can in principle **omit** the specification of the parameter names, but it i
 ---
 
 :::{.callout-note icon="false"}
-## Task 2: Construct the system from python
+## Task 4: Construct the system from python
 
 Modify the `bindings.cpp` file to include the basic definitions for the System class. Recompile and try to construct your first C++ object from Python (either via a separate script or from an interactive shell).
 
@@ -261,7 +261,7 @@ Again, with this syntax, we use our dummy `system_class` instance and tell Pytho
 
 
 :::{.callout-note icon="false"}
-## Task 3: Bind the rest of `System`
+## Task 5: Bind the rest of `System`
 
 Complete the binding of the `System` class by adding the definitions for 
 
@@ -276,7 +276,7 @@ Complete the binding of the `System` class by adding the definitions for
 
 
 :::{.callout-note icon="false"}
-## Task 4: Bind `Particle`
+## Task 6: Bind `Particle`
 
 Inspired by what you hade done for the `System` class, construct the bindings for the `Particle` class as well. Expose at least `x` , `y` and `theta` in `read_only` mode.
 
@@ -298,7 +298,7 @@ With the correct bindings, now you can simply code in Python and benefit from th
 --- 
 
 :::{.callout-note icon="false"}
-## Task 5: Play with your system in Python
+## Task 7: Play with your system in Python
 
 Create a jupyter notebook and use your package to 
 
