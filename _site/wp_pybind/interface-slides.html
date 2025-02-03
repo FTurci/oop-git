@@ -314,11 +314,11 @@
 </div>
 <p>We now simply need to provide the instructions to expose the structure of the <code>System</code> to Python.</p>
 <p>First, we need to tell Python that we have a class definition with name System. So we construct a dummy object <code>system_class</code> that represent the class itself.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a></a>pybind11<span class="op">::</span><span class="va">class_</span><span class="op">&lt;</span>System<span class="op">&gt;</span> system_class<span class="op">(</span>m<span class="op">,</span> <span class="st">"PySystem"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a></a>pybind11<span class="op">::</span><span class="va">class_</span><span class="op">&lt;</span>System<span class="op">&gt;</span> system_class<span class="op">(</span>m<span class="op">,</span> <span class="st">"System"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this line, we use a special class defined in the <code>pybind11</code> library and apply it to our <code>System</code> class. Notice that:</p>
 <ul>
 <li>We call the <code>class_</code>on our class <code>System</code> (with a syntax similar to the standard <code>std::vector&lt;Type&gt;</code>).</li>
-<li>We construct the dummy <code>system_class</code> with two parameters: the module <code>m</code> and the name with which the <code>system_class</code> will appear on the Python side. In this case <code>PySystem</code>.</li>
+<li>We construct the dummy <code>system_class</code> with two parameters: the module <code>m</code> and the name with which the <code>system_class</code> will appear on the Python side. In this case <code>System</code>.</li>
 </ul>
 <p>We need now to map member functions and member variables to python.</p>
 <p><code>pybind</code> provides us with many methods to expose classes and their parts. For example:</p>
@@ -378,7 +378,7 @@
 <div class="callout-content">
 <p>Complete the binding of the <code>System</code> class by adding the definitions for</p>
 <ul>
-<li><code>randomStart</code></li>
+<li><code>randomStart()</code></li>
 <li><code>saveConfig()</code></li>
 <li><code>updateRule()</code></li>
 <li><code>particles</code></li>
@@ -423,7 +423,7 @@
 <div class="callout-content">
 <p>Create a jupyter notebook and use your package to</p>
 <ul>
-<li>create a System of 1000 particles with noise 0.1 and speed 0.5 in a 20 by 20 box in units of the interqaction radius</li>
+<li>create a System of 1000 particles with noise 0.1 and timestep 0.5 in a 20 by 20 box in units of the interaction radius</li>
 <li>evolve it for 1000 steps</li>
 <li>visualise the final configuration inside the notebook.</li>
 </ul>

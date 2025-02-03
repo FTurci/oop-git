@@ -180,13 +180,13 @@ We now simply need to provide the instructions to expose the structure of the `S
 First, we need to tell Python that we have a class definition with name System. So we construct a dummy object `system_class` that represent the class itself.
 
 ```cpp
-pybind11::class_<System> system_class(m, "PySystem");
+pybind11::class_<System> system_class(m, "System");
 ```
 
 In this line, we use a special class defined in the `pybind11` library and apply it to our `System` class. Notice that:
 
 - We call the `class_`on our class `System` (with a syntax similar to the standard `std::vector<Type>`).
-- We construct the dummy `system_class` with two parameters: the module `m` and the name with which the `system_class` will appear on the Python side. In this case `PySystem`. 
+- We construct the dummy `system_class` with two parameters: the module `m` and the name with which the `system_class` will appear on the Python side. In this case `System`. 
 
 We need now to map member functions and member variables to python. 
 
@@ -265,7 +265,7 @@ Again, with this syntax, we use our dummy `system_class` instance and tell Pytho
 
 Complete the binding of the `System` class by adding the definitions for 
 
-- `randomStart`
+- `randomStart()`
 - `saveConfig()`
 - `updateRule()`
 - `particles`
@@ -302,7 +302,7 @@ With the correct bindings, now you can simply code in Python and benefit from th
 
 Create a jupyter notebook and use your package to 
 
-- create a System of 1000 particles with noise 0.1 and speed 0.5 in a 20 by 20 box in  units of the interqaction radius
+- create a System of 1000 particles with noise 0.1 and timestep 0.5 in a 20 by 20 box in  units of the interaction radius
 - evolve it for 1000 steps
 - visualise the final configuration inside the notebook.
 
