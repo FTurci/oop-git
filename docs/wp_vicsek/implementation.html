@@ -508,10 +508,9 @@ Task 4: Produce an initial configuration
 <p>Notice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.</p>
 <p>We can use <code>matplotlib</code>’s <code>quiver</code> plot to actually plot arrows.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(conf,ax):</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    ax.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Combining all this together you should obtain something like the following</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
