@@ -27,14 +27,14 @@ output-file: pythonoop-slides.html
 
 ## Subprocesses in Python
 
-We have compiled a C++ program and produced an executable `myvicsek`. We are running it from the shell and then retrieving the date from Python. Could we strealine the process a bit?
+We have compiled a C++ program and produced an executable `myvicsek`. We are running it from the shell and then retrieving the date from Python. Could we streamline the process a bit?
 
 The first thing we could do is tho make our makefile take some external parameters from input, so that we do not need to recompile it every time we change a parameter.
 
 This is easily done: the `main` function takes default inputs `int argc, char* argv[]` which are :
 
 -   the number of input arguments
--   an array of input arguments (as sequeence of characters)
+-   an array of input arguments (as sequence of characters)
 
 Let us consider the simple case in which we only want one parameter in input, the noise strength.
 
@@ -83,7 +83,7 @@ print("Standard Error:", result.stderr)
 ::: {.callout-note icon="false"}
 ## Task 1: Get input parameters and try subprocess
 
-Modify `main.cpp` to take the noise in input, recompile and run th C++ program from a python program (or a jupyter notebook) using subprocess.
+Modify `main.cpp` to take the noise in input, recompile and run the C++ program from a python program (or a jupyter notebook) using subprocess.
 :::
 
 ------------------------------------------------------------------------
@@ -114,7 +114,7 @@ The following analogies hold:
 
 Python classes are in general quite simpler than their C++ counterparts: there is no need for header files.
 
-Our simple `Wrapper` class does not need to do much: it takes a parameter in input and then runs the code. Howevr we need to give it some structure
+Our simple `Wrapper` class does not need to do much: it takes a parameter in input and then runs the code. However we need to give it some structure
 
 ``` python
 class Wrapper:
@@ -145,5 +145,12 @@ def run(self):
 
 Modify your `pyvicsek.py` so that it only contains function definitions and the definition of a class `Wrapper` following the hints above.
 
+You can find the path to the absolute path to the current directory form the terminal using
+
+```bash
+pwd
+```
+
 From a Jupyter notebook (or , alternatively, a new Python script) import the `pyvicsek` module and create an instance of the `Wrapper` class and run a simulation.
+
 :::

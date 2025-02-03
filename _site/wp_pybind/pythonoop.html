@@ -319,12 +319,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="subprocesses-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="subprocesses-in-python">Subprocesses in Python</h2>
-<p>We have compiled a C++ program and produced an executable <code>myvicsek</code>. We are running it from the shell and then retrieving the date from Python. Could we strealine the process a bit?</p>
+<p>We have compiled a C++ program and produced an executable <code>myvicsek</code>. We are running it from the shell and then retrieving the date from Python. Could we streamline the process a bit?</p>
 <p>The first thing we could do is tho make our makefile take some external parameters from input, so that we do not need to recompile it every time we change a parameter.</p>
 <p>This is easily done: the <code>main</code> function takes default inputs <code>int argc, char* argv[]</code> which are :</p>
 <ul>
 <li>the number of input arguments</li>
-<li>an array of input arguments (as sequeence of characters)</li>
+<li>an array of input arguments (as sequence of characters)</li>
 </ul>
 <p>Let us consider the simple case in which we only want one parameter in input, the noise strength.</p>
 <p>We can do the following:</p>
@@ -365,7 +365,7 @@ Task 1: Get input parameters and try subprocess
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Modify <code>main.cpp</code> to take the noise in input, recompile and run th C++ program from a python program (or a jupyter notebook) using subprocess.</p>
+<p>Modify <code>main.cpp</code> to take the noise in input, recompile and run the C++ program from a python program (or a jupyter notebook) using subprocess.</p>
 </div>
 </div>
 <hr>
@@ -389,7 +389,7 @@ Task 1: Get input parameters and try subprocess
 <li>the constructor is a hidden method always called <code>__init__()</code></li>
 </ul>
 <p>Python classes are in general quite simpler than their C++ counterparts: there is no need for header files.</p>
-<p>Our simple <code>Wrapper</code> class does not need to do much: it takes a parameter in input and then runs the code. Howevr we need to give it some structure</p>
+<p>Our simple <code>Wrapper</code> class does not need to do much: it takes a parameter in input and then runs the code. However we need to give it some structure</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Wrapper:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, noise<span class="op">=</span><span class="fl">0.1</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># code to initalise the object</span></span>
@@ -414,6 +414,8 @@ Task 2: Create your Wrapper class
 </div>
 <div class="callout-body-container callout-body">
 <p>Modify your <code>pyvicsek.py</code> so that it only contains function definitions and the definition of a class <code>Wrapper</code> following the hints above.</p>
+<p>You can find the path to the absolute path to the current directory form the terminal using</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From a Jupyter notebook (or , alternatively, a new Python script) import the <code>pyvicsek</code> module and create an instance of the <code>Wrapper</code> class and run a simulation.</p>
 </div>
 </div>
