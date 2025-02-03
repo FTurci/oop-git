@@ -228,7 +228,7 @@ python pyvicsek.py
 
 ## Actual `Vicsek` dynamics
 
-Now comes the actual challenge: we want to code the dynamics of te vicsek model so that our `updateRule()` in `System` actually updates the positions and angles of the system.
+Now comes the actual challenge: we want to code the dynamics of the Vicsek model so that our `updateRule()` in `System` actually updates the positions and angles of the system.
 
 Here was our algorithm after initialisation
 
@@ -244,7 +244,7 @@ Here was our algorithm after initialisation
    \bar{\theta}_i = \text{atan2}\left(\sum_{\rm j \in neighbours} \sin\theta_j, \sum_{\rm j \in neighbours} \cos\theta_j\right)
    $$
 
-4. **Noise**: Add a random perturbation $u$ to the orientation as a random variable uniformly distributed in the interval $[-\eta/2,\eta/2]$, where $\eta$ is teh noise strength
+4. **Noise**: Add a random perturbation $u$ to the orientation as a random variable uniformly distributed in the interval $[-\eta/2,\eta/2]$, where $\eta$ is the noise strength
 
    $$
    \theta_i^{\text{new}} = \bar{\theta}_i + u
@@ -443,6 +443,7 @@ def animate(i):
     print(pos)
     qv.set_offsets(pos)
     qv.set_UVC(conf["vx"], conf["vy"], conf["theta"])
+    return qv,
     
 # Create the animation
 anim = FuncAnimation(fig,animate, range(len(files)))

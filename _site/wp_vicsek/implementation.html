@@ -537,7 +537,7 @@ Task 5: Python script to view the initial configuration
 </section>
 <section id="actual-vicsek-dynamics" class="level2">
 <h2 class="anchored" data-anchor-id="actual-vicsek-dynamics">Actual <code>Vicsek</code> dynamics</h2>
-<p>Now comes the actual challenge: we want to code the dynamics of te vicsek model so that our <code>updateRule()</code> in <code>System</code> actually updates the positions and angles of the system.</p>
+<p>Now comes the actual challenge: we want to code the dynamics of the Vicsek model so that our <code>updateRule()</code> in <code>System</code> actually updates the positions and angles of the system.</p>
 <p>Here was our algorithm after initialisation</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -554,7 +554,7 @@ Update rule
 <li><p><strong>Alignment</strong>: Compute the average direction of neighbors, including <span class="math inline">\(i\)</span>: <span class="math display">\[
 \bar{\theta}_i = \text{atan2}\left(\sum_{\rm j \in neighbours} \sin\theta_j, \sum_{\rm j \in neighbours} \cos\theta_j\right)
 \]</span></p></li>
-<li><p><strong>Noise</strong>: Add a random perturbation <span class="math inline">\(u\)</span> to the orientation as a random variable uniformly distributed in the interval <span class="math inline">\([-\eta/2,\eta/2]\)</span>, where <span class="math inline">\(\eta\)</span> is teh noise strength</p>
+<li><p><strong>Noise</strong>: Add a random perturbation <span class="math inline">\(u\)</span> to the orientation as a random variable uniformly distributed in the interval <span class="math inline">\([-\eta/2,\eta/2]\)</span>, where <span class="math inline">\(\eta\)</span> is the noise strength</p>
 <p><span class="math display">\[
 \theta_i^{\text{new}} = \bar{\theta}_i + u
 \]</span></p></li>
@@ -739,11 +739,12 @@ Click to expand the <strong>snippet</strong>
 <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pos)</span>
 <span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    qv.set_offsets(pos)</span>
 <span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    qv.set_UVC(conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>])</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the animation</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,animate, <span class="bu">range</span>(<span class="bu">len</span>(files)))</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the animation</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qv,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the animation</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,animate, <span class="bu">range</span>(<span class="bu">len</span>(files)))</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the animation</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
