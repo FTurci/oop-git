@@ -34,6 +34,7 @@ website:
         contents:
         - href: wp_pybind/pythonoop.qmd
         - href: wp_pybind/interface.qmd
+        - href: wp_pybind/solutions.qmd
     #   - section: "5| Wrapping"
     #     # contents:
         # - href: wp_wrapping/pyclasses.qmd

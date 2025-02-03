@@ -85,5 +85,8 @@
   "wp_pybind/pythonoop.qmd": {
     "pythonoop-slides.html": "2ab99337",
     "pythonoop.html": "af29334d"
+  },
+  "wp_pybind/solutions.qmd": {
+    "solutions.html": "ade01446"
   }
 }

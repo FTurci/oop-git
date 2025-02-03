@@ -1,0 +1,1110 @@
+[
+  {
+    "objectID": "wp_wrapping/pyclasses.html",
+    "href": "wp_wrapping/pyclasses.html",
+    "title": "Wrapping code using OOP in Python",
+    "section": "",
+    "text": "To appear soon."
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#aims",
+    "href": "wp_gitgithub/git-slides.html#aims",
+    "title": "Version control with git",
+    "section": "Aims",
+    "text": "Aims\n\nInitialise a local git repository\nAdd files to track\nCommit some changes"
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#learning-outcomes",
+    "href": "wp_gitgithub/git-slides.html#learning-outcomes",
+    "title": "Version control with git",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUnderstand the general principles of version control\nMastery of how git implements the main features of version control"
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#general-ideas-about-version-control",
+    "href": "wp_gitgithub/git-slides.html#general-ideas-about-version-control",
+    "title": "Version control with git",
+    "section": "General ideas about version control",
+    "text": "General ideas about version control\nVersion control is an approach to coding that allows you to keep track of the code evolution.\nYou may think of coding as a linear process, where a first version is followed by another more advanced version, which is again followed by a successive more refined version and so on.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt;  B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n\n\n\n\n\n\nThis is not at all the case. In fact, as we develop our code we tyically try various ideas, similarly to what you would do if you were writing a novel, perform an experiment, or explore an uncharted territory.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt; B\n    B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n    A--&gt;Aa[Variant 1.a]--&gt;B\n    A--&gt;Ab[Variant 1.b]--&gt;E[Alternative version 2]--&gt;C"
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#terminology",
+    "href": "wp_gitgithub/git-slides.html#terminology",
+    "title": "Version control with git",
+    "section": "Terminology",
+    "text": "Terminology"
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#hands-on-approach-to-git",
+    "href": "wp_gitgithub/git-slides.html#hands-on-approach-to-git",
+    "title": "Version control with git",
+    "section": "Hands-on approach to git",
+    "text": "Hands-on approach to git\nWe start off working locally and creating a local project."
+  },
+  {
+    "objectID": "wp_gitgithub/git-slides.html#to-dos",
+    "href": "wp_gitgithub/git-slides.html#to-dos",
+    "title": "Version control with git",
+    "section": "To-dos",
+    "text": "To-dos\nPreviously, you should have created a project folder with a README.md file. We now want to setup our local git repository."
+  },
+  {
+    "objectID": "wp_gitgithub/git.html",
+    "href": "wp_gitgithub/git.html",
+    "title": "Version control with git",
+    "section": "",
+    "text": "Initialise a local git repository\nAdd files to track\nCommit some changes",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#aims",
+    "href": "wp_gitgithub/git.html#aims",
+    "title": "Version control with git",
+    "section": "",
+    "text": "Initialise a local git repository\nAdd files to track\nCommit some changes",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#learning-outcomes",
+    "href": "wp_gitgithub/git.html#learning-outcomes",
+    "title": "Version control with git",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUnderstand the general principles of version control\nMastery of how git implements the main features of version control",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#general-ideas-about-version-control",
+    "href": "wp_gitgithub/git.html#general-ideas-about-version-control",
+    "title": "Version control with git",
+    "section": "General ideas about version control",
+    "text": "General ideas about version control\nVersion control is an approach to coding that allows you to keep track of the code evolution.\nYou may think of coding as a linear process, where a first version is followed by another more advanced version, which is again followed by a successive more refined version and so on.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt;  B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n\n\n\n\n\n\nThis is not at all the case. In fact, as we develop our code we tyically try various ideas, similarly to what you would do if you were writing a novel, perform an experiment, or explore an uncharted territory.\n\n\n\n\n\nflowchart LR\n    A[Version 1] --&gt; B\n    B[Version 2] --&gt; C[Version 3]--&gt; D[...]\n    A--&gt;Aa[Variant 1.a]--&gt;B\n    A--&gt;Ab[Variant 1.b]--&gt;E[Alternative version 2]--&gt;C\n\n\n\n\n\n\n\n\nThis is even more evident when collaboration is at play: different developers will try different approaches and require a system to keep track of their respective modifications and that helps them with bringing them together into a unified project. In fact, regularly, the various ideas need to come together and merge for the project to keep its unitary structure.\nVersion control tools serve precisely this purpose, and git is the most popular of such tools.\nIt is powerful, but its usage can be subtle at times, as illustrated by the following cartoon:\n\n\n\nGit according to the celebrated comic strip xkcd\n\n\nVersion control therefore solves two problems:\n\nkeeping track of the code changes performed by a single performs\nallow to harmonise and synchronise the code changes of various collaborators\n\nWe are going to focus mostly on the first part, but it is important to realise that git is an essential tool for code development in large projects.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#terminology",
+    "href": "wp_gitgithub/git.html#terminology",
+    "title": "Version control with git",
+    "section": "Terminology",
+    "text": "Terminology\n\nRepositories\nVersion control use repositories. These are a database of code versions, stored in an efficient manner, focusing on the changes between a version and another.\n\n\nClones\nEach user of the repository has their own working copy of all the files (any kinds of files) of the project. This clone of the repository is typically stored on the local machine.\nChanges to the local clone are not reflected in the repository unless the users explicitly require this to be the case.\n\n\nDistributed version control\nIn distribute version control each user has a complete copy of the repository, and they can perform their changes independently from other users, work locally and offline and eventually do collaborative work by merging their own versions with the one of others.\nIn principle, this can be done without a central server (e.g. peer to peer). In practice, one often uses some form of online repository, e.g. Github, Gitlab etc.\n\n\nBranch\nBranching in git allow you to explore various ideas in parallel, developing in different directions and experimenting new features. Branching is a backbone ides in git.\nA repository typically has a main branch where the functional code is stored. When we want to develop our code we create new feature branches\n\n\n\n\n\n    %%{init: { 'logLevel': 'debug', 'theme': 'default' , 'themeVariables': {\n              'git0': '#ff0000',\n              'git1': '#00ff00',\n              'git2': '#0000ff',\n              'git3': '#ff00ff',\n              'git4': '#00ffff',\n              'git5': '#ffff00',\n              'git6': '#ff00ff',\n              'git7': '#00ffff'\n       } } }%%\ngitGraph\n   commit id: \"main\"\n   branch feature\n   commit id: \"main work\"\n   checkout feature\n   commit id: \"feature work\"\n   checkout main\n   commit id: \"more main work\"\n   merge feature\n\n\n\n\n\n\nOn every branch, we can store out individual advancements as commits (see below). Eventually, when we are happy for our feature to be integrated with the main branche, we merge the feature branch with the main branch.\n\n\nCommits\nWhen you want a change to be registered in the repository’s database, your commit your changes to the repository. This means that a new entry in the database is added, keeping track of a timestamp associated with your changes and (often) an explanatory description of what the modification entails.\n\n\nPushing [with the remote repository only]\nIf you also have a remote repository (e.g. on GitHub), you can synchronise the changes between the local branch and the remote branch via the push operation.\n\n\nFetching [with the remote repository only]\nFetch allows you to retrieve the changes from a remote repository, see them and decide whether to merge such changes with your local repository (or not).\n\n\nPulling [with the remote repository only]\nPulling is simply fetching, followed by automatic merging.\n\n\nBundling\nAn efficient way to produce a package out of a git repository is to construct a bundle. This is a single file that contains a collection of commits, branches and logs allowing you to transfer or store the repository’s content without requiring access to a remote server.\n\n\nScheme\n\n\n\nHow git works, adapted from https://homes.cs.washington.edu/~mernst/advice/version-control.html ↗️",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#hands-on-approach-to-git",
+    "href": "wp_gitgithub/git.html#hands-on-approach-to-git",
+    "title": "Version control with git",
+    "section": "Hands-on approach to git",
+    "text": "Hands-on approach to git\nWe start off working locally and creating a local project.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/git.html#to-dos",
+    "href": "wp_gitgithub/git.html#to-dos",
+    "title": "Version control with git",
+    "section": "To-dos",
+    "text": "To-dos\nPreviously, you should have created a project folder with a README.md file. We now want to setup our local git repository.\n\n\n\n\n\n\n\n\nTask 1: initialise the repository\n\n\n\nGo to the project folder vicsek-cpp and initialise the git repository.\nUse the information above or git --help to find the correct command to use.\n\n\n\n\n\n\n\n\n\n\n\nTask 2: create a .gitignore file and add it to the staging area\n\n\n\nWe want to tell git not to keep track of specifc files. For, example we want to ignore hidden files that are specific to MacOS. A hidden file/folder haas a name that starts with . .\nTo provide git with a list of files to ignore, we create a (hidden) configuration file inside vicsek-cpp called .gitignore.\nCreate such file and enter the following string\n.DS_Store\nThen add the .gitignore file to the staging area.\nCheck git status to see if your .gitignore is ready to be committed and then commit it with a suitable comment.\nYou should also get a message concerning your README.md file. What os the best course of action here?\n\n\n\n\n\n\n\n\n\n\n\nTask 3: ignoring files and directly committing the changes\n\n\n\nSuppose now that we also want to ignore all files that end with .txt. The .gitignore file accepts the wildcard *.\nModify the .gitignore to ignore all .txt files. With a suitable option to the git commit command, stage and commit the changes in a single go.\nThen create two new files:\n\na notes.txt file\na notes.md file\n\nAdd all new files in the current folder with git add ., commit your changes to the repository and then check the files added to the repository with git ls-files.\nIs notes.txt in your list?\n\n\n\n\n\n\n\n\n\n\n\nTask 4: branching\n\n\n\nWe want to now start developing our code. For this purpose, we create a new branch called develop. To do so we use the command\ngit branch develop\nTo check which branches now exist in your repository just type\ngit branch\nA * should appear on the branch you are on (which should be main). You leave the view using theQ key on your keyboard.\nTo switch to the develop branch use\ngit checkout develop\nCheck that you are on the right branch now (see above).\nOnce you are on your develop branch, create a new folder src where we will put the C++ code (do not remember how to create a folder? go back to Using the shell).\nInside src, create our C++ main file main.cpp, e.g. using a suitable editor (e.g. nano , pico or vim).\nThe minimal content should be the following\n#include &lt;iostream&gt;\n\nint main(){\n    return 0\n}\nNow, add the src folder with its content to the git repository and commit the changes.\nSwitch back to the main branch: what happened to the src folder?\n\n\n\n\n\n\n\n\n\n\n\nTask 4: merging\n\n\n\nNow that you have your develop branch set up, attempt to merge it back with the main branch using the git merge command. If you are not sure about how to use it, check the documentation with git merge --help.\n\n\n\n\n\n\n\n\n\n\n\nTask 5: bundling\n\n\n\nUse now the command\ngit bundle create myrepo.bundle --all\nto create a single bundle file conatining all of the repository. Move it to another folder (or even another machine with git, e.g. your Noteable account) and unpack it with\ngit clone myrepo.bundle\nCan you check the branch structure? and the status?",
+    "crumbs": [
+      "1| Software Engineering",
+      "Version control with `git`"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html",
+    "href": "wp_gitgithub/shell.html",
+    "title": "Using the shell",
+    "section": "",
+    "text": "Create a local project directory\nCreate and edit README.md file",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html#aims",
+    "href": "wp_gitgithub/shell.html#aims",
+    "title": "Using the shell",
+    "section": "",
+    "text": "Create a local project directory\nCreate and edit README.md file",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html#learning-outcomes",
+    "href": "wp_gitgithub/shell.html#learning-outcomes",
+    "title": "Using the shell",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nBuild confidence in navigating the filesystem, creating, deleting and editing files and folders",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html#the-shell",
+    "href": "wp_gitgithub/shell.html#the-shell",
+    "title": "Using the shell",
+    "section": "The shell",
+    "text": "The shell\nHere we recall very briefly why we use the shell environment and how normal operations are typically performed. These topics have already been covered in the previous term.\nThe shell allows you to interact with a computer without the need of a graphical user interface (GUI). This has three main advantages:\n\nit allows you to operate on files and folders programmatically\nit allows you to interact easily with remote machines, e.g. the High Performance Computing facilities of the University of Bristol\nit allows to have more direct access to low-level operations of your machine (installing and fine-tuning software, libraries and various components)\n\n\n\n\n\n\n\nImportant\n\n\n\nIt is essential to learn how to use the shell properly in order to understand and develop more advanced scientific computing tools.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html#basic-shell-usage",
+    "href": "wp_gitgithub/shell.html#basic-shell-usage",
+    "title": "Using the shell",
+    "section": "Basic shell usage",
+    "text": "Basic shell usage\n\nList files and directories: Displays the contents of the current directory.\n\n\nls\n\nChange directory: Moves to a different directory.\n\n\ncd /path/to/directory\n\nCreate a new directory: Creates a new folder.\n\n\nmkdir new_folder\n\nRemove a file: Deletes a specific file.\n\n\nrm file.txt\n\nRemove a directory: Deletes a directory and its contents.\n\n\nrm -r directory_name\n\nMove or rename a file: Moves a file to a new location or renames it.\n\n\nmv old_file.txt new_location/\n\nCopy a file: Copies a file to a new location.\n\n\ncp file.txt /path/to/destination/\n\nCreate a new file: Creates an empty file.\n\n\ntouch newfile.txt\n\nEdit a file: Opens a file in a text editor like nano for editing.\n\n\nnano file.txt\n\nView the contents of a file: Displays the contents of a file in the terminal.\n\ncat file.txt\n\nSearch for text in a file: Searches for specific text in a file.\n\ngrep \"search_term\" file.txt\n\nShow current directory path: Displays the full path of the current working directory.\n\n\npwd\n\nCopy a directory: Copies a directory and its contents.\n\n\ncp -r source_directory/ destination_directory/\n\nMove back one directory: Moves up one directory level.\n\n\ncd ..\n\nDisplay disk usage: Shows the disk usage of files and directories.\n\n\ndu -sh *",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/shell.html#to-dos",
+    "href": "wp_gitgithub/shell.html#to-dos",
+    "title": "Using the shell",
+    "section": "To-dos",
+    "text": "To-dos\nNow that we know how to manipulate folder and files, we start our project by creating\n\na dedicated directory\na README.md file to contain the project documentation\n\n\n\n\n\n\n\nTask 1: create the local project directory\n\n\n\nNow that we have overviewed basic shell commands, we can set off and create a local directory that will contain our project.\nWe name the project vicsek-cpp.\nmkdir vicsek-cpp\n\n\n\n\n\n\n\n\nTask 2: create the README.md file\n\n\n\nInside the folder, we can use our favourite editor (e.g. vim or nano or VSCode if we like) to create and edit the README.md file.\nInclude a header and a brief description. You will provide more documentation later on.\nFor the root working directory, typing\nls vicsek-cpp\nshould return\nREADME.md\n\n\n\n\n\n\n\n\nTask 3: Inspect file contents\n\n\n\nThere are many ways to quickly inspect the contents of a file in bash.\nTry the command head, tail and cat on your file and check their documentation to understand how they work.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Using the shell"
+    ]
+  },
+  {
+    "objectID": "plan.html",
+    "href": "plan.html",
+    "title": "Plan",
+    "section": "",
+    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target. We will proceed in steps:\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\nWeek 13 - 13/01/2025\nLearn how to use git to perform version control and interact with Github\n\n\nWeek 14 - 20/01/2025\nRecall the notion of Object-Oriented programming (OOP) and design the (OOP) structure of our simulation.\n\n\nWeek 15 - 27/01/2025\nImplement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools\n\n\nWeek 16 - 03/03/2025\nIntroduce pybind11 to interface the C++ code with Python\n\n\nWeek 17 - 10/02/2025\nWrapping in Python and improvements to the code\n\n\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.\n\n\n\nThe final product of the simulation is a visualization of the Vicsek model, an elementary model to represent the flocking behaviour of birds, fish and various other agents. An example animation is here below.\n\n\n\nAnimation of the Vicsek model\n\n\nThis is an interesting model for various reasons:\n\nIt is a simple example of pattern formation: the model demonstrates how simple local interactions lead to complex, emergent structures, resembling phenomena in biological and chemical systems.\nIt illustrates nonequilibrium dynamics: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.\nIt produces visually striking simulations, linking numerics to computer graphics.\n\n\n\n\n\nDuring the project you will acquire a number of skills, primarily in two areas:\n\n\n\n\n\n\n\nSoftware engineering (e.g. version control with git)\nObject-oriented programming (in C++ and Python)\n\n\n\n\nThe Test 2 assessment in Week 17 will probe your understanding of both via a dedicated and self-contained exercise, distinct from the product of this module. This means that the final product mentioned here is not assessed. It is, however, a constitutive part of your learning trajectory.",
+    "crumbs": [
+      "Plan"
+    ]
+  },
+  {
+    "objectID": "plan.html#aims-and-schedule",
+    "href": "plan.html#aims-and-schedule",
+    "title": "Plan",
+    "section": "",
+    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target. We will proceed in steps:\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\nWeek 13 - 13/01/2025\nLearn how to use git to perform version control and interact with Github\n\n\nWeek 14 - 20/01/2025\nRecall the notion of Object-Oriented programming (OOP) and design the (OOP) structure of our simulation.\n\n\nWeek 15 - 27/01/2025\nImplement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools\n\n\nWeek 16 - 03/03/2025\nIntroduce pybind11 to interface the C++ code with Python\n\n\nWeek 17 - 10/02/2025\nWrapping in Python and improvements to the code\n\n\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.",
+    "crumbs": [
+      "Plan"
+    ]
+  },
+  {
+    "objectID": "plan.html#final-product",
+    "href": "plan.html#final-product",
+    "title": "Plan",
+    "section": "",
+    "text": "The final product of the simulation is a visualization of the Vicsek model, an elementary model to represent the flocking behaviour of birds, fish and various other agents. An example animation is here below.\n\n\n\nAnimation of the Vicsek model\n\n\nThis is an interesting model for various reasons:\n\nIt is a simple example of pattern formation: the model demonstrates how simple local interactions lead to complex, emergent structures, resembling phenomena in biological and chemical systems.\nIt illustrates nonequilibrium dynamics: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.\nIt produces visually striking simulations, linking numerics to computer graphics.",
+    "crumbs": [
+      "Plan"
+    ]
+  },
+  {
+    "objectID": "plan.html#assessment",
+    "href": "plan.html#assessment",
+    "title": "Plan",
+    "section": "",
+    "text": "During the project you will acquire a number of skills, primarily in two areas:\n\n\n\n\n\n\n\nSoftware engineering (e.g. version control with git)\nObject-oriented programming (in C++ and Python)\n\n\n\n\nThe Test 2 assessment in Week 17 will probe your understanding of both via a dedicated and self-contained exercise, distinct from the product of this module. This means that the final product mentioned here is not assessed. It is, however, a constitutive part of your learning trajectory.",
+    "crumbs": [
+      "Plan"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html",
+    "href": "wp_vicsek/implementation.html",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "",
+    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#aims",
+    "href": "wp_vicsek/implementation.html#aims",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "",
+    "text": "Initialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#learning-outcomes",
+    "href": "wp_vicsek/implementation.html#learning-outcomes",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUsing C++ random number generators\nUpdating objects’ properties",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#random-initial-state",
+    "href": "wp_vicsek/implementation.html#random-initial-state",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Random initial state",
+    "text": "Random initial state\nWe have constructed all the objects we neeed:\n\na box\na set of particles\nand a Simulation object to combined them together\n\nWe want now to think of our problem more concretely. First, our simulation needs to start from an initila configuration. This means that the particles composing the model need to be place somewhere in space and oriented in some direction.\nIndeed, when we designed our Particle object we equipped it with member variables precisely to determine that:\n\nthe x and y coordinates\nthe orientation theta\n\nThe simplest choice we can make is to choose these at random using the uniform distribution. for this purpose, we have also equipped the System class with a member function uniform that precisely samples that distribution.\nSo, the idea is now to combine these various pieces together into a new member function for the System class to initialise the system.\n\n\n\n\n\n\n\nTask 1: Declare the randomStart() member function\n\n\n\nIn the System.h class declare a new member function named randomStart(). It returns void and takes no parameters because everything is already available in our objects!\n\n\nHow do we make the various classes communicate? We are working from the System class, which has instances of both the Box and the Particle class as member variables. You should have\n\na simulationBox instance in the System definition\na vector of Particle instance in the System definition\n\nSo, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.\nFor example, in C++11 we can loop over a vector in a Pythonesque fashion:\nfor (Particle &p : this-&gt;particles){\n...\n}\nwhere clearly this-&gt;particles allows us to point to the correct member variable of the System class.\nThen, drawing a random x coordinate leverages the properties of the system (we defined a uniform() member function for the System), the box (we defined a getSidex() member function for it) and the particle (the coordinate x is a public member variable, so we can change it directly).\n p.x = this-&gt;uniform(0,this-&gt;simulationBox.getSidex());\n\n\n\n\n\n\n\nTask 2: Implement the randomStart() member function\n\n\n\nIn System.cpp implement the randomStart() member function inspired by the snippets above.\nFor every particle, you need to assign\n\nthe x and y coordinates\nthe orientation theta. Choose it between \\(-\\pi\\) and \\(\\pi\\).",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#saving-a-configuration-to-file",
+    "href": "wp_vicsek/implementation.html#saving-a-configuration-to-file",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Saving a configuration to file",
+    "text": "Saving a configuration to file\nThe combination of particle positions and orientations defines a configuration of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.\nIn this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with streams of information. One of the streams you are used to is the standard output, accessed via std::cout in the standard library using the &lt;iostream&gt; library.\nWhen one wants to use file outputs, one needs to use the &lt;fstream&gt; library and construct output streams directly. Here below we provide you with a reverse engineering exercise: given a certain implementation of a function, reconstruct its definition.\n\n\n\n\n\n\n\nTask 3: Reverse engineer the declaration of saveConfig()\n\n\n\nAdd the following member function to system.cpp\nvoid System::saveConfig(const std::string &filename)\n{   \n    std::ofstream outFile(filename);\n    if (!outFile.is_open()) {\n        std::cerr &lt;&lt; \"Error opening file: \" &lt;&lt; filename &lt;&lt; std::endl;\n        return; // Exit if file cannot be opened\n    }\n    outFile &lt;&lt; std::to_string(particles.size())+\"\\nParticles\"&lt;&lt;std::endl;\n    \n    // Write particle properties to the file\n\n    for (size_t i = 0; i &lt; particles.size(); ++i) {\n        outFile &lt;&lt; i &lt;&lt; \" \" &lt;&lt; particles[i].x &lt;&lt;\" \"&lt;&lt;particles[i].y&lt;&lt;\" \"&lt;&lt;particles[i].theta &lt;&lt; std::endl;\n    }\n    }\n    outFile.close(); // Close the file\n}    \nInfer and add the corresponding definition in system.h. Remember to include &lt;fstream&gt; and &lt;string&gt; where needed.\nCompile your code by using the Makefile or the following command\ng++ -std=c++11 main.cpp system.cpp box.cpp particle.cpp -o myvicsek\n\n\nNow we only need to actually tell our system to do the initialisation and save the configuration.\nTo do this, we need to use the instance of System that we have created. This exists only in main.cpp, inside the main() function. There is where we need to call the two new methods we have created.\n\n\n\n\n\n\n\nTask 4: Produce an initial configuration\n\n\n\nModify the main() function so that its System object calls the initialisation function and then saves it to a new file named init.conf.\nRecompile and run\n./myvicsek\nCheck the beginning of the init.conf file using\nhead init.conf\nIs it what you expected?",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "href": "wp_vicsek/implementation.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Sprinkle some python: read the configuration a visualise it",
+    "text": "Sprinkle some python: read the configuration a visualise it\nWe have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.\nFor this, Python is the easiest tool at our hand. So, we are going to use now simple procedural Python to read in the initial configuration and plot it.\nWe organise our python code in a separate file, which we call pyvicsek.py. We will read the configuration trivially using numpy\nimport numpy as np\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename) as file_handle:\n        # skip the first two lines\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\nNotice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.\nWe can use matplotlib’s quiver plot to actually plot arrows.\ndef plot(conf,ax):\n    ax.figure(figsize=(5,5))\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    plt.axis('equal')\n    return qv\nCombining all this together you should obtain something like the following\n\n\n\nVisualisation of an initial configuration\n\n\n\n\n\n\n\n\n\nTask 5: Python script to view the initial configuration\n\n\n\nEmbed the ideas above into your own pyvicsek.py file. you can run the script directly from the terminal with\npython pyvicsek.py",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#actual-vicsek-dynamics",
+    "href": "wp_vicsek/implementation.html#actual-vicsek-dynamics",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Actual Vicsek dynamics",
+    "text": "Actual Vicsek dynamics\nNow comes the actual challenge: we want to code the dynamics of te vicsek model so that our updateRule() in System actually updates the positions and angles of the system.\nHere was our algorithm after initialisation\n\n\n\n\n\n\nUpdate rule\n\n\n\n\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\nThere are a few central points:\n\nwe need to calculate all the updates before we apply them, otherwise the motion will not be synchronous\nthe calculation of the average local angle for alignment depends on sines and cosines. Directly averaging would be problematic (e.g. when two angles are close to \\(+pi\\) and \\(-\\pi\\)).\n\nThe algorithm can be translated in pseudo-code.\n\n\nClick to expand pseudocode\n\ninitialize new_theta array with size equal to number of particles\n\nfor each particle i:\n    count = 10\n    c, s = cos(theta[i]), sin(theta[i])\n    for each particle j ≠ i:\n        compute distance with periodic boundaries \n        if distance within interaction radius:\n            accumulate cosine and sines of particle j in c, s\n            increment count\n    avg_theta = atan2(sin / count, cos / count)\n    add uniform noise in [-pi, pi] to avg_theta and store in new_theta[i]\n\nfor each particle i:\n    update position: \n        x += cos(new_theta[i]) * v * dt\n        y += sin(new_theta[i]) * v * dt\n    update orientation: \n        theta = new_theta[i]\n    apply periodic boundaries to x and y\n\n\n\n\n\n\n\n\nTask 6: Implement the dynamics\n\n\n\nYou can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.\nThen in, the main function in main.cpp, implement a for loop for a large number of iterations, were you repeatedly call the updateRule() member function and regularly save a configuration to a file with a new name.\nTo save a file with a new name, consider using C++ strings like\nstd::string root = \"frame\"\nmodel.saveConfig( root+std::to_string(iteration));\n\n\nClick to expand the snippet\n\nvoid System::updateRule() {\n    // Notice that \"this\" is not stricly needed for the member variables\n\n\n    // COMPLETE THIS SECTION\n    //correctly initialise new_theta as a vector of doubles.\n\n    // get Lx and Ly values\n\n    //END COMPLETE\n\n    for (int i = 0; i &lt; particleNumber; i++){\n\n        int count = 1;\n\n        // COMPLETE HERE\n        // get cosine and sine of the angle of particle i\n        double cos = std::cos(...);\n        double sin = std::sin(...);\n        \n        for (int j = 0 ; j &lt; particleNumber; j++){\n\n            if (i!=j){\n                // calculate distance\n                double dx = particles[j].x - particles[i].x;\n                double dy = particles[j].y - particles[i].y;\n\n                // periodic boundaries\n                if(dx&gt;Lx*0.5) dx-=Lx;\n                if(dx&lt;-Lx*0.5) dx+=Lx;\n                if(dy&gt;Ly*0.5) dy-=Ly;\n                if(dy&lt;-Ly*0.5) dy+=Ly;\n                \n                // calculate the distance between the two particles\n                double dist = std::sqrt(dx*dx + dy*dy);\n            \n                // check if the distance is below the interaction radius\n                if (dist &lt; particles[i].r){\n                    // calculate the new orientation\n                    cos +=  std::cos(particles[j].theta);\n                    sin +=  std::sin(particles[j].theta);\n                    count+=1;\n                }\n            }\n        }\n        \n        //COMPLETE HERE\n        // normalise sine and cosine to get the local average\n\n        sin = ...;\n        cos = ...;\n\n        // average + noise\n        double avg_theta = std::atan2(sin, cos);\n        new_theta[i] = avg_theta + this-&gt;noiseStrength*this-&gt;uniform(-M_PI,M_PI);\n    }\n    // move the particles\n    for (int i = 0; i &lt; particleNumber; i++){\n        particles[i].x += std::cos(new_theta[i])*particles[i].v*this-&gt;timeStep;\n        // COMPLETE HERE\n        // update also the y coordinate\n\n        particles[i].theta = new_theta[i];\n        // periodic boundaries\n        if (particles[i].x &gt;Lx) particles[i].x -= Lx;\n        if (particles[i].x &lt;0) particles[i].x += Lx;\n        if (particles[i].y &gt;Ly) particles[i].y -= Ly;\n        if (particles[i].y &lt;0) particles[i].y += Ly;\n    }\n}",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation.html#visualising-the-trajectory",
+    "href": "wp_vicsek/implementation.html#visualising-the-trajectory",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Visualising the trajectory",
+    "text": "Visualising the trajectory\nSimple modifications to your Python code to include matplotlib’s Funcanimation allow you to visualise the trajectory\nHere is a an example\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport glob\nimport natsort\nfrom matplotlib.animation import FuncAnimation\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename, 'r') as file_handle:\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\n\ndef plot(conf, ax):\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    return qv\n\n# files are stored in a folder\nfiles = natsort.natsorted(glob.glob(\"frames/*\"))\n\n# first plot\nfig, ax= plt.subplots() #\n\nqv = plot(read_config(files[0]),ax)\nplt.axis('equal')\nplt.axis('off')\n\n# function called to plot all files\ndef animate(i):\n    print(i)\n    conf = read_config(files[i])\n    pos = np.array(list(zip(conf[\"x\"], conf[\"y\"])))\n    print(pos)\n    qv.set_offsets(pos)\n    qv.set_UVC(conf[\"vx\"], conf[\"vy\"], conf[\"theta\"])\n    \n# Create the animation\nanim = FuncAnimation(fig,animate, range(len(files)))\n# Show the animation\nplt.show()\n\n\n\n\n\n\n\nTask 7: View the trajectory\n\n\n\nAdapt the script above to your setup and visualise your first trajectory!",
+    "crumbs": [
+      "3| Implementation",
+      "Implementation of Vicsek dynamics"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#aims",
+    "href": "wp_vicsek/implementation-slides.html#aims",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Aims",
+    "text": "Aims\n\nInitialise the start configuration with random positions and orientations\nSpecify the update rule specific to the Vicsek model"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#learning-outcomes",
+    "href": "wp_vicsek/implementation-slides.html#learning-outcomes",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUsing C++ random number generators\nUpdating objects’ properties"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#random-initial-state",
+    "href": "wp_vicsek/implementation-slides.html#random-initial-state",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Random initial state",
+    "text": "Random initial state\nWe have constructed all the objects we neeed:\n\na box\na set of particles\nand a Simulation object to combined them together\n\nWe want now to think of our problem more concretely. First, our simulation needs to start from an initila configuration. This means that the particles composing the model need to be place somewhere in space and oriented in some direction.\nIndeed, when we designed our Particle object we equipped it with member variables precisely to determine that:\n\nthe x and y coordinates\nthe orientation theta\n\nThe simplest choice we can make is to choose these at random using the uniform distribution. for this purpose, we have also equipped the System class with a member function uniform that precisely samples that distribution.\nSo, the idea is now to combine these various pieces together into a new member function for the System class to initialise the system."
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#saving-a-configuration-to-file",
+    "href": "wp_vicsek/implementation-slides.html#saving-a-configuration-to-file",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Saving a configuration to file",
+    "text": "Saving a configuration to file\nThe combination of particle positions and orientations defines a configuration of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.\nIn this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with streams of information. One of the streams you are used to is the standard output, accessed via std::cout in the standard library using the &lt;iostream&gt; library.\nWhen one wants to use file outputs, one needs to use the &lt;fstream&gt; library and construct output streams directly. Here below we provide you with a reverse engineering exercise: given a certain implementation of a function, reconstruct its definition."
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "href": "wp_vicsek/implementation-slides.html#sprinkle-some-python-read-the-configuration-a-visualise-it",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Sprinkle some python: read the configuration a visualise it",
+    "text": "Sprinkle some python: read the configuration a visualise it\nWe have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.\nFor this, Python is the easiest tool at our hand. So, we are going to use now simple procedural Python to read in the initial configuration and plot it.\nWe organise our python code in a separate file, which we call pyvicsek.py. We will read the configuration trivially using numpy\nimport numpy as np\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename) as file_handle:\n        # skip the first two lines\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\nNotice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.\nWe can use matplotlib’s quiver plot to actually plot arrows.\ndef plot(conf,ax):\n    ax.figure(figsize=(5,5))\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    plt.axis('equal')\n    return qv\nCombining all this together you should obtain something like the following\n\n\n\nVisualisation of an initial configuration"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#actual-vicsek-dynamics",
+    "href": "wp_vicsek/implementation-slides.html#actual-vicsek-dynamics",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Actual Vicsek dynamics",
+    "text": "Actual Vicsek dynamics\nNow comes the actual challenge: we want to code the dynamics of te vicsek model so that our updateRule() in System actually updates the positions and angles of the system.\nHere was our algorithm after initialisation\n\n\n\n\n\n\nUpdate rule\n\n\n\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\n\nThere are a few central points:\n\nwe need to calculate all the updates before we apply them, otherwise the motion will not be synchronous\nthe calculation of the average local angle for alignment depends on sines and cosines. Directly averaging would be problematic (e.g. when two angles are close to \\(+pi\\) and \\(-\\pi\\)).\n\nThe algorithm can be translated in pseudo-code.\n\n\nClick to expand pseudocode\n\ninitialize new_theta array with size equal to number of particles\n\nfor each particle i:\n    count = 10\n    c, s = cos(theta[i]), sin(theta[i])\n    for each particle j ≠ i:\n        compute distance with periodic boundaries \n        if distance within interaction radius:\n            accumulate cosine and sines of particle j in c, s\n            increment count\n    avg_theta = atan2(sin / count, cos / count)\n    add uniform noise in [-pi, pi] to avg_theta and store in new_theta[i]\n\nfor each particle i:\n    update position: \n        x += cos(new_theta[i]) * v * dt\n        y += sin(new_theta[i]) * v * dt\n    update orientation: \n        theta = new_theta[i]\n    apply periodic boundaries to x and y"
+  },
+  {
+    "objectID": "wp_vicsek/implementation-slides.html#visualising-the-trajectory",
+    "href": "wp_vicsek/implementation-slides.html#visualising-the-trajectory",
+    "title": "Implementation of Vicsek dynamics",
+    "section": "Visualising the trajectory",
+    "text": "Visualising the trajectory\nSimple modifications to your Python code to include matplotlib’s Funcanimation allow you to visualise the trajectory\nHere is a an example\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport glob\nimport natsort\nfrom matplotlib.animation import FuncAnimation\n\ndef read_config(filename, skip=2):\n    \"\"\"Reading an vicsek configuration from a file handle\"\"\"\n    with open(filename, 'r') as file_handle:\n        for i in range(skip): \n            next(file_handle)\n\n        data = np.loadtxt(file_handle)\n        conf = {}\n\n        conf[\"id\"] = data[:,0]\n        conf[\"x\"] = data[:,1]\n        conf[\"y\"] = data[:,2]\n        conf[\"theta\"] = data[:,3]\n        conf[\"vx\"] = np.cos(conf[\"theta\"])\n        conf[\"vy\"] = np.sin(conf[\"theta\"])  \n        return conf\n\ndef plot(conf, ax):\n    qv = ax.quiver(conf[\"x\"], conf[\"y\"], conf[\"vx\"], conf[\"vy\"], conf[\"theta\"], scale=1, scale_units='xy', cmap='hsv')\n    return qv\n\n# files are stored in a folder\nfiles = natsort.natsorted(glob.glob(\"frames/*\"))\n\n# first plot\nfig, ax= plt.subplots() #\n\nqv = plot(read_config(files[0]),ax)\nplt.axis('equal')\nplt.axis('off')\n\n# function called to plot all files\ndef animate(i):\n    print(i)\n    conf = read_config(files[i])\n    pos = np.array(list(zip(conf[\"x\"], conf[\"y\"])))\n    print(pos)\n    qv.set_offsets(pos)\n    qv.set_UVC(conf[\"vx\"], conf[\"vy\"], conf[\"theta\"])\n    \n# Create the animation\nanim = FuncAnimation(fig,animate, range(len(files)))\n# Show the animation\nplt.show()"
+  },
+  {
+    "objectID": "wp_pybind/pythonoop-slides.html#aims",
+    "href": "wp_pybind/pythonoop-slides.html#aims",
+    "title": "Wrap C++ in a Python object",
+    "section": "Aims",
+    "text": "Aims\n\nUse the C++ code from a nice Python interface"
+  },
+  {
+    "objectID": "wp_pybind/pythonoop-slides.html#learning-outcomes",
+    "href": "wp_pybind/pythonoop-slides.html#learning-outcomes",
+    "title": "Wrap C++ in a Python object",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nDefining classes in Python"
+  },
+  {
+    "objectID": "wp_pybind/pythonoop-slides.html#subprocesses-in-python",
+    "href": "wp_pybind/pythonoop-slides.html#subprocesses-in-python",
+    "title": "Wrap C++ in a Python object",
+    "section": "Subprocesses in Python",
+    "text": "Subprocesses in Python\nWe have compiled a C++ program and produced an executable myvicsek. We are running it from the shell and then retrieving the date from Python. Could we streamline the process a bit?\nThe first thing we could do is tho make our makefile take some external parameters from input, so that we do not need to recompile it every time we change a parameter.\nThis is easily done: the main function takes default inputs int argc, char* argv[] which are :\n\nthe number of input arguments\nan array of input arguments (as sequence of characters)\n\nLet us consider the simple case in which we only want one parameter in input, the noise strength.\nWe can do the following:\n#include &lt;iostream&gt;\n#include &lt;cstdlib&gt;  // For std::stof (string to float)\n\nint main(int argc, char* argv[]) {\n    // Convert the string argument to a float\n    double noiseStrength = std::stof(argv[1]);\n \n    // rest of main\n    // ...\n    return 0;\n}\nOnce this is done, we can recompile and run\n./myvicsek 0.15\nto run our program at noise 0.15. But could we do this from python instead?\nA dedicated module exists, called subprocess. It allows us to spawn a new process (our C++ program) from another process (e.g. a Python program).\nimport subprocess\n\n# Define the command and arguments inside a list\ncommand = ['./myvicsek', '0.14']\n\n# Call the C++ program via subprocess\nresult = subprocess.run(command, capture_output=True, text=True)\n\n# Print the output\nprint(\"Standard Output:\", result.stdout)\nprint(\"Standard Error:\", result.stderr)"
+  },
+  {
+    "objectID": "wp_pybind/pythonoop-slides.html#wrap-into-a-python-class",
+    "href": "wp_pybind/pythonoop-slides.html#wrap-into-a-python-class",
+    "title": "Wrap C++ in a Python object",
+    "section": "Wrap into a Python Class",
+    "text": "Wrap into a Python Class\nEven more interesting would be to hide all this technical detail and simply be able to do the following:\nimport pyvicsek\n\nmodel = pyvicsek.Wrapper(noise=0.15)\nmodel.run()\nThis code assumes that in our module pyvicsek there is something named Wrapper which takes a named parameter noise and a has an attached method called run(). Byt clearly this does not exist… yet!.\nTo make the code above valid we simply need to create a custom Python class. Classes in Python are very similar to C++, but much simpler.\nThe following analogies hold:\n\nmember variables are called attributes\nmember functions are called methods\nall attributes and methods are public\nC++’s this is conventionally called self\nC++’s . and -&gt; are just .\nthe constructor is a hidden method always called __init__()\n\nPython classes are in general quite simpler than their C++ counterparts: there is no need for header files.\nOur simple Wrapper class does not need to do much: it takes a parameter in input and then runs the code. However we need to give it some structure\nclass Wrapper:\n    def __init__(self, noise=0.1):\n        # code to initalise the object\n\n    def run(self):\n        # code to run\nNotice that the two methods (member functions) take self explicitly as their first parameter: this makes it possible for them to directly refer to the class instance inside their code. For example, the constructor __init__ can store the noise level by\nself.noise = noise\nand the method run() can refer to it, for example by using subprocess to run a local executable\ndef run(self):\n    command = [\"absolute/path/to/myvicsek\", str(self.noise)]\n    result = subprocess.run(command, capture_output=True, text=True)\n    return result\n\n\n\nTask 2: Create your Wrapper class\n\n\nModify your pyvicsek.py so that it only contains function definitions and the definition of a class Wrapper following the hints above.\nYou can find the path to the absolute path to the current directory form the terminal using\npwd\nFrom a Jupyter notebook (or , alternatively, a new Python script) import the pyvicsek module and create an instance of the Wrapper class and run a simulation."
+  },
+  {
+    "objectID": "wp_pybind/pythonoop.html",
+    "href": "wp_pybind/pythonoop.html",
+    "title": "Wrap C++ in a Python object",
+    "section": "",
+    "text": "Use the C++ code from a nice Python interface",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Wrap C++ in a Python object"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/pythonoop.html#aims",
+    "href": "wp_pybind/pythonoop.html#aims",
+    "title": "Wrap C++ in a Python object",
+    "section": "",
+    "text": "Use the C++ code from a nice Python interface",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Wrap C++ in a Python object"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/pythonoop.html#learning-outcomes",
+    "href": "wp_pybind/pythonoop.html#learning-outcomes",
+    "title": "Wrap C++ in a Python object",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nDefining classes in Python",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Wrap C++ in a Python object"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/pythonoop.html#subprocesses-in-python",
+    "href": "wp_pybind/pythonoop.html#subprocesses-in-python",
+    "title": "Wrap C++ in a Python object",
+    "section": "Subprocesses in Python",
+    "text": "Subprocesses in Python\nWe have compiled a C++ program and produced an executable myvicsek. We are running it from the shell and then retrieving the date from Python. Could we streamline the process a bit?\nThe first thing we could do is tho make our makefile take some external parameters from input, so that we do not need to recompile it every time we change a parameter.\nThis is easily done: the main function takes default inputs int argc, char* argv[] which are :\n\nthe number of input arguments\nan array of input arguments (as sequence of characters)\n\nLet us consider the simple case in which we only want one parameter in input, the noise strength.\nWe can do the following:\n#include &lt;iostream&gt;\n#include &lt;cstdlib&gt;  // For std::stof (string to float)\n\nint main(int argc, char* argv[]) {\n    // Convert the string argument to a float\n    double noiseStrength = std::stof(argv[1]);\n \n    // rest of main\n    // ...\n    return 0;\n}\nOnce this is done, we can recompile and run\n./myvicsek 0.15\nto run our program at noise 0.15. But could we do this from python instead?\nA dedicated module exists, called subprocess. It allows us to spawn a new process (our C++ program) from another process (e.g. a Python program).\nimport subprocess\n\n# Define the command and arguments inside a list\ncommand = ['./myvicsek', '0.14']\n\n# Call the C++ program via subprocess\nresult = subprocess.run(command, capture_output=True, text=True)\n\n# Print the output\nprint(\"Standard Output:\", result.stdout)\nprint(\"Standard Error:\", result.stderr)\n\n\n\n\n\n\n\nTask 1: Get input parameters and try subprocess\n\n\n\nModify main.cpp to take the noise in input, recompile and run the C++ program from a python program (or a jupyter notebook) using subprocess.",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Wrap C++ in a Python object"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/pythonoop.html#wrap-into-a-python-class",
+    "href": "wp_pybind/pythonoop.html#wrap-into-a-python-class",
+    "title": "Wrap C++ in a Python object",
+    "section": "Wrap into a Python Class",
+    "text": "Wrap into a Python Class\nEven more interesting would be to hide all this technical detail and simply be able to do the following:\nimport pyvicsek\n\nmodel = pyvicsek.Wrapper(noise=0.15)\nmodel.run()\nThis code assumes that in our module pyvicsek there is something named Wrapper which takes a named parameter noise and a has an attached method called run(). Byt clearly this does not exist… yet!.\nTo make the code above valid we simply need to create a custom Python class. Classes in Python are very similar to C++, but much simpler.\nThe following analogies hold:\n\nmember variables are called attributes\nmember functions are called methods\nall attributes and methods are public\nC++’s this is conventionally called self\nC++’s . and -&gt; are just .\nthe constructor is a hidden method always called __init__()\n\nPython classes are in general quite simpler than their C++ counterparts: there is no need for header files.\nOur simple Wrapper class does not need to do much: it takes a parameter in input and then runs the code. However we need to give it some structure\nclass Wrapper:\n    def __init__(self, noise=0.1):\n        # code to initalise the object\n\n    def run(self):\n        # code to run\nNotice that the two methods (member functions) take self explicitly as their first parameter: this makes it possible for them to directly refer to the class instance inside their code. For example, the constructor __init__ can store the noise level by\nself.noise = noise\nand the method run() can refer to it, for example by using subprocess to run a local executable\ndef run(self):\n    command = [\"absolute/path/to/myvicsek\", str(self.noise)]\n    result = subprocess.run(command, capture_output=True, text=True)\n    return result\n\n\n\n\n\n\nTask 2: Create your Wrapper class\n\n\n\nModify your pyvicsek.py so that it only contains function definitions and the definition of a class Wrapper following the hints above.\nYou can find the path to the absolute path to the current directory form the terminal using\npwd\nFrom a Jupyter notebook (or , alternatively, a new Python script) import the pyvicsek module and create an instance of the Wrapper class and run a simulation.",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Wrap C++ in a Python object"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Software Engineering and Object Oriented Programming",
+    "section": "",
+    "text": "Welcome to the Software Engineering and Object Oriented Programming part of the SCIF20002 Programming and Data Analysis for Scientists course.\n\nThis part of the course focuses on developing your software engineering skills and your knowledge of object-oriented programming through the achievement of a practical simulation project. Over the course of five sessions, you will acquire the tools and explore the instruments to:\n\n\n\n\n\n\n\nCreate your own git repository locally and synchronise it on Github\nLearn to track changes, construct commits and collaborate with others\nWrite an object-oriented code in C++ and Python\nWrite Python wrapper code to interface with C++ using pybind\n\n\n\n\n\n\n\n\nYou will need:\n\nconsolidated knowledge of how to interact with a Unix shell\nconsolidated knowledge of Python\nconsolidated knowledge of basic C++ syntax\ninitial knowledge of classes in C++\nknowledge of the C++ compilation process\n\n\n\n\nYou will need access to a complete environment with\n\na Unix shell (e.g. a Terminal)\na C++ compiler (gcc/g++)\nan installation of git\na Python environment\nsuitable editor (e.g. VSCode).\n\nThe Noteable environment accessible from Blackboard provides all of these.\nHowever, you are encouraged to have your own software development environment installed locally on your machines.\nHere are some architecture-dependent recommendations:\n\nWindows 11MacOSLinuxChromeOSNoteable\n\n\nShell\nThe recommended way to do software development on Windows is to install the Windows Linux Subsystem (WSL, version 2). This installs a well-integrated local Linux distribution. ↗.\nIn brief, you will need to open the Windows Command Prompt in administrator mode by right-clicking and selecting Run as administrator and then type the single command\nwsl --install\nRestart the machine and then launch WSL.\nC++ compiler\nFrom the WSL shell, install the C/C++ compiler with\nsudo apt install gcc\nYou will be prompted to enter the password that you will have set for your WSL user.\nGit\nThe version control software git is installed with\nsudo apt-get install git\nTo interact with Github, it is recommended to also install the Github command-line utility gh. To do so, first add the official sources (copy and paste command)\n(type -p wget &gt;/dev/null || (sudo apt update && sudo apt-get install wget -y)) \\\n    && sudo mkdir -p -m 755 /etc/apt/keyrings \\\n        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \\\n        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null \\\n    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \\\n    && echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null \\\n    && sudo apt update \\\n    && sudo apt install gh -y\nThen update the pakcage list and install gh\nsudo apt update\nsudo apt install gh\nPython environment\nA basic working environment in Python is installed from the WSL shell via\nsudo apt install python3 python3-pip ipython3\nYou can then install scientific computing packages via pip\npip install numpy matplotlib scipy\nCode editor\nThe simplest option is to install Visual Studio Code and configure it to work with WSL.\nHere is the offical guidance ↗️\n\n\nShell\nThe Mac already has a proper shell, called Terminal.\nIt is useful however to install a package manager that simplifies the installation of software. The most suitable is homebrew.\nTo install it, open a Terminal and type (you can copy and paste the command below)\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nC++\nThe Mac already comes with a good compiler installed called clang, with aliases for commands such as gcc and g++.\nYou may want to install a GNU compiler ( the standard gcc compiler that you have, for example, on the Bristol High Performance Computing clusters) you can install it with homebrew using:\nbrew install gcc\nThis will install the latest version of gcc, which you will access with the command gcc-xx where xx is the version number. For example gcc-14.\nGit\nThe Mac should have git pre-installed.\nTo interact with Github, it is recommended to also install the Github command-line utility gh via\nbrew install gh\nPython\nThe Mac already has Python installed as well. You can use it and readily use pip to install the packages that you need using\npip3 install numpy matplotlib scipy\nHowever, a more flexible way to manage different version of Python and Python environments is to install pyenv. More information here ↗️\nCode editor\nYou can install whatever editor you prefer. A simple option is Visual Studio Code, which you can download from this link ↗️\nA telemetry-free version of VSCode can be installed via homewbrew\nbrew install --cask vscodium\n\n\nDepending on the Linux distribution, you may have different package managers to install software. Here we assume a Debian-based distribution such as Ubuntu, where the package manager is apt (or apt-get).\nShell\nAll Linux distributions have an application to launch a shell, often called Terminal.\nC++\nThe C/C++ compilers are normally already installed. If not, just type\nsudo apt-get install gcc\nGit\ngit is normally available. If not, just type\nsudo apt-get install git\nTo interact with Github, it is recommended to also install the Github command-line utility gh. To do so, first add the official sources (copy and paste command)\n(type -p wget &gt;/dev/null || (sudo apt update && sudo apt-get install wget -y)) \\\n    && sudo mkdir -p -m 755 /etc/apt/keyrings \\\n        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \\\n        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null \\\n    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \\\n    && echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null \\\n    && sudo apt update \\\n    && sudo apt install gh -y\nThen update the pakcage list and install gh\nsudo apt update\nsudo apt install gh\nPython\nYou install Python via\nsudo apt-get install python3 python3-pip ipython3\nYou can then install scientific computing packages via pip\npip install numpy matplotlib scipy\nCode editor\nYou can install whatever editor you prefer, including VSCode ↗️.\nOn Ubuntu, a telemetry-free version of VSCode can be installed via snaps\nsnap install codium --classic\n\n\nChromebooks have a Linux operating system running under the hood.\nIt is possible to access it by activating the Linux development environment, see the documentation ↗️\nYou can then follow the same instructions as Linux users.\n\n\nIn the Noteable environment (e.g. Jupyter Lab) you can open a terminal readily. It already has g++, python and git installed.\nThe only missing program is the Github command line utility gh. This allows you to interact with Github and modify a remote git repository. This is ultimately optional (local git repositories are sufficient to learn git).\nTo install gh, we simply fetch a precompiled version. Type the following in the Noteable terminal\nwget https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_amd64.tar.gz\nThis fetches a compressed package gh_2.60.1_linux_amd64.tar.gz (make sure you do this in teh home folder). To decompress it type\n tar -xvf gh_2.60.1_linux_amd64.tar.gz \nThe precompiled executable gh is inside $HOME/gh_2.60.1_linux_amd64/bin/gh. For convenience, we can add an alias by creating a Bash configuration file in the home folder (i.e. ~)\nnano .bash_profile\nand write the following line\nalias gh=\"$HOME/gh_2.60.1_linux_amd64/bin/gh\"\nTo update the configuration, just type\nsource .bash_profile\nNow the command gh is also available.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#requirements",
+    "href": "index.html#requirements",
+    "title": "Software Engineering and Object Oriented Programming",
+    "section": "",
+    "text": "You will need:\n\nconsolidated knowledge of how to interact with a Unix shell\nconsolidated knowledge of Python\nconsolidated knowledge of basic C++ syntax\ninitial knowledge of classes in C++\nknowledge of the C++ compilation process\n\n\n\n\nYou will need access to a complete environment with\n\na Unix shell (e.g. a Terminal)\na C++ compiler (gcc/g++)\nan installation of git\na Python environment\nsuitable editor (e.g. VSCode).\n\nThe Noteable environment accessible from Blackboard provides all of these.\nHowever, you are encouraged to have your own software development environment installed locally on your machines.\nHere are some architecture-dependent recommendations:\n\nWindows 11MacOSLinuxChromeOSNoteable\n\n\nShell\nThe recommended way to do software development on Windows is to install the Windows Linux Subsystem (WSL, version 2). This installs a well-integrated local Linux distribution. ↗.\nIn brief, you will need to open the Windows Command Prompt in administrator mode by right-clicking and selecting Run as administrator and then type the single command\nwsl --install\nRestart the machine and then launch WSL.\nC++ compiler\nFrom the WSL shell, install the C/C++ compiler with\nsudo apt install gcc\nYou will be prompted to enter the password that you will have set for your WSL user.\nGit\nThe version control software git is installed with\nsudo apt-get install git\nTo interact with Github, it is recommended to also install the Github command-line utility gh. To do so, first add the official sources (copy and paste command)\n(type -p wget &gt;/dev/null || (sudo apt update && sudo apt-get install wget -y)) \\\n    && sudo mkdir -p -m 755 /etc/apt/keyrings \\\n        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \\\n        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null \\\n    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \\\n    && echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null \\\n    && sudo apt update \\\n    && sudo apt install gh -y\nThen update the pakcage list and install gh\nsudo apt update\nsudo apt install gh\nPython environment\nA basic working environment in Python is installed from the WSL shell via\nsudo apt install python3 python3-pip ipython3\nYou can then install scientific computing packages via pip\npip install numpy matplotlib scipy\nCode editor\nThe simplest option is to install Visual Studio Code and configure it to work with WSL.\nHere is the offical guidance ↗️\n\n\nShell\nThe Mac already has a proper shell, called Terminal.\nIt is useful however to install a package manager that simplifies the installation of software. The most suitable is homebrew.\nTo install it, open a Terminal and type (you can copy and paste the command below)\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nC++\nThe Mac already comes with a good compiler installed called clang, with aliases for commands such as gcc and g++.\nYou may want to install a GNU compiler ( the standard gcc compiler that you have, for example, on the Bristol High Performance Computing clusters) you can install it with homebrew using:\nbrew install gcc\nThis will install the latest version of gcc, which you will access with the command gcc-xx where xx is the version number. For example gcc-14.\nGit\nThe Mac should have git pre-installed.\nTo interact with Github, it is recommended to also install the Github command-line utility gh via\nbrew install gh\nPython\nThe Mac already has Python installed as well. You can use it and readily use pip to install the packages that you need using\npip3 install numpy matplotlib scipy\nHowever, a more flexible way to manage different version of Python and Python environments is to install pyenv. More information here ↗️\nCode editor\nYou can install whatever editor you prefer. A simple option is Visual Studio Code, which you can download from this link ↗️\nA telemetry-free version of VSCode can be installed via homewbrew\nbrew install --cask vscodium\n\n\nDepending on the Linux distribution, you may have different package managers to install software. Here we assume a Debian-based distribution such as Ubuntu, where the package manager is apt (or apt-get).\nShell\nAll Linux distributions have an application to launch a shell, often called Terminal.\nC++\nThe C/C++ compilers are normally already installed. If not, just type\nsudo apt-get install gcc\nGit\ngit is normally available. If not, just type\nsudo apt-get install git\nTo interact with Github, it is recommended to also install the Github command-line utility gh. To do so, first add the official sources (copy and paste command)\n(type -p wget &gt;/dev/null || (sudo apt update && sudo apt-get install wget -y)) \\\n    && sudo mkdir -p -m 755 /etc/apt/keyrings \\\n        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \\\n        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null \\\n    && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \\\n    && echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null \\\n    && sudo apt update \\\n    && sudo apt install gh -y\nThen update the pakcage list and install gh\nsudo apt update\nsudo apt install gh\nPython\nYou install Python via\nsudo apt-get install python3 python3-pip ipython3\nYou can then install scientific computing packages via pip\npip install numpy matplotlib scipy\nCode editor\nYou can install whatever editor you prefer, including VSCode ↗️.\nOn Ubuntu, a telemetry-free version of VSCode can be installed via snaps\nsnap install codium --classic\n\n\nChromebooks have a Linux operating system running under the hood.\nIt is possible to access it by activating the Linux development environment, see the documentation ↗️\nYou can then follow the same instructions as Linux users.\n\n\nIn the Noteable environment (e.g. Jupyter Lab) you can open a terminal readily. It already has g++, python and git installed.\nThe only missing program is the Github command line utility gh. This allows you to interact with Github and modify a remote git repository. This is ultimately optional (local git repositories are sufficient to learn git).\nTo install gh, we simply fetch a precompiled version. Type the following in the Noteable terminal\nwget https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_amd64.tar.gz\nThis fetches a compressed package gh_2.60.1_linux_amd64.tar.gz (make sure you do this in teh home folder). To decompress it type\n tar -xvf gh_2.60.1_linux_amd64.tar.gz \nThe precompiled executable gh is inside $HOME/gh_2.60.1_linux_amd64/bin/gh. For convenience, we can add an alias by creating a Bash configuration file in the home folder (i.e. ~)\nnano .bash_profile\nand write the following line\nalias gh=\"$HOME/gh_2.60.1_linux_amd64/bin/gh\"\nTo update the configuration, just type\nsource .bash_profile\nNow the command gh is also available.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "wp_oop/placeholder.html",
+    "href": "wp_oop/placeholder.html",
+    "title": "Hands on objects and classes",
+    "section": "",
+    "text": "To appear soon."
+  },
+  {
+    "objectID": "wp_oop/solutions.html",
+    "href": "wp_oop/solutions.html",
+    "title": "Solutions",
+    "section": "",
+    "text": "The solutions to the Object-Oriented thinking workshop can be downloaded as a git bundle from here:",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_oop/solutions.html#how-to-use-the-bundle",
+    "href": "wp_oop/solutions.html#how-to-use-the-bundle",
+    "title": "Solutions",
+    "section": "How to use the bundle",
+    "text": "How to use the bundle\nFirst, download the bundle and clone it locally on you machine with\ngit clone OOPthinking.bundle\nThen you will be able to see all the branches and commits of the bundle.\nIn particular, an easy way to navigate the solutions is to use the tags: the bundle contains so-called git tags, which are shortcuts to commits. You can see all the tags by typing\ngit tag\ninside your cloned repository.\nYou have two main parts for this workshop:\n\nThe tasks of Hands on objects and classes are labelled 1.x where x is the number of the task\nThe tasks of Completing the OOP design of the project are labelled 2.x where x is the number of the task\n\nTo access the state of the repository for a particular task just use git checkout &lt;task-number&gt;. So, for example, to access task 4 of Hands on objects and classes just type\ngit checkout 1.4\nYou can always go back to the main branch with\ngit checkout main",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#aims",
+    "href": "wp_oop/oop-complete-slides.html#aims",
+    "title": "Completing the OOP design of the project",
+    "section": "Aims",
+    "text": "Aims\n\nComplete the skeleton of the object-oriented structure of the project"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#learning-outcomes",
+    "href": "wp_oop/oop-complete-slides.html#learning-outcomes",
+    "title": "Completing the OOP design of the project",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nConstructing combinations of objects\nConstructing vectors of objects"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#more-classes",
+    "href": "wp_oop/oop-complete-slides.html#more-classes",
+    "title": "Completing the OOP design of the project",
+    "section": "More classes",
+    "text": "More classes\nUp to now, we only create one class, the System class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.\nThe idea behind this programming paradigm is to organise the code into smaller units that can be quite autonomous but which can interact with each other.\nEarlier we drew the following sketch\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains\n\n\n\n\n\n\n\nIn the previous part of this workshop we addressed only one of these objects, the System class.\nWe now proceed more quickly, using the same ideas, to construct the two remaining objects and see how to integrate them with our original System class.\nHere, there will be less detailed code and more high level description of what the classes do: it will be for you to translate these design choices int actual code."
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#constructing-the-box",
+    "href": "wp_oop/oop-complete-slides.html#constructing-the-box",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing the Box",
+    "text": "Constructing the Box\nThe system is simulated in a two-dimensional domain. We decide the domain to be a square box. However, for the sake of generality, let our Box class represent an arbitrary rectangular domain.\nThe rectangle should have are\n\nthe side in the x direction\nthe side in the y direction\nthe coordinates of the origin (bottom left corner)\n\n\n  \n  \n  \n  \n  side x\n  \n  \n  side y\n  \n  \n  Origin\n    \n  \n  \n\nIn this case we want to make these properties accessible only via the usage of member functions: we want them to be private member variables. This avoids possible accidental changes, making the code more robust.\nThis means that, when we define the Box class, we will use the following syntax\nprivate:\n    double sidex;\n    double sidey;\n    double x0;\n    double y0;"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#multiple-constructors",
+    "href": "wp_oop/oop-complete-slides.html#multiple-constructors",
+    "title": "Completing the OOP design of the project",
+    "section": "Multiple constructors",
+    "text": "Multiple constructors\nC++ can be initialised i various ways using different constructors. Indeed, in the same class definition, we can have both a default constructor (e.g. without parameters) and various parametrised constructors. A minimal example follows:\npublic:\n    Box(); //default constructor with no parameters\n    Box(double lx, double ly, double x0, double y0); //parametrised constructor\nBoth will require a suitable implementation in the cpp file:\n\nBox::Box(){\n    // an empty constructor\n}\nBox::Box(double lx, double ly, double x0, double y0){\n     //this constructor actually assigns values\n     this-&gt;sidex = lx;\n    //  ...\n}"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#constructing-a-particle",
+    "href": "wp_oop/oop-complete-slides.html#constructing-a-particle",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing a Particle",
+    "text": "Constructing a Particle\nThe final object we are interested in possibly the most important: it is the particle, representing the individual agent of the Vicsek model.\nThe model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction \\(r\\).\nTherefore, we simply want a new class that describes objects that contain:\n\nan x coordinate\na y coordinate\nan angle theta\na velocity magnitude v\na radius of interaction r\n\nWe shall have all these variables public for simplicity."
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
+    "href": "wp_oop/oop-complete-slides.html#creating-a-vector-of-particles",
+    "title": "Completing the OOP design of the project",
+    "section": "Creating a vector of particles",
+    "text": "Creating a vector of particles\nC++ has an excellent standard library with multiple data structures that simplify coding in C++. One kwy datastructure is the vector which is accessed via\n#include &lt;vector&gt;\nAs you have seen in the Introduction to C++ part of the course, we can create vectors of any kind:\n\nvectors of integers:\n\nstd::vector&lt;int&gt; vec; // Creates a \n\nvectors of floating point numbers:\n\nstd::vector&lt;double&gt; vec(3, 5.0); // Creates a vector of size 10, all elements initialized to 5.0\nIn principle, however, we can make vectors out of any type, including the Particle class that we have just defined, using\nstd::vector&lt;Particle&gt; particles;"
+  },
+  {
+    "objectID": "wp_oop/oop-complete-slides.html#random-initial-state",
+    "href": "wp_oop/oop-complete-slides.html#random-initial-state",
+    "title": "Completing the OOP design of the project",
+    "section": "Random initial state",
+    "text": "Random initial state\nThe last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.\nAgain, the standard library provides us with good tools. A &lt;random&gt; model of the library exists with very good generators.\nThe paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case the Mersenne twister, which has a long period )\n#include &lt;random&gt;\n\nint seed = 1234;\nstd::mt19937 gen = std::mt19937(seed);"
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html",
+    "href": "wp_oop/oop-complete.html",
+    "title": "Completing the OOP design of the project",
+    "section": "",
+    "text": "Complete the skeleton of the object-oriented structure of the project",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#aims",
+    "href": "wp_oop/oop-complete.html#aims",
+    "title": "Completing the OOP design of the project",
+    "section": "",
+    "text": "Complete the skeleton of the object-oriented structure of the project",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#learning-outcomes",
+    "href": "wp_oop/oop-complete.html#learning-outcomes",
+    "title": "Completing the OOP design of the project",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nConstructing combinations of objects\nConstructing vectors of objects",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#more-classes",
+    "href": "wp_oop/oop-complete.html#more-classes",
+    "title": "Completing the OOP design of the project",
+    "section": "More classes",
+    "text": "More classes\nUp to now, we only create one class, the System class. We could maybe write all out code inside the system class, but this would largely defeat the point of object-oriented programming.\nThe idea behind this programming paradigm is to organise the code into smaller units that can be quite autonomous but which can interact with each other.\nEarlier we drew the following sketch\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains\n\n\n\n\n\n\n\nIn the previous part of this workshop we addressed only one of these objects, the System class.\nWe now proceed more quickly, using the same ideas, to construct the two remaining objects and see how to integrate them with our original System class.\nHere, there will be less detailed code and more high level description of what the classes do: it will be for you to translate these design choices int actual code.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#constructing-the-box",
+    "href": "wp_oop/oop-complete.html#constructing-the-box",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing the Box",
+    "text": "Constructing the Box\nThe system is simulated in a two-dimensional domain. We decide the domain to be a square box. However, for the sake of generality, let our Box class represent an arbitrary rectangular domain.\nThe rectangle should have are\n\nthe side in the x direction\nthe side in the y direction\nthe coordinates of the origin (bottom left corner)\n\n\n  \n  \n  \n  \n  side x\n  \n  \n  side y\n  \n  \n  Origin\n    \n  \n  \n\nIn this case we want to make these properties accessible only via the usage of member functions: we want them to be private member variables. This avoids possible accidental changes, making the code more robust.\nThis means that, when we define the Box class, we will use the following syntax\nprivate:\n    double sidex;\n    double sidey;\n    double x0;\n    double y0;\n\nTo set the values of these variables or get their values we need dedicated member functions, conventionally called setters and getters. These, obviously, have to be public.\npublic:\n    void setSides(double lx, double ly);\n    void setOrigin(double x, double y);\n    double getSidex();\n    double getSidey();",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#multiple-constructors",
+    "href": "wp_oop/oop-complete.html#multiple-constructors",
+    "title": "Completing the OOP design of the project",
+    "section": "Multiple constructors",
+    "text": "Multiple constructors\nC++ can be initialised i various ways using different constructors. Indeed, in the same class definition, we can have both a default constructor (e.g. without parameters) and various parametrised constructors. A minimal example follows:\npublic:\n    Box(); //default constructor with no parameters\n    Box(double lx, double ly, double x0, double y0); //parametrised constructor\nBoth will require a suitable implementation in the cpp file:\n\nBox::Box(){\n    // an empty constructor\n}\nBox::Box(double lx, double ly, double x0, double y0){\n     //this constructor actually assigns values\n     this-&gt;sidex = lx;\n    //  ...\n}\n\n\n\n\n\n\n\nTask 1: Construct the Box class\n\n\n\nInspired by what you have done for the System class, create a box.h and a box.cpp file to declare and implement the Box class.\nFollow the recommendations above to structure the Box class, with private member variables and public getters and setters.\nIn particular, provide both a parametrised constructor that takes four parameters:\n    Box(double lx, double ly, double x0, double y0);\nas well as a default constructor.\n\n\n\n\n\n\n\n\n\nTask 2: Use the Box\n\n\n\nGo back to your System class and uncomment the parts of the code that pertain to the Box class.\nSince we have defined the class and implemented it, we can now use it. In particular we want that, when we construct a System, the Box is also constructed using the correct parameters for its side. We also choose the point (0,0) to always be its lower left corner.\nHence, modify the implementation of the System class so that the member variable simulationBox is an instance of the parametrised constructor of the Box class, using sideLength for both lx and ly parameters and 0,0 for x0 and y0.\nTo check that your implementation is valid, add the following line to your main.cpp file to print the side of the box:\nstd::cout&lt;&lt;\"The system has a simulation box of side \"&lt;&lt;model.simulationBox.getSidex()&lt;&lt;std::endl;\nThe compilation step is now\ng++ main.cpp system.cpp box.cpp -o myvicsek\nIf you instead have prepared a correct makefile, just type\nmake",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#constructing-a-particle",
+    "href": "wp_oop/oop-complete.html#constructing-a-particle",
+    "title": "Completing the OOP design of the project",
+    "section": "Constructing a Particle",
+    "text": "Constructing a Particle\nThe final object we are interested in possibly the most important: it is the particle, representing the individual agent of the Vicsek model.\nThe model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction \\(r\\).\nTherefore, we simply want a new class that describes objects that contain:\n\nan x coordinate\na y coordinate\nan angle theta\na velocity magnitude v\na radius of interaction r\n\nWe shall have all these variables public for simplicity.\n\nWe should also decide how these properties get initialised when we create a new particle. We have many options, but the simplest choice could be to assign default values via the default constructor.\nReasonable choices are the following:\n\nzero both x, y and theta\nset r as the unit of length\nset v to 0.5\n\nThis can be directly done in the implementation of the default constructor Particle(), with no parameters.\n\n\n\n\n\n\n\nTask 3: Construct the Particle class\n\n\n\nInspired by what you have done for the System class and the Box class, create a particle.h and a particle.cpp file to declare and implement the particle class.\nUse the guidance above to structure your class. It should be sufficient then to uncomment the relevant section of code in system.h to test that the code is valid to proceed with a compilation.\nWithout a makefile this is\ng++ main.cpp system.cpp box.cpp particle.cpp -o myvicsek\nIf you have not done it already, thi is a good time to create makefile to help yourself with future compilations. A valid makefile can be downloaded here 📝 Makefile. Put it in the same directory of your project and type\nmake\nevery time you need to compile your code. For more information, see here.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#creating-a-vector-of-particles",
+    "href": "wp_oop/oop-complete.html#creating-a-vector-of-particles",
+    "title": "Completing the OOP design of the project",
+    "section": "Creating a vector of particles",
+    "text": "Creating a vector of particles\nC++ has an excellent standard library with multiple data structures that simplify coding in C++. One kwy datastructure is the vector which is accessed via\n#include &lt;vector&gt;\nAs you have seen in the Introduction to C++ part of the course, we can create vectors of any kind:\n\nvectors of integers:\n\nstd::vector&lt;int&gt; vec; // Creates a \n\nvectors of floating point numbers:\n\nstd::vector&lt;double&gt; vec(3, 5.0); // Creates a vector of size 10, all elements initialized to 5.0\nIn principle, however, we can make vectors out of any type, including the Particle class that we have just defined, using\nstd::vector&lt;Particle&gt; particles;\n\nWe can also just declare a vector and then resize it:\nstd::vector&lt;Particle&gt; particles; // Creates an empty vector of particles\nparticles.resize(10);       // Resizes the vector to hold 10 particles, all initialised by their default constructor\nVectors are useful for two reasons:\n\nthey manage memory allocation and deallocation automatically\nthey can resized dynamically, unlike raw arrays which have fixed sizes.\n\nFrom our point of view, they are also conceptually very close to Python’s lists. Therefore we are using vectors to simplify or coding.\n\n\n\n\n\n\n\nTask 4: Create and resize the vector of particles.\n\n\n\nIn system.h you should already have a declaration of a Particle vector. Uncomment it and then move to system.cpp to modify the implementation of the constructor to resize the vector of particles to match the particleNumber member variable.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-complete.html#random-initial-state",
+    "href": "wp_oop/oop-complete.html#random-initial-state",
+    "title": "Completing the OOP design of the project",
+    "section": "Random initial state",
+    "text": "Random initial state\nThe last thing that our initialisation of the model needs is a correctly initialise pseudo-random number generator.\nAgain, the standard library provides us with good tools. A &lt;random&gt; model of the library exists with very good generators.\nThe paradigm is similar to random number generators in other languages such as Python with numpy: we declare a genertor object and associate it with a particular kind of pseudo-random generator (in this case the Mersenne twister, which has a long period )\n#include &lt;random&gt;\n\nint seed = 1234;\nstd::mt19937 gen = std::mt19937(seed);  \n\nRandom numbers from arbitrary distributions are then sampled by first creating a distribution object (for example a uniform distribution between 0 and 1)\nstd::uniform_real_distribution&lt;double&gt; uniformDist;\nand then sampling values from it by pass the random generator in input\ndouble randomValue = uniformDist(gen);\nIn our code, we need a sampler of the uniform distribution to sample the particle position (and also to perform the noisy dynamics of the Vicsek model). So, it is useful to expand our System class to include a random number generator, initialised in the constructor and a suitable member function to sample uniformly distributed random numbers.\n\n\n\n\n\n\n\nTask 5: Random number generation\n\n\n\nUse the advice above to include a member variable in the system.h declaration corresponding to a Mersenne Twister random number generator. Call the generator gen. Also, add a uniform distribution member variable called uniformDist.\nAdd a suitable int seed parameter to the system’s constructor parameter list. Modify the constructor to initialise the random number generator.\nThen, add also a member function\ndouble uniform(double min, double max);\nwhose implementation is\ndouble System::uniform(double min,double max) {\n    return (max-min)*this-&gt;uniformDist(gen)+min;\n\n}\nTo test that this works, modify the main function to print out a random number between 10 and 20.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Completing the OOP design of the project"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#aims",
+    "href": "wp_oop/oop-slides.html#aims",
+    "title": "Hands on objects and classes",
+    "section": "Aims",
+    "text": "Aims\n\nDefine the essential properties of our simulation and identify them as objects\nRecall the main syntactical aspects of C++ classes\nImplement the main structure of the class representing the simulated system"
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#learning-outcomes",
+    "href": "wp_oop/oop-slides.html#learning-outcomes",
+    "title": "Hands on objects and classes",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nFamiliarise with the rules of Vicsek flocking model\nPractice object-oriented design choices in C++"
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
+    "href": "wp_oop/oop-slides.html#object-oriented-programming-is-about-actions-between-objects",
+    "title": "Hands on objects and classes",
+    "section": "Object-oriented programming is about actions between objects",
+    "text": "Object-oriented programming is about actions between objects\nA lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boils down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This procedural programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated."
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
+    "href": "wp_oop/oop-slides.html#modelling-flocking-using-the-vicsek-model",
+    "title": "Hands on objects and classes",
+    "section": "Modelling flocking using the Vicsek model",
+    "text": "Modelling flocking using the Vicsek model\nIn this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.\nWew use the Vicsek model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.\nThe problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking."
+  },
+  {
+    "objectID": "wp_oop/oop-slides.html#the-system-class",
+    "href": "wp_oop/oop-slides.html#the-system-class",
+    "title": "Hands on objects and classes",
+    "section": "The System class",
+    "text": "The System class"
+  },
+  {
+    "objectID": "wp_oop/oop.html",
+    "href": "wp_oop/oop.html",
+    "title": "Hands on objects and classes",
+    "section": "",
+    "text": "Define the essential properties of our simulation and identify them as objects\nRecall the main syntactical aspects of C++ classes\nImplement the main structure of the class representing the simulated system",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop.html#aims",
+    "href": "wp_oop/oop.html#aims",
+    "title": "Hands on objects and classes",
+    "section": "",
+    "text": "Define the essential properties of our simulation and identify them as objects\nRecall the main syntactical aspects of C++ classes\nImplement the main structure of the class representing the simulated system",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop.html#learning-outcomes",
+    "href": "wp_oop/oop.html#learning-outcomes",
+    "title": "Hands on objects and classes",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nFamiliarise with the rules of Vicsek flocking model\nPractice object-oriented design choices in C++",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop.html#object-oriented-programming-is-about-actions-between-objects",
+    "href": "wp_oop/oop.html#object-oriented-programming-is-about-actions-between-objects",
+    "title": "Hands on objects and classes",
+    "section": "Object-oriented programming is about actions between objects",
+    "text": "Object-oriented programming is about actions between objects\nA lot of your programming up to now has been data-centric: you received data, often simply tabulated numerical data, and then you have manipulated it using suitable functions, occasionally custom designed. In this sense, programming boils down to retrieving data, processing it with suitable functions, and produce new data (to be eventually processed again). This procedural programming is very linear, but is often very problem specific: your program finally consists of a well defined pipeline of steps where the data get progressively manipulated. The code becomes easily quite long and complicated.\n\nObject-oriented programming is different: the idea is to look at the problem that you want to solve and identify intelligent ways to break it down into generic, smaller problems.\nIn particular, the goal is to group variables and functions together into new data types that enjoy new properties and relationships. This allows you to break down a complex code into simpler parts.\nFrom this description it is clear that object-oriented programming (OOP) will be:\n\nunsuitable for small projects that can be addressed with standard or existing data types\nvery suitable when considering new problems, with many different parts interacting in various different ways\n\nTo make object-oriented interesting, here we are considering an explicit example where reasoning in terms of objects helps us design our code.\n\n\n\nProcedural Code\n#include &lt;iostream&gt;\n\ndouble calculate_area(double length, double width) {\n    return length * width;\n}\n\nint main() {\n    double length = 5.0, width = 3.0;\n    double area = calculate_area(length, width);\n\n    std::cout &lt;&lt; \"Area: \" &lt;&lt; area &lt;&lt; std::endl;\n    return 0;\n}\n\n\n\nObject-Oriented Code\n#include &lt;iostream&gt;\n// Rectangle class to represent a rectangle\nclass Rectangle {\n    public:\n        double length;\n        double width;\n        // Constructor\n        Rectangle(double l, double w) : length(l), width(w) {}\n        // Member function with its implementation\n        double calculate_area() {\n            return length * width;\n        }\n};\n\nint main() {\n    Rectangle rect(5.0, 3.0);\n    double area = rect.calculate_area();\n    std::cout &lt;&lt; \"Area: \" &lt;&lt; area &lt;&lt; std::endl;\n    return 0;\n}",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop.html#modelling-flocking-using-the-vicsek-model",
+    "href": "wp_oop/oop.html#modelling-flocking-using-the-vicsek-model",
+    "title": "Hands on objects and classes",
+    "section": "Modelling flocking using the Vicsek model",
+    "text": "Modelling flocking using the Vicsek model\nIn this mini-project, we are using a minimal model of flocking as our simple application of object-oriented programming to scientific computing.\nWew use the Vicsek model, a celebrated model to describe the behaviour of self-propelled agents subject to alignment interactions.\nThe problem is two-dimensional. It simulates the collective behavior of self-propelled particles that align their velocities with their neighbors within a certain radius. Each particle moves in a random direction and adjusts its orientation to match the average direction of nearby particles, leading to the emergence of coordinated motion or flocking.\n\n\n\n\n\n\n\nAlgorithm\n\n\n\nThe 2D Vicsek model algorithm can be described in these steps:\n\nInitialize: Place \\(N\\) particles at random positions \\(\\mathbf{r}_i\\) with random velocities \\(\\mathbf{v}_i = v (\\cos\\theta_i, \\sin\\theta_i)\\), where \\(\\theta_i\\) is the orientation angle.\nNeighbor Identification: For each particle \\(i\\), identify neighbors within radius \\(r\\).\nAlignment: Compute the average direction of neighbors, including \\(i\\): \\[\n\\bar{\\theta}_i = \\text{atan2}\\left(\\sum_{\\rm j \\in neighbours} \\sin\\theta_j, \\sum_{\\rm j \\in neighbours} \\cos\\theta_j\\right)\n\\]\nNoise: Add a random perturbation \\(u\\) to the orientation as a random variable uniformly distributed in the interval \\([-\\eta/2,\\eta/2]\\), where \\(\\eta\\) is teh noise strength\n\\[\n\\theta_i^{\\text{new}} = \\bar{\\theta}_i + u\n\\]\nUpdate Position: Move each particle with its updated velocity: \\[\n\\mathbf{r}_i^{\\text{new}} = \\mathbf{r}_i + \\mathbf{v}_i \\Delta t\n\\]\nRepeat: Iterate for the desired number of time steps.\n\n\n\n\n\nFrom the algorithm above we can extract a few key conceptual entities needed for our simulation\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      %% particle_number\n      %% noise_strength\n      %%list~Particle~ particles\n      %%update_rule()\n  \n    }\n\n    class Box {\n        %%size\n        %%boundary_conditions\n    }\n\n    class Particle {\n        %%position\n        %%orientation\n    }\n  System --&gt; Box : contains\n  System \"1\" --&gt; \"N\" Particle : contains\n\n\n\n\n\n\n\nOur goal is now to concretely construct C++ objects around these various components. The natural organisation in C++ is to have different files for the different objects, separating their declarations and the implementations. In practice this means having\n\na .h file (a header file) for every object to describe its structure and contain the declarations\na .cpp file (a source file) to specify how the object works and contain the the implementation\n\nWe will use the example of the System class to recall some essential elements of C++ object orientation.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "wp_oop/oop.html#the-system-class",
+    "href": "wp_oop/oop.html#the-system-class",
+    "title": "Hands on objects and classes",
+    "section": "The System class",
+    "text": "The System class\n\nGeneric class structure\nThe declaration of a generic C++ class has a standard structure\n\nclass MyClass { // UpperCamelCase convention\n  public:\n    Myclass(); //default constructor\n\n    int memberVariable;  \n    float memberFunction();\n\n}; // remember this semicolon!\nObjects organise data and functions. The data are stored as member variables (also called attributes) and functions specific to the object are called member functions (also called methods). Member functions and variables can be public or private.\n\n\nInstantiation\nA class declaration is barely the description of the content of an object.\nIn order to use objects we need to construct them first. The process of constructing objects is called instantiation: we can have indeed many separate instances of the same object.\nEvery instantiation runs a particular member function of the object, called the constructor. The constructor always has the same name as the class itself and clearly has no type associated with it because what it returns is precisely an object of the type defined by the class.\nFor example, the class above is named MyClass so it has a member function called MyClass() (notice the brackets). When we want to instantiate an object of such class we just type\nMyClass anInstance;\nBut could as well have multiple instances of the same class\nMyClass instance1;\nMyClass instance2;\nMyClass instance3;\nBut what does the constructor actually do? In fact, up to now, we did not specify anything. Indeed, we have not yet written any implementation of the class. We will see this very soon in the section below.\nAt the moment, let us now apply these broad ideas to the specific concept of our System class.\n\n\nDeclaration\nThe header file for our System class needs precisely to mirror the structure above.\nSince a header file can be imported multiple times by various nested objects, it is good practice to confine the code inside so called headr guards, #ifndef/#define statements that make the inclusion of the header optional if the header as already been included.\nThis means that the basic structure of hour system.h file will be\n#ifndef SYSTEM_H\n#define SYSTEM_H\n\nclass System {\n  public:\n    System();\n};\n\n#endif\nThis is a bare-bone System: it has nothing specific to our model. We can now sculpt the class the fit what we believe our system should have. For example, here is what we may sketch as a design, where we distinguish member variables from functions\n\n\n\n\n\nclassDiagram\n direction LR\n    class System{\n      particleNumber\n      noiseStrength\n      simulationBox\n      vector~Particle~ particles\n      System()\n      updateRule()\n      \n      }\n\n\n\n\n\n\n\nWe have a few member variables:\n\nthe total number of particles\nthe noise strength in Vicsek model\na simulation box\na vector containing all the particles\n\n\nSince C++ is a typed language, we need to think of the types of such variables\n\nthe total number of particles → it is an integer int\nthe noise strength in Vicsek model → it is a floating point number double\na simulation box → it is going to be an instance of a yet-to-be-defined class Box\na vector containing all the particles → it is a vector of a yet-to-be-defined class Particle\n\nThe System class also contains two member functions:\n\nthe constructor, which return an instance of the class\nan update rule to implement the Vicsek dynamics, which just updates the particles, so it is probably of type void\n\n\nWith this in mind we can translate these design ideas into an actual class structure that is specific to our problem\n#ifndef SYSTEM_H\n#define SYSTEM_H\n\n#include &lt;vector&gt; //to use standard C++ vectors\n#include \"box.h\" //yet to be created!\n#include \"particle.h\" //yet to be created!\n\nclass System {\n  public:\n    System();\n    int   particleNumber;\n    double noiseStrength;\n    Box simulationBox;\n    std::vector&lt;Particle&gt; particles;\n\n    void updateRule();\n};\n\n#endif\nNotice that we added an include statement to use the std::vector for the C++ standard library and construct a vector of particles. Also note that we are also including the definitions of the Box and the Particle classes, which we have not yet written!\n\n\n\n\n\n\n\nTask 1: header file\n\n\n\nCreate a header file for the System class that mirrors the instructions above.\n(Optional but recommended) Add the files to your git repository and commit the changes.\n\n\n\n\nBasic implementation\nNow that we have the overall description of the class, we want to implement it. What is missing specifically are the instructions for the default constructor System() and the member function updateRule(). these are to be stored in the source file system.cpp. In it, we include the definitions provided in the header file and then refer to the member functions of a particular class using the :: operator\nSo, our system.cpp file will start with including the respective header file via\n#include \"system.h\"\nand then proceed specifying each member function separately.For example, for the updateRule() member function we will have\nvoid System::updateRule(){\n  // the Vicsek update rule...\n}\nAnd for the constructor we will have instead\nSystem::System(){\n  // whatever we want to do as we instantiate the system\n}\n\n\n\n\n\n\n\nTask 2: Simple implementation and instantiation\n\n\n\nCreate a system.cpp file and implement the constructor and the update rule such that :\n\nthe constructor prints I am constructing the System!\nthe update rule prints Updating the system...\n\nRemember that you need the &lt;iostream&gt; library to be included in order to be able to print using the standard C++ library (you should know how to do this from Teaching Block 1).\nThen, comment out (for now) the Box simulationBox; and the std::vector&lt;Particle&gt; particles; lines from the header file and their associated header files.\nNow, in the main.cpp file (that should be in the same folder), inside the main function, instantiate a System object.\nCompile your code, either by using a Makefile (see here) or by directly using the compiler with\ng++ main.cpp system.cpp -o myvicsek\nand run it with (or with whatever name you have given tour executable)\n./myvicsek\nYou should see the following output in the command line:\n$ ./myvicsek\nI am constructing the System!\n(Optional but recommended) Add the files to your git repository and commit the changes.\n\n\n\n\n\n\n\n\n\nTask 3: Calling a member function\n\n\n\nCan you modify the main.cpp file to call the member function updateRule() after instantiating your object? Notice that (differently from the default constructor we wrote above) this uses parenthesis even if it doesn’t take any arguments. Since you use a member function of an instance of a class, you must use the dot operator . as:\ninstance.memberFunction();\n\n\n\n\n\nA more meaningful constructor\nWe have now a working basic class. It does not do much and it does not even store any data, but it should work. Ideally, we would instead like to construct our system so that it can at least store some parameters of our model to be used later on. To do so we need to enrich the constructor, since the default constructor is taking no arguments.\nThere are several parameters that it may be useful to pass to the constructor. Some may be worth storing in the System object as member variables, some may not, depending on your design choices.\nParameters that are meaningful to pass to the constructor could be:\n\nthe total number of particles N (mentioned earlier)\nthe noise strength (mentioned earlier)\n\nbut we may want to have more, for example:\n\nthe size of the system (if it is a square box, it would be just its side)\nthe time step of the simulation\n\nTo do this, we need to modify the constructor declaration to take these parameters as arguments. We will also need to update the implementation of the constructor to initialize the member variables with these parameters.\n\n\n\n\n\n\n\nTask 4: Improve the constructor declaration\n\n\n\nModify the System class declaration in system.h so that\npublic:\n    System();\nis turned into\npublic:\n    System(int particleNumber,double sideLength, double timeStep,double noiseStrength);\nTry to compile the code again: can you explain the error messages?\n(Optional but recommended) Commit the changes to your repository via git.\n\n\n\n\nUsing this\nSuch changes need then to be mirrored in the implementation, i.e. the .cpp file. Here we need to be able to refer specifically to the member variables of the class in an unambiguous way. The way C++ does this is by using the keyword this.\n\n\n\n\n\n\nImportant\n\n\n\nTechnically this is a pointer to the current object (i.e. the memory address of the object) so to access any of its members (variables or ) is done using the -&gt; operator with the syntax\nthis-&gt;memberVariable = ...;\nWhen instead one accesses member functions and variables directly from an object instance one uses the . operator\n\n\nSo, for every parameter that we get through the constructor, we can use the this-&gt; construction to store it into a member variable.\n\n\n\n\n\n\n\nTask 5: Assigning member variables\n\n\n\nEdit the system.cpp file so that the constructor now mirrors its declaration in the system.h file and stores the following parameters in the corresponding member variables:\n\nthe particle number\nthe noise strength\n\nModify the main.cpp file so that now you call the constructor with suitable parameters. For this it is sufficient to use (...) (with the dots replaced by the required parameters) after the name of the instance. From the main() function, use a cout statement to print out the values of the particle number and noise after the construction of your instance of the class System.\nTake the following numerical values:\n\n100 particles\nside length 20.0\ntimestep of 0.5\nnoise strength 0.1\n\nThe units of these quantities will become apparent when we will discuss the details of the model in the next workshop.\nCompile and run.\n(Optional but recommended) Commit the changes to your git repository.\n\n\n\n\n\n\n\n\n\nTask 6: Adjusting the design and the implementation\n\n\n\nNow modify both the declaration (system.h) and the implementation (system.cpp) so that you can also store the timestep and the side length.\n(Optional but recommended) Commit the changes to your git repository.",
+    "crumbs": [
+      "2| Object-Oriented thinking",
+      "Hands on objects and classes"
+    ]
+  },
+  {
+    "objectID": "model.html",
+    "href": "model.html",
+    "title": "The Vicsek model",
+    "section": "",
+    "text": "The Vicsek model"
+  },
+  {
+    "objectID": "wp_pybind/interface.html",
+    "href": "wp_pybind/interface.html",
+    "title": "Using C++ objects from Python",
+    "section": "",
+    "text": "Improve the Python interface to use the code\nDiscover the notion of bindings",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface.html#aims",
+    "href": "wp_pybind/interface.html#aims",
+    "title": "Using C++ objects from Python",
+    "section": "",
+    "text": "Improve the Python interface to use the code\nDiscover the notion of bindings",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface.html#learning-outcomes",
+    "href": "wp_pybind/interface.html#learning-outcomes",
+    "title": "Using C++ objects from Python",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nMinimal usage of pybind11",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface.html#interacting-with-the-c-code",
+    "href": "wp_pybind/interface.html#interacting-with-the-c-code",
+    "title": "Using C++ objects from Python",
+    "section": "Interacting with the C++ code",
+    "text": "Interacting with the C++ code\nOur C++ is now cnsituted of many pieces:\n\nthe objects\n\nSystem\nBox\nParticle\n\nthe main function (and source code)\n\nThe main.cpp file seems critical : without it, the program does not even begin.\nHowever, all the conceptual pieces that we need for the simulation do exist without the main.cpp code: the System contains all the functions and variables needed for the simulation to run.\nIt would be ideal to delegate to C++ all the heavy calculations related to the system update and instead use an easier, mnore flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.\npybind11 precisely allows us to do this .",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface.html#the-pybind11-library",
+    "href": "wp_pybind/interface.html#the-pybind11-library",
+    "title": "Using C++ objects from Python",
+    "section": "The pybind11 library",
+    "text": "The pybind11 library\nPybind11 is header only library for C++ that simplifies the inter-operability (bindings) between the two languages. This chiefly means the ability to call C++ functions and objects from Python.\nWhile Python is written in C/C++ itself, provining such binding using the native Python interface is quite complex.\npybind11 provides a number of tools that work at high level (i.e. at the level of class declarations).\nThe library is header only, means that its installation is very simple (it is a small number of headers .h files that do not need to be pre-compiled).\n\nInstallation\nThe most generic installation is via Python’s package manager pip\npip install pybind11 --user\nAlternatively, one some version of Ubuntu (e.g. under WSL on Windows) one may need\napt install python-pybind11\nOnce this is installed, the following command should return a valid path\npython -m pybind11 --includes\nIf this works, pybind11 is correctly installed and one can proceed with the construction of the bindings.\n\n\nBinding the System\nThe goal of the bindings is to produce a new Pyhton package that exposes (some) properties of the C++ code.\nWe do not need to expose everything, only the parts we are inetrested in. Given the hierarchical structure of our code, the minimum we can expose is the System class itself. If, in Python, we have a means to\n\nconstruct a System object\ninitialise it\nupdate it according to the dynamics\nstore its configurations\n\nwe can run a basic simulation in Python/C++ of the Vicsek model.\nTo bind our code we need to create a bindings.cpp file. This file will include all the instructions needed to convert the C++ code to Python, leveraging the library. we do not need a corresponding bindings.h file as we are not defining any new object: we are only providing the instruction for pybind11 to map a C++ object to a Python object.\n\nHeader Inclusions\nThe bindings.cpp first needs to include the correct libaries and header files.\nFor pybind11 we include the standard\n#include &lt;pybind11/pybind11.h&gt;\n#include &lt;pybind11/stl.h&gt;\nand specifically for our System.h we include its header.\n#include \"system.h\"   // Ensure this header is included\n\n\nDefine the Python module\nWe now need to define the properties of the new Python module that we will create. To do so, we use specia C++ macro defined inside pybind11 to automatically generate a C++ function that constructs a Python module.\nAt this level, let’s axiomatically accept that to define a Python module from C++ with pybind11 we need to call the following construct\nPYBIND11_MODULE(myvicsek, m) {\n// all the contents of the module\n\n}\nThese lines of code specifically\n\ndefines a Python module named myvicsek.\nrefer with m to the Python module object where bindings are added.\n\n\n\n\n\n\n\n\nTask 3: Create empty bindings.cpp file and compile with pybind11\n\n\n\nFollowing the instructions above, create a bindings.cpp file in the same folder as the rest of your code.\nInside the `PYBIND11_MODULE`` include the following line (with the same or an alternative documentation string):\n    m.doc() = \"MyVicsek: A Python binding for a C++ implementation of the Vicsek model\"; \nThe compilation step with pybind11 requires you to link to the pybind11 headers explicitly, and this makes the command quite more complex:\ng++ -O3 -Wall -shared -std=c++11 -undefined dynamic_lookup $(python -m pybind11 --includes) bindings.cpp particle.cpp system.cpp  box.cpp -o myvicsek$(python-config --extension-suffix)\nNotice that we use bash to retrieve variables with the actual paths of the pybind11 headers.\nThis is a good reason to have a makefile, where one can perform the suitable modifications. A minimal makefile would look like\nCC = g++-14\nCFLAGS = -std=c++11 -O2 -Wall -undefined dynamic_lookup $(shell python -m pybind11 --includes)\nSRC = main.cpp system.cpp box.cpp particle.cpp bindings.cpp\nOUT = myvicsek$(shell python-config --extension-suffix)\n\nall:\n    $(CC) $(CFLAGS) $(SRC) -o $(OUT)\n\nclean:\n    rm -f $(OUT)\nWhen the compilation succeeds, run a python shell (e.g. by typing python or ipython) and import your newly defined module\nimport myvicsek\nprint(myvicsek.__doc__)\n\n\nWe now simply need to provide the instructions to expose the structure of the System to Python.\nFirst, we need to tell Python that we have a class definition with name System. So we construct a dummy object system_class that represent the class itself.\npybind11::class_&lt;System&gt; system_class(m, \"System\");\nIn this line, we use a special class defined in the pybind11 library and apply it to our System class. Notice that:\n\nWe call the class_on our class System (with a syntax similar to the standard std::vector&lt;Type&gt;).\nWe construct the dummy system_class with two parameters: the module m and the name with which the system_class will appear on the Python side. In this case System.\n\nWe need now to map member functions and member variables to python.\npybind provides us with many methods to expose classes and their parts. For example:\n\n.def(): binds a member function to the class.\n.def_readonly() binds a member variable to a read-only attribute.\n.def_readwrite() binds a member variable to an attribute that can be overwritten.\n\nand various others (see documentation here).\nWe shall only use .def() and .def_readonly() for simplicity.\n\n\nMapping the constructor\nThe constructor is a member function, so we need to use .def().\nWe need to describe how the constructor works at a very high lebvel: this means essentially just telling Python what kind od inputs it takes:\nFor this, pybind has a specific syntax\nsystem_class.def(pybind11::init&lt;int, double, double, double, int&gt;(), \n                pybind11::arg(\"particleNumber\"), \n                pybind11::arg(\"sideLength\"), \n                pybind11::arg(\"timeStep\"), \n                pybind11::arg(\"noiseStrength\"), \n                pybind11::arg(\"seed\"));\nWith this syntax we are telling pybind:\n\nthat we are referring to the constructor (init stands for initialisation)\nthe constructor has a specific sequence of parameters, with specific types\nthe parameters have particular names (and we can see such names also in Python). Note the pybind11::arg syntax to identify the strings a parameter names (“arguments”).\n\nYou can in principle omit the specification of the parameter names, but it is always more informative to have them.\n\n\n\n\n\n\n\nTask 4: Construct the system from python\n\n\n\nModify the bindings.cpp file to include the basic definitions for the System class. Recompile and try to construct your first C++ object from Python (either via a separate script or from an interactive shell).\nIf you are using a Jupyter notebook, remember to restart the kernel berfore importing the myvicsek module again (or use the method reload from the library importlib).\n\n\n\n\n\nMember functions and methods\nOur system class also has member functions and member variables. pybind allows us to expose both, and we can simply choose what to bind and what not to bind.\nAs above, we can use .def to bind member functions, for example the random initialisation:\nsystem_class.def(\"randomStart\", &System::randomStart);\nwhere we tell Python that a new member function (a method) exists for our class and binds directly to its address (&) in the C++ class instance.\nSimilarly, we can expose the particles member variable in read-only mode simply using .def_readonly()\nsystem_class.def_readonly(\"particles\", &System::particles);\nAgain, with this syntax, we use our dummy system_class instance and tell Python that an attribute called \"particles\" will exist and will point to the address (&) of the member variable System::particles.\n\n\n\n\n\n\nTask 5: Bind the rest of System\n\n\n\nComplete the binding of the System class by adding the definitions for\n\nrandomStart()\nsaveConfig()\nupdateRule()\nparticles\n\n\n\n\n\n\n\n\n\n\nTask 6: Bind Particle\n\n\n\nInspired by what you hade done for the System class, construct the bindings for the Particle class as well. Expose at least x , y and theta in read_only mode.",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface.html#running-from-python",
+    "href": "wp_pybind/interface.html#running-from-python",
+    "title": "Using C++ objects from Python",
+    "section": "Running from Python",
+    "text": "Running from Python\nIf you have managed to bind both the System and the Particle class successfully, you are finally ready to use your C++ code efficiently from Python.\nThis means that you can now freely\n\ninitialise systems with arbitary parameters (number of particles, noise levels etc)\nupdate them performing teh Vicsek dynamics\nquery the state of the particles inb the system and measure any statistic\nvisualise the system as it evolves, with no need to save the data to file.\n\nWith the correct bindings, now you can simply code in Python and benefit from the speedup of the underlying C++ code. You can even think about distributing your package, for example via pip. Enjoy!\n\n\n\n\n\n\n\nTask 7: Play with your system in Python\n\n\n\nCreate a jupyter notebook and use your package to\n\ncreate a System of 1000 particles with noise 0.1 and timestep 0.5 in a 20 by 20 box in units of the interaction radius\nevolve it for 1000 steps\nvisualise the final configuration inside the notebook.\n\nFeel free to modify the code at your will, e.g. to produce an animation instead of a snapshot.",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Using C++ objects from Python"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/interface-slides.html#aims",
+    "href": "wp_pybind/interface-slides.html#aims",
+    "title": "Using C++ objects from Python",
+    "section": "Aims",
+    "text": "Aims\n\nImprove the Python interface to use the code\nDiscover the notion of bindings"
+  },
+  {
+    "objectID": "wp_pybind/interface-slides.html#learning-outcomes",
+    "href": "wp_pybind/interface-slides.html#learning-outcomes",
+    "title": "Using C++ objects from Python",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nMinimal usage of pybind11"
+  },
+  {
+    "objectID": "wp_pybind/interface-slides.html#interacting-with-the-c-code",
+    "href": "wp_pybind/interface-slides.html#interacting-with-the-c-code",
+    "title": "Using C++ objects from Python",
+    "section": "Interacting with the C++ code",
+    "text": "Interacting with the C++ code\nOur C++ is now cnsituted of many pieces:\n\nthe objects\n\nSystem\nBox\nParticle\n\nthe main function (and source code)\n\nThe main.cpp file seems critical : without it, the program does not even begin.\nHowever, all the conceptual pieces that we need for the simulation do exist without the main.cpp code: the System contains all the functions and variables needed for the simulation to run.\nIt would be ideal to delegate to C++ all the heavy calculations related to the system update and instead use an easier, mnore flexible scripting language (such as Python) to coordinate the simulation, its parameters and its plotting.\npybind11 precisely allows us to do this ."
+  },
+  {
+    "objectID": "wp_pybind/interface-slides.html#the-pybind11-library",
+    "href": "wp_pybind/interface-slides.html#the-pybind11-library",
+    "title": "Using C++ objects from Python",
+    "section": "The pybind11 library",
+    "text": "The pybind11 library\nPybind11 is header only library for C++ that simplifies the inter-operability (bindings) between the two languages. This chiefly means the ability to call C++ functions and objects from Python.\nWhile Python is written in C/C++ itself, provining such binding using the native Python interface is quite complex.\npybind11 provides a number of tools that work at high level (i.e. at the level of class declarations).\nThe library is header only, means that its installation is very simple (it is a small number of headers .h files that do not need to be pre-compiled)."
+  },
+  {
+    "objectID": "wp_pybind/interface-slides.html#running-from-python",
+    "href": "wp_pybind/interface-slides.html#running-from-python",
+    "title": "Using C++ objects from Python",
+    "section": "Running from Python",
+    "text": "Running from Python\nIf you have managed to bind both the System and the Particle class successfully, you are finally ready to use your C++ code efficiently from Python.\nThis means that you can now freely\n\ninitialise systems with arbitary parameters (number of particles, noise levels etc)\nupdate them performing teh Vicsek dynamics\nquery the state of the particles inb the system and measure any statistic\nvisualise the system as it evolves, with no need to save the data to file.\n\nWith the correct bindings, now you can simply code in Python and benefit from the speedup of the underlying C++ code. You can even think about distributing your package, for example via pip. Enjoy!"
+  },
+  {
+    "objectID": "wp_pybind/solutions.html",
+    "href": "wp_pybind/solutions.html",
+    "title": "Solutions",
+    "section": "",
+    "text": "The solutions to the C++ to Python interface workshop can be downloaded as a git bundle from here:",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_pybind/solutions.html#how-to-use-the-bundle",
+    "href": "wp_pybind/solutions.html#how-to-use-the-bundle",
+    "title": "Solutions",
+    "section": "How to use the bundle",
+    "text": "How to use the bundle\nFirst, download the bundle and clone it locally on you machine with\ngit clone CppToPython.bundle\nThen you will be able to see all the branches and commits of the bundle.\nIn particular, an easy way to navigate the solutions is to use the tags: the bundle contains so-called git tags, which are shortcuts to commits. You can see all the tags by typing\ngit tag\ninside your cloned repository.\nYou have two main parts for this workshop:\n\nThe tasks of Wrap C++ in a Python object are labelled 4.x where x is the number of the task (x is 1 or 2)\nThe tasks of Using C++ objects from Python are labelled 4.x where x is the number of the task (x is 3 to 7)\n\nTo access the state of the repository for a particular task just use git checkout &lt;task-number&gt;. So, for example, to access task 4\ngit checkout 4.1\nYou can always go back to the main branch with\ngit checkout main",
+    "crumbs": [
+      "4| C++ to Python interface",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/solutions.html",
+    "href": "wp_vicsek/solutions.html",
+    "title": "Solutions",
+    "section": "",
+    "text": "The solutions to the Implementation workshop can be downloaded as a git bundle from here:",
+    "crumbs": [
+      "3| Implementation",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_vicsek/solutions.html#how-to-use-the-bundle",
+    "href": "wp_vicsek/solutions.html#how-to-use-the-bundle",
+    "title": "Solutions",
+    "section": "How to use the bundle",
+    "text": "How to use the bundle\nFirst, download the bundle and clone it locally on you machine with\ngit clone Implementation.bundle\nThen you will be able to see all the branches and commits of the bundle.\nIn particular, an easy way to navigate the solutions is to use the tags: the bundle contains so-called git tags, which are shortcuts to commits. You can see all the tags by typing\ngit tag\ninside your cloned repository.\nYou have two main parts for this workshop:\n\nThe tasks of Hands on objects and classes are labelled 3.x where x is the number of the task\nThe tasks of Completing the OOP design of the project are labelled 3.x where x is the number of the task\n\nTo access the state of the repository for a particular task just use git checkout &lt;task-number&gt;. So, for example, to access task 4\ngit checkout 3.4\nYou can always go back to the main branch with\ngit checkout main",
+    "crumbs": [
+      "3| Implementation",
+      "Solutions"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html",
+    "href": "wp_gitgithub/github.html",
+    "title": "Remote repository",
+    "section": "",
+    "text": "Disclaimer: setting up a remote repository is OPTIONAL. You can skip this section if you wish.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html#aims",
+    "href": "wp_gitgithub/github.html#aims",
+    "title": "Remote repository",
+    "section": "Aims",
+    "text": "Aims\n\nSynchronise your local repository with a remote Github repository",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html#learning-outcomes",
+    "href": "wp_gitgithub/github.html#learning-outcomes",
+    "title": "Remote repository",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUndrestand how to use the command line tool gh to create a remote repositoory and link it to a local one",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html#remote-repositories",
+    "href": "wp_gitgithub/github.html#remote-repositories",
+    "title": "Remote repository",
+    "section": "Remote repositories",
+    "text": "Remote repositories\ngit can be used exclusively locally and it is completely fine to do so. It can be useful however to also have a remote (online) repository, to easily share it with others and to have a dematerialiased storage.\nThere are many services that can be used for this purpose. For example:\n\nGitHub\nhttps://github.com\nThe most popular platform for hosting Git repositories, offering robust collaboration tools, CI/CD, and integrations.\nGitLab\nhttps://gitlab.com\nOpen-source DevOps platform that can be used as a hosted service or self-hosted for full control. It includes CI/CD pipelines and project management tools.\nCodeberg\nhttps://codeberg.org\nA community-driven, non-profit platform for hosting Git repositories, focused on privacy and open-source principles.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html#setting-up-a-github-account",
+    "href": "wp_gitgithub/github.html#setting-up-a-github-account",
+    "title": "Remote repository",
+    "section": "Setting up a Github account",
+    "text": "Setting up a Github account\nFor convenience we will use Github. For this, you need a Github account.\nTo set up a GitHub account, follow these steps:\n\n\n1. Go to GitHub’s Website\nVisit https://github.com.\n\n\n\n2. Sign Up\nClick the “Sign up” button in the top-right corner of the homepage.\n\n\n\n3. Create an Account\n\nEnter your details:\n\nEmail address: Provide a valid email.\nPassword: Choose a strong password.\nUsername: Pick a unique username (visible to others).\n\nSolve CAPTCHA: Complete the CAPTCHA to verify you’re human.\nClick “Create account”.\n\n\n\n\n4. Verify Your Email\nCheck your email inbox for a verification email from GitHub. Click the verification link to activate your account.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github.html#using-gh-to-create-a-remote-repository-linked-to-your-local-repository",
+    "href": "wp_gitgithub/github.html#using-gh-to-create-a-remote-repository-linked-to-your-local-repository",
+    "title": "Remote repository",
+    "section": "Using gh to create a remote repository linked to your local repository",
+    "text": "Using gh to create a remote repository linked to your local repository\nTo set up a remote repository on GitHub from a local one using the gh command-line utility, follow these steps:\n\n1. Install gh (if not already installed)\nFollow the instructions provided in the welcome page. Further information can be found at the GitHub CLI installation page.\n\n\n2. Authenticate gh\nRun the following command to log in to GitHub:\n    gh auth login\nFollow the prompts to authenticate.\n\n\n\n3. Navigate to Your Local Repository\nOpen a terminal and move into your local repository:\n   cd /path/to/your/local-repo\n\n\n\n4. Create a Remote Repository on GitHub\nRun the following command to create a new repository on GitHub:\n   gh repo create\nThis will prompt you with several options: \n    ? What would you like to do?  [Use arrows to move, type to filter]\n    Create a new repository on GitHub from scratch\n    Create a new repository on GitHub from a template repository\n    &gt; Push an existing local repository to GitHub\n- Select the **last one** (\"Push an existing local repository to GitHub\").\n- Then, press **ENTER** when asked for the path to the local directory (it should be the directory you are in, hence the path is `.`).\n- Choose a suitable repository name and yourself as the owner\n- Skip the description (or provide a brief one)\n- Set the visibility to *public*\n- Add a remote and leave the default name **(origin)**\n- Finally push the commits.\n\nExample of the creation of a repository called temporary\n    ? What would you like to do? Push an existing local repository to GitHub\n    ? Path to local repository .\n    ? Repository name temporary\n    ? Repository owner FTurci\n    ? Description \n    ? Visibility Public\n    ✓ Created repository FTurci/temporary on GitHub\n    https://github.com/FTurci/temporary\n    ? Add a remote? Yes\n    ? What should the new remote be called? origin\n    ✓ Added remote https://github.com/FTurci/temporary.git\n    ? Would you like to push commits from the current branch to \"origin\"? Yes\n    Enumerating objects: 3, done.\n    Counting objects: 100% (3/3), done.\n    Writing objects: 100% (3/3), 209 bytes | 209.00 KiB/s, done.\n    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0\n    To https://github.com/FTurci/temporary.git\n    * [new branch]      HEAD -&gt; main\n    branch 'main' set up to track 'origin/main'.\n    ✓ Pushed commits to https://github.com/FTurci/temporary.git\n\n\n\n5. Verify the Setup\nCheck that the remote repository is correctly set up:\n    git remote -v\nThat’s it! Your local repository is now linked to a remote repository on GitHub.",
+    "crumbs": [
+      "1| Software Engineering",
+      "Remote repository"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/github-slides.html#aims",
+    "href": "wp_gitgithub/github-slides.html#aims",
+    "title": "Remote repository",
+    "section": "Aims",
+    "text": "Aims\n\nSynchronise your local repository with a remote Github repository"
+  },
+  {
+    "objectID": "wp_gitgithub/github-slides.html#learning-outcomes",
+    "href": "wp_gitgithub/github-slides.html#learning-outcomes",
+    "title": "Remote repository",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nUndrestand how to use the command line tool gh to create a remote repositoory and link it to a local one"
+  },
+  {
+    "objectID": "wp_gitgithub/github-slides.html#remote-repositories",
+    "href": "wp_gitgithub/github-slides.html#remote-repositories",
+    "title": "Remote repository",
+    "section": "Remote repositories",
+    "text": "Remote repositories\ngit can be used exclusively locally and it is completely fine to do so. It can be useful however to also have a remote (online) repository, to easily share it with others and to have a dematerialiased storage.\nThere are many services that can be used for this purpose. For example:\n\nGitHub\nhttps://github.com\nThe most popular platform for hosting Git repositories, offering robust collaboration tools, CI/CD, and integrations.\nGitLab\nhttps://gitlab.com\nOpen-source DevOps platform that can be used as a hosted service or self-hosted for full control. It includes CI/CD pipelines and project management tools.\nCodeberg\nhttps://codeberg.org\nA community-driven, non-profit platform for hosting Git repositories, focused on privacy and open-source principles."
+  },
+  {
+    "objectID": "wp_gitgithub/github-slides.html#setting-up-a-github-account",
+    "href": "wp_gitgithub/github-slides.html#setting-up-a-github-account",
+    "title": "Remote repository",
+    "section": "Setting up a Github account",
+    "text": "Setting up a Github account\nFor convenience we will use Github. For this, you need a Github account.\nTo set up a GitHub account, follow these steps:"
+  },
+  {
+    "objectID": "wp_gitgithub/github-slides.html#using-gh-to-create-a-remote-repository-linked-to-your-local-repository",
+    "href": "wp_gitgithub/github-slides.html#using-gh-to-create-a-remote-repository-linked-to-your-local-repository",
+    "title": "Remote repository",
+    "section": "Using gh to create a remote repository linked to your local repository",
+    "text": "Using gh to create a remote repository linked to your local repository\nTo set up a remote repository on GitHub from a local one using the gh command-line utility, follow these steps:"
+  },
+  {
+    "objectID": "wp_gitgithub/make.html",
+    "href": "wp_gitgithub/make.html",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "",
+    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Introduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3,-Ofast: Increasing levels of optimization.\n\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\n\n\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
+    "crumbs": [
+      "1| Software Engineering",
+      "`Seminar`: Compilation and makefiles"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/make.html#compiling-in-c",
+    "href": "wp_gitgithub/make.html#compiling-in-c",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "",
+    "text": "Compilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Introduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram\n\n\nThe g++ compiler had various compilation flags that go under the following syntax\ng++ [options] source_files -o output_file\nCommon flags include:\n\nOptimization:\n\n-O0: No optimization (default).\n\n-O1, -O2, -O3,-Ofast: Increasing levels of optimization.\n\n\nDebugging:\n\n-g: Include debugging information for use with a debugger like gdb.\n\nWarnings:\n\n-Wall: Enable common warnings.\n\n-Werror: Treat warnings as errors.\n\nStandards Compliance:\n\n-std=c++11, -std=c++14, -std=c++17, etc.: Specify the C++ standard to follow.\n\nLinking:\n\n-L&lt;path&gt;: Specify a directory for library search paths.\n\n-l&lt;library&gt;: Link a specific library (e.g., -lm for the math library).\n\nOutput:\n\n-o &lt;filename&gt;: Specify the output file name.\n\n\n\n\nPreprocessor:\n\n-D&lt;macro&gt;: Define a preprocessor macro.\n\n-I&lt;path&gt;: Add include directory for header files.\n\nPerformance:\n\n-fopenmp: Enable OpenMP for parallel programming.\n\n\n\nFor example, the following compiles two files main.cpp and utils.cpp to produce a single program program with optimisation level 2, with warnings enabled and using the 2017 standard for C++.\ng++ -std=c++17 -O2 -Wall -o program main.cpp utils.cpp\nNotice that this in fact performs two actions at the same time:\n\ncompiles the source code into objects, equivalent to\n\ng++ -std=c++17 -O2 -Wall -c main.cpp  -o main.o \ng++ -std=c++17 -O2 -Wall -c utils.cpp -o utils.o\n\nlinks the object into an executable\n\ng++ -std=c++17 -O2 -Wall main.o utils.o -o program",
+    "crumbs": [
+      "1| Software Engineering",
+      "`Seminar`: Compilation and makefiles"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/make.html#makefiles",
+    "href": "wp_gitgithub/make.html#makefiles",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "Makefiles",
+    "text": "Makefiles\nWhen a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.\nWe could write a separate bash script to do so, but it would not be very efficient.\n\nThe standard way is to construct a Makefile and to use it with the normally available command-line utility make. Makefiles are a special type of file with a characteristic syntax.\nOften, Makefiles are quite complex, or even automatically generated. Here, we write a simple, interpretable makefile from scratch.",
+    "crumbs": [
+      "1| Software Engineering",
+      "`Seminar`: Compilation and makefiles"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/make.html#creating-a-makefile",
+    "href": "wp_gitgithub/make.html#creating-a-makefile",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "Creating a Makefile",
+    "text": "Creating a Makefile\nWe want to transpose the compilation commands into a makefile. So, in the source folder (i.e. wherever the code is stored) we create a file called Makefile.\ntouch Makefile\n\n\nStructure of a Makefile\nA Makefile consists of\n\nVariables: these identify compilers, file names, and flags.\nRules: these are actions that the Makefile can perform, each with a name associated with it. Each rule consists of a target, dependencies, and a recipe (command).\n\n\n\nVariables\nThe obvious variables for a Makefile are:\n\nthe compiler name. Typically this variable is called CC.\nthe compiler flags. Typically this variable is called CFLAGS.\nthe source files, i.e. the source code for our program. This is normally called SRC.\nthe executable name, e.g. EXEC.\n\nNote that typically these names are written in uppercase letters. In the Makefile syntax, we access the value stored in these variables using the $(VARIABLE) syntax.\n\n\nRules\nRules in a Makefile describe how to build a target from its dependencies using commands. A rule typically follows this format:\ntarget: dependencies\n    commands\n\ntarget: The file or outcome to create (e.g., an object file .o or the final executable).\ndependencies: The files or other targets required to build the target.\ncommands: The shell commands to execute, usually for compiling or linking.\n\n\n\nMinimal makefile\nSuppose that we want to write a rule to compile our project. Our target would be $(EXEC) (the name of our executable) our dependencies would be the source code $(SRC) and the command would simply combine the compiler, its flags, the source code and the executable name, so that the rule would look like\n$(EXEC): $(SRC)\n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\nA complete minimal Makefile would look like (remember to use true tabs for the indentation)\nCC = g++\nCFLAGS = -O2 -Wall\nSRC = main.cpp utils.cpp\nEXEC = program\n\n# check that the indentation is a tab and not spaces\n$(EXEC): $(SRC)\n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\n\n\nRunning a makefile\nHow would we run this Makefile? You should type make and the name of the rule that you want to call, in this case program as in\nmake program\nWhat if we just want to have a default rule to run every time we type make (after all, we want to simplify our lives)? There is a special target named all. We can then rewrite our minimal Makefile as\nCC = g++\nCFLAGS = -O2 -Wall\nSRC = main.cpp utils.cpp\nEXEC = program\n\n# check that the indentation is a tab and not spaces\nall: \n    $(CC) $(CFLAGS) $(SRC) -o $(EXEC)\nKeeping all as the first rule in the Makefile makes it default.\nAnother useful rule is called clean: you can implement it to remove files, as to remove the executable safely.\nclean:\n    rm -f $(EXEC)\n\n\n\n\n\n\n\n\n\nTask 1: writing a minimal Makefile\n\n\n\nUsing the information above, download the following project folder and write a minimal Makefile that can compile the following project:\n🗜️ makefiles.zip\nRun your makefile using the make command.\n\n\n\n\n\n\n\n\n\n\n\n\nTask 2: adding compilation flags\n\n\n\nModify your Makefile to use the -std=c++17 compilation flag.\n\n\n\n\n\n\n\n\n\n\n\nTask 3: separating compilation and linking\n\n\n\nThe Makefile you have written is minimal and blends together compiling and linking. However, it is a better practice to separate the two, since very large projects can have many files and modifying only a few of the object files instead of recreating all of them is much more efficient.\nThe Make syntax has a convenient set of features that allow you to automatically produce a list of object files. For example\nOBJ = $(SRC:.cpp=.o)  # Converts .cpp files to .o files\ncreates a variable called OBJ that contains all the .o object files such as main.o produced by g++ -c main.cpp -o main.o.\nDo the following:\n\nuse OBJ = $(SRC:.cpp=.o) to define your object files. You can print in makefiles using the command @echo, so that @echo $(OBJ) should print to terminal the values stored in OBJ. Use the fact that rules can be multiline to modify your Makefile and print your object variable.\nNow, you could write a rule for every source file to be converted into an object file, but the make syntax has a universal pattern rule for that:\n\n%.o: %.cpp\n    $(CC) $(CFLAGS) -c $&lt; -o $@\nwhich tells make to compile each .cpp file ($&lt;) into the corresponding .o file ($@). Add this rule to your makefile.\n\nNow you have a rule that creates object files, so you only need a rule to link them to produce the executable. Write it down, noticing that your target is $(EXEC), your dependencies are now the object files and the rule is just the linking step described above.\nNow, modify your all rule to depend on $(EXEC) and to write the message \"Build complete\". The all rule should do nothing but printing messages.\nFinish by improving your clean rule to also clean from the object files.",
+    "crumbs": [
+      "1| Software Engineering",
+      "`Seminar`: Compilation and makefiles"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/make-slides.html#compiling-in-c",
+    "href": "wp_gitgithub/make-slides.html#compiling-in-c",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "Compiling in C++",
+    "text": "Compiling in C++\nCompilation in C++ is performed by a compiler. If you do not remember what compilers do, go back to the previous module, Topic 4 of this course (the Introduction to C++).\nIf you followed the instructions on the welcome page you should have a compiler installed.\nThis is g++ and it is a command-line utility with various options, some of which depend on your specific machine.\nWhen your code is contained in a single source file, e.g. main.cpp compilation is trivial\ng++ main.cpp -o myprogram\nThis produces an executable file named myprogram that you can run via\n./myprogram"
+  },
+  {
+    "objectID": "wp_gitgithub/make-slides.html#makefiles",
+    "href": "wp_gitgithub/make-slides.html#makefiles",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "Makefiles",
+    "text": "Makefiles\nWhen a project becomes complex (with many files and eventually various kinds of flags) typing a long string just for compilation makes little sense. Ideally, we want to automatise this step, by writing a dedicated script that does it for us.\nWe could write a separate bash script to do so, but it would not be very efficient."
+  },
+  {
+    "objectID": "wp_gitgithub/make-slides.html#creating-a-makefile",
+    "href": "wp_gitgithub/make-slides.html#creating-a-makefile",
+    "title": "Seminar: Compilation and makefiles",
+    "section": "Creating a Makefile",
+    "text": "Creating a Makefile\nWe want to transpose the compilation commands into a makefile. So, in the source folder (i.e. wherever the code is stored) we create a file called Makefile.\ntouch Makefile"
+  },
+  {
+    "objectID": "wp_gitgithub/exercises.html",
+    "href": "wp_gitgithub/exercises.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "Exercise\n\n\n\nThe following code is written in bash and creates folders named folder1, folder2,…,folder10:\nfor i in {1..10}; do\n    mkdir folder$i\ndone\nNote the close similarity with Python.\nCreate a new file named create_folders.sh using the command touch. Edit the file directly in the shell using either the command nano (easier) or vim (harder) and type the script inside the file.\nThen, run the script via\nbash create_folders.sh\nComplete the following tasks by solely using the shell:\n\nRename folder10 as folder0\nDelete folder folder0\nCreate a file inside folder1 called README.md and type the following text:\n\nThis is a README.md file\nIt contains essential documentation on the project.\n\nChange the working directory name to folder1\nUse the command grep to print out at what line the word essential is contained in the file README.md",
+    "crumbs": [
+      "1| Software Engineering",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/exercises.html#shell",
+    "href": "wp_gitgithub/exercises.html#shell",
+    "title": "Exercises",
+    "section": "",
+    "text": "Exercise\n\n\n\nThe following code is written in bash and creates folders named folder1, folder2,…,folder10:\nfor i in {1..10}; do\n    mkdir folder$i\ndone\nNote the close similarity with Python.\nCreate a new file named create_folders.sh using the command touch. Edit the file directly in the shell using either the command nano (easier) or vim (harder) and type the script inside the file.\nThen, run the script via\nbash create_folders.sh\nComplete the following tasks by solely using the shell:\n\nRename folder10 as folder0\nDelete folder folder0\nCreate a file inside folder1 called README.md and type the following text:\n\nThis is a README.md file\nIt contains essential documentation on the project.\n\nChange the working directory name to folder1\nUse the command grep to print out at what line the word essential is contained in the file README.md",
+    "crumbs": [
+      "1| Software Engineering",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "wp_gitgithub/exercises.html#gitshell",
+    "href": "wp_gitgithub/exercises.html#gitshell",
+    "title": "Exercises",
+    "section": "2 Git+Shell",
+    "text": "2 Git+Shell\n\n\n\n\n\n\nExercises\n\n\n\nAssuming that you have completed the main tasks of this workshop, complete the following additional tasks on your git repository:\n\nUsing git --help to find a way to consult the log of your various commits\nThe shell has an operator called output redirection: it is the symbol &gt;. Use output redirection to write your log to a file named mygit.log\nAdd the mygit.log file to the repository on the main branch and commit the changes.\nCheck the new status of the log: can you find your commit?\nWe now want to go back to a version of the commit prior to the addition fo the log file. Every commit has its own unique id (strings like 455005dc29dc6727de7ee36fee4b49a13b39f73f) called commit hashes. Find the commit hash of the commit that precedes our latest addition. To reset the master to that point use\n\ngit reset --hard &lt;commit-hash&gt;\nIs the mygit.log still there?",
+    "crumbs": [
+      "1| Software Engineering",
+      "Exercises"
+    ]
+  }
+]
