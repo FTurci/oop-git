@@ -79,6 +79,17 @@
         "random": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "condition_variable": "cpp",
+        "span": "cpp",
+        "chrono": "cpp",
+        "iterator": "cpp",
+        "numeric": "cpp",
+        "system_error": "cpp",
+        "format": "cpp",
+        "stop_token": "cpp",
+        "text_encoding": "cpp",
+        "thread": "cpp",
+        "semaphore": "cpp"
     }
 }

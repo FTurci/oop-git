@@ -141,11 +141,21 @@ Inside the `PYBIND11_MODULE` include the following line (with the same or an alt
 
 The compilation step with `pybind11` requires you to link to the `pybind11` headers explicitly, and this makes the command quite more complex:
 
+
+
+For **Linux**-based systems (including Ubuntu on WLS, Noteable, Chromebooks):
+
+``` bash
+g++ -O3 -Wall -shared -std=c++11 -fPIC $(python -m pybind11 --includes) bindings.cpp particle.cpp system.cpp  box.cpp -o myvicsek$(python-config --extension-suffix)
+```
+
+For **MacOS X** (arm processors):
+
 ``` bash
 g++ -O3 -Wall -shared -std=c++11 -undefined dynamic_lookup $(python -m pybind11 --includes) bindings.cpp particle.cpp system.cpp  box.cpp -o myvicsek$(python-config --extension-suffix)
 ```
 
-Notice that we use bash to retrieve variables with the actual paths of the `pybind11` headers.
+Notice that we use `bash` to retrieve variables with the actual paths of the `pybind11` headers.
 
 This is a good reason to have a makefile, where one can perform the suitable modifications. A minimal makefile would look like
 
