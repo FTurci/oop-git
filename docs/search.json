@@ -381,61 +381,15 @@
     "href": "wp_python/ooppython-slides.html#aims",
     "title": "Everything is an Object in Python",
     "section": "Aims",
-    "text": "Aims\n\nUnderstand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods"
+    "text": "Aims\n\nUnderstand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods",
+    "crumbs": [
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
+    ]
   },
   {
     "objectID": "wp_python/ooppython-slides.html#learning-outcomes",
     "href": "wp_python/ooppython-slides.html#learning-outcomes",
-    "title": "Everything is an Object in Python",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nCreating basic classes in Python"
-  },
-  {
-    "objectID": "wp_python/ooppython-slides.html#objects",
-    "href": "wp_python/ooppython-slides.html#objects",
-    "title": "Everything is an Object in Python",
-    "section": "Objects",
-    "text": "Objects\nIn C/C++ you have seen many kinds of data structures: arrays, structs, pointers, linked lists, etc. They are fundamentally different ways to organise data in memory.\nIn Python, instead, any structure is fundamentally the same: it is an abstract entity called an object.\nObjects in Python can be specialised, and so we can have objects of different types (which we can check with the type() function). But fundamentally everything is an object.\nWhat are the characteristics of an object?\nObjects are simple. They contain:\n\nAttributes: pieces of data that describe the object\nMethods: functions that operate on the object\n\nAnd that’s it!\nSyntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the . operator (something that we insisted on the first year).\nTry this in any python shell.\nA full list of methods and attributes can also be obtained with the dir() function:\n\n\n['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getnewargs__', '__getstate__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 'as_integer_ratio', 'bit_count', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']\n\n\nThis will print a long list of methods and attributes that you can use with the variable a_number."
-  },
-  {
-    "objectID": "wp_python/ooppython-slides.html#custom-classes",
-    "href": "wp_python/ooppython-slides.html#custom-classes",
-    "title": "Everything is an Object in Python",
-    "section": "Custom Classes",
-    "text": "Custom Classes\nThe above examples are trivial and based on bult-in types. But we have the same for objects imported from modules (e.g. numpy arrays). This is because modules define custom classes.\nSince in Python everything is an object, its syntax makes it very easy to define our own custom classes."
-  },
-  {
-    "objectID": "wp_python/ooppython-slides.html#combining-objects-together",
-    "href": "wp_python/ooppython-slides.html#combining-objects-together",
-    "title": "Everything is an Object in Python",
-    "section": "Combining objects together",
-    "text": "Combining objects together\nGiven Python’s simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:\nNotice that here we used the methods of the built-in object list together with our custom class Particle.\n\n\n\nTask 2: Combining classes\n\n\nCreate a new class called ParticleSystem that contains a list of Particle objects. The class should have: - a constructor that initializes an empty list of particles - a method add_particle(x0, y0) that creates a new Particle object with the given initial position and adds it to the list - a method move_all(vx, vy) that moves all particles in the system by the given velocity components - a method get_positions() that returns a list of the current positions of all particles in the system\n\n\n\n\n\n\nTask 3: Using the classes and visualisation\n\n\nNow write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.\nUse matplotlib to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the ParticleSystem class as a method animate(steps) that runs the simulation for a given number of steps and produces an animation of the particles’ movements."
-  },
-  {
-    "objectID": "wp_python/ooppython.html",
-    "href": "wp_python/ooppython.html",
-    "title": "Everything is an Object in Python",
-    "section": "",
-    "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods",
-    "crumbs": [
-      "2| Objects everywhere: `python`",
-      "Everything is an Object in Python"
-    ]
-  },
-  {
-    "objectID": "wp_python/ooppython.html#aims",
-    "href": "wp_python/ooppython.html#aims",
-    "title": "Everything is an Object in Python",
-    "section": "",
-    "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods",
-    "crumbs": [
-      "2| Objects everywhere: `python`",
-      "Everything is an Object in Python"
-    ]
-  },
-  {
-    "objectID": "wp_python/ooppython.html#learning-outcomes",
-    "href": "wp_python/ooppython.html#learning-outcomes",
     "title": "Everything is an Object in Python",
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nCreating basic classes in Python",
@@ -445,37 +399,79 @@
     ]
   },
   {
-    "objectID": "wp_python/ooppython.html#objects",
-    "href": "wp_python/ooppython.html#objects",
+    "objectID": "wp_python/ooppython-slides.html#objects",
+    "href": "wp_python/ooppython-slides.html#objects",
     "title": "Everything is an Object in Python",
     "section": "Objects",
-    "text": "Objects\nIn C/C++ you have seen many kinds of data structures: arrays, structs, pointers, linked lists, etc. They are fundamentally different ways to organise data in memory.\nIn Python, instead, any structure is fundamentally the same: it is an abstract entity called an object.\nObjects in Python can be specialised, and so we can have objects of different types (which we can check with the type() function). But fundamentally everything is an object.\nWhat are the characteristics of an object?\nObjects are simple. They contain:\n\nAttributes: pieces of data that describe the object\nMethods: functions that operate on the object\n\nAnd that’s it!\nSyntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the . operator (something that we insisted on the first year).\nTry this in any python shell.\nA full list of methods and attributes can also be obtained with the dir() function:\n\na_number = 5\nprint(dir(a_number))\n\n['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getnewargs__', '__getstate__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 'as_integer_ratio', 'bit_count', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']\n\n\nThis will print a long list of methods and attributes that you can use with the variable a_number.\n\nAttributes\nAttributes are pieces of data that describe the object. For example, a string object has an attribute length, which tells you how many characters are in the string. You can access attributes using the . operator:\n\na_complex_number = 2+2j\nprint(a_complex_number.real)  \n\n2.0\n\n\n\n\nMethods\nMethods are functions that operate on the object. For example, a list object has a method append(), which adds an element to the end of the list. You can call methods using the . operator followed by parentheses:\n\na_list = [1, 2, 3]\na_list.append(4)\nprint(a_list)  # Output: [1, 2, 3, 4\n\n[1, 2, 3, 4]",
+    "text": "Objects\nIn C/C++ you have seen many kinds of data structures: arrays, structs, pointers, linked lists, etc. They are fundamentally different ways to organise data in memory.\nIn Python, instead, any structure is fundamentally the same: it is an abstract entity called an object.\nObjects in Python can be specialised, and so we can have objects of different types (which we can check with the type() function). But fundamentally everything is an object.\nWhat are the characteristics of an object?\nObjects are simple. They contain:\n\nAttributes: pieces of data that describe the object\nMethods: functions that operate on the object\n\nAnd that’s it!\nSyntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the . operator (something that we insisted on the first year).\nTry this in any python shell.\nA full list of methods and attributes can also be obtained with the dir() function:\n\n\n\n\n\n\nThis will print a long list of methods and attributes that you can use with the variable a_number.",
     "crumbs": [
       "2| Objects everywhere: `python`",
       "Everything is an Object in Python"
     ]
+  },
+  {
+    "objectID": "wp_python/ooppython-slides.html#custom-classes",
+    "href": "wp_python/ooppython-slides.html#custom-classes",
+    "title": "Everything is an Object in Python",
+    "section": "Custom Classes",
+    "text": "Custom Classes\nThe above examples are trivial and based on bult-in types. But we have the same for objects imported from modules (e.g. numpy arrays). This is because modules define custom classes.\nSince in Python everything is an object, its syntax makes it very easy to define our own custom classes.",
+    "crumbs": [
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
+    ]
+  },
+  {
+    "objectID": "wp_python/ooppython-slides.html#combining-objects-together",
+    "href": "wp_python/ooppython-slides.html#combining-objects-together",
+    "title": "Everything is an Object in Python",
+    "section": "Combining objects together",
+    "text": "Combining objects together\nGiven Python’s simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:\n\n\n\n\n\n\nNotice that here we used the methods of the built-in object list together with our custom class Particle.\n\n\n\nTask 2: Combining classes\n\n\nCreate a new class called ParticleSystem that contains a list of Particle objects. The class should have: - a constructor that initializes an empty list of particles - a method add_particle(x0, y0) that creates a new Particle object with the given initial position and adds it to the list - a method move_all(vx, vy) that moves all particles in the system by the given velocity components - a method get_positions() that returns a list of the current positions of all particles in the system\n\n\n\n\n\n\nTask 3: Using the classes and visualisation\n\n\nNow write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.\nUse matplotlib to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the ParticleSystem class as a method animate(steps) that runs the simulation for a given number of steps and produces an animation of the particles’ movements.",
+    "crumbs": [
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
+    ]
+  },
+  {
+    "objectID": "wp_python/ooppython.html",
+    "href": "wp_python/ooppython.html",
+    "title": "Everything is an Object in Python",
+    "section": "",
+    "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods"
+  },
+  {
+    "objectID": "wp_python/ooppython.html#aims",
+    "href": "wp_python/ooppython.html#aims",
+    "title": "Everything is an Object in Python",
+    "section": "",
+    "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods"
+  },
+  {
+    "objectID": "wp_python/ooppython.html#learning-outcomes",
+    "href": "wp_python/ooppython.html#learning-outcomes",
+    "title": "Everything is an Object in Python",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nCreating basic classes in Python"
+  },
+  {
+    "objectID": "wp_python/ooppython.html#objects",
+    "href": "wp_python/ooppython.html#objects",
+    "title": "Everything is an Object in Python",
+    "section": "Objects",
+    "text": "Objects\nIn C/C++ you have seen many kinds of data structures: arrays, structs, pointers, linked lists, etc. They are fundamentally different ways to organise data in memory.\nIn Python, instead, any structure is fundamentally the same: it is an abstract entity called an object.\nObjects in Python can be specialised, and so we can have objects of different types (which we can check with the type() function). But fundamentally everything is an object.\nWhat are the characteristics of an object?\nObjects are simple. They contain:\n\nAttributes: pieces of data that describe the object\nMethods: functions that operate on the object\n\nAnd that’s it!\nSyntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the . operator (something that we insisted on the first year).\nTry this in any python shell.\nA full list of methods and attributes can also be obtained with the dir() function:\n\n\n\n\n\n\nThis will print a long list of methods and attributes that you can use with the variable a_number.\n\nAttributes\nAttributes are pieces of data that describe the object. For example, a string object has an attribute length, which tells you how many characters are in the string. You can access attributes using the . operator:\n\n\n\n\n\n\n\n\nMethods\nMethods are functions that operate on the object. For example, a list object has a method append(), which adds an element to the end of the list. You can call methods using the . operator followed by parentheses:"
   },
   {
     "objectID": "wp_python/ooppython.html#custom-classes",
     "href": "wp_python/ooppython.html#custom-classes",
     "title": "Everything is an Object in Python",
     "section": "Custom Classes",
-    "text": "Custom Classes\nThe above examples are trivial and based on bult-in types. But we have the same for objects imported from modules (e.g. numpy arrays). This is because modules define custom classes.\nSince in Python everything is an object, its syntax makes it very easy to define our own custom classes.\n\nExample: A Particle Class\nLet’s define a simple class to represent a particle in 2D space. The particle will have attributes for its position and velocity, and methods to update its position based on its velocity.\nTo define classes in Python we need a few syntactical conventions:\n\na new keyword to define a class: class\nindentation to define the scope of the class and its methods (no curly braces)\na special method called __init__ to define the constructor of the class, i.e. the function that actually creates the object in memory when needed.\n\nclass Particle:\n    def __init__(self):\n        self.x = 0      # position x\n        self.y = 0      # position y\nThis is a very minimal class definition. The name of the class is Particle. The constructor __init__ is a function that takes at least one input: self. This is a reference to the object itself, and it is used to define attributes and methods that belong to the object.\n\n\nEncapsulation\nWhy do we need self? The idea is that we will create a variable of class Particle in the following way:\np = Particle()\nhere the syntax Particle() calls the __init__ method (i.e. function) of the class Particle, and p is the variable that will hold the object in memory. It will be run only when the interpreter reaches that line. When it is run, the object p exists and needs to store all its attributes/ How can we refer to p and p only in our class definition? The answer is self: when the constructor is called, self will be a reference to p.\nWhy do we need a reference to p? because we want all the properties of p to be stored inside the object itself. This is called encapsulation.\nSo, in the rest of this workshop, you will try and create your own classes in Python to familiarise with the idea.\nFor this purpose, working inside a Jupyter notebook (or VSCode with Jupyter extension) is probably the best way to go, since you can test your code interactively.\n\n\nInstances\nOur initial example is trivial: the initial position are always (0,0). Let’s make it more interesting by allowing the user to specify the initial position when creating the object.\nclass Particle:\n    def __init__(self, x0=0, y0=0):\n        self.x = x0      # position x\n        self.y = y0      # position y\nNow we can create two particles with different initial positions:\np1 = Particle(1, 2)\np2 = Particle(3, 4)\nAnd we can access their attributes:\nprint(p1.x, p1.y)\nprint(p2.x, p2.y)\nSo, while p1 and p2 are both objects of class Particle, they are different objects with their own attributes. These are different instances of the same class.\n\n\nMore methods\nAt the moment our class only has a constructor that takes some attributes, but it doesn;t do much more. Let’s add a method to update the position of the particle based on a velocity.\n\nclass Particle:\n    def __init__(self, x0=0, y0=0):\n        self.x = x0      # position x\n        self.y = y0      # position y\n    def move(self, vx, vy):\n        self.x += vx\n        self.y += vy\n\nNow we can create a particle and move it:\n\np = Particle(1, 2)\np.move(0.5, -0.5) \n\nThis will update the position of the particle p by adding the velocity components to its current position.\n\n\n\n\n\n\nNoteTask 1: Create your Particle class\n\n\n\nIn a suitable Python file, create a class Particle that has: - a constructor that takes initial position x0 and y0 as parameters - a method move(vx, vy) that updates the position of the particle based on the velocity components vx and vy - a method get_position() that returns the current position of the particle as a tuple (x, y)",
-    "crumbs": [
-      "2| Objects everywhere: `python`",
-      "Everything is an Object in Python"
-    ]
+    "text": "Custom Classes\nThe above examples are trivial and based on bult-in types. But we have the same for objects imported from modules (e.g. numpy arrays). This is because modules define custom classes.\nSince in Python everything is an object, its syntax makes it very easy to define our own custom classes.\n\nExample: A Particle Class\nLet’s define a simple class to represent a particle in 2D space. The particle will have attributes for its position and velocity, and methods to update its position based on its velocity.\nTo define classes in Python we need a few syntactical conventions:\n\na new keyword to define a class: class\nindentation to define the scope of the class and its methods (no curly braces)\na special method called __init__ to define the constructor of the class, i.e. the function that actually creates the object in memory when needed.\n\nclass Particle:\n    def __init__(self):\n        self.x = 0      # position x\n        self.y = 0      # position y\nThis is a very minimal class definition. The name of the class is Particle. The constructor __init__ is a function that takes at least one input: self. This is a reference to the object itself, and it is used to define attributes and methods that belong to the object.\n\n\nEncapsulation\nWhy do we need self? The idea is that we will create a variable of class Particle in the following way:\np = Particle()\nhere the syntax Particle() calls the __init__ method (i.e. function) of the class Particle, and p is the variable that will hold the object in memory. It will be run only when the interpreter reaches that line. When it is run, the object p exists and needs to store all its attributes/ How can we refer to p and p only in our class definition? The answer is self: when the constructor is called, self will be a reference to p.\nWhy do we need a reference to p? because we want all the properties of p to be stored inside the object itself. This is called encapsulation.\nSo, in the rest of this workshop, you will try and create your own classes in Python to familiarise with the idea.\nFor this purpose, working inside a Jupyter notebook (or VSCode with Jupyter extension) is probably the best way to go, since you can test your code interactively.\n\n\nInstances\nOur initial example is trivial: the initial position are always (0,0). Let’s make it more interesting by allowing the user to specify the initial position when creating the object.\nclass Particle:\n    def __init__(self, x0=0, y0=0):\n        self.x = x0      # position x\n        self.y = y0      # position y\nNow we can create two particles with different initial positions:\np1 = Particle(1, 2)\np2 = Particle(3, 4)\nAnd we can access their attributes:\nprint(p1.x, p1.y)\nprint(p2.x, p2.y)\nSo, while p1 and p2 are both objects of class Particle, they are different objects with their own attributes. These are different instances of the same class.\n\n\nMore methods\nAt the moment our class only has a constructor that takes some attributes, but it doesn;t do much more. Let’s add a method to update the position of the particle based on a velocity.\n\n\n\n\n\n\nNow we can create a particle and move it:\n\n\n\n\n\n\nThis will update the position of the particle p by adding the velocity components to its current position.\n\n\n\n\n\n\nNoteTask 1: Create your Particle class\n\n\n\nIn a suitable Python file, create a class Particle that has: - a constructor that takes initial position x0 and y0 as parameters - a method move(vx, vy) that updates the position of the particle based on the velocity components vx and vy - a method get_position() that returns the current position of the particle as a tuple (x, y)"
   },
   {
     "objectID": "wp_python/ooppython.html#combining-objects-together",
     "href": "wp_python/ooppython.html#combining-objects-together",
     "title": "Everything is an Object in Python",
     "section": "Combining objects together",
-    "text": "Combining objects together\nGiven Python’s simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:\n\nparticles = []\nfor i in range(10): \n    p = Particle(i, i*2) \n    particles.append(p)\n\nNotice that here we used the methods of the built-in object list together with our custom class Particle.\n\n\n\n\n\n\nNoteTask 2: Combining classes\n\n\n\nCreate a new class called ParticleSystem that contains a list of Particle objects. The class should have: - a constructor that initializes an empty list of particles - a method add_particle(x0, y0) that creates a new Particle object with the given initial position and adds it to the list - a method move_all(vx, vy) that moves all particles in the system by the given velocity components - a method get_positions() that returns a list of the current positions of all particles in the system\n\n\n\n\n\n\n\n\nNoteTask 3: Using the classes and visualisation\n\n\n\nNow write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.\nUse matplotlib to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the ParticleSystem class as a method animate(steps) that runs the simulation for a given number of steps and produces an animation of the particles’ movements.",
-    "crumbs": [
-      "2| Objects everywhere: `python`",
-      "Everything is an Object in Python"
-    ]
+    "text": "Combining objects together\nGiven Python’s simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:\n\n\n\n\n\n\nNotice that here we used the methods of the built-in object list together with our custom class Particle.\n\n\n\n\n\n\nNoteTask 2: Combining classes\n\n\n\nCreate a new class called ParticleSystem that contains a list of Particle objects. The class should have: - a constructor that initializes an empty list of particles - a method add_particle(x0, y0) that creates a new Particle object with the given initial position and adds it to the list - a method move_all(vx, vy) that moves all particles in the system by the given velocity components - a method get_positions() that returns a list of the current positions of all particles in the system\n\n\n\n\n\n\n\n\nNoteTask 3: Using the classes and visualisation\n\n\n\nNow write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.\nUse matplotlib to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the ParticleSystem class as a method animate(steps) that runs the simulation for a given number of steps and produces an animation of the particles’ movements."
   },
   {
     "objectID": "wp_oop/placeholder.html",
