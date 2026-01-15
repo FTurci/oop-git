@@ -38,6 +38,7 @@ Objects in Python can be specialised, and so we can have objects of different `t
 What are the characteristics of an object?
 
 Objects are **simple**. They contain:
+
 -  **Attributes**: pieces of data that describe the object
 -  **Methods**: functions that operate on the object
 

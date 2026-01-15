@@ -221,12 +221,16 @@
 <p>In Python, instead, any structure is fundamentally the same: it is an abstract entity called an <strong>object</strong>.</p>
 <p>Objects in Python can be specialised, and so we can have objects of different <code>types</code> (which we can check with the <code>type()</code> function). But fundamentally everything is an <em>object</em>.</p>
 <p>What are the characteristics of an object?</p>
-<p>Objects are <strong>simple</strong>. They contain: - <strong>Attributes</strong>: pieces of data that describe the object - <strong>Methods</strong>: functions that operate on the object</p>
+<p>Objects are <strong>simple</strong>. They contain:</p>
+<ul>
+<li><strong>Attributes</strong>: pieces of data that describe the object</li>
+<li><strong>Methods</strong>: functions that operate on the object</li>
+</ul>
 <p>And that’s it!</p>
 <p>Syntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the <code>.</code> operator (something that we insisted on the first year).</p>
 <p>Try this in any python shell.</p>
 <p>A full list of methods and attributes can also be obtained with the <code>dir()</code> function:</p>
-<div id="887b788a" class="cell" data-execution_count="1">
+<div id="860a6ddf" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getnewargs__', '__getstate__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 'as_integer_ratio', 'bit_count', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']</code></pre>
 </div>
@@ -236,7 +240,7 @@
 <section id="attributes" class="slide level3">
 <h3>Attributes</h3>
 <p>Attributes are pieces of data that describe the object. For example, a string object has an attribute <code>length</code>, which tells you how many characters are in the string. You can access attributes using the <code>.</code> operator:</p>
-<div id="97962e73" class="cell" data-execution_count="2">
+<div id="d62724a4" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>2.0</code></pre>
 </div>
@@ -245,7 +249,7 @@
 <section id="methods" class="slide level3">
 <h3>Methods</h3>
 <p>Methods are functions that operate on the object. For example, a list object has a method <code>append()</code>, which adds an element to the end of the list. You can call methods using the <code>.</code> operator followed by parentheses:</p>
-<div id="3a988acb" class="cell" data-execution_count="3">
+<div id="55a7afdb" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1, 2, 3, 4]</code></pre>
 </div>
