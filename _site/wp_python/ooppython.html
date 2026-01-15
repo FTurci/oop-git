@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Syntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the <code>.</code> operator (something that we insisted on the first year).</p>
 <p>Try this in any python shell.</p>
 <p>A full list of methods and attributes can also be obtained with the <code>dir()</code> function:</p>
-<div id="ee3f07fc" class="cell" data-execution_count="1">
+<div id="f7b242b5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a_number <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">dir</span>(a_number))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="attributes" class="level3">
 <h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
 <p>Attributes are pieces of data that describe the object. For example, a string object has an attribute <code>length</code>, which tells you how many characters are in the string. You can access attributes using the <code>.</code> operator:</p>
-<div id="a202b039" class="cell" data-execution_count="2">
+<div id="da175596" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a_complex_number <span class="op">=</span> <span class="dv">2</span><span class="op">+</span><span class="ot">2j</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_complex_number.real)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
 <p>Methods are functions that operate on the object. For example, a list object has a method <code>append()</code>, which adds an element to the end of the list. You can call methods using the <code>.</code> operator followed by parentheses:</p>
-<div id="feb4a956" class="cell" data-execution_count="3">
+<div id="c7c1a37e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a_list.append(<span class="dv">4</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_list)  <span class="co"># Output: [1, 2, 3, 4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

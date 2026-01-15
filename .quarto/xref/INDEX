@@ -92,5 +92,8 @@
   "wp_python/oop_python.qmd": {
     "ooppython-slides.html": "a7c5fdb0",
     "ooppython.html": "8a4ef566"
+  },
+  "interactive/notebook.ipynb": {
+    "notebook.html": "70750644"
   }
 }
