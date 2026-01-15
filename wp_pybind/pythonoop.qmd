@@ -23,7 +23,7 @@ output-file: pythonoop-slides.html
 
 ## Learning outcomes
 
--   Defining classes in Python
+-   Defining wrapper classes in Python
 
 ## Subprocesses in Python
 
