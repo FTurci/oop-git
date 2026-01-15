@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <title>Object-Oriented Programming and Software Engineering – Implementation of Vicsek dynamics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,8 +28,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -40,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -93,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-d3a23058824a2a9b926dc54bab07359c.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-30296213365d5fdfece9462f1242ae55.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -251,12 +252,12 @@
 </ul>
 <p>So, to sample a position within the simulation box we simply pick random numbers between 0 and and the box side. And for this, we can use the features that we have specified for every object.</p>
 <p>For example, in C++11 we can loop over a vector in a <em>Pythonesque</em> fashion:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a><span class="cf">for</span> <span class="op">(</span>Particle <span class="op">&amp;</span>p <span class="op">:</span> <span class="kw">this</span><span class="op">-&gt;</span>particles<span class="op">){</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a><span class="cf">for</span> <span class="op">(</span>Particle <span class="op">&amp;</span>p <span class="op">:</span> <span class="kw">this</span><span class="op">-&gt;</span>particles<span class="op">){</span></span>
 <span id="cb1-2"><a></a><span class="op">...</span></span>
-<span id="cb1-3"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where clearly <code>this-&gt;particles</code> allows us to point to the correct member variable of the <code>System</code> class.</p>
 <p>Then, drawing a random x coordinate leverages the properties of the system (we defined a <code>uniform()</code> member function for the <code>System</code>), the box (we defined a <code>getSidex()</code> member function for it) and the particle (the coordinate <code>x</code> is a <strong>public</strong> member variable, so we can change it directly).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a></a> p<span class="op">.</span>x <span class="op">=</span> <span class="kw">this</span><span class="op">-&gt;</span>uniform<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="kw">this</span><span class="op">-&gt;</span>simulationBox<span class="op">.</span>getSidex<span class="op">());</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a></a> p<span class="op">.</span>x <span class="op">=</span> <span class="kw">this</span><span class="op">-&gt;</span>uniform<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="kw">this</span><span class="op">-&gt;</span>simulationBox<span class="op">.</span>getSidex<span class="op">());</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level3">
 
@@ -276,15 +277,15 @@
 </div>
 </div>
 </section></section>
-<section>
 <section id="saving-a-configuration-to-file" class="title-slide slide level2 center">
 <h2>Saving a configuration to file</h2>
 <p>The combination of particle positions and orientations defines a <strong>configuration</strong> of the system. For the purpose of visualisation, it would be useful to output this data and store it to file.</p>
 <p>In this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with <strong>streams</strong> of information. One of the streams you are used to is the standard output, accessed via <code>std::cout</code> in the standard library using the <code>&lt;iostream&gt;</code> library.</p>
-<p>When one wants to use file outputs, one needs to use the <code>&lt;fstream&gt;</code> library and construct output streams directly. Here below we provide you with a <strong>reverse engineering</strong> exercise: given a certain implementation of a function, reconstruct its definition.</p>
 </section>
-<section class="slide level3">
 
+<section>
+<section id="when-one-wants-to-use-file-outputs-one-needs-to-use-the-fstream-library-and-construct-output-streams-directly.-here-below-we-provide-you-with-a-reverse-engineering-exercise-given-a-certain-implementation-of-a-function-reconstruct-its-definition." class="title-slide slide level2 center">
+<h2>When one wants to use file outputs, one needs to use the <code>&lt;fstream&gt;</code> library and construct output streams directly. Here below we provide you with a <strong>reverse engineering</strong> exercise: given a certain implementation of a function, reconstruct its definition.</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -292,7 +293,7 @@
 </div>
 <div class="callout-content">
 <p>Add the following member function to <code>system.cpp</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a></a><span class="dt">void</span> System<span class="op">::</span>saveConfig<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string <span class="op">&amp;</span>filename<span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a></a><span class="dt">void</span> System<span class="op">::</span>saveConfig<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string <span class="op">&amp;</span>filename<span class="op">)</span></span>
 <span id="cb3-2"><a></a><span class="op">{</span>   </span>
 <span id="cb3-3"><a></a>    <span class="bu">std::</span>ofstream outFile<span class="op">(</span>filename<span class="op">);</span></span>
 <span id="cb3-4"><a></a>    <span class="cf">if</span> <span class="op">(!</span>outFile<span class="op">.</span>is_open<span class="op">())</span> <span class="op">{</span></span>
@@ -308,10 +309,10 @@
 <span id="cb3-14"><a></a>    <span class="op">}</span></span>
 <span id="cb3-15"><a></a>    </span>
 <span id="cb3-16"><a></a>    outFile<span class="op">.</span>close<span class="op">();</span> <span class="co">// Close the file</span></span>
-<span id="cb3-17"><a></a><span class="op">}</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-17"><a></a><span class="op">}</span>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Infer and add the corresponding definition in <code>system.h</code>. Remember to include <code>&lt;fstream&gt;</code> and <code>&lt;string&gt;</code> where needed.</p>
 <p>Compile your code by using the Makefile or the following command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++11 main.cpp system.cpp box.cpp particle.cpp <span class="at">-o</span> myvicsek</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++11 main.cpp system.cpp box.cpp particle.cpp <span class="at">-o</span> myvicsek</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -328,21 +329,20 @@
 <div class="callout-content">
 <p>Modify the <code>main()</code> function so that its <code>System</code> object calls the initialisation function and then saves it to a new file named <code>init.conf</code>.</p>
 <p>Recompile and run</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">./myvicsek</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">./myvicsek</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check the beginning of the <code>init.conf</code> file using</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">head</span> init.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">head</span> init.conf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Is it what you expected?</p>
 </div>
 </div>
 </div>
 </section></section>
-<section>
 <section id="sprinkle-some-python-read-the-configuration-a-visualise-it" class="title-slide slide level2 center">
 <h2>Sprinkle some <code>python</code>: read the configuration a visualise it</h2>
 <p>We have finally produced some (non-trivial) output from our code. It is just a random initial configuration, but it is worth having a look and plot it to see if it matches our expectations.</p>
 <p>For this, <code>Python</code> is the easiest tool at our hand. So, we are going to use now simple <strong>procedural</strong> <code>Python</code> to read in the initial configuration and plot it.</p>
 <p>We organise our python code in a separate file, which we call <code>pyvicsek.py</code>. We will read the configuration trivially using <code>numpy</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a></a></span>
 <span id="cb7-3"><a></a><span class="kw">def</span> read_config(filename, skip<span class="op">=</span><span class="dv">2</span>):</span>
 <span id="cb7-4"><a></a>    <span class="co">"""Reading an vicsek configuration from a file handle"""</span></span>
@@ -360,23 +360,18 @@
 <span id="cb7-16"><a></a>        conf[<span class="st">"theta"</span>] <span class="op">=</span> data[:,<span class="dv">3</span>]</span>
 <span id="cb7-17"><a></a>        conf[<span class="st">"vx"</span>] <span class="op">=</span> np.cos(conf[<span class="st">"theta"</span>])</span>
 <span id="cb7-18"><a></a>        conf[<span class="st">"vy"</span>] <span class="op">=</span> np.sin(conf[<span class="st">"theta"</span>])  </span>
-<span id="cb7-19"><a></a>        <span class="cf">return</span> conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a></a>        <span class="cf">return</span> conf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice that we work directly with the file handler. It is a choice that will be useful when operating with trajectories of the system.</p>
 <p>We can use <code>matplotlib</code>’s <code>quiver</code> plot to actually plot arrows.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> plot(conf,ax):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> plot(conf,ax):</span>
 <span id="cb8-2"><a></a>    qv <span class="op">=</span> ax.quiver(conf[<span class="st">"x"</span>], conf[<span class="st">"y"</span>], conf[<span class="st">"vx"</span>], conf[<span class="st">"vy"</span>], conf[<span class="st">"theta"</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, cmap<span class="op">=</span><span class="st">'hsv'</span>)</span>
 <span id="cb8-3"><a></a>    plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb8-4"><a></a>    <span class="cf">return</span> qv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a></a>    <span class="cf">return</span> qv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Combining all this together you should obtain something like the following</p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="init.conf.png"></p>
-<figcaption>Visualisation of an initial configuration</figcaption>
-</figure>
-</div>
 </section>
-<section class="slide level3">
 
+<section id="visualisation-of-an-initial-configuration" class="title-slide slide level2 center">
+<h2><img data-src="init.conf.png" alt="Visualisation of an initial configuration"></h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -384,11 +379,12 @@
 </div>
 <div class="callout-content">
 <p>Embed the ideas above into your own <code>pyvicsek.py</code> file. you can run the script directly from the terminal with</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">python</span> pyvicsek.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">python</span> pyvicsek.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-</section></section>
+</section>
+
 <section>
 <section id="actual-vicsek-dynamics" class="title-slide slide level2 center scrollable">
 <h2>Actual <code>Vicsek</code> dynamics</h2>
@@ -430,7 +426,7 @@
 <summary>
 Click to expand <strong>pseudocode</strong>
 </summary>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource pseudo number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a>initialize new_theta array with size equal to number of particles</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource pseudo number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a>initialize new_theta array with size equal to number of particles</span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a>for each particle i:</span>
 <span id="cb10-4"><a></a>    count = 10</span>
@@ -449,7 +445,7 @@ Click to expand <strong>pseudocode</strong>
 <span id="cb10-17"><a></a>        y += sin(new_theta[i]) * v * dt</span>
 <span id="cb10-18"><a></a>    update orientation: </span>
 <span id="cb10-19"><a></a>        theta = new_theta[i]</span>
-<span id="cb10-20"><a></a>    apply periodic boundaries to x and y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-20"><a></a>    apply periodic boundaries to x and y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section class="slide level3">
@@ -463,13 +459,13 @@ Click to expand <strong>pseudocode</strong>
 <p>You can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.</p>
 <p>Then in, the main function in <code>main.cpp</code>, implement a <code>for</code> loop for a large number of iterations, were you repeatedly call the <code>updateRule()</code> member function and regularly save a configuration to a file with a new name.</p>
 <p>To save a file with a new name, consider using <code>C++</code> strings like</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a></a><span class="bu">std::</span>string root <span class="op">=</span> <span class="st">"frame"</span></span>
-<span id="cb11-2"><a></a>model<span class="op">.</span>saveConfig<span class="op">(</span> root<span class="op">+</span><span class="bu">std::</span>to_string<span class="op">(</span>iteration<span class="op">));</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a></a><span class="bu">std::</span>string root <span class="op">=</span> <span class="st">"frame"</span></span>
+<span id="cb11-2"><a></a>model<span class="op">.</span>saveConfig<span class="op">(</span> root<span class="op">+</span><span class="bu">std::</span>to_string<span class="op">(</span>iteration<span class="op">));</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details>
 <summary>
 Click to expand the <strong>snippet</strong>
 </summary>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a></a><span class="dt">void</span> System<span class="op">::</span>updateRule<span class="op">()</span> <span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a></a><span class="dt">void</span> System<span class="op">::</span>updateRule<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb12-2"><a></a>    <span class="co">// Notice that "this" is not stricly needed for the member variables</span></span>
 <span id="cb12-3"><a></a></span>
 <span id="cb12-4"><a></a></span>
@@ -538,7 +534,7 @@ Click to expand the <strong>snippet</strong>
 <span id="cb12-67"><a></a>        <span class="cf">if</span> <span class="op">(</span>particles<span class="op">[</span>i<span class="op">].</span>y <span class="op">&gt;</span>Ly<span class="op">)</span> particles<span class="op">[</span>i<span class="op">].</span>y <span class="op">-=</span> Ly<span class="op">;</span></span>
 <span id="cb12-68"><a></a>        <span class="cf">if</span> <span class="op">(</span>particles<span class="op">[</span>i<span class="op">].</span>y <span class="op">&lt;</span><span class="dv">0</span><span class="op">)</span> particles<span class="op">[</span>i<span class="op">].</span>y <span class="op">+=</span> Ly<span class="op">;</span></span>
 <span id="cb12-69"><a></a>    <span class="op">}</span></span>
-<span id="cb12-70"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-70"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div>
@@ -549,7 +545,7 @@ Click to expand the <strong>snippet</strong>
 <h2>Visualising the trajectory</h2>
 <p>Simple modifications to your Python code to include <code>matplotlib</code>’s <code>Funcanimation</code> allow you to visualise the trajectory</p>
 <p>Here is a an example</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-3"><a></a><span class="im">import</span> glob</span>
 <span id="cb13-4"><a></a><span class="im">import</span> natsort</span>
@@ -599,7 +595,7 @@ Click to expand the <strong>snippet</strong>
 <span id="cb13-48"><a></a><span class="co"># Create the animation</span></span>
 <span id="cb13-49"><a></a>anim <span class="op">=</span> FuncAnimation(fig,animate, <span class="bu">range</span>(<span class="bu">len</span>(files)))</span>
 <span id="cb13-50"><a></a><span class="co"># Show the animation</span></span>
-<span id="cb13-51"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-51"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level3">
 
@@ -806,7 +802,7 @@ Click to expand the <strong>snippet</strong>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -833,190 +829,173 @@ Click to expand the <strong>snippet</strong>
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

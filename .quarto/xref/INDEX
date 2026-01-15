@@ -88,5 +88,9 @@
   },
   "wp_pybind/solutions.qmd": {
     "solutions.html": "ade01446"
+  },
+  "wp_python/oop_python.qmd": {
+    "ooppython-slides.html": "a7c5fdb0",
+    "ooppython.html": "8a4ef566"
   }
 }

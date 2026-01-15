@@ -62,8 +62,8 @@ This will print a long list of methods and attributes that you can use with the 
 Attributes are pieces of data that describe the object. For example, a string object has an attribute `length`, which tells you how many characters are in the string. You can access attributes using the `.` operator:
 
 ```{python}
-a_string = "Hello, World!"
-print(a_string.length)  # Output: 13
+a_complex_number = 2+2j
+print(a_complex_number.real)  
 ```
 ### Methods
 
