@@ -147,7 +147,7 @@ So, while `p1` and `p2` are both objects of class `Particle`, they are different
 
 At the moment our class only has a constructor that takes some attributes, but it doesn;t do much more. Let's add a method to update the position of the particle based on a velocity.
 
-``` python python
+```{python}
 class Particle:
     def __init__(self, x0=0, y0=0):
         self.x = x0      # position x
@@ -158,7 +158,7 @@ class Particle:
 ``` 
 Now we can create a particle and move it:
 
-``` python
+``` {python}
 p = Particle(1, 2)
 p.move(0.5, -0.5) 
 ```
@@ -180,7 +180,7 @@ In a suitable Python file, create a class `Particle` that has:
 
 Given Python's simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:
 
-``` python
+``` {python}
 particles = []
 for i in range(10): 
     p = Particle(i, i*2) 
