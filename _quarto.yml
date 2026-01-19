@@ -53,14 +53,4 @@ format:
     toc: true
     number-chapters: true
     # number-sections: true
-  live-html:
-      html:
-      theme: cosmo
-      grid:
-        sidebar-width: 305px
-      # css: styles.css
-      toc: true
-      number-chapters: true
-      # number-sections: true
-
-
+    

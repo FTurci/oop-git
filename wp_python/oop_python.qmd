@@ -14,6 +14,13 @@ format:
     #     # transition: fade
     #     output-file: ooppython-slides.html
     live-html:
+        theme: cosmo
+        grid:
+            sidebar-width: 305px
+        # css: styles.css
+        toc: true
+        number-chapters: true
+        # number-sections: true
 
         output-file: oopython-text.html
 

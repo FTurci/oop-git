@@ -10,7 +10,9 @@ We want to realise a **Github repository** containing a **C++** project with **P
 
 :::
 
-We will have **five** sessions to reach this target. We will proceed in steps:
+We will have **five** sessions to reach this target.
+
+ <!-- We will proceed in steps:
 
 | Date       | Topic                                                                 |
 |------------|-----------------------------------------------------------------------|
@@ -19,7 +21,7 @@ We will have **five** sessions to reach this target. We will proceed in steps:
 |Week 15 - 27/01/2025 | Implement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools |
 |Week 16 - 03/03/2025 | Introduce `pybind11` to interface the C++ code with Python            |
 |Week 17 - 10/02/2025 | Wrapping in Python and improvements to the code                      |
-
+ -->
 
 This journey will allow you to **build your coding skills** in C++, connect them to your Python knowledge and apply them to a **realistic modelling problem**.
 

@@ -126,6 +126,41 @@
     ]
   },
   {
+    "objectID": "wp_gitgithub/shell-slides.html#aims",
+    "href": "wp_gitgithub/shell-slides.html#aims",
+    "title": "Using the shell",
+    "section": "Aims",
+    "text": "Aims\n\nCreate a local project directory\nCreate and edit README.md file"
+  },
+  {
+    "objectID": "wp_gitgithub/shell-slides.html#learning-outcomes",
+    "href": "wp_gitgithub/shell-slides.html#learning-outcomes",
+    "title": "Using the shell",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nBuild confidence in navigating the filesystem, creating, deleting and editing files and folders"
+  },
+  {
+    "objectID": "wp_gitgithub/shell-slides.html#the-shell",
+    "href": "wp_gitgithub/shell-slides.html#the-shell",
+    "title": "Using the shell",
+    "section": "The shell",
+    "text": "The shell\nHere we recall very briefly why we use the shell environment and how normal operations are typically performed. These topics have already been covered in the previous term.\nThe shell allows you to interact with a computer without the need of a graphical user interface (GUI). This has three main advantages:\n\nit allows you to operate on files and folders programmatically\nit allows you to interact easily with remote machines, e.g. the High Performance Computing facilities of the University of Bristol\nit allows to have more direct access to low-level operations of your machine (installing and fine-tuning software, libraries and various components)\n\n\n\n\n\n\n\nImportant\n\n\nIt is essential to learn how to use the shell properly in order to understand and develop more advanced scientific computing tools."
+  },
+  {
+    "objectID": "wp_gitgithub/shell-slides.html#basic-shell-usage",
+    "href": "wp_gitgithub/shell-slides.html#basic-shell-usage",
+    "title": "Using the shell",
+    "section": "Basic shell usage",
+    "text": "Basic shell usage\n\nList files and directories: Displays the contents of the current directory.\n\n\nls\n\nChange directory: Moves to a different directory.\n\n\ncd /path/to/directory\n\nCreate a new directory: Creates a new folder.\n\n\nmkdir new_folder\n\nRemove a file: Deletes a specific file.\n\n\nrm file.txt\n\nRemove a directory: Deletes a directory and its contents.\n\n\nrm -r directory_name\n\nMove or rename a file: Moves a file to a new location or renames it.\n\n\nmv old_file.txt new_location/\n\nCopy a file: Copies a file to a new location.\n\n\ncp file.txt /path/to/destination/\n\nCreate a new file: Creates an empty file.\n\n\ntouch newfile.txt\n\nEdit a file: Opens a file in a text editor like nano for editing.\n\n\nnano file.txt\n\nView the contents of a file: Displays the contents of a file in the terminal.\n\ncat file.txt\n\nSearch for text in a file: Searches for specific text in a file.\n\ngrep \"search_term\" file.txt\n\nShow current directory path: Displays the full path of the current working directory.\n\n\npwd\n\nCopy a directory: Copies a directory and its contents.\n\n\ncp -r source_directory/ destination_directory/\n\nMove back one directory: Moves up one directory level.\n\n\ncd ..\n\nDisplay disk usage: Shows the disk usage of files and directories.\n\n\ndu -sh *"
+  },
+  {
+    "objectID": "wp_gitgithub/shell-slides.html#to-dos",
+    "href": "wp_gitgithub/shell-slides.html#to-dos",
+    "title": "Using the shell",
+    "section": "To-dos",
+    "text": "To-dos\nNow that we know how to manipulate folder and files, we start our project by creating\n\na dedicated directory\na README.md file to contain the project documentation\n\n\n\n\nTask 1: create the local project directory\n\n\nNow that we have overviewed basic shell commands, we can set off and create a local directory that will contain our project.\nWe name the project vicsek-cpp.\nmkdir vicsek-cpp\n\n\n\n\n\n\nTask 2: create the README.md file\n\n\nInside the folder, we can use our favourite editor (e.g. vim or nano or VSCode if we like) to create and edit the README.md file.\nInclude a header and a brief description. You will provide more documentation later on.\nFor the root working directory, typing\nls vicsek-cpp\nshould return\nREADME.md\n\n\n\n\n\n\nTask 3: Inspect file contents\n\n\nThere are many ways to quickly inspect the contents of a file in bash.\nTry the command head, tail and cat on your file and check their documentation to understand how they work."
+  },
+  {
     "objectID": "wp_gitgithub/shell.html",
     "href": "wp_gitgithub/shell.html",
     "title": "Using the shell",
@@ -196,7 +231,7 @@
     "href": "plan.html",
     "title": "Plan",
     "section": "",
-    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nTipGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target. We will proceed in steps:\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\nWeek 13 - 13/01/2025\nLearn how to use git to perform version control and interact with Github\n\n\nWeek 14 - 20/01/2025\nRecall the notion of Object-Oriented programming (OOP) and design the (OOP) structure of our simulation.\n\n\nWeek 15 - 27/01/2025\nImplement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools\n\n\nWeek 16 - 03/03/2025\nIntroduce pybind11 to interface the C++ code with Python\n\n\nWeek 17 - 10/02/2025\nWrapping in Python and improvements to the code\n\n\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.\n\n\n\nThe final product of the simulation is a visualization of the Vicsek model, an elementary model to represent the flocking behaviour of birds, fish and various other agents. An example animation is here below.\n\n\n\nAnimation of the Vicsek model\n\n\nThis is an interesting model for various reasons:\n\nIt is a simple example of pattern formation: the model demonstrates how simple local interactions lead to complex, emergent structures, resembling phenomena in biological and chemical systems.\nIt illustrates nonequilibrium dynamics: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.\nIt produces visually striking simulations, linking numerics to computer graphics.\n\n\n\n\n\nDuring the project you will acquire a number of skills, primarily in two areas:\n\n\n\n\n\n\n\nSoftware engineering (e.g. version control with git)\nObject-oriented programming (in C++ and Python)\n\n\n\n\nThe Test 2 assessment in Week 17 will probe your understanding of both via a dedicated and self-contained exercise, distinct from the product of this module. This means that the final product mentioned here is not assessed. It is, however, a constitutive part of your learning trajectory.",
+    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nTipGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target.\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.\n\n\n\nThe final product of the simulation is a visualization of the Vicsek model, an elementary model to represent the flocking behaviour of birds, fish and various other agents. An example animation is here below.\n\n\n\nAnimation of the Vicsek model\n\n\nThis is an interesting model for various reasons:\n\nIt is a simple example of pattern formation: the model demonstrates how simple local interactions lead to complex, emergent structures, resembling phenomena in biological and chemical systems.\nIt illustrates nonequilibrium dynamics: it captures collective behavior in far-from-equilibrium systems, relevant to understanding self-assembly, active matter, and reaction-diffusion processes.\nIt produces visually striking simulations, linking numerics to computer graphics.\n\n\n\n\n\nDuring the project you will acquire a number of skills, primarily in two areas:\n\n\n\n\n\n\n\nSoftware engineering (e.g. version control with git)\nObject-oriented programming (in C++ and Python)\n\n\n\n\nThe Test 2 assessment in Week 17 will probe your understanding of both via a dedicated and self-contained exercise, distinct from the product of this module. This means that the final product mentioned here is not assessed. It is, however, a constitutive part of your learning trajectory.",
     "crumbs": [
       "Plan"
     ]
@@ -206,7 +241,7 @@
     "href": "plan.html#aims-and-schedule",
     "title": "Plan",
     "section": "",
-    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nTipGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target. We will proceed in steps:\n\n\n\n\n\n\n\nDate\nTopic\n\n\n\n\nWeek 13 - 13/01/2025\nLearn how to use git to perform version control and interact with Github\n\n\nWeek 14 - 20/01/2025\nRecall the notion of Object-Oriented programming (OOP) and design the (OOP) structure of our simulation.\n\n\nWeek 15 - 27/01/2025\nImplement the essential OOP structure of your simulator in C++ and with minimal Python visualisation tools\n\n\nWeek 16 - 03/03/2025\nIntroduce pybind11 to interface the C++ code with Python\n\n\nWeek 17 - 10/02/2025\nWrapping in Python and improvements to the code\n\n\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.",
+    "text": "In this part of the course, we set ourselves a very specific goal:\n\n\n\n\n\n\nTipGoal\n\n\n\nWe want to realise a Github repository containing a C++ project with Python frontend to simulate a simple particle-based simulation.\n\n\nWe will have five sessions to reach this target.\n\nThis journey will allow you to build your coding skills in C++, connect them to your Python knowledge and apply them to a realistic modelling problem.",
     "crumbs": [
       "Plan"
     ]
@@ -383,7 +418,8 @@
     "section": "",
     "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
@@ -393,7 +429,8 @@
     "section": "",
     "text": "Understand what an object is in Python\nFamiliarise with the notion of object, instances, attributes and methods",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
@@ -403,7 +440,8 @@
     "section": "Learning outcomes",
     "text": "Learning outcomes\n\nCreating basic classes in Python",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
@@ -413,7 +451,8 @@
     "section": "Objects",
     "text": "Objects\nIn C/C++ you have seen many kinds of data structures: arrays, structs, pointers, linked lists, etc. They are fundamentally different ways to organise data in memory.\nIn Python, instead, any structure is fundamentally the same: it is an abstract entity called an object.\nObjects in Python can be specialised, and so we can have objects of different types (which we can check with the type() function). But fundamentally everything is an object.\nWhat are the characteristics of an object?\nObjects are simple. They contain:\n\nAttributes: pieces of data that describe the object\nMethods: functions that operate on the object\n\nAnd that’s it!\nSyntactically this means one thing: that given a variable in python, we can always check its attributes and methods using the . operator (something that we insisted on the first year).\nTry this in any python shell.\nA full list of methods and attributes can also be obtained with the dir() function:\n\n\n\n\n\n\nThis will print a long list of methods and attributes that you can use with the variable a_number.\n\nAttributes\nAttributes are pieces of data that describe the object. For example, a string object has an attribute length, which tells you how many characters are in the string. You can access attributes using the . operator:\n\n\n\n\n\n\n\n\nMethods\nMethods are functions that operate on the object. For example, a list object has a method append(), which adds an element to the end of the list. You can call methods using the . operator followed by parentheses:",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
@@ -423,7 +462,8 @@
     "section": "Custom Classes",
     "text": "Custom Classes\nThe above examples are trivial and based on bult-in types. But we have the same for objects imported from modules (e.g. numpy arrays). This is because modules define custom classes.\nSince in Python everything is an object, its syntax makes it very easy to define our own custom classes.\n\nExample: A Particle Class\nLet’s define a simple class to represent a particle in 2D space. The particle will have attributes for its position and velocity, and methods to update its position based on its velocity.\nTo define classes in Python we need a few syntactical conventions:\n\na new keyword to define a class: class\nindentation to define the scope of the class and its methods (no curly braces)\na special method called __init__ to define the constructor of the class, i.e. the function that actually creates the object in memory when needed.\n\n\n\n\n\n\n\nThis is a very minimal class definition. The name of the class is Particle. The constructor __init__ is a function that takes at least one input: self. This is a reference to the object itself, and it is used to define attributes and methods that belong to the object.\n\n\nEncapsulation\nWhy do we need self? The idea is that we will create a variable of class Particle in the following way:\n\n\n\n\n\n\nhere the syntax Particle() calls the __init__ method (i.e. function) of the class Particle, and p is the variable that will hold the object in memory. It will be run only when the interpreter reaches that line. When it is run, the object p exists and needs to store all its attributes/ How can we refer to p and p only in our class definition? The answer is self: when the constructor is called, self will be a reference to p.\nWhy do we need a reference to p? because we want all the properties of p to be stored inside the object itself. This is called encapsulation.\nSo, in the rest of this workshop, you will try and create your own classes in Python to familiarise with the idea.\nFor this purpose, working inside a Jupyter notebook (or VSCode with Jupyter extension) is probably the best way to go, since you can test your code interactively.\n\n\nInstances\nOur initial example is trivial: the initial position are always (0,0). Let’s make it more interesting by allowing the user to specify the initial position when creating the object.\n\n\n\n\n\n\nNow we can create two particles with different initial positions:\n\n\n\n\n\n\nAnd we can access their attributes:\n\n\n\n\n\n\nSo, while p1 and p2 are both objects of class Particle, they are different objects with their own attributes. These are different instances of the same class.\n\n\nMore methods\nAt the moment our class only has a constructor that takes some attributes, but it doesn;t do much more. Let’s add a method to update the position of the particle based on a velocity.\n\n\n\n\n\n\nNow we can create a particle and move it:\n\n\n\n\n\n\nThis will update the position of the particle p by adding the velocity components to its current position.\n\n\n\n\n\n\nNoteTask 1: Create your Particle class\n\n\n\nIn a suitable Python file, create a class Particle that has: - a constructor that takes initial position x0 and y0 as parameters - a method move(vx, vy) that updates the position of the particle based on the velocity components vx and vy - a method get_position() that returns the current position of the particle as a tuple (x, y)",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
@@ -433,7 +473,8 @@
     "section": "Combining objects together",
     "text": "Combining objects together\nGiven Python’s simplicity it is then immediate to create objects together to create more complex structures. For example, we can readily create many particles using a for loop and store them in a list:\n\n\n\n\n\n\nNotice that here we used the methods of the built-in object list together with our custom class Particle.\n\n\n\n\n\n\nNoteTask 2: Combining classes\n\n\n\nCreate a new class called ParticleSystem that contains a list of Particle objects. The class should have: - a constructor that initializes an empty list of particles - a method add_particle(x0, y0) that creates a new Particle object with the given initial position and adds it to the list - a method move_all(vx, vy) that moves all particles in the system by the given velocity components - a method get_positions() that returns a list of the current positions of all particles in the system\n\n\n\n\n\n\n\n\nNoteTask 3: Using the classes and visualisation\n\n\n\nNow write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.\nUse matplotlib to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the ParticleSystem class as a method animate(steps) that runs the simulation for a given number of steps and produces an animation of the particles’ movements.",
     "crumbs": [
-      "2| Objects everywhere: `python`"
+      "2| Objects everywhere: `python`",
+      "Everything is an Object in Python"
     ]
   },
   {
