@@ -12,9 +12,10 @@ format:
     smaller: true
     theme: [simple, ../scss/custom.scss]
     # transition: fade
+    output-file: ooppython-slides.html
   live-html:
     output-file: ooppython.html
-output-file: ooppython-slides.html
+
 ---
 
 ## Aims
