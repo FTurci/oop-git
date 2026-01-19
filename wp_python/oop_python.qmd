@@ -225,6 +225,27 @@ Use `matplotlib` to visualise the positions during the simulation and to produce
 
 Matplotlib's `FuncAnimation` class can be useful for this purpose.
 
+Here is a simple example of how to use `FuncAnimation`:
+```python
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import numpy as np
+fig, ax = plt.subplots()
+xdata, ydata = [], []
+ln, = plt.plot([], [], 'ro')  
+def init():
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    return ln,
+def update(frame):
+    xdata.append(np.random.rand())
+    ydata.append(np.random.rand())
+    ln.set_data(xdata, ydata)
+    return ln,
+ani = FuncAnimation(fig, update, frames=range(100), init_func=init, blit=True)
+plt.show()
+```
+
 :::
 
 
