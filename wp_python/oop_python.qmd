@@ -221,7 +221,9 @@ Create a new class called `ParticleSystem` that contains a list of `Particle` ob
 
 Now write a small program that uses your classes to instantiate a system of 10 particles with random initial positions, moves them with random velocities, and prints their final positions.
 
-Use `matplotlib` to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the `ParticleSystem` class as a method `animate(steps)` that runs the simulation for a given number of steps and produces an animation of the particles' movements.
+Use `matplotlib` to visualise the positions during the simulation and to produce a complete animation. This should be integrated within the `ParticleSystem` class as a method `animate(steps)` that runs the simulation for a given number of steps and produces an animation of the particles' movements.
+
+Matplotlib's `FuncAnimation` class can be useful for this purpose.
 
 :::
 
