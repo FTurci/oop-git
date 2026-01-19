@@ -224,3 +224,14 @@ Now write a small program that uses your classes to instantiate a system of 10 p
 Use `matplotlib` to visualise the positions during the simulation and to produce a complete animation. This shoudl be integrated within the `ParticleSystem` class as a method `animate(steps)` that runs the simulation for a given number of steps and produces an animation of the particles' movements.
 
 :::
+
+
+```{pyodide}
+# You can use this block to explore and test your classes
+
+
+
+
+
+
+```
