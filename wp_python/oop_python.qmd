@@ -15,7 +15,7 @@ format:
     #     output-file: ooppython-slides.html
     live-html:
 
-        output-file: ooppython.html
+        output-file: oopython-text.html
 
 ---
 

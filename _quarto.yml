@@ -23,7 +23,7 @@ website:
         - href: wp_gitgithub/exercises.qmd
       - section: "2| Objects everywhere: `python`"
         contents:
-        - href: wp_python/oopython-text.qmd
+        - href: wp_python/oopython-text.html
       - section: "3| Object-Oriented thinking"
         contents:
         - href: wp_oop/oop.qmd

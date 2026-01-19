@@ -248,7 +248,7 @@ int main(){
 
 ###
 :::{.callout-note icon="false"}
-## Task 4: merging
+## Task 5: merging
 
 Now that you have your `develop` branch set up, attempt to merge it back with the  `main` branch using the `git merge` command. If you are not sure about how to use it, check the documentation with `git merge --help`.
 
@@ -257,19 +257,21 @@ Now that you have your `develop` branch set up, attempt to merge it back with th
 
 ###
 :::{.callout-note icon="false"}
-## Task 5: bundling
+## Task 6: bundling
 
 Use now the command 
 
 ```bash
 git bundle create myrepo.bundle --all
 ```
-to create a single bundle file conatining all of the repository. Move it to another folder (or even another machine with git, e.g. your Noteable account) and unpack it with 
+to create a single bundle file containing all of the repository. Move it to another folder (or even another machine with git, e.g. your Noteable account) and unpack it with 
 
 ```bash
 git clone myrepo.bundle
 ```
 
 Can you check the branch structure? and the status?
+
+Use `git branch -a` to see all branches.
 
 :::

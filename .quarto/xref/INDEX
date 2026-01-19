@@ -91,7 +91,8 @@
   },
   "wp_python/oop_python.qmd": {
     "ooppython-slides.html": "a7c5fdb0",
-    "ooppython.html": "8a4ef566"
+    "ooppython.html": "8a4ef566",
+    "oopython-text.html": "290552ca"
   },
   "interactive/notebook.ipynb": {
     "notebook.html": "70750644"
