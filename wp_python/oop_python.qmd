@@ -94,7 +94,7 @@ To define classes in Python we need a few syntactical conventions:
 - indentation to define the scope of the class and its methods (no curly braces)
 - a special method called `__init__` to define the **constructor** of the class, i.e. the function that actually creates the object in memory when needed.
 
-``` python
+```{pyodide}
 class Particle:
     def __init__(self):
         self.x = 0      # position x
@@ -107,7 +107,7 @@ This is a very minimal class definition. The name of the class is `Particle`. Th
 
 Why do we need self? The idea is that we will create a variable of class `Particle` in the following way:
 
-``` python
+```{pyodide}
 p = Particle()
 ```
 here the syntax `Particle()` calls the `__init__` method (i.e. function) of the class `Particle`, and `p` is the variable that will hold the object in memory. It will be run only when the interpreter reaches that line. When it is run, the object `p` exists and needs to store all its attributes/ How can we refer to `p` and `p` only in our class definition? The answer is `self`: when the constructor is called, `self` will be a reference to `p`.
@@ -123,7 +123,7 @@ For this purpose, working inside a **Jupyter notebook** (or *VSCode* with Jupyte
 
 Our initial example is trivial: the initial position are always `(0,0)`. Let's make it more interesting by allowing the user to specify the initial position when creating the object.
 
-``` python
+```{pyodide}
 class Particle:
     def __init__(self, x0=0, y0=0):
         self.x = x0      # position x
@@ -131,14 +131,14 @@ class Particle:
 ```     
 
 Now we can create two particles with different initial positions:
-``` python
+```{pyodide}
 p1 = Particle(1, 2)
 p2 = Particle(3, 4)
 ```
 
 And we can access their attributes:
 
-``` python
+```{pyodide}
 print(p1.x, p1.y)
 print(p2.x, p2.y)
 ```
