@@ -23,7 +23,7 @@ website:
         - href: wp_gitgithub/exercises.qmd
       - section: "2| Objects everywhere: `python`"
         contents:
-        - href: wp_python/oopython-text.html
+        - href: wp_python/oop_python.qmd
       - section: "3| Object-Oriented thinking"
         contents:
         - href: wp_oop/oop.qmd
@@ -53,3 +53,14 @@ format:
     toc: true
     number-chapters: true
     # number-sections: true
+  live-html:
+      html:
+      theme: cosmo
+      grid:
+        sidebar-width: 305px
+      # css: styles.css
+      toc: true
+      number-chapters: true
+      # number-sections: true
+
+
