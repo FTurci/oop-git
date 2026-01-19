@@ -179,6 +179,7 @@ This will update the position of the particle `p` by adding the velocity compone
 :::{.callout-note icon="false"}
 ## Task 1: Create your Particle class
 In a suitable Python file, create a class `Particle` that has:
+
 -  a constructor that takes initial position `x0` and `y0` as parameters
 -  a method `move(vx, vy)` that updates the position of the particle based on the velocity components `vx` and `vy`
 -  a method `get_position()` that returns the current position of the particle as a tuple `(x, y)`
@@ -205,6 +206,7 @@ Notice that here we used the methods of the built-in object list together with o
 ## Task 2: Combining classes
 
 Create a new class called `ParticleSystem` that contains a list of `Particle` objects. The class should have:
+
 -  a constructor that initializes an empty list of particles
 -  a method `add_particle(x0, y0)` that creates a new `Particle` object with the given initial position and adds it to the list
 -  a method `move_all(vx, vy)` that moves all particles in the system by the given velocity components
