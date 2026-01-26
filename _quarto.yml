@@ -19,7 +19,6 @@ website:
         - href: wp_gitgithub/shell.qmd
         - href: wp_gitgithub/git.qmd
         - href: wp_gitgithub/github.qmd
-        - href: wp_gitgithub/make.qmd
         - href: wp_gitgithub/exercises.qmd
       - section: "2| Objects everywhere: `python`"
         contents:
@@ -33,6 +32,7 @@ website:
         contents:
         - href: wp_vicsek/implement.qmd
         - href: wp_vicsek/solutions.qmd
+        - href: wp_gitgithub/make.qmd
       - section: "5| C++ to Python interface"
         contents:
         - href: wp_pybind/pythonoop.qmd
