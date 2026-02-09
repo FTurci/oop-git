@@ -196,7 +196,7 @@ make
 
 ## Constructing a `Particle`
 
-The final object we are interested in possibly the most important: it is the  particle, representing the individual agent of the Vicsek model.
+The final object we are interested in is possibly the most important: it is the  particle, representing the individual agent of the Vicsek model.
 
 The model uses point particles with an associated velocity vector of fixed magnitude but variable angle. This vectors move in space and eventually interact with each other within a radius of interaction $r$.
 
@@ -260,7 +260,7 @@ As you have seen in the **Introduction to C++** part of the course, we can creat
 - vectors of integers:
 
 ```cpp
-std::vector<int> vec; // Creates a 
+std::vector<int> vec; // Declares an empty vector of integers
 ```
 
 - vectors of floating point numbers:
