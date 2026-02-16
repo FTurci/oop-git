@@ -104,9 +104,12 @@ The combination of particle positions and orientations defines a **configuration
 In this module, we will not focus on the many details of file input output in C++. Suffice to say that C++ works with **streams** of information. One of the streams you are used to is the standard output, accessed via `std::cout` in the standard library using the `<iostream>` library.
 
 When one wants to use file outputs, one needs to use the `<fstream>` library and construct output streams directly. Here below we provide you with a **reverse engineering** exercise: given a certain implementation of a function, reconstruct its definition.
+
+
 ---
 
 :::{.callout-note icon="false"}
+
 ## Task 3: Reverse engineer the declaration of `saveConfig()`
 
 Add the following member function to `system.cpp`
@@ -295,6 +298,8 @@ for each particle i:
 ---
 
 :::{.callout-note icon="false"}
+
+
 ## Task 6: Implement the dynamics
 
 You can try and implement the pseudocode above or use the following snippet as a starting point. Complete the missing sections.
